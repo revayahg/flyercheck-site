@@ -1,0 +1,17 @@
+{
+  "name": "company-website",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "node server.js",
+    "build": "echo 'Static site - no build needed'",
+    "start": "node server.js",
+    "lint": "echo 'No linting configured'",
+    "vercel-build": "echo 'Static site ready for deployment'"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "openai": "^6.9.0"
+  },
+  "devDependencies": {}
+}

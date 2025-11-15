@@ -1,0 +1,31 @@
+.sitemap-section {
+    padding: 8rem 2rem;
+    background-color: white;
+}
+
+.sitemap-title {
+    font-family: 'Didot', serif;
+    font-size: 36px;
+    color: #2B2B2B;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.sitemap-links {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.sitemap-link {
+    display: block;
+    padding: 1rem;
+    color: #2B2B2B;
+    text-decoration: none;
+    border-bottom: 1px solid #CBBBA0;
+    transition: all 0.3s ease;
+}
+
+.sitemap-link:hover {
+    background-color: rgba(203, 187, 160, 0.1);
+    color: #90684A;
+}

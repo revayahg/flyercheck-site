@@ -1,0 +1,115 @@
+.event-category-selector {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.category-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #2B2B2B;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.category-subtitle {
+    font-size: 14px;
+    color: #6b7280;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.category-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.category-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.25rem;
+    border: 2px solid #CBBBA0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: white;
+}
+
+.category-option:hover {
+    background-color: rgba(203, 187, 160, 0.1);
+    border-color: #90684A;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.category-option.selected {
+    background-color: rgba(203, 187, 160, 0.2);
+    border-color: #90684A;
+    border-width: 3px;
+}
+
+.category-icon {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f3f4f6;
+    border-radius: 8px;
+    color: #90684A;
+    font-size: 24px;
+}
+
+.category-option.selected .category-icon {
+    background-color: #CBBBA0;
+    color: white;
+}
+
+.category-info {
+    flex: 1;
+}
+
+.category-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    margin-bottom: 0.25rem;
+}
+
+.category-label input[type="radio"] {
+    margin: 0;
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+    accent-color: #90684A;
+}
+
+.category-name {
+    font-weight: 600;
+    font-size: 16px;
+    color: #2B2B2B;
+    cursor: pointer;
+}
+
+.category-description {
+    font-size: 13px;
+    color: #6b7280;
+    margin: 0;
+    margin-top: 0.25rem;
+    line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+    .category-options {
+        grid-template-columns: 1fr;
+    }
+    
+    .category-option {
+        padding: 1rem;
+    }
+}
+

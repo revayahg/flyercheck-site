@@ -1,0 +1,239 @@
+.host-hero {
+    position: relative;
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), 
+                      url('https://app.trickle.so/storage/public/images/usr_0ad8d73270000001/2653bf07-633b-4531-b2f9-be36bdca83af.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-top: 76px;
+    overflow: hidden;
+}
+
+.hero-banner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.banner-text {
+    font-family: 'Avenir Next', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+    margin: 0;
+    line-height: 1.3;
+}
+
+.hero-bottom {
+    position: absolute;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: #CBBBA0;
+    color: #2B2B2B;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.cta-button:hover {
+    background-color: #90684A;
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+.progress-section {
+    padding: 4rem 2rem;
+    background-color: white;
+}
+
+.progress-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.progress-track {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    padding: 2rem 0;
+}
+
+.progress-track::before {
+    content: '';
+    position: absolute;
+    top: 50px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #CBBBA0;
+    z-index: 1;
+}
+
+.progress-step {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 150px;
+}
+
+.step-icon {
+    background-color: #F6F1EB;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin-bottom: 1rem;
+    border: 2px solid #CBBBA0;
+}
+
+.step-content {
+    text-align: center;
+}
+
+.step-text {
+    font-weight: 600;
+    font-size: 14px;
+    color: #2B2B2B;
+    margin-bottom: 0.25rem;
+}
+
+.step-subtext {
+    font-size: 12px;
+    color: #90684A;
+}
+
+.progress-step.completed .step-icon {
+    background-color: #CBBBA0;
+    border-color: #90684A;
+}
+
+.progress-step.in-progress .step-icon {
+    background-color: #F6F1EB;
+    border-color: #90684A;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (max-width: 768px) {
+    .host-hero {
+        height: 80vh;
+        margin-top: 60px;
+    }
+
+    .hero-banner {
+        padding: 0.75rem;
+    }
+
+    .banner-text {
+        font-size: 16px;
+    }
+
+    .hero-bottom {
+        bottom: 2rem;
+    }
+
+    .cta-button {
+        padding: 0.625rem 1.25rem;
+        font-size: 13px;
+    }
+
+    .progress-track {
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .progress-track::before {
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        width: 2px;
+        height: auto;
+        transform: translateX(-50%);
+    }
+
+    .progress-step {
+        width: 100%;
+        flex-direction: row;
+        gap: 1rem;
+        justify-content: center;
+    }
+
+    .step-content {
+        text-align: left;
+    }
+}
+
+@media (max-width: 480px) {
+    .host-hero {
+        height: 70vh;
+    }
+
+    .hero-banner {
+        padding: 0.5rem;
+    }
+
+    .banner-text {
+        font-size: 14px;
+    }
+
+    .hero-bottom {
+        bottom: 1.5rem;
+    }
+
+    .cta-button {
+        padding: 0.5rem 1rem;
+        font-size: 12px;
+    }
+}
+
+/* Safety CSS for feature cards */
+.feature-card ul {
+    margin-top: 0;
+}
+
+#features .grid > * {
+    min-width: 0;
+}
+
+/* Ensure proper grid behavior */
+.feature-card {
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+}

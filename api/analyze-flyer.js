@@ -93,7 +93,24 @@ module.exports = async (req, res) => {
       return;
     }
 
-    const { image, mimeType, targetAudience, eventCategory, extractedText } = req.body;
+    // Parse request body (Vercel may already parse it, but handle both cases)
+    let body = req.body;
+    if (typeof body === 'string' || Buffer.isBuffer(body)) {
+      try {
+        body = JSON.parse(body.toString());
+      } catch (e) {
+        Object.keys(headers).forEach(key => {
+          res.setHeader(key, headers[key]);
+        });
+        res.status(400).json({
+          success: false,
+          error: 'Invalid JSON in request body'
+        });
+        return;
+      }
+    }
+
+    const { image, mimeType, targetAudience, eventCategory, extractedText } = body;
 
     // Security: Validate required fields
     if (!image || !targetAudience || !eventCategory) {

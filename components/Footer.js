@@ -8,6 +8,8 @@ function Footer() {
                             <div className="footer-left" data-name="footer-left">
                                 <a href="/" className="footer-link">Home</a>
                                 <a href="/about" className="footer-link">About Us</a>
+                                <a href="/blog" className="footer-link">Blog</a>
+                                <a href="/contact" className="footer-link">Contact</a>
                             </div>
                             <div className="footer-solutions" data-name="footer-solutions">
                                 <p className="footer-section-title">Solutions</p>

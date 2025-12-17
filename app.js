@@ -6,6 +6,8 @@ function App() {
             <div className="app" data-name="app">
                 {path === '/flyercheck' ? <FlyerCheckPage /> :
                  path === '/about' ? <AboutPage /> :
+                 path === '/contact' ? <ContactPage /> :
+                 path === '/blog' ? <BlogPage /> :
                  path === '/revaya-host' ? <RevayaHostPage /> :
                  path === '/privacy' ? <PrivacyPage /> :
                  path === '/terms' ? <TermsPage /> :

@@ -6,9 +6,10 @@ const ALLOWED_ORIGINS = process.env.ALLOWED_ORIGINS
   ? process.env.ALLOWED_ORIGINS.split(',')
   : ['*']; // Allow all in development, restrict in production
 
-// Security: Maximum file size (10MB in base64 is ~13.3MB raw)
-const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
-const MAX_REQUEST_SIZE = 15 * 1024 * 1024; // 15MB (base64 is ~33% larger)
+// Security: Maximum file size
+// Vercel has a 4.5MB request body limit, so we limit to 3MB raw (becomes ~4MB base64)
+const MAX_FILE_SIZE = 3 * 1024 * 1024; // 3MB raw file
+const MAX_REQUEST_SIZE = 4 * 1024 * 1024; // 4MB base64 (safely under Vercel's 4.5MB limit)
 
 // Security: Allowed values for validation
 const ALLOWED_AUDIENCES = [
@@ -18,11 +19,41 @@ const ALLOWED_AUDIENCES = [
 ];
 
 const ALLOWED_CATEGORIES = [
+  // Nightlife & Social
+  'party-nightlife', 'club-event', 'happy-hour', 'bar-event',
+  // Arts, Culture & Entertainment
+  'concert-live-music', 'festival-fair', 'theater-performance', 'comedy-show', 'art-show',
+  // Community & Nonprofit
+  'community-event', 'fundraiser-charity', 'parade-march-pride', 'cultural-celebration',
+  // Business & Professional
+  'conference', 'networking-event', 'workshop-training', 'trade-show-expo', 'corporate-meeting',
+  // Sports & Fitness
+  'sports-event', 'fitness-wellness', 'tournament-competition',
+  // Education
+  'class-course', 'lecture-speaker', 'campus-event',
+  // Hospitality & Food
+  'restaurant-event', 'food-drink-festival', 'tasting-event',
+  // Family & Kids
+  'kids-event', 'family-friendly',
+  // Special Occasions
+  'holiday-event', 'themed-event', 'grand-opening', 'anniversary-celebration',
+  // Other
+  'general-event', 'virtual-event',
+  // Legacy categories for backward compatibility
   'corporate', 'hospitality', 'concert', 'wedding', 'nonprofit', 'other'
 ];
 
+// Note: PDFs are not supported by OpenAI Vision API
 const ALLOWED_MIME_TYPES = [
-  'image/jpeg', 'image/jpg', 'image/png', 'application/pdf'
+  'image/jpeg', 
+  'image/jpg', 
+  'image/png', 
+  'image/avif',
+  'image/heic',
+  'image/heif',
+  'image/webp',
+  'image/x-heic',
+  'image/x-heif'
 ];
 
 // Security: Sanitize input to prevent prompt injection
@@ -88,7 +119,7 @@ module.exports = async (req, res) => {
       });
       res.status(413).json({
         success: false,
-        error: 'Request too large. Maximum size is 10MB.'
+        error: 'File too large. Maximum size is 3MB. Please compress your image or use a smaller file.'
       });
       return;
     }
@@ -110,16 +141,19 @@ module.exports = async (req, res) => {
       }
     }
 
-    const { image, mimeType, targetAudience, eventCategory, extractedText } = body;
+    const { image, mimeType, targetAudience, eventCategories, eventCategory, extractedText } = body;
+
+    // Support both single category (backward compatibility) and multiple categories
+    const categories = eventCategories || (eventCategory ? [eventCategory] : []);
 
     // Security: Validate required fields
-    if (!image || !targetAudience || !eventCategory) {
+    if (!image || !targetAudience || !categories || categories.length === 0) {
       Object.keys(headers).forEach(key => {
         res.setHeader(key, headers[key]);
       });
       res.status(400).json({
         success: false,
-        error: 'Missing required fields: image, targetAudience, and eventCategory'
+        error: 'Missing required fields: image, targetAudience, and at least one eventCategory'
       });
       return;
     }
@@ -144,7 +178,7 @@ module.exports = async (req, res) => {
       });
       res.status(413).json({
         success: false,
-        error: 'File too large. Maximum size is 10MB.'
+        error: 'File too large. Maximum size is 3MB. Please compress your image or use a smaller file.'
       });
       return;
     }
@@ -161,7 +195,9 @@ module.exports = async (req, res) => {
       return;
     }
 
-    if (!ALLOWED_CATEGORIES.includes(eventCategory)) {
+    // Validate all categories
+    const invalidCategories = categories.filter(cat => !ALLOWED_CATEGORIES.includes(cat));
+    if (invalidCategories.length > 0) {
       Object.keys(headers).forEach(key => {
         res.setHeader(key, headers[key]);
       });
@@ -195,7 +231,7 @@ module.exports = async (req, res) => {
       imageBuffer,
       mimeType || 'image/jpeg',
       targetAudience,
-      eventCategory,
+      categories,
       sanitizedText
     );
 
@@ -208,11 +244,26 @@ module.exports = async (req, res) => {
     Object.keys(headers).forEach(key => {
       res.setHeader(key, headers[key]);
     });
-    // Security: Don't expose internal error details
-    const isDevelopment = process.env.NODE_ENV === 'development';
+    
+    // Provide more helpful error messages
+    let errorMessage = 'An error occurred processing your request';
+    const errorMsg = error.message || '';
+    
+    if (errorMsg.includes('PDF') || errorMsg.includes('pdf') || errorMsg.includes('not directly supported')) {
+      errorMessage = 'PDF files are not directly supported. Please convert your PDF to an image (JPG or PNG) first. You can take a screenshot of the PDF or use an online PDF-to-image converter.';
+    } else if (errorMsg.includes('image') || errorMsg.includes('format')) {
+      errorMessage = 'There was an issue processing the image file. Please ensure the file is a valid image (JPG, PNG, AVIF, HEIC, or WEBP) or PDF.';
+    } else if (errorMsg.includes('size') || errorMsg.includes('large')) {
+      errorMessage = 'The file is too large. Maximum size is 3MB. Please compress your file or use a smaller one.';
+    } else if (errorMsg.includes('OpenAI') || errorMsg.includes('API')) {
+      errorMessage = 'The AI analysis service is temporarily unavailable. Please try again in a few moments.';
+    } else if (process.env.NODE_ENV === 'development') {
+      errorMessage = error.message || 'An error occurred processing your request';
+    }
+    
     res.status(500).json({
       success: false,
-      error: isDevelopment ? error.message : 'An error occurred processing your request'
+      error: errorMessage
     });
   }
 };

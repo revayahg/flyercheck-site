@@ -18,9 +18,10 @@ function AboutPage() {
                 image: "https://app.trickle.so/storage/public/images/usr_0ad8d73270000001/fefdf014-b643-44d6-a0e0-f8622be9e7ce.png",
                 email: "info@revayahg.com",
                 bio: [
-                    "Thiago specializes in AI Automation Consulting for small & medium-sized businesses in South Florida's vibrant hospitality scene. With a background in events, adult beverages, and technology, Thiago is able to understand business needs and offer custom automation solutions that maximize the power of Artificial Intelligence.",
-                    "To ensure each client receives full expertise, attention, and tailored solutions, Thiago partners exclusively with a select number of businesses within each sector. This approach allows for maximum impact, avoiding any potential conflicts of interest and ensuring clients maintain a competitive edge."
-                ]
+                    "As the Founder of Elevate AI Consulting and Chief AI Officer at Revaya HG, I specialize in helping businesses through custom AI automation and executive training solutions.",
+                    "Thiago is an MBA graduate of IE Business School in Madrid, where he served as President of the school's LGBTQ+ club and currently teaches executive MBA candidates as an Assistant AI Professor. He has led international business development efforts across the U.S., Canada, Spain, and Portugal, bringing a global, people-first approach to technology. He also volunteers with Junior Achievement of Greater Miami, teaching entrepreneurship, investing and other real-world skills to the next generation of leaders."
+                ],
+                mantra: "AI for humans, by humans."
             }
         ];
 

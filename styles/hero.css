@@ -42,6 +42,17 @@
     font-family: 'Avenir Next', sans-serif;
     font-size: 20px;
     color: white;
+    margin: 0 0 1rem 0;
+    max-width: 600px;
+    width: 100%;
+    font-weight: normal;
+    line-height: 1.6;
+}
+
+.hero-description {
+    font-family: 'Avenir Next', sans-serif;
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.9);
     margin: 0;
     max-width: 600px;
     width: 100%;
@@ -70,6 +81,11 @@
         font-size: 18px;
         padding: 0 0.5rem;
     }
+
+    .hero-description {
+        font-size: 16px;
+        padding: 0 0.5rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -88,6 +104,11 @@
 
     .hero-subtitle {
         font-size: 16px;
+        padding: 0;
+    }
+
+    .hero-description {
+        font-size: 14px;
         padding: 0;
     }
 }

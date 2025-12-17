@@ -6,8 +6,13 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-async function analyzeFlyerWithOpenAI(imageBuffer, imageMimeType, targetAudience, eventCategory, extractedText) {
+async function analyzeFlyerWithOpenAI(imageBuffer, imageMimeType, targetAudience, eventCategories, extractedText) {
   try {
+    // Check if file is PDF - OpenAI Vision API doesn't support PDFs directly
+    if (imageMimeType === 'application/pdf') {
+      throw new Error('PDF files are not directly supported. Please convert your PDF to an image (JPG or PNG) first. You can use online tools or screenshot the PDF pages.');
+    }
+    
     // Convert image buffer to base64
     const base64Image = imageBuffer.toString('base64');
     
@@ -30,16 +35,66 @@ async function analyzeFlyerWithOpenAI(imageBuffer, imageMimeType, targetAudience
 
     const audienceDesc = audienceDescriptions[targetAudience] || 'general audience';
 
+    // Ensure eventCategories is an array
+    const categories = Array.isArray(eventCategories) ? eventCategories : [eventCategories];
+
     const categoryDescriptions = {
-      'corporate': 'Corporate / Networking Events (conferences, business seminars, professional networking)',
-      'hospitality': 'Hospitality / Nightlife Events (restaurants, bars, clubs, hotel events)',
-      'concert': 'Concert / Festival Events (live music, festivals, entertainment)',
-      'wedding': 'Wedding / Private Party Events (weddings, birthdays, private celebrations)',
-      'nonprofit': 'Nonprofit / Community Events (fundraisers, community events, charity)',
+      // Nightlife & Social
+      'party-nightlife': 'Party / Nightlife',
+      'club-event': 'Club Event',
+      'happy-hour': 'Happy Hour / Social Mixer',
+      'bar-event': 'Bar Event',
+      // Arts, Culture & Entertainment
+      'concert-live-music': 'Concert / Live Music',
+      'festival-fair': 'Festival / Fair',
+      'theater-performance': 'Theater / Performance',
+      'comedy-show': 'Comedy Show',
+      'art-show': 'Art Show / Gallery Event',
+      // Community & Nonprofit
+      'community-event': 'Community Event',
+      'fundraiser-charity': 'Fundraiser / Charity Event',
+      'parade-march-pride': 'Parade / March / Pride Event',
+      'cultural-celebration': 'Cultural Celebration',
+      // Business & Professional
+      'conference': 'Conference',
+      'networking-event': 'Networking Event',
+      'workshop-training': 'Workshop / Training',
+      'trade-show-expo': 'Trade Show / Expo',
+      'corporate-meeting': 'Corporate Meeting / Company Event',
+      // Sports & Fitness
+      'sports-event': 'Sports Event',
+      'fitness-wellness': 'Fitness Class / Wellness Event',
+      'tournament-competition': 'Tournament / Competition',
+      // Education
+      'class-course': 'Class / Course',
+      'lecture-speaker': 'Lecture / Speaker Series',
+      'campus-event': 'Campus Event',
+      // Hospitality & Food
+      'restaurant-event': 'Restaurant Event / Menu Special',
+      'food-drink-festival': 'Food & Drink Festival',
+      'tasting-event': 'Tasting Event (Wine, Spirits, etc.)',
+      // Family & Kids
+      'kids-event': 'Kids Event',
+      'family-friendly': 'Family-Friendly Event',
+      // Special Occasions
+      'holiday-event': 'Holiday Event',
+      'themed-event': 'Themed Event',
+      'grand-opening': 'Grand Opening',
+      'anniversary-celebration': 'Anniversary / Celebration',
+      // Other
+      'general-event': 'General Event / Misc',
+      'virtual-event': 'Virtual Event',
+      // Legacy categories
+      'corporate': 'Corporate / Networking Events',
+      'hospitality': 'Hospitality / Nightlife Events',
+      'concert': 'Concert / Festival Events',
+      'wedding': 'Wedding / Private Party Events',
+      'nonprofit': 'Nonprofit / Community Events',
       'other': 'Other event types'
     };
 
-    const categoryDesc = categoryDescriptions[eventCategory] || 'General event';
+    const categoryDescs = categories.map(cat => categoryDescriptions[cat] || cat).join(', ');
+    const categoryDesc = categoryDescs || 'General event';
 
     function getCategoryGuidance(category) {
       const guidance = {
@@ -92,16 +147,19 @@ async function analyzeFlyerWithOpenAI(imageBuffer, imageMimeType, targetAudience
       return guidance[category] || guidance['other'];
     }
 
+    // Combine guidance from all selected categories
+    const allGuidance = categories.map(cat => getCategoryGuidance(cat)).join('\n\n');
+
     const prompt = `You are an expert event marketing consultant analyzing an event flyer using a comprehensive evaluation framework.
 
 EXTRACTED TEXT FROM FLYER: "${extractedText}"
-EVENT CATEGORY: ${categoryDesc}
+EVENT CATEGORIES: ${categoryDesc}
 TARGET AUDIENCE: ${audienceDesc}
 
 CATEGORY-SPECIFIC GUIDANCE:
-Based on the event category, apply these category-specific best practices:
+Based on the selected event categories, apply these category-specific best practices. Consider how the flyer should appeal to all selected categories:
 
-${getCategoryGuidance(eventCategory)}
+${allGuidance}
 
 EVALUATION FRAMEWORK:
 
@@ -172,7 +230,7 @@ Provide your analysis in this JSON format:
   "improvements": ["improvement1", "improvement2"],
   "recommendations": ["specific recommendation1", "specific recommendation2"],
   "audienceSpecificTips": "Specific advice tailored to ${audienceDesc}",
-  "categorySpecificGuidance": "Category-specific recommendations for ${categoryDesc}",
+  "categorySpecificGuidance": "Category-specific recommendations for ${categoryDesc}. Consider how the design should appeal to all selected categories.",
   "encouragement": "Motivating closing statement"
 }
 

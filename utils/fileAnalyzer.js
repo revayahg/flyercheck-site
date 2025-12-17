@@ -1,5 +1,5 @@
-// Security: Maximum file size (10MB)
-const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+// Security: Maximum file size (3MB to stay under Vercel's 4.5MB request limit)
+const MAX_FILE_SIZE = 3 * 1024 * 1024; // 3MB
 
 function analyzeFlyer(file) {
     try {
@@ -9,15 +9,34 @@ function analyzeFlyer(file) {
 
         // Security: Validate file size
         if (file.size > MAX_FILE_SIZE) {
-            throw new Error('File too large. Maximum size is 10MB.');
+            const fileSizeMB = (file.size / (1024 * 1024)).toFixed(1);
+            throw new Error(`File too large (${fileSizeMB}MB). Maximum size is 3MB. Please compress your image or use a smaller file.`);
         }
 
         // Security: Validate file type
-        const validFormats = ['image/jpeg', 'image/png', 'application/pdf'];
+        // Note: PDFs are not supported by OpenAI Vision API, so we don't include them
+        const validFormats = [
+            'image/jpeg', 
+            'image/jpg', 
+            'image/png', 
+            'image/avif',
+            'image/heic',
+            'image/heif',
+            'image/webp'
+        ];
         const fileType = file.type;
 
-        if (!validFormats.includes(fileType)) {
-            throw new Error('File format not supported. Please upload JPG, PNG, or PDF files.');
+        // Handle HEIC/HEIF which may have different MIME types
+        const fileName = file.name?.toLowerCase() || '';
+        const isHeic = fileName.endsWith('.heic') || fileName.endsWith('.heif') || 
+                      fileType === 'image/heic' || fileType === 'image/heif' ||
+                      fileType === 'image/x-heic' || fileType === 'image/x-heif';
+
+        if (!validFormats.includes(fileType) && !isHeic) {
+            if (fileType === 'application/pdf') {
+                throw new Error('PDF files are not directly supported. Please convert your PDF to an image (JPG or PNG) first. You can take a screenshot of the PDF or use an online PDF-to-image converter.');
+            }
+            throw new Error('File format not supported. Please upload JPG, PNG, AVIF, HEIC, or WEBP files.');
         }
 
         return {

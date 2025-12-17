@@ -78,13 +78,6 @@ function AnalysisResults({ analysis }) {
                     </div>
                 )}
 
-                {analysis.extractedText && (
-                    <div className="result-section">
-                        <h4>Extracted Text</h4>
-                        <p className="extracted-text">{analysis.extractedText}</p>
-                    </div>
-                )}
-
                 {analysis.strengths && analysis.strengths.length > 0 && (
                     <div className="result-section">
                         <h4>✅ Strengths</h4>

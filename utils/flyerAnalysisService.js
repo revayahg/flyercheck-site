@@ -3,20 +3,44 @@
 // For production, move this to a backend API
 
 // Make function globally available
-window.analyzeFlyerWithAI = async function(file, targetAudience, eventCategory) {
+window.analyzeFlyerWithAI = async function(file, targetAudience, eventCategories) {
     try {
-        // Step 1: Extract text using Tesseract.js (client-side OCR) - optional, for display
-        let extractedText = '';
-        try {
-            extractedText = await extractTextWithTesseract(file);
-        } catch (ocrError) {
-            console.warn('OCR failed, continuing without extracted text:', ocrError);
+        // Step 1: Compress/resize image if needed (for images only, not PDFs)
+        let processedFile = file;
+        // Skip compression for HEIC/HEIF as browser canvas doesn't support them directly
+        const isHeic = file.type === 'image/heic' || file.type === 'image/heif' || 
+                      file.type === 'image/x-heic' || file.type === 'image/x-heif' ||
+                      file.name?.toLowerCase().endsWith('.heic') || file.name?.toLowerCase().endsWith('.heif');
+        
+        if (file.type.startsWith('image/') && !isHeic && file.size > 1 * 1024 * 1024) { // Compress if > 1MB
+            try {
+                processedFile = await compressImage(file);
+                console.log(`Image compressed: ${(file.size / 1024 / 1024).toFixed(2)}MB -> ${(processedFile.size / 1024 / 1024).toFixed(2)}MB`);
+            } catch (compressError) {
+                console.warn('Image compression failed, using original:', compressError);
+                // Continue with original file
+            }
         }
         
-        // Step 2: Convert file to base64 for API
-        const base64Image = await fileToBase64(file);
+        // Step 2: Extract text using Tesseract.js (client-side OCR) - optional, for display
+        // Skip OCR for PDFs as Tesseract.js doesn't support them
+        let extractedText = '';
+        if (!processedFile.type.includes('pdf')) {
+            try {
+                extractedText = await extractTextWithTesseract(processedFile);
+            } catch (ocrError) {
+                console.warn('OCR failed, continuing without extracted text:', ocrError);
+                // Continue without extracted text - not critical for analysis
+            }
+        } else {
+            console.log('Skipping OCR for PDF file - Tesseract.js does not support PDFs');
+            extractedText = 'PDF file - text extraction skipped (PDFs are analyzed visually by AI)';
+        }
         
-        // Step 3: Call backend API with OpenAI
+        // Step 3: Convert file to base64 for API
+        const base64Image = await fileToBase64(processedFile);
+        
+        // Step 4: Call backend API with OpenAI
         const response = await fetch('/api/analyze-flyer', {
             method: 'POST',
             headers: {
@@ -24,15 +48,23 @@ window.analyzeFlyerWithAI = async function(file, targetAudience, eventCategory) 
             },
             body: JSON.stringify({
                 image: base64Image,
-                mimeType: file.type,
+                mimeType: processedFile.type,
                 targetAudience: targetAudience,
-                eventCategory: eventCategory,
+                eventCategories: Array.isArray(eventCategories) ? eventCategories : [eventCategories],
                 extractedText: extractedText
             })
         });
         
         if (!response.ok) {
-            throw new Error(`API error: ${response.status} ${response.statusText}`);
+            const errorData = await response.json().catch(() => ({}));
+            const errorMessage = errorData.error || `API error: ${response.status} ${response.statusText}`;
+            
+            // Provide helpful error messages
+            if (response.status === 413) {
+                throw new Error('File too large. Please use an image smaller than 3MB, or try compressing it further.');
+            }
+            
+            throw new Error(errorMessage);
         }
         
         const result = await response.json();
@@ -44,6 +76,55 @@ window.analyzeFlyerWithAI = async function(file, targetAudience, eventCategory) 
             error: error.message || 'Failed to analyze flyer'
         };
     }
+}
+
+// Compress image to reduce file size
+function compressImage(file, maxWidth = 2000, maxHeight = 2000, quality = 0.85) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const img = new Image();
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                let width = img.width;
+                let height = img.height;
+                
+                // Calculate new dimensions
+                if (width > maxWidth || height > maxHeight) {
+                    if (width > height) {
+                        if (width > maxWidth) {
+                            height = (height * maxWidth) / width;
+                            width = maxWidth;
+                        }
+                    } else {
+                        if (height > maxHeight) {
+                            width = (width * maxHeight) / height;
+                            height = maxHeight;
+                        }
+                    }
+                }
+                
+                canvas.width = width;
+                canvas.height = height;
+                
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0, width, height);
+                
+                // Convert to blob with compression
+                canvas.toBlob((blob) => {
+                    if (!blob) {
+                        reject(new Error('Failed to compress image'));
+                        return;
+                    }
+                    resolve(blob);
+                }, file.type, quality);
+            };
+            img.onerror = reject;
+            img.src = e.target.result;
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+    });
 }
 
 // Convert file to base64

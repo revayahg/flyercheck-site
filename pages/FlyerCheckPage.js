@@ -15,7 +15,11 @@ function FlyerCheckPage() {
                     <div className="hero-content">
                         <h1 className="hero-title">Revaya Flyer Check™</h1>
                         <p className="hero-subtitle">
-                            Upload your event flier and get instant feedback to improve design, messaging, and audience engagement
+                            Your flyer is almost perfect. Let's make it undeniable.
+                        </p>
+                        <p className="hero-description">
+                            Upload your design and get fast, unbiased feedback—<br />
+                            clarity, errors, spacing, and visibility checks.
                         </p>
                     </div>
                 </section>

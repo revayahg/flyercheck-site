@@ -107,17 +107,20 @@ async function handleAnalyzeFlyerAPI(req, res) {
       const buffer = Buffer.concat(chunks);
       const body = JSON.parse(buffer.toString());
       
-      const { image, mimeType, targetAudience, eventCategory, extractedText } = body;
+      const { image, mimeType, targetAudience, eventCategories, eventCategory, extractedText } = body;
       
-      if (!image || !targetAudience || !eventCategory) {
-        throw new Error('Missing required fields: image, targetAudience, and eventCategory');
+      // Support both single category (backward compatibility) and multiple categories
+      const categories = eventCategories || (eventCategory ? [eventCategory] : []);
+      
+      if (!image || !targetAudience || !categories || categories.length === 0) {
+        throw new Error('Missing required fields: image, targetAudience, and at least one eventCategory');
       }
       
       // Convert base64 to buffer
       const imageBuffer = Buffer.from(image, 'base64');
       
       // Analyze with OpenAI
-      const result = await analyzeFlyerWithOpenAI(imageBuffer, mimeType || 'image/jpeg', targetAudience, eventCategory, extractedText || '');
+      const result = await analyzeFlyerWithOpenAI(imageBuffer, mimeType || 'image/jpeg', targetAudience, categories, extractedText || '');
       
       res.writeHead(200, {
         'Content-Type': 'application/json',

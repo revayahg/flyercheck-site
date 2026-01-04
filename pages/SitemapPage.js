@@ -9,9 +9,13 @@ function SitemapPage() {
                         <div className="sitemap-links">
                             <a href="/" className="sitemap-link">Home</a>
                             <a href="/about" className="sitemap-link">About Us</a>
-                            <a href="/solutions" className="sitemap-link">Solutions</a>
+                            <a href="/revaya-host" className="sitemap-link">Revaya Host™</a>
                             <a href="/flyercheck" className="sitemap-link">FlyerCheck</a>
+                            <a href="/blog" className="sitemap-link">Blog</a>
                             <a href="/contact" className="sitemap-link">Contact</a>
+                            <a href="/privacy" className="sitemap-link">Privacy Policy</a>
+                            <a href="/terms" className="sitemap-link">Terms of Service</a>
+                            <a href="/sitemap" className="sitemap-link">Sitemap</a>
                         </div>
                     </div>
                 </div>

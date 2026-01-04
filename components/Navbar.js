@@ -14,7 +14,7 @@ function Navbar() {
                     <a href="/" className="navbar-brand" data-name="navbar-brand">
                         <img 
                             src="https://app.trickle.so/storage/public/images/usr_0ad8d73270000001/514b6f7e-130b-496e-9d51-dc2d16df66fb.png"
-                            alt="Revaya Logo"
+                            alt="Revaya Hospitality Group logo"
                             className="navbar-logo"
                             data-name="navbar-logo"
                         />

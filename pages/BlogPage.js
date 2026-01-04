@@ -2,6 +2,16 @@ function BlogPage() {
     try {
         const blogPosts = [
             {
+                title: "You're Too Close to the Flyer: How Great Events Lose People Before They Even Show Up",
+                author: "Jolyse Stultz",
+                platform: "Revaya Hospitality Group",
+                url: "/blog/flyer-blind-spots",
+                date: "January 4, 2026",
+                description: "Discover how event organizers miss critical details in their flyers that prevent potential attendees from showing up. Learn the common blind spots and how to fix them.",
+                icon: "fas fa-file-alt",
+                color: "#90684A"
+            },
+            {
                 title: "The AI Training Bootcamp Helping Companies Finally See ROI",
                 author: "Thiago Ferreira",
                 platform: "USA News",
@@ -91,15 +101,25 @@ function BlogPage() {
                                     </div>
                                     
                                     <div className="blog-post-footer">
-                                        <a 
-                                            href={post.url} 
-                                            target="_blank" 
-                                            rel="noopener noreferrer"
-                                            className="blog-read-more-btn"
-                                        >
-                                            Read Article
-                                            <i className="fas fa-external-link-alt"></i>
-                                        </a>
+                                        {post.url.startsWith('http') ? (
+                                            <a 
+                                                href={post.url} 
+                                                target="_blank" 
+                                                rel="noopener noreferrer"
+                                                className="blog-read-more-btn"
+                                            >
+                                                Read Article
+                                                <i className="fas fa-external-link-alt"></i>
+                                            </a>
+                                        ) : (
+                                            <a 
+                                                href={post.url} 
+                                                className="blog-read-more-btn"
+                                            >
+                                                Read Article
+                                                <i className="fas fa-arrow-right"></i>
+                                            </a>
+                                        )}
                                     </div>
                                 </article>
                             ))}

@@ -43,7 +43,6 @@ function RevayaHostPage() {
         return (
             <div className="min-h-screen bg-white" data-name="revaya-host-page">
                 <Navbar />
-                <AdBanner />
                 
                 {/* Hero Section */}
                 <section className="host-hero" data-name="host-hero">
@@ -51,7 +50,7 @@ function RevayaHostPage() {
                         <div className="host-hero-logo" data-name="host-hero-logo">
                             <img 
                                 src="https://app.trickle.so/storage/public/images/usr_0ad8d73270000001/514b6f7e-130b-496e-9d51-dc2d16df66fb.png"
-                                alt="Revaya Logo"
+                                alt="Revaya Hospitality Group logo"
                                 className="host-logo-image"
                             />
                         </div>

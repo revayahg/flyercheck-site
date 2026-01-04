@@ -8,6 +8,7 @@ function App() {
                  path === '/about' ? <AboutPage /> :
                  path === '/contact' ? <ContactPage /> :
                  path === '/blog' ? <BlogPage /> :
+                 path === '/blog/flyer-blind-spots' ? <BlogPostFlyerBlindSpots /> :
                  path === '/revaya-host' ? <RevayaHostPage /> :
                  path === '/privacy' ? <PrivacyPage /> :
                  path === '/terms' ? <TermsPage /> :

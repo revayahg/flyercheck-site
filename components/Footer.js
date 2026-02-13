@@ -15,7 +15,7 @@ function Footer() {
                                 <p className="footer-section-title">Solutions</p>
                                 <ul className="footer-solutions-list">
                                     <li><a href="/revaya-host">Revaya Host™</a></li>
-                                    <li><a href="/flyercheck">Revaya Flyer Check™</a></li>
+                                    <li><a href="/flyercheck">Revaya FlyerCheck™</a></li>
                                 </ul>
                             </div>
                         </div>

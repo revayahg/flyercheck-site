@@ -1,0 +1,54 @@
+# Development dependencies
+node_modules/
+
+# Documentation files (all markdown files)
+*.md
+**/*.md
+
+# Shell scripts
+*.sh
+**/*.sh
+
+# Archive files
+*.tar.gz
+*.zip
+*.tar
+*.gz
+
+# Internal documentation directories
+/docs/
+/scripts/
+/deploy/
+
+# Development configuration
+.git/
+.gitignore
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Local environment files
+.env
+.env*.local
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build artifacts (if any)
+/build/
+/dist/
+/.next/
+/out/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Vercel config (keep vercel.json, but ignore .vercel directory)
+.vercel/

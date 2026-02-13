@@ -28,7 +28,6 @@ function AboutPage() {
         return (
             <div data-name="about-page">
                 <Navbar />
-                <AdBanner />
                 <div className="about-section" data-name="about-content">
                     <div className="container">
                         <h1 className="about-title">Our Founders</h1>

@@ -3,7 +3,6 @@ function BlogPostFlyerBlindSpots() {
         return (
             <div data-name="blog-post-page">
                 <Navbar />
-                <AdBanner />
                 <article className="blog-article-section" data-name="blog-article-content">
                     <div className="container">
                         {/* Branding Header */}

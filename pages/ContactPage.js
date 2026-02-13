@@ -66,7 +66,6 @@ function ContactPage() {
         return (
             <div data-name="contact-page">
                 <Navbar />
-                <AdBanner />
                 <div className="contact-section" data-name="contact-content">
                     <div className="container">
                         <h1 className="contact-title">Contact Us</h1>

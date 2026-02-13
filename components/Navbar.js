@@ -47,7 +47,7 @@ function Navbar() {
                             {isDropdownOpen && (
                                 <div className="dropdown-content">
                                     <a href="/revaya-host" className="dropdown-item">Revaya Host™</a>
-                                    <a href="/flyercheck" className="dropdown-item">Revaya Flyer Check™</a>
+                                    <a href="/flyercheck" className="dropdown-item">Revaya FlyerCheck™</a>
                                 </div>
                             )}
                         </div>

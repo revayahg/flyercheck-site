@@ -66,7 +66,6 @@ function BlogPage() {
         return (
             <div data-name="blog-page">
                 <Navbar />
-                <AdBanner />
                 <div className="blog-section" data-name="blog-content">
                     <div className="container">
                         <h1 className="blog-title">Our Blog</h1>

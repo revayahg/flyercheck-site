@@ -16,9 +16,49 @@
       "dest": "/sitemap.xml"
     },
     {
+      "src": "/ads.txt",
+      "dest": "/ads.txt"
+    },
+    {
       "src": "/solutions",
       "dest": "/",
       "status": 301
+    },
+    {
+      "src": "/node_modules/(.*)",
+      "dest": "/api/blocked"
+    },
+    {
+      "src": "/docs/(.*)",
+      "dest": "/api/blocked"
+    },
+    {
+      "src": "/scripts/(.*)",
+      "dest": "/api/blocked"
+    },
+    {
+      "src": "/deploy/(.*)",
+      "dest": "/api/blocked"
+    },
+    {
+      "src": "/(.*\\.md)",
+      "dest": "/api/blocked"
+    },
+    {
+      "src": "/(.*\\.sh)",
+      "dest": "/api/blocked"
+    },
+    {
+      "src": "/(.*\\.tar\\.gz)",
+      "dest": "/api/blocked"
+    },
+    {
+      "src": "/(.*\\.zip)",
+      "dest": "/api/blocked"
+    },
+    {
+      "src": "/(.*\\.tar)",
+      "dest": "/api/blocked"
     },
     {
       "src": "/(.*\\.(js|css|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot|json|txt|xml))",

@@ -30,6 +30,11 @@
     justify-content: center;
 }
 
+/* Hide hero logo on landing page - users should see title/subtitle first */
+.hero-landing .hero-logo {
+    display: none !important;
+}
+
 .hero-logo {
     margin-bottom: 1.5rem;
     flex-shrink: 0;

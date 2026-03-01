@@ -8,7 +8,7 @@ function LandingPage() {
                     subtitle="Revaya Hospitality Group designs solutions for venues, events, and hospitality operators managing complex, high-pressure environments. Our mission is to simplify operations so teams can spend less time managing chaos and more time delivering exceptional experiences."
                     primaryCta={{ text: "Explore Our Products", href: "/revaya-host", icon: "fas fa-arrow-right" }}
                     secondaryCta={{ text: "Contact Us", href: "/contact" }}
-                    showLogo={true}
+                    showLogo={false}
                 />
                 <WhatWeDoSection />
                 <ProductSection />

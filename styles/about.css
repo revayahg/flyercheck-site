@@ -1,5 +1,5 @@
 .about-section {
-    padding: 8rem 2rem;
+    padding: calc(76px + 8rem) 2rem 8rem 2rem;
     background-color: white;
 }
 
@@ -97,7 +97,7 @@
     }
 
     .about-section {
-        padding: 4rem 1.5rem;
+        padding: calc(76px + 4rem) 1.5rem 4rem 1.5rem;
     }
 
     .about-title {
@@ -130,9 +130,15 @@
     }
 }
 
+@media (max-width: 768px) {
+    .about-section {
+        padding: calc(60px + 4rem) 1.5rem 4rem 1.5rem;
+    }
+}
+
 @media (max-width: 480px) {
     .about-section {
-        padding: 3rem 1rem;
+        padding: calc(60px + 3rem) 1rem 3rem 1rem;
     }
 
     .about-title {

@@ -3,71 +3,27 @@
   "buildCommand": "echo 'Static site - no build needed'",
   "outputDirectory": ".",
   "routes": [
+    { "src": "/api/(.*)", "dest": "/api/$1" },
+    { "src": "/robots.txt", "dest": "/robots.txt" },
+    { "src": "/sitemap.xml", "dest": "/sitemap.xml" },
+    { "src": "/ads.txt", "dest": "/ads.txt" },
+
+    { "src": "/solutions", "dest": "/", "status": 301 },
+
     {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
-    },
-    {
-      "src": "/robots.txt",
-      "dest": "/robots.txt"
-    },
-    {
-      "src": "/sitemap.xml",
-      "dest": "/sitemap.xml"
-    },
-    {
-      "src": "/ads.txt",
-      "dest": "/ads.txt"
-    },
-    {
-      "src": "/solutions",
-      "dest": "/",
-      "status": 301
-    },
-    {
-      "src": "/node_modules/(.*)",
+      "src": "^/(node_modules|docs|scripts|deploy)(/.*)?$",
       "dest": "/api/blocked"
     },
     {
-      "src": "/docs/(.*)",
+      "src": "^/.*\\.(md|sh|tar|tar\\.gz|zip)$",
       "dest": "/api/blocked"
     },
-    {
-      "src": "/scripts/(.*)",
-      "dest": "/api/blocked"
-    },
-    {
-      "src": "/deploy/(.*)",
-      "dest": "/api/blocked"
-    },
-    {
-      "src": "/(.*\\.md)",
-      "dest": "/api/blocked"
-    },
-    {
-      "src": "/(.*\\.sh)",
-      "dest": "/api/blocked"
-    },
-    {
-      "src": "/(.*\\.tar\\.gz)",
-      "dest": "/api/blocked"
-    },
-    {
-      "src": "/(.*\\.zip)",
-      "dest": "/api/blocked"
-    },
-    {
-      "src": "/(.*\\.tar)",
-      "dest": "/api/blocked"
-    },
+
     {
       "src": "/(.*\\.(js|css|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot|json|txt|xml))",
       "dest": "/$1"
     },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
-    }
+
+    { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
-

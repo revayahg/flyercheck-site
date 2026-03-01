@@ -1,0 +1,100 @@
+.founder-card {
+    text-align: center;
+    padding: 2.5rem;
+    background-color: #F6F1EB;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.founder-image {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    margin: 0 auto 2rem;
+    object-fit: cover;
+    display: block;
+    background-color: #F6F1EB;
+}
+
+.founder-image.jolyse {
+    object-position: center 15%;
+}
+
+.founder-image.thiago {
+    object-position: top center;
+}
+
+.founder-name {
+    font-family: 'Didot', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #2B2B2B;
+    margin-bottom: 0.5rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: block;
+    text-align: center;
+}
+
+.founder-title {
+    font-family: 'Didot', serif;
+    font-size: 20px;
+    color: #90684A;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.founder-bio {
+    color: #4A4A4A;
+    line-height: 1.8;
+    text-align: justify;
+    margin-bottom: 1.5rem;
+    font-size: 16px;
+}
+
+.founder-bio p {
+    margin-bottom: 1.5rem;
+}
+
+.founder-quote {
+    text-align: center;
+    font-style: italic;
+    font-size: 20px;
+    margin: 2rem 0;
+    padding: 1rem;
+    color: #2B2B2B;
+    background-color: rgba(144, 104, 74, 0.1);
+    border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+    .founder-card {
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .founder-image {
+        width: 200px;
+        height: 200px;
+    }
+
+    .founder-name {
+        font-size: 24px;
+    }
+
+    .founder-title {
+        font-size: 18px;
+    }
+
+    .founder-bio {
+        font-size: 15px;
+    }
+
+    .founder-quote {
+        font-size: 18px;
+        margin: 1.5rem 0;
+    }
+}

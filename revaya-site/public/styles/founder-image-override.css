@@ -1,0 +1,10 @@
+/* Minimal overrides for founder images positioning - prevent head cropping */
+.about-section .founder-image.jolyse {
+    object-fit: cover;
+    object-position: center 8% !important; /* Show more of head, less cropping at top */
+}
+
+.about-section .founder-image.thiago {
+    object-fit: cover;
+    object-position: center 15% !important;
+}

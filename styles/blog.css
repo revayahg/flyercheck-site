@@ -1,4 +1,5 @@
 .blog-section {
+    margin-top: 76px;
     min-height: calc(100vh - 200px);
     padding: 4rem 2rem;
     background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
@@ -188,6 +189,7 @@
 
 @media (max-width: 768px) {
     .blog-section {
+        margin-top: 60px;
         padding: 2rem 1rem;
     }
 
@@ -240,9 +242,16 @@
 
 /* Blog Article Page Styles */
 .blog-article-section {
+    margin-top: 76px;
     min-height: calc(100vh - 200px);
     padding: 2rem 2rem 4rem;
     background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
+}
+
+@media (max-width: 768px) {
+    .blog-article-section {
+        margin-top: 60px;
+    }
 }
 
 @media (max-width: 640px) {

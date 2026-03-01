@@ -12,7 +12,7 @@ node_modules/
 # build output
 dist/
 build/
-next/
+.next/
 
 # mac junk
 .DS_Store

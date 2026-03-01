@@ -10,11 +10,19 @@ export default function Footer() {
         <div className="container mx-auto px-4">
           <div className="footer-content" data-name="footer-content">
             <div className="footer-brand" data-name="footer-brand">
-              <div className="footer-brand-name" data-name="footer-brand-name">
-                Revaya Hospitality Group™
-              </div>
-              <div className="footer-brand-tagline" data-name="footer-brand-tagline">
-                Less stress. More show.
+              <img
+                src="https://app.trickle.so/storage/public/images/usr_0ad8d73270000001/514b6f7e-130b-496e-9d51-dc2d16df66fb.png"
+                alt="Revaya Hospitality Group logo"
+                className="footer-brand-logo"
+                data-name="footer-brand-logo"
+              />
+              <div className="footer-brand-text" data-name="footer-brand-text">
+                <span className="footer-brand-name" data-name="footer-brand-name">
+                  Revaya Hospitality Group™
+                </span>
+                <span className="footer-brand-tagline" data-name="footer-brand-tagline">
+                  Less Stress. More Show.
+                </span>
               </div>
             </div>
 

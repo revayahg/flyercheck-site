@@ -1,23 +1,27 @@
 import React from "react";
 import { reportError } from "../utils/errorHandler";
+import { blogPosts } from "../content/blogPosts";
 
 export function WhatWeDoSection() {
   try {
     const pillars = [
       {
+        icon: "fas fa-calendar-check",
         title: "Event Operations Technology",
         description:
           "We build tools that streamline event planning, vendor management, and day-of operations. Our technology reduces administrative overhead so teams can focus on creating exceptional experiences."
       },
       {
+        icon: "fas fa-hand-holding-heart",
         title: "Guest & Experience Strategy",
         description:
           "Built on deep hospitality expertise, we help organizations understand and improve the guest journey—from discovery through attendance. We combine data insights with hands-on experience to drive satisfaction and attendance."
       },
       {
+        icon: "fas fa-chart-line",
         title: "Ancillary Revenue Technology",
         description:
-          "We develop platforms that increase ancillary revenue and unlock new streams for events and partners. Our technology helps tms optimize vendor relationships and create mutually beneficial opportunities."
+          "We develop platforms that increase ancillary revenue and unlock new streams for events and partners. Our technology helps teams optimize vendor relationships and create mutually beneficial opportunities."
       }
     ];
 
@@ -31,6 +35,9 @@ export function WhatWeDoSection() {
           <div className="pillars-grid" data-name="pillars-grid">
             {pillars.map((pillar, index) => (
               <div key={index} className="pillar-card" data-name={`pillar-${index}`}>
+                <div className="pillar-icon" data-name={`pillar-icon-${index}`}>
+                  <i className={pillar.icon} aria-hidden="true"></i>
+                </div>
                 <h3 className="pillar-title" data-name={`pillar-title-${index}`}>
                   {pillar.title}
                 </h3>
@@ -53,12 +60,12 @@ export function WhatWeDoSection() {
 export function WhoWeWorkWithSection() {
   try {
     const clients = [
-      "Event Producers",
-      "Festivals And City-Wide Events",
-      "Conferences And Conventions",
-      "Cruise Lines",
-      "Nonprofits And Community Events",
-      "Hotels & Property Managers"
+      { label: "Event Producers", icon: "fas fa-star" },
+      { label: "Festivals And City-Wide Events", icon: "fas fa-music" },
+      { label: "Conferences And Conventions", icon: "fas fa-microphone" },
+      { label: "Cruise Lines", icon: "fas fa-ship" },
+      { label: "Nonprofits And Community Events", icon: "fas fa-hand-holding-heart" },
+      { label: "Hotels & Property Managers", icon: "fas fa-hotel" }
     ];
 
     return (
@@ -71,7 +78,10 @@ export function WhoWeWorkWithSection() {
           <div className="clients-list" data-name="clients-list">
             {clients.map((client, index) => (
               <div key={index} className="client-item" data-name={`client-item-${index}`}>
-                {client}
+                <span className="client-item-icon">
+                  <i className={client.icon} aria-hidden="true"></i>
+                </span>
+                {client.label}
               </div>
             ))}
           </div>
@@ -131,16 +141,32 @@ export function WhyRevayaExistsSection() {
 
 export function InsightsSection() {
   try {
-    const featuredPosts = [
-      {
-        title:
-          "You're Too Close to the Flyer: How Great Events Lose People Before They Even Show Up",
-        description:
-          "Discover how event organizers miss critical details in their flyers that prevent potential attendees from showing up. Learn the common blind spots and how to fix them.",
-        url: "/blog/flyer-blind-spots",
-        date: "January 4, 2026"
-      }
+    const flyerBlindSpots = {
+      title:
+        "You're Too Close to the Flyer: How Great Events Lose People Before They Even Show Up",
+      description:
+        "Discover how event organizers miss critical details in their flyers that prevent potential attendees from showing up. Learn the common blind spots and how to fix them.",
+      url: "/blog/flyer-blind-spots",
+      date: "January 4, 2026",
+      author: "Jolyse Stultz"
+    };
+    const allInternalPosts = [
+      flyerBlindSpots,
+      ...blogPosts.map((p) => ({
+        title: p.title,
+        description: p.description,
+        url: `/blog/${p.slug}`,
+        date: p.date,
+        author: p.author
+      }))
     ];
+    const parseDate = (dateStr) => {
+      const d = new Date(dateStr);
+      return isNaN(d.getTime()) ? 0 : d.getTime();
+    };
+    const featuredPosts = allInternalPosts
+      .sort((a, b) => parseDate(b.date) - parseDate(a.date))
+      .slice(0, 3);
 
     return (
       <section className="homepage-section insights-section" data-name="insights">
@@ -159,6 +185,7 @@ export function InsightsSection() {
                   {post.description}
                 </p>
                 <div className="insight-meta" data-name={`insight-meta-${index}`}>
+                  <span className="insight-author">{post.author}</span>
                   <span className="insight-date">{post.date}</span>
                   <a href={post.url} className="insight-link">Read More →</a>
                 </div>

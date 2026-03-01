@@ -56,6 +56,17 @@
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
 }
 
+.pillar-icon {
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    color: #90684A;
+    font-size: 1.5rem;
+}
+
 .pillar-title {
     font-family: 'Didot', serif;
     font-size: 1.5rem;
@@ -92,6 +103,15 @@
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.client-item-icon {
+    color: #90684A;
+    font-size: 1.125rem;
 }
 
 .client-item:hover {
@@ -191,10 +211,19 @@
 
 .insight-meta {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+    gap: 0.5rem;
     padding-top: 1rem;
     border-top: 1px solid #E5E5E5;
+}
+
+.insight-author {
+    font-family: 'Avenir Next', sans-serif;
+    font-size: 0.9rem;
+    color: #90684A;
+    font-weight: 600;
 }
 
 .insight-date {

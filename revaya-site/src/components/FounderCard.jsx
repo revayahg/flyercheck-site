@@ -7,12 +7,14 @@ export default function FounderCard({ name, title, image, email, bio = [], mantr
       <div className="founder-card" data-name="founder-card">
         <div className="founder-card-inner" data-name="founder-card-inner">
           {image ? (
-            <img
-              src={image}
-              alt={`${name} headshot`}
-              className={`founder-image${imageClass ? ` ${imageClass}` : ''}`}
-              data-name="founder-image"
-            />
+            <div className="founder-image-wrapper" data-name="founder-image-wrapper">
+              <img
+                src={image}
+                alt={`${name} headshot`}
+                className={`founder-image${imageClass ? ` ${imageClass}` : ''}`}
+                data-name="founder-image"
+              />
+            </div>
           ) : null}
 
           <div className="founder-content" data-name="founder-content">

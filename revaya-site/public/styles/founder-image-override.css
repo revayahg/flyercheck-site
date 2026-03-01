@@ -1,7 +1,8 @@
-/* Minimal overrides for founder images positioning - prevent head cropping */
+/* Scale and position founder images so they appear balanced */
 .about-section .founder-image.jolyse {
     object-fit: cover;
-    object-position: center 8% !important; /* Show more of head, less cropping at top */
+    object-position: center 8% !important;
+    transform: scale(0.82); /* Scale down so she matches Thiago's visual weight */
 }
 
 .about-section .founder-image.thiago {

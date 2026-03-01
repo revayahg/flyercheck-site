@@ -26,6 +26,7 @@ function SitemapPage() {
                             <a href="/contact" className="sitemap-link">Contact</a>
                             <a href="/privacy" className="sitemap-link">Privacy Policy</a>
                             <a href="/terms" className="sitemap-link">Terms of Service</a>
+                            <a href="/acceptable-use" className="sitemap-link">Acceptable Use</a>
                             <a href="/sitemap" className="sitemap-link">Sitemap</a>
                         </div>
                         <h2 className="sitemap-subtitle">Blog Posts</h2>

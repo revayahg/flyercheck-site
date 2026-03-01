@@ -43,17 +43,12 @@ const ALLOWED_CATEGORIES = [
   'corporate', 'hospitality', 'concert', 'wedding', 'nonprofit', 'other'
 ];
 
-// Note: PDFs are not supported by OpenAI Vision API
+// Allowed image types (PNG, JPEG, WEBP - matches upload constraints)
 const ALLOWED_MIME_TYPES = [
-  'image/jpeg', 
-  'image/jpg', 
-  'image/png', 
-  'image/avif',
-  'image/heic',
-  'image/heif',
-  'image/webp',
-  'image/x-heic',
-  'image/x-heif'
+  'image/jpeg',
+  'image/jpg',
+  'image/png',
+  'image/webp'
 ];
 
 // Security: Sanitize input to prevent prompt injection
@@ -106,7 +101,20 @@ module.exports = async (req, res) => {
     Object.keys(headers).forEach(key => {
       res.setHeader(key, headers[key]);
     });
-    res.status(405).json({ error: 'Method not allowed' });
+    res.status(405).json({ success: false, error: 'Method not allowed' });
+    return;
+  }
+
+  // Reject non-JSON content type
+  const contentType = (req.headers['content-type'] || '').toLowerCase();
+  if (!contentType.includes('application/json')) {
+    Object.keys(headers).forEach(key => {
+      res.setHeader(key, headers[key]);
+    });
+    res.status(400).json({
+      success: false,
+      error: 'Invalid request. Content-Type must be application/json.'
+    });
     return;
   }
 
@@ -252,7 +260,7 @@ module.exports = async (req, res) => {
     if (errorMsg.includes('PDF') || errorMsg.includes('pdf') || errorMsg.includes('not directly supported')) {
       errorMessage = 'PDF files are not directly supported. Please convert your PDF to an image (JPG or PNG) first. You can take a screenshot of the PDF or use an online PDF-to-image converter.';
     } else if (errorMsg.includes('image') || errorMsg.includes('format')) {
-      errorMessage = 'There was an issue processing the image file. Please ensure the file is a valid image (JPG, PNG, AVIF, HEIC, or WEBP) or PDF.';
+      errorMessage = 'There was an issue processing the image file. Please ensure the file is a valid image (PNG, JPEG, or WEBP).';
     } else if (errorMsg.includes('size') || errorMsg.includes('large')) {
       errorMessage = 'The file is too large. Maximum size is 3MB. Please compress your file or use a smaller one.';
     } else if (errorMsg.includes('OpenAI') || errorMsg.includes('API')) {

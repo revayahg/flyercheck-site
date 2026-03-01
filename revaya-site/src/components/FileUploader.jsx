@@ -226,14 +226,14 @@ function FileUploader() {
                                 type="file"
                                 ref={fileInputRef}
                                 onChange={handleFileChange}
-                                accept=".jpg,.jpeg,.png,.avif,.heic,.heif,.webp"
+                                accept="image/png,image/jpeg,image/jpg,image/webp"
                                 className="file-input"
                                 data-name="file-input"
                             />
                             <i className="fas fa-cloud-upload-alt text-4xl mb-4"></i>
                             <p className="text-lg mb-2">Drop your flyer here or click to upload</p>
-                            <p className="text-sm text-gray-500">Supported formats: JPG, PNG, AVIF, HEIC, WEBP (Max 3MB - images will be automatically compressed)</p>
-                            <p className="text-xs text-amber-600 mt-1">Note: PDFs need to be converted to images first (take a screenshot or use a PDF-to-image converter)</p>
+                            <p className="text-sm text-gray-500">Supported formats: PNG, JPEG, WEBP (Max 3MB)</p>
+                            <p className="text-xs text-amber-600 mt-1">Do not upload sensitive personal data. Upload only content you have rights to use.</p>
                         </div>
                         ) : (
                             <div className="file-preview-container">

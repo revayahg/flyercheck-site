@@ -49,7 +49,7 @@ function RevayaHostPage() {
                                 data-name="cta-button-primary"
                             >
                                 <i className="fas fa-envelope"></i>
-                                Join the Beta Waitlist
+                                Request Early Access
                             </a>
                         </div>
                     </div>

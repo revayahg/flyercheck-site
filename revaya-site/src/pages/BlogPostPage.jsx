@@ -58,7 +58,7 @@ function BlogPostPage() {
                   <section key={i}>
                     {section.heading && <h2>{section.heading}</h2>}
                     {section.paragraphs.map((p, j) => (
-                      <p key={j}>{p}</p>
+                      <p key={j} dangerouslySetInnerHTML={{ __html: p }} />
                     ))}
                   </section>
                 ))}

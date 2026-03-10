@@ -1,8 +1,0 @@
-/* Minimal overrides for founder images positioning only */
-.about-section .founder-image.jolyse {
-    object-position: center top !important;
-}
-
-.about-section .founder-image.thiago {
-    object-position: center 20% !important;
-}

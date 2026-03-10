@@ -18,47 +18,45 @@ A modern company website with AI-powered flyer analysis feature.
 
 ## Local Development
 
-1. Install dependencies:
+The site and API live in **`revaya-site/`**. From the repo root:
+
+1. Go into the app and install dependencies:
 ```bash
+cd revaya-site
 npm install
 ```
 
-2. Create `.env` file:
+2. Create `revaya-site/.env` (for Flyer Check API):
 ```
 OPENAI_API_KEY=your_openai_api_key_here
 ```
 
-3. Start development server:
+3. Start development server (from inside `revaya-site/`):
 ```bash
 npm run dev
 ```
 
-4. Open http://localhost:3000
+4. Open the URL shown (e.g. http://localhost:5173)
 
 ## Deployment
 
-This project is configured for deployment on Vercel. See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed instructions.
-
-### Quick Deploy
-
-1. Push to GitHub
-2. Import to Vercel
-3. Add `OPENAI_API_KEY` environment variable
-4. Deploy!
+Deploy on Vercel with **Root Directory** set to `revaya-site`. See `revaya-site/DEPLOY.md` for details. Add `OPENAI_API_KEY` in Vercel project environment variables for Flyer Check.
 
 ## Project Structure
 
 ```
-├── api/                    # Serverless API functions
-│   ├── analyze-flyer.js   # Vercel serverless function
-│   └── analyzeFlyer.js    # OpenAI integration
-├── components/            # React components
-├── pages/                 # Page components
-├── styles/                # CSS stylesheets
-├── utils/                 # Utility functions
-├── index.html             # Main HTML file
-├── server.js              # Local development server
-└── vercel.json            # Vercel configuration
+revaya-site/
+├── api/                    # Serverless API (Flyer Check)
+│   ├── analyze-flyer.js
+│   └── analyzeFlyer.js
+├── src/
+│   ├── components/
+│   ├── pages/
+│   └── ...
+├── public/
+│   └── styles/
+├── index.html
+└── vercel.json
 ```
 
 ## Environment Variables

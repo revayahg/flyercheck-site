@@ -19,32 +19,6 @@ function RevayaHostPage() {
             };
         }, []);
 
-        const progressSteps = [
-            {
-                icon: "fas fa-check-circle",
-                text: "Discovery & UX Research",
-                status: "completed"
-            },
-            {
-                icon: "fas fa-sync-alt",
-                text: "Alpha with Partners",
-                status: "in-progress",
-                subtext: "in progress"
-            },
-            {
-                icon: "fas fa-flask",
-                text: "Beta Testing",
-                status: "upcoming",
-                subtext: "Winter 2025"
-            },
-            {
-                icon: "fas fa-rocket",
-                text: "Launch",
-                status: "upcoming",
-                subtext: "Spring 2026"
-            }
-        ];
-
         return (
             <div className="min-h-screen bg-white" data-name="revaya-host-page">
                 <Navbar />
@@ -58,10 +32,6 @@ function RevayaHostPage() {
                                 alt="Revaya Hospitality Group logo"
                                 className="host-logo-image"
                             />
-                        </div>
-                        <div className="host-hero-badge" data-name="host-hero-badge">
-                            <i className="fas fa-code-branch"></i>
-                            <span>In Development</span>
                         </div>
                         <h1 className="host-hero-title" data-name="host-hero-title">
                             Revaya Host
@@ -89,7 +59,7 @@ function RevayaHostPage() {
                 <section className="host-intro-section" data-name="host-intro-section">
                     <div className="host-intro-container">
                         <div className="host-intro-content">
-                            <h2 className="host-intro-title">A Professional Solution in Development</h2>
+                            <h2 className="host-intro-title">Built for Real-World Event Operations</h2>
                             <p className="host-intro-text">
                                 We're building Revaya Host in close partnership with hospitality professionals to ensure it meets the real-world needs of event planners, venue managers, and hospitality teams. Our development process prioritizes user experience, functionality, and seamless integration into your existing workflows.
                             </p>
@@ -107,33 +77,6 @@ function RevayaHostPage() {
                                     <span>Enterprise-grade security</span>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* Progress Section */}
-                <section className="progress-section" data-name="progress-section">
-                    <div className="progress-container" data-name="progress-container">
-                        <h2 className="progress-section-title">Development Roadmap</h2>
-                        <p className="progress-section-subtitle">Our journey to launch</p>
-                        <div className="progress-track" data-name="progress-track">
-                            {progressSteps.map((step, index) => (
-                                <div 
-                                    key={index} 
-                                    className={`progress-step ${step.status}`}
-                                    data-name={`progress-step-${index + 1}`}
-                                >
-                                    <div className="step-icon-wrapper">
-                                        <i className={`step-icon ${step.icon}`}></i>
-                                    </div>
-                                    <div className="step-content">
-                                        <p className="step-text">{step.text}</p>
-                                        {step.subtext && (
-                                            <span className="step-subtext">{step.subtext}</span>
-                                        )}
-                                    </div>
-                                </div>
-                            ))}
                         </div>
                     </div>
                 </section>

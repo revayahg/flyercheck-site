@@ -2,7 +2,7 @@ import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import LandingPage from "./pages/LandingPage";
-import AboutPage from "./pages/AboutPage";
+import AboutPage from "./pages/AboutPage.jsx";
 import ContactPage from "./pages/ContactPage";
 import BlogPage from "./pages/BlogPage";
 import BlogPostFlyerBlindSpots from "./pages/BlogPostFlyerBlindSpots";

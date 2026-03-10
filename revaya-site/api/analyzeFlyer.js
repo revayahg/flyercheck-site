@@ -39,52 +39,41 @@ async function analyzeFlyerWithOpenAI(imageBuffer, imageMimeType, targetAudience
     const categories = Array.isArray(eventCategories) ? eventCategories : [eventCategories];
 
     const categoryDescriptions = {
-      // Nightlife & Social
       'party-nightlife': 'Party / Nightlife',
       'club-event': 'Club Event',
       'happy-hour': 'Happy Hour / Social Mixer',
       'bar-event': 'Bar Event',
-      // Arts, Culture & Entertainment
       'concert-live-music': 'Concert / Live Music',
       'festival-fair': 'Festival / Fair',
       'theater-performance': 'Theater / Performance',
       'comedy-show': 'Comedy Show',
       'art-show': 'Art Show / Gallery Event',
-      // Community & Nonprofit
       'community-event': 'Community Event',
       'fundraiser-charity': 'Fundraiser / Charity Event',
       'parade-march-pride': 'Parade / March / Pride Event',
       'cultural-celebration': 'Cultural Celebration',
-      // Business & Professional
       'conference': 'Conference',
       'networking-event': 'Networking Event',
       'workshop-training': 'Workshop / Training',
       'trade-show-expo': 'Trade Show / Expo',
       'corporate-meeting': 'Corporate Meeting / Company Event',
-      // Sports & Fitness
       'sports-event': 'Sports Event',
       'fitness-wellness': 'Fitness Class / Wellness Event',
       'tournament-competition': 'Tournament / Competition',
-      // Education
       'class-course': 'Class / Course',
       'lecture-speaker': 'Lecture / Speaker Series',
       'campus-event': 'Campus Event',
-      // Hospitality & Food
       'restaurant-event': 'Restaurant Event / Menu Special',
       'food-drink-festival': 'Food & Drink Festival',
       'tasting-event': 'Tasting Event (Wine, Spirits, etc.)',
-      // Family & Kids
       'kids-event': 'Kids Event',
       'family-friendly': 'Family-Friendly Event',
-      // Special Occasions
       'holiday-event': 'Holiday Event',
       'themed-event': 'Themed Event',
       'grand-opening': 'Grand Opening',
       'anniversary-celebration': 'Anniversary / Celebration',
-      // Other
       'general-event': 'General Event / Misc',
       'virtual-event': 'Virtual Event',
-      // Legacy categories
       'corporate': 'Corporate / Networking Events',
       'hospitality': 'Hospitality / Nightlife Events',
       'concert': 'Concert / Festival Events',
@@ -147,7 +136,6 @@ async function analyzeFlyerWithOpenAI(imageBuffer, imageMimeType, targetAudience
       return guidance[category] || guidance['other'];
     }
 
-    // Combine guidance from all selected categories
     const allGuidance = categories.map(cat => getCategoryGuidance(cat)).join('\n\n');
 
     const prompt = `You are an expert event marketing consultant analyzing an event flyer using a comprehensive evaluation framework.
@@ -237,15 +225,12 @@ Provide your analysis in this JSON format:
 Be specific, constructive, and actionable. Use the tone of a knowledgeable design coach, not a harsh judge.`;
 
     const response = await openai.chat.completions.create({
-      model: "gpt-4o", // Using GPT-4o which has vision capabilities
+      model: "gpt-4o",
       messages: [
         {
           role: "user",
           content: [
-            {
-              type: "text",
-              text: prompt
-            },
+            { type: "text", text: prompt },
             {
               type: "image_url",
               image_url: {
@@ -260,24 +245,18 @@ Be specific, constructive, and actionable. Use the tone of a knowledgeable desig
     });
 
     const analysisText = response.choices[0].message.content;
-    
-    // Try to parse JSON from the response
     let analysis;
     try {
-      // Extract JSON from markdown code blocks if present
       const jsonMatch = analysisText.match(/```json\s*([\s\S]*?)\s*```/) || 
                        analysisText.match(/```\s*([\s\S]*?)\s*```/) ||
                        analysisText.match(/\{[\s\S]*\}/);
-      
       if (jsonMatch) {
         analysis = JSON.parse(jsonMatch[1] || jsonMatch[0]);
       } else {
         analysis = JSON.parse(analysisText);
       }
     } catch (parseError) {
-      // If JSON parsing fails, create structured response from text
       console.warn('Failed to parse JSON, creating structured response');
-      console.warn('Response text:', analysisText.substring(0, 500));
       analysis = {
         overallScore: 6,
         scores: {
@@ -303,7 +282,8 @@ Be specific, constructive, and actionable. Use the tone of a knowledgeable desig
         strengths: ['AI analysis completed'],
         improvements: ['Consider reviewing the detailed feedback'],
         recommendations: [analysisText.substring(0, 200) + '...'],
-        audienceSpecificTips: `Based on the ${audienceDesc}, ensure your messaging resonates with this specific group.`,
+        audienceSpecificTips: `Consider tailoring your message for ${audienceDesc}.`,
+        categorySpecificGuidance: `Apply best practices for ${categoryDesc}.`,
         encouragement: 'Keep refining your design!'
       };
     }
@@ -332,4 +312,3 @@ Be specific, constructive, and actionable. Use the tone of a knowledgeable desig
 }
 
 module.exports = { analyzeFlyerWithOpenAI };
-

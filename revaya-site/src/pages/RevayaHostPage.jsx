@@ -81,6 +81,152 @@ function RevayaHostPage() {
                     </div>
                 </section>
 
+                {/* Overview */}
+                <section className="host-content-section" aria-labelledby="overview-heading">
+                    <div className="host-content-container">
+                        <h2 id="overview-heading" className="host-content-title">Overview</h2>
+                        <p className="host-content-text">
+                            Revaya Host is an event operations platform designed to help hospitality teams plan, coordinate, and execute live experiences with greater clarity.
+                        </p>
+                        <p className="host-content-text">
+                            Events require constant coordination between venues, vendors, performers, sponsors, staff, and guests. Much of this coordination still happens across spreadsheets, email threads, and messaging apps, which makes it difficult for teams to maintain a clear operational view of the event.
+                        </p>
+                        <p className="host-content-text">
+                            Revaya Host centralizes event information so planners and hospitality teams can organize logistics, track responsibilities, and keep everyone aligned. The platform is designed to support the operational side of events — the details that ensure an event runs smoothly behind the scenes.
+                        </p>
+                        <p className="host-content-text">
+                            By providing a structured way to manage event information, Revaya Host helps teams reduce last-minute confusion and deliver a more consistent guest experience.
+                        </p>
+                    </div>
+                </section>
+
+                {/* The Problem */}
+                <section className="host-content-section host-content-section--alt" aria-labelledby="problem-heading">
+                    <div className="host-content-container">
+                        <h2 id="problem-heading" className="host-content-title">The Problem</h2>
+                        <p className="host-content-text">
+                            Behind every successful event is a complex network of operational coordination.
+                        </p>
+                        <p className="host-content-text">
+                            Event planners and hospitality teams must manage dozens of moving parts at once: vendor logistics, venue requirements, production timelines, guest communication, and staff coordination. Each of these elements often involves different stakeholders who rely on timely information and clear communication.
+                        </p>
+                        <p className="host-content-text">
+                            In many cases, teams manage these responsibilities using a combination of spreadsheets, shared documents, emails, and messaging platforms. While these tools help track information, they rarely provide a single operational view of the event.
+                        </p>
+                        <p className="host-content-text">
+                            This fragmentation can create challenges such as:
+                        </p>
+                        <ul className="host-content-list">
+                            <li>Vendor miscommunication</li>
+                            <li>Conflicting timelines</li>
+                            <li>Missing logistical details</li>
+                            <li>Last-minute operational surprises</li>
+                        </ul>
+                        <p className="host-content-text">
+                            As events grow in size and complexity, the need for a more structured coordination system becomes increasingly important.
+                        </p>
+                    </div>
+                </section>
+
+                {/* How It Works */}
+                <section className="host-content-section" aria-labelledby="how-it-works-heading">
+                    <div className="host-content-container">
+                        <h2 id="how-it-works-heading" className="host-content-title">How It Works</h2>
+                        <p className="host-content-text">
+                            Revaya Host helps event teams organize operational information in a way that is accessible, structured, and easy to maintain throughout the planning process.
+                        </p>
+                        <p className="host-content-text">
+                            The platform allows planners and hospitality teams to coordinate key aspects of an event in a single environment. Instead of managing multiple disconnected tools, teams can centralize their operational information and maintain a clear overview of the event.
+                        </p>
+                        <p className="host-content-text">
+                            Revaya Host focuses on the operational workflow of event planning, including:
+                        </p>
+                        <ul className="host-content-list">
+                            <li>coordinating vendors and partners</li>
+                            <li>organizing event logistics and timelines</li>
+                            <li>maintaining shared operational details</li>
+                            <li>improving communication across teams</li>
+                        </ul>
+                        <p className="host-content-text">
+                            By providing a centralized operational view, Revaya Host helps reduce confusion and allows teams to focus on delivering the best possible experience for guests.
+                        </p>
+                    </div>
+                </section>
+
+                {/* Use Cases */}
+                <section className="host-content-section host-content-section--alt" aria-labelledby="use-cases-heading">
+                    <div className="host-content-container">
+                        <h2 id="use-cases-heading" className="host-content-title">Use Cases</h2>
+                        <p className="host-content-text">
+                            Revaya Host is designed to support a wide range of live experiences where coordination and communication are essential.
+                        </p>
+                        <h3 className="host-content-subtitle">Festivals and Community Events</h3>
+                        <p className="host-content-text">
+                            Large outdoor events often involve multiple vendors, performers, and operational teams. Revaya Host helps planners manage logistics and maintain visibility across the event.
+                        </p>
+                        <h3 className="host-content-subtitle">Venue Programming</h3>
+                        <p className="host-content-text">
+                            Restaurants, hotels, and entertainment venues frequently host events and activations that require coordination across multiple departments.
+                        </p>
+                        <h3 className="host-content-subtitle">Hospitality Activations</h3>
+                        <p className="host-content-text">
+                            Brand activations, pop-ups, and experiential marketing events require detailed coordination between vendors, production teams, and venue staff.
+                        </p>
+                        <h3 className="host-content-subtitle">Conferences and Corporate Events</h3>
+                        <p className="host-content-text">
+                            Professional events involve complex logistics including speakers, sponsors, programming schedules, and guest communication.
+                        </p>
+                        <p className="host-content-text">
+                            Revaya Host helps organizers maintain a structured view of these moving parts so teams can coordinate more effectively.
+                        </p>
+                    </div>
+                </section>
+
+                {/* FAQ */}
+                <section className="host-content-section" aria-labelledby="faq-heading">
+                    <div className="host-content-container">
+                        <h2 id="faq-heading" className="host-content-title">Frequently Asked Questions</h2>
+                        <dl className="host-faq-list">
+                            <dt className="host-faq-question">What types of events can Revaya Host support?</dt>
+                            <dd className="host-faq-answer">
+                                Revaya Host is designed for a wide range of live experiences including festivals, community events, venue activations, hospitality programming, and corporate events.
+                            </dd>
+                            <dt className="host-faq-question">Who typically uses Revaya Host?</dt>
+                            <dd className="host-faq-answer">
+                                The platform is intended for event planners, venue managers, hospitality teams, and operations staff responsible for coordinating live events.
+                            </dd>
+                            <dt className="host-faq-question">Is Revaya Host only useful for large events?</dt>
+                            <dd className="host-faq-answer">
+                                While the platform is especially helpful for complex events, smaller teams can also benefit from having a structured way to organize event logistics and coordination.
+                            </dd>
+                            <dt className="host-faq-question">Can Revaya Host help manage vendors?</dt>
+                            <dd className="host-faq-answer">
+                                Yes. Revaya Host helps teams organize vendor information and maintain clear communication about logistical details and responsibilities.
+                            </dd>
+                            <dt className="host-faq-question">Is Revaya Host focused on planning or execution?</dt>
+                            <dd className="host-faq-answer">
+                                Revaya Host supports both. It helps teams organize event details during the planning phase and maintain operational clarity during event execution.
+                            </dd>
+                        </dl>
+                    </div>
+                </section>
+
+                {/* Why Event Operations Matter */}
+                <section className="host-content-section host-content-section--alt" aria-labelledby="why-ops-heading">
+                    <div className="host-content-container">
+                        <h2 id="why-ops-heading" className="host-content-title">Why Event Operations Matter</h2>
+                        <p className="host-content-text">
+                            Guests often experience events as seamless moments of entertainment, hospitality, or celebration. Behind the scenes, however, successful events require careful coordination between many different people and teams.
+                        </p>
+                        <p className="host-content-text">
+                            When operational details are organized clearly and communication flows effectively, planners can focus less on troubleshooting and more on delivering memorable experiences.
+                        </p>
+                        <p className="host-content-text">
+                            Revaya Host is designed to support that coordination by giving event teams a clearer operational foundation.
+                        </p>
+                    </div>
+                </section>
+
                 {/* Features Section - How We Enable More Show */}
                 <section id="features" className="features-section-host" data-name="features-section">
                     <div className="features-section-container">

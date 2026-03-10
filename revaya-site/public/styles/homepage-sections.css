@@ -158,6 +158,12 @@
     margin-bottom: 0;
 }
 
+/* Why Event Operations Are So Complex (homepage editorial section) */
+.event-ops-prose {
+    max-width: 720px;
+    margin: 0 auto;
+}
+
 /* Insights Section */
 .insights-grid {
     display: grid;

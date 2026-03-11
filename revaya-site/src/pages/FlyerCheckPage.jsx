@@ -21,7 +21,7 @@ function FlyerCheckPage() {
                 <AdBanner />
                 <section className="hero hero-flyercheck" data-name="hero">
                     <div className="hero-content">
-                        <h1 className="hero-title">Revaya Flyer Check™</h1>
+                        <h1 className="hero-title">Revaya FlyerCheck™</h1>
                         <p className="hero-subtitle">
                             Your flyer is almost perfect. Let's make it undeniable.
                         </p>
@@ -221,14 +221,14 @@ function FlyerCheckPage() {
                             <div className="flyercheck-intro">
                                 <h2 className="flyercheck-section-title">AI-Powered Flyer Analysis for Better Event Attendance</h2>
                                 <p className="flyercheck-intro-text">
-                                    Revaya Flyer Check™ uses advanced AI technology to analyze your event flyers and provide comprehensive feedback on design, clarity, and effectiveness. Whether you're promoting a corporate conference, music festival, wedding, or nonprofit fundraiser, our tool helps ensure your flyer communicates clearly and drives attendance.
+                                    Revaya FlyerCheck™ uses advanced AI technology to analyze your event flyers and provide comprehensive feedback on design, clarity, and effectiveness. Whether you're promoting a corporate conference, music festival, wedding, or nonprofit fundraiser, our tool helps ensure your flyer communicates clearly and drives attendance.
                                 </p>
                             </div>
 
                             <div className="flyercheck-benefits">
-                                <h3 className="flyercheck-subtitle">Why Use Flyer Check?</h3>
+                                <h3 className="flyercheck-subtitle">Why Use FlyerCheck?</h3>
                                 <p className="flyercheck-benefits-intro">
-                                    Designing an effective event flyer is more complex than it appears. Small design decisions can significantly impact whether potential attendees take action or scroll past. Flyer Check provides the analytical rigor and fresh perspective needed to transform good designs into conversion-driving communications that maximize event attendance.
+                                    Designing an effective event flyer is more complex than it appears. Small design decisions can significantly impact whether potential attendees take action or scroll past. FlyerCheck provides the analytical rigor and fresh perspective needed to transform good designs into conversion-driving communications that maximize event attendance.
                                 </p>
                                 <div className="flyercheck-benefits-grid">
                                     <div className="flyercheck-benefit-card">
@@ -253,7 +253,7 @@ function FlyerCheckPage() {
                                     </div>
                                 </div>
                                 <p className="flyercheck-benefits-closing">
-                                    Beyond these core benefits, Flyer Check helps you avoid the costly mistakes of launching ineffective marketing materials. Every flyer that fails to convert is a missed opportunity to grow your event attendance. By catching issues before publication, you save time, money, and most importantly, potential attendees.
+                                    Beyond these core benefits, FlyerCheck helps you avoid the costly mistakes of launching ineffective marketing materials. Every flyer that fails to convert is a missed opportunity to grow your event attendance. By catching issues before publication, you save time, money, and most importantly, potential attendees.
                                 </p>
                             </div>
 
@@ -297,7 +297,7 @@ function FlyerCheckPage() {
                             <div className="flyercheck-tips">
                                 <h3 className="flyercheck-subtitle">Tips for Creating Effective Flyers</h3>
                                 <p className="flyercheck-tips-intro">
-                                    While Flyer Check helps identify issues in existing designs, following these fundamental principles from the start will help you create flyers that are more likely to pass analysis and drive attendance.
+                                    While FlyerCheck helps identify issues in existing designs, following these fundamental principles from the start will help you create flyers that are more likely to pass analysis and drive attendance.
                                 </p>
                                 <div className="flyercheck-tips-list">
                                     <div className="tip-item">
@@ -330,42 +330,42 @@ function FlyerCheckPage() {
                                     </div>
                                 </div>
                                 <p className="flyercheck-tips-closing">
-                                    Following these principles will give you a strong foundation, but even well-designed flyers benefit from an objective analysis. Flyer Check helps you catch the subtle issues that can slip through even when you follow best practices.
+                                    Following these principles will give you a strong foundation, but even well-designed flyers benefit from an objective analysis. FlyerCheck helps you catch the subtle issues that can slip through even when you follow best practices.
                                 </p>
                             </div>
 
                             <div className="flyercheck-use-cases">
                                 <h3 className="flyercheck-subtitle">Perfect For</h3>
                                 <p className="flyercheck-use-cases-intro">
-                                    Flyer Check is designed to work across all event types and industries. Our AI understands the unique requirements and design expectations for different event categories, ensuring you receive relevant, actionable feedback regardless of your event type.
+                                    FlyerCheck is designed to work across all event types and industries. Our AI understands the unique requirements and design expectations for different event categories, ensuring you receive relevant, actionable feedback regardless of your event type.
                                 </p>
                                 <div className="flyercheck-use-cases-list">
                                     <div className="use-case-item">
                                         <i className="fas fa-briefcase"></i>
                                         <div>
                                             <h4>Corporate Events</h4>
-                                            <p>Conferences, networking events, product launches, and company gatherings that need professional, clear communication. For corporate events, Flyer Check ensures your flyer maintains brand consistency, communicates professionalism, and includes all necessary logistical details. The analysis pays special attention to information hierarchy and clarity, as corporate audiences value efficiency and complete information over flashy design.</p>
+                                            <p>Conferences, networking events, product launches, and company gatherings that need professional, clear communication. For corporate events, FlyerCheck ensures your flyer maintains brand consistency, communicates professionalism, and includes all necessary logistical details. The analysis pays special attention to information hierarchy and clarity, as corporate audiences value efficiency and complete information over flashy design.</p>
                                         </div>
                                     </div>
                                     <div className="use-case-item">
                                         <i className="fas fa-music"></i>
                                         <div>
                                             <h4>Music & Entertainment</h4>
-                                            <p>Concerts, festivals, club nights, and live performances where visual appeal and clear information are crucial for ticket sales. Entertainment events benefit from Flyer Check's focus on visual hierarchy and emotional appeal. The tool helps ensure your flyer captures the energy and vibe of your event while still providing all essential ticket and venue information that drives sales. Missing details like age restrictions or door times can significantly impact attendance.</p>
+                                            <p>Concerts, festivals, club nights, and live performances where visual appeal and clear information are crucial for ticket sales. Entertainment events benefit from FlyerCheck's focus on visual hierarchy and emotional appeal. The tool helps ensure your flyer captures the energy and vibe of your event while still providing all essential ticket and venue information that drives sales. Missing details like age restrictions or door times can significantly impact attendance.</p>
                                         </div>
                                     </div>
                                     <div className="use-case-item">
                                         <i className="fas fa-heart"></i>
                                         <div>
                                             <h4>Weddings & Celebrations</h4>
-                                            <p>Wedding invitations, anniversary parties, and milestone celebrations that need to convey elegance and important details. Celebratory events require a balance of aesthetic appeal and informational completeness. Flyer Check helps ensure your invitation or event announcement maintains the appropriate tone while clearly communicating date, time, location, dress code, and RSVP information. The analysis considers how well the design matches the formality level of your event.</p>
+                                            <p>Wedding invitations, anniversary parties, and milestone celebrations that need to convey elegance and important details. Celebratory events require a balance of aesthetic appeal and informational completeness. FlyerCheck helps ensure your invitation or event announcement maintains the appropriate tone while clearly communicating date, time, location, dress code, and RSVP information. The analysis considers how well the design matches the formality level of your event.</p>
                                         </div>
                                     </div>
                                     <div className="use-case-item">
                                         <i className="fas fa-hand-holding-heart"></i>
                                         <div>
                                             <h4>Nonprofit Fundraisers</h4>
-                                            <p>Charity events, fundraisers, and community gatherings that must clearly communicate purpose and inspire action. Nonprofit events rely heavily on clearly communicating their cause and impact. Flyer Check ensures your fundraising flyer effectively explains the purpose of the event, what donations support, and how attendees can contribute. The tool helps balance emotional appeal with practical information about ticket prices, donation options, and event logistics.</p>
+                                            <p>Charity events, fundraisers, and community gatherings that must clearly communicate purpose and inspire action. Nonprofit events rely heavily on clearly communicating their cause and impact. FlyerCheck ensures your fundraising flyer effectively explains the purpose of the event, what donations support, and how attendees can contribute. The tool helps balance emotional appeal with practical information about ticket prices, donation options, and event logistics.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -374,54 +374,54 @@ function FlyerCheckPage() {
                             <div className="flyercheck-mistakes">
                                 <h3 className="flyercheck-subtitle">Common Flyer Mistakes That Hurt Attendance</h3>
                                 <p className="flyercheck-mistakes-intro">
-                                    Even experienced designers can fall into these common traps when creating event flyers. Understanding these mistakes helps you avoid them, and Flyer Check specifically looks for each of these issues during analysis.
+                                    Even experienced designers can fall into these common traps when creating event flyers. Understanding these mistakes helps you avoid them, and FlyerCheck specifically looks for each of these issues during analysis.
                                 </p>
                                 <div className="flyercheck-mistakes-list">
                                     <div className="mistake-item">
                                         <i className="fas fa-exclamation-triangle"></i>
                                         <div>
                                             <h4>Missing or Unclear Date and Time</h4>
-                                            <p>One of the most critical mistakes is failing to clearly display the event date and time. Many flyers show only a date without time, or they show "start time" but not "doors open" time, confusing potential attendees. Some designers bury this information in small text or place it where it's easy to miss. Flyer Check flags when date and time information isn't immediately visible or is incomplete, as this directly impacts whether people can attend.</p>
+                                            <p>One of the most critical mistakes is failing to clearly display the event date and time. Many flyers show only a date without time, or they show "start time" but not "doors open" time, confusing potential attendees. Some designers bury this information in small text or place it where it's easy to miss. FlyerCheck flags when date and time information isn't immediately visible or is incomplete, as this directly impacts whether people can attend.</p>
                                         </div>
                                     </div>
                                     <div className="mistake-item">
                                         <i className="fas fa-map-marker-alt"></i>
                                         <div>
                                             <h4>Incomplete or Ambiguous Location Information</h4>
-                                            <p>Simply listing a venue name without an address, or providing an address without indicating whether it's indoor or outdoor, creates unnecessary friction. Viewers shouldn't have to search elsewhere to find where your event is happening. Flyer Check identifies when location information is missing, unclear, or incomplete, ensuring your flyer provides everything attendees need to find your event.</p>
+                                            <p>Simply listing a venue name without an address, or providing an address without indicating whether it's indoor or outdoor, creates unnecessary friction. Viewers shouldn't have to search elsewhere to find where your event is happening. FlyerCheck identifies when location information is missing, unclear, or incomplete, ensuring your flyer provides everything attendees need to find your event.</p>
                                         </div>
                                     </div>
                                     <div className="mistake-item">
                                         <i className="fas fa-clipboard-question"></i>
                                         <div>
                                             <h4>Assuming Viewers Know What the Event Is</h4>
-                                            <p>Designers who are deeply involved in their event often assume viewers understand context they don't actually have. Flyers that rely on insider knowledge or industry jargon fail to communicate effectively. Flyer Check evaluates how well your flyer explains what the event is, who it's for, and why someone should attend, flagging when key information is implied rather than stated clearly.</p>
+                                            <p>Designers who are deeply involved in their event often assume viewers understand context they don't actually have. Flyers that rely on insider knowledge or industry jargon fail to communicate effectively. FlyerCheck evaluates how well your flyer explains what the event is, who it's for, and why someone should attend, flagging when key information is implied rather than stated clearly.</p>
                                         </div>
                                     </div>
                                     <div className="mistake-item">
                                         <i className="fas fa-dollar-sign"></i>
                                         <div>
                                             <h4>Hidden or Missing Ticket Information</h4>
-                                            <p>Potential attendees need to know upfront whether tickets are required, how much they cost, and where to purchase them. Many flyers mention "tickets available" without price or purchase location, forcing viewers to search elsewhere. This extra step significantly reduces conversion rates. Flyer Check identifies when ticket information is missing or unclear, as this directly impacts attendance.</p>
+                                            <p>Potential attendees need to know upfront whether tickets are required, how much they cost, and where to purchase them. Many flyers mention "tickets available" without price or purchase location, forcing viewers to search elsewhere. This extra step significantly reduces conversion rates. FlyerCheck identifies when ticket information is missing or unclear, as this directly impacts attendance.</p>
                                         </div>
                                     </div>
                                     <div className="mistake-item">
                                         <i className="fas fa-eye-slash"></i>
                                         <div>
                                             <h4>Poor Readability and Contrast Issues</h4>
-                                            <p>Text that's difficult to read—whether due to small font sizes, low contrast, or text placed over busy backgrounds—prevents viewers from absorbing your information. This is especially problematic on mobile devices where people often first encounter flyers. Flyer Check evaluates text readability and contrast, identifying when design choices make information hard to consume, which directly impacts your flyer's effectiveness.</p>
+                                            <p>Text that's difficult to read—whether due to small font sizes, low contrast, or text placed over busy backgrounds—prevents viewers from absorbing your information. This is especially problematic on mobile devices where people often first encounter flyers. FlyerCheck evaluates text readability and contrast, identifying when design choices make information hard to consume, which directly impacts your flyer's effectiveness.</p>
                                         </div>
                                     </div>
                                     <div className="mistake-item">
                                         <i className="fas fa-bullhorn"></i>
                                         <div>
                                             <h4>Unclear or Missing Call-to-Action</h4>
-                                            <p>Even if your flyer includes all necessary information, viewers need clear direction on what to do next. Flyers without obvious calls-to-action—like "RSVP Now" buttons, website URLs, or QR codes—create hesitation and reduce conversions. Flyer Check evaluates whether your call-to-action is prominent and actionable, as this directly impacts whether interested viewers actually take the next step to attend.</p>
+                                            <p>Even if your flyer includes all necessary information, viewers need clear direction on what to do next. Flyers without obvious calls-to-action—like "RSVP Now" buttons, website URLs, or QR codes—create hesitation and reduce conversions. FlyerCheck evaluates whether your call-to-action is prominent and actionable, as this directly impacts whether interested viewers actually take the next step to attend.</p>
                                         </div>
                                     </div>
                                 </div>
                                 <p className="flyercheck-mistakes-closing">
-                                    Each of these mistakes creates friction that prevents potential attendees from converting. Flyer Check's comprehensive analysis specifically looks for these and other common issues, providing specific recommendations for improvement. By catching these mistakes before publication, you significantly increase your chances of achieving strong event attendance.
+                                    Each of these mistakes creates friction that prevents potential attendees from converting. FlyerCheck's comprehensive analysis specifically looks for these and other common issues, providing specific recommendations for improvement. By catching these mistakes before publication, you significantly increase your chances of achieving strong event attendance.
                                 </p>
                             </div>
 
@@ -438,7 +438,7 @@ function FlyerCheckPage() {
                                     </div>
                                     <div className="faq-item">
                                         <h4>Do I need to create an account?</h4>
-                                        <p>No account required! Simply upload your flyer and get instant analysis. Your files are processed securely and are not stored after analysis. We prioritize your privacy—your flyer images are processed temporarily for analysis purposes only and are not saved, shared, or used for any other purpose. This makes Flyer Check accessible to everyone without registration barriers.</p>
+                                        <p>No account required! Simply upload your flyer and get instant analysis. Your files are processed securely and are not stored after analysis. We prioritize your privacy—your flyer images are processed temporarily for analysis purposes only and are not saved, shared, or used for any other purpose. This makes FlyerCheck accessible to everyone without registration barriers.</p>
                                     </div>
                                     <div className="faq-item">
                                         <h4>Is my flyer data kept private?</h4>
@@ -454,7 +454,7 @@ function FlyerCheckPage() {
                                     </div>
                                     <div className="faq-item">
                                         <h4>How does this compare to hiring a designer?</h4>
-                                        <p>Flyer Check complements rather than replaces professional design services. While a designer provides creative vision and custom solutions, Flyer Check offers instant, objective analysis based on proven design and conversion principles. Many designers use Flyer Check to validate their work before client presentation, and non-designers use it to ensure their flyers meet quality standards. It's particularly valuable for quick iterations and catching issues that might slip through even experienced designers.</p>
+                                        <p>FlyerCheck complements rather than replaces professional design services. While a designer provides creative vision and custom solutions, FlyerCheck offers instant, objective analysis based on proven design and conversion principles. Many designers use FlyerCheck to validate their work before client presentation, and non-designers use it to ensure their flyers meet quality standards. It's particularly valuable for quick iterations and catching issues that might slip through even experienced designers.</p>
                                     </div>
                                     <div className="faq-item">
                                         <h4>What makes a flyer effective?</h4>

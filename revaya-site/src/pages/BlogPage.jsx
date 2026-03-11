@@ -92,6 +92,14 @@ function BlogPage() {
 
     const allPosts = [...internalPosts, ...externalPosts];
 
+    // Sort by most recent post date first (parse date string to timestamp for comparison)
+    const parsePostDate = (dateStr) => {
+      if (!dateStr) return 0;
+      const d = new Date(dateStr);
+      return Number.isNaN(d.getTime()) ? 0 : d.getTime();
+    };
+    allPosts.sort((a, b) => parsePostDate(b.date) - parsePostDate(a.date));
+
     return (
       <div data-name="blog-page">
         <Navbar />

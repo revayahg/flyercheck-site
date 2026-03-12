@@ -21,6 +21,8 @@ export async function trackEvent({
   errorMessage = null,
   metadata = null,
 }) {
+  if (!supabase) return;
+
   const deviceId = getDeviceId();
 
   const { error } = await supabase.from("analytics_events").insert([

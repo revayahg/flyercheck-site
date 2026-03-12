@@ -1,3 +1,4 @@
+import { trackEvent } from "../lib/analytics";
 import React from "react";
 import { analyzeFlyer } from "../utils/fileAnalyzer";
 import AnalysisResults from "./AnalysisResults";
@@ -37,36 +38,55 @@ function FileUploader() {
         React.useEffect(() => {
             if (!isAnalyzing) {
                 if (analysisResults) {
-                    // Scroll to results when analysis is complete
                     setTimeout(() => {
-                        resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
                     }, 300);
                 } else if (message && !isSuccess) {
-                    // Scroll to error message if there's an error
                     setTimeout(() => {
-                        messageRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        messageRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
                     }, 100);
                 }
             }
         }, [analysisResults, isAnalyzing, message, isSuccess]);
 
         // Process file after selection/paste/drop
-        const processFile = (file) => {
-            const result = analyzeFlyer(file);
+        const processFile = (selectedFile) => {
+            const result = analyzeFlyer(selectedFile);
             setMessage(result.message);
             setIsSuccess(result.success);
+
             if (result.success) {
-                setFile(file);
+                setFile(selectedFile);
                 setAnalysisResults(null);
-                
-                // Create preview URL
+
+                trackEvent({
+                    eventName: "flyer_upload_clicked",
+                    fileName: selectedFile.name,
+                    status: "file_selected",
+                    metadata: {
+                        fileType: selectedFile.type,
+                        fileSize: selectedFile.size,
+                    },
+                });
+
                 const reader = new FileReader();
                 reader.onload = (e) => {
                     setFilePreview(e.target.result);
                 };
-                reader.readAsDataURL(file);
+                reader.readAsDataURL(selectedFile);
             } else {
-                messageRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                trackEvent({
+                    eventName: "flyer_upload_failure",
+                    fileName: selectedFile?.name || null,
+                    status: "validation_failed",
+                    errorMessage: result.message,
+                    metadata: {
+                        fileType: selectedFile?.type || null,
+                        fileSize: selectedFile?.size || null,
+                    },
+                });
+
+                messageRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
             }
         };
 
@@ -78,22 +98,21 @@ function FileUploader() {
 
                 for (let i = 0; i < items.length; i++) {
                     const item = items[i];
-                    if (item.type.indexOf('image') !== -1) {
+                    if (item.type.indexOf("image") !== -1) {
                         e.preventDefault();
                         const blob = item.getAsFile();
                         if (blob) {
-                            // Convert blob to File object
-                            const file = new File([blob], 'pasted-image.png', { type: blob.type });
-                            processFile(file);
+                            const pastedFile = new File([blob], "pasted-image.png", { type: blob.type });
+                            processFile(pastedFile);
                         }
                         break;
                     }
                 }
             };
 
-            window.addEventListener('paste', handlePaste);
+            window.addEventListener("paste", handlePaste);
             return () => {
-                window.removeEventListener('paste', handlePaste);
+                window.removeEventListener("paste", handlePaste);
             };
         }, []);
 
@@ -144,55 +163,97 @@ function FileUploader() {
             setEventType("skip");
             setAnalysisResults(null);
             if (fileInputRef.current) {
-                fileInputRef.current.value = '';
+                fileInputRef.current.value = "";
             }
         };
 
         const handleAnalyze = async () => {
             if (!file) {
-                setMessage('Please upload a flyer before analyzing.');
+                setMessage("Please upload a flyer before analyzing.");
                 setIsSuccess(false);
-                messageRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                messageRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
                 return;
             }
+
             const { targetAudience, eventCategories } = getEventTypeMapping(eventType);
 
             setIsAnalyzing(true);
-            setMessage('Analyzing your flyer... This may take a moment.');
+            setMessage("Analyzing your flyer... This may take a moment.");
             setIsSuccess(false);
-            
+
             try {
-                // Check if analysis service is available
-                if (typeof window.analyzeFlyerWithAI === 'undefined') {
-                    throw new Error('Analysis service not loaded. Please refresh the page.');
+                if (typeof window.analyzeFlyerWithAI === "undefined") {
+                    throw new Error("Analysis service not loaded. Please refresh the page.");
                 }
-                
+
                 const result = await window.analyzeFlyerWithAI(file, targetAudience, eventCategories);
-                
+
                 if (result.success) {
                     setAnalysisResults(result.analysis);
-                    setMessage('Analysis complete!');
+                    setMessage("Analysis complete!");
                     setIsSuccess(true);
+
+                    trackEvent({
+                        eventName: "flyer_upload_success",
+                        fileName: file.name,
+                        status: "analysis_complete",
+                        metadata: {
+                            fileType: file.type,
+                            fileSize: file.size,
+                            eventType,
+                            targetAudience,
+                            eventCategories,
+                        },
+                    });
                 } else {
-                    // Display the error message from the API (already user-friendly)
-                    let errorMsg = result.error || 'Analysis failed. Please try again.';
-                    
-                    // Add additional context for common errors
-                    if (errorMsg.includes('PDF') && file.type === 'application/pdf') {
-                        errorMsg = 'PDF files are not directly supported. Please convert your PDF to an image (JPG or PNG) first. You can take a screenshot of the PDF or use an online PDF-to-image converter.';
-                    } else if (errorMsg.includes('413') || errorMsg.includes('too large')) {
-                        errorMsg = 'File too large. Maximum size is 3MB. The image will be automatically compressed, but if it\'s still too large, please use a smaller file.';
-                    } else if (errorMsg.includes('temporarily unavailable')) {
-                        errorMsg += ' If this continues, please try again later.';
+                    let errorMsg = result.error || "Analysis failed. Please try again.";
+
+                    if (errorMsg.includes("PDF") && file.type === "application/pdf") {
+                        errorMsg =
+                            "PDF files are not directly supported. Please convert your PDF to an image (JPG or PNG) first. You can take a screenshot of the PDF or use an online PDF-to-image converter.";
+                    } else if (errorMsg.includes("413") || errorMsg.includes("too large")) {
+                        errorMsg =
+                            "File too large. Maximum size is 3MB. The image will be automatically compressed, but if it's still too large, please use a smaller file.";
+                    } else if (errorMsg.includes("temporarily unavailable")) {
+                        errorMsg += " If this continues, please try again later.";
                     }
-                    
+
                     setMessage(errorMsg);
                     setIsSuccess(false);
+
+                    trackEvent({
+                        eventName: "flyer_upload_failure",
+                        fileName: file.name,
+                        status: "analysis_failed",
+                        errorMessage: errorMsg,
+                        metadata: {
+                            fileType: file.type,
+                            fileSize: file.size,
+                            eventType,
+                            targetAudience,
+                            eventCategories,
+                        },
+                    });
                 }
             } catch (error) {
-                console.error('Analysis error:', error);
-                setMessage(error.message || 'An error occurred during analysis. Please try again.');
+                console.error("Analysis error:", error);
+                const errorMsg = error.message || "An error occurred during analysis. Please try again.";
+                setMessage(errorMsg);
                 setIsSuccess(false);
+
+                trackEvent({
+                    eventName: "flyer_upload_failure",
+                    fileName: file?.name || null,
+                    status: "system_error",
+                    errorMessage: errorMsg,
+                    metadata: {
+                        fileType: file?.type || null,
+                        fileSize: file?.size || null,
+                        eventType,
+                        targetAudience,
+                        eventCategories,
+                    },
+                });
             } finally {
                 setIsAnalyzing(false);
             }
@@ -203,9 +264,9 @@ function FileUploader() {
                 <div className="container mx-auto px-4">
                     <div className="file-uploader" data-name="file-uploader">
                         {message && !isAnalyzing && (
-                            <div 
+                            <div
                                 ref={messageRef}
-                                className={`message ${isSuccess ? 'success-message' : 'error-message'}`}
+                                className={`message ${isSuccess ? "success-message" : "error-message"}`}
                                 data-name="message"
                             >
                                 {message}
@@ -213,33 +274,35 @@ function FileUploader() {
                         )}
 
                         {!filePreview ? (
-                        <div 
-                            className={`upload-zone ${isDragging ? 'dragging' : ''}`}
-                            onClick={handleUploadClick}
-                            onDragEnter={handleDragEnter}
-                            onDragOver={handleDragOver}
-                            onDragLeave={handleDragLeave}
-                            onDrop={handleDrop}
-                            data-name="upload-zone"
-                        >
-                            <input
-                                type="file"
-                                ref={fileInputRef}
-                                onChange={handleFileChange}
-                                accept="image/png,image/jpeg,image/jpg,image/webp"
-                                className="file-input"
-                                data-name="file-input"
-                            />
-                            <i className="fas fa-cloud-upload-alt text-4xl mb-4"></i>
-                            <p className="text-lg mb-2">Drop your flyer here or click to upload</p>
-                            <p className="text-sm text-gray-500">Supported formats: PNG, JPEG, WEBP (Max 3MB)</p>
-                            <p className="text-xs text-amber-600 mt-1">Do not upload sensitive personal data. Upload only content you have rights to use.</p>
-                        </div>
+                            <div
+                                className={`upload-zone ${isDragging ? "dragging" : ""}`}
+                                onClick={handleUploadClick}
+                                onDragEnter={handleDragEnter}
+                                onDragOver={handleDragOver}
+                                onDragLeave={handleDragLeave}
+                                onDrop={handleDrop}
+                                data-name="upload-zone"
+                            >
+                                <input
+                                    type="file"
+                                    ref={fileInputRef}
+                                    onChange={handleFileChange}
+                                    accept="image/png,image/jpeg,image/jpg,image/webp"
+                                    className="file-input"
+                                    data-name="file-input"
+                                />
+                                <i className="fas fa-cloud-upload-alt text-4xl mb-4"></i>
+                                <p className="text-lg mb-2">Drop your flyer here or click to upload</p>
+                                <p className="text-sm text-gray-500">Supported formats: PNG, JPEG, WEBP (Max 3MB)</p>
+                                <p className="text-xs text-amber-600 mt-1">
+                                    Do not upload sensitive personal data. Upload only content you have rights to use.
+                                </p>
+                            </div>
                         ) : (
                             <div className="file-preview-container">
                                 <div className="file-preview-header">
                                     <h4 className="preview-title">Uploaded Flyer</h4>
-                                    <button 
+                                    <button
                                         className="remove-file-btn"
                                         onClick={handleRemoveFile}
                                         title="Remove file"
@@ -248,10 +311,10 @@ function FileUploader() {
                                     </button>
                                 </div>
                                 <div className="file-preview">
-                                    {file.type.startsWith('image/') ? (
-                                        <img 
-                                            src={filePreview} 
-                                            alt="Flyer preview" 
+                                    {file.type.startsWith("image/") ? (
+                                        <img
+                                            src={filePreview}
+                                            alt="Flyer preview"
                                             className="preview-image"
                                         />
                                     ) : (
@@ -261,7 +324,7 @@ function FileUploader() {
                                         </div>
                                     )}
                                 </div>
-                        </div>
+                            </div>
                         )}
 
                         {!filePreview && (
@@ -362,7 +425,7 @@ function FileUploader() {
             </div>
         );
     } catch (error) {
-        console.error('FileUploader component error:', error);
+        console.error("FileUploader component error:", error);
         reportError(error);
         return null;
     }

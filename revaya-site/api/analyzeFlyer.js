@@ -7,6 +7,10 @@ const openai = new OpenAI({
 });
 
 async function analyzeFlyerWithOpenAI(imageBuffer, imageMimeType, targetAudience, eventCategories, extractedText) {
+  if (!process.env.OPENAI_API_KEY || process.env.OPENAI_API_KEY.trim() === '') {
+    throw new Error('OpenAI API key is not configured. Please set OPENAI_API_KEY in your deployment environment.');
+  }
+
   try {
     // Check if file is PDF - OpenAI Vision API doesn't support PDFs directly
     if (imageMimeType === 'application/pdf') {

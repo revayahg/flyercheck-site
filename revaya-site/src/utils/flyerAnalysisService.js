@@ -57,13 +57,15 @@ window.analyzeFlyerWithAI = async function(file, targetAudience, eventCategories
         
         if (!response.ok) {
             const errorData = await response.json().catch(() => ({}));
-            const errorMessage = errorData.error || `API error: ${response.status} ${response.statusText}`;
-            
-            // Provide helpful error messages
+            const serverMessage = errorData && typeof errorData.error === 'string' ? errorData.error.trim() : '';
+            const errorMessage = serverMessage || (response.status === 500
+                ? 'The analysis service encountered an error. Please try again in a moment.'
+                : `Request failed (${response.status}). Please try again.`);
+
             if (response.status === 413) {
                 throw new Error('File too large. Please use an image smaller than 3MB, or try compressing it further.');
             }
-            
+
             throw new Error(errorMessage);
         }
         

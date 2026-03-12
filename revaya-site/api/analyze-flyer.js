@@ -252,23 +252,26 @@ module.exports = async (req, res) => {
     Object.keys(headers).forEach(key => {
       res.setHeader(key, headers[key]);
     });
-    
-    // Provide more helpful error messages
-    let errorMessage = 'An error occurred processing your request';
-    const errorMsg = error.message || '';
-    
-    if (errorMsg.includes('PDF') || errorMsg.includes('pdf') || errorMsg.includes('not directly supported')) {
+
+    const errorMsg = (error && error.message) ? String(error.message) : '';
+
+    let errorMessage = 'An error occurred while analyzing your flyer. Please try again in a few moments.';
+    if (errorMsg.includes('OPENAI_API_KEY') || errorMsg.includes('not configured')) {
+      errorMessage = 'Flyer analysis is not configured on this server. Please contact the site administrator.';
+    } else if (errorMsg.includes('PDF') || errorMsg.includes('pdf') || errorMsg.includes('not directly supported')) {
       errorMessage = 'PDF files are not directly supported. Please convert your PDF to an image (JPG or PNG) first. You can take a screenshot of the PDF or use an online PDF-to-image converter.';
     } else if (errorMsg.includes('image') || errorMsg.includes('format')) {
       errorMessage = 'There was an issue processing the image file. Please ensure the file is a valid image (PNG, JPEG, or WEBP).';
     } else if (errorMsg.includes('size') || errorMsg.includes('large')) {
       errorMessage = 'The file is too large. Maximum size is 3MB. Please compress your file or use a smaller one.';
-    } else if (errorMsg.includes('OpenAI') || errorMsg.includes('API')) {
+    } else if (errorMsg.includes('rate limit') || errorMsg.includes('quota')) {
+      errorMessage = 'The analysis service is busy. Please try again in a minute or two.';
+    } else if (errorMsg.includes('OpenAI') || errorMsg.includes('API') || errorMsg.includes('AI analysis failed')) {
       errorMessage = 'The AI analysis service is temporarily unavailable. Please try again in a few moments.';
-    } else if (process.env.NODE_ENV === 'development') {
-      errorMessage = error.message || 'An error occurred processing your request';
+    } else if (process.env.NODE_ENV === 'development' && errorMsg) {
+      errorMessage = errorMsg;
     }
-    
+
     res.status(500).json({
       success: false,
       error: errorMessage

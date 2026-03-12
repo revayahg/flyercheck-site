@@ -1,6 +1,6 @@
 // Backend API handler for flyer analysis using OpenAI GPT-4 Vision
-require('dotenv').config();
-const OpenAI = require('openai');
+import 'dotenv/config';
+import OpenAI from 'openai';
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -315,4 +315,4 @@ Be specific, constructive, and actionable. Use the tone of a knowledgeable desig
   }
 }
 
-module.exports = { analyzeFlyerWithOpenAI };
+export { analyzeFlyerWithOpenAI };

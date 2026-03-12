@@ -1,5 +1,5 @@
 // Vercel serverless function for flyer analysis
-const { analyzeFlyerWithOpenAI } = require('./analyzeFlyer');
+import { analyzeFlyerWithOpenAI } from './analyzeFlyer.js';
 
 // Security: Allowed origins (restrict in production)
 const ALLOWED_ORIGINS = process.env.ALLOWED_ORIGINS 
@@ -70,7 +70,7 @@ function isValidBase64(str) {
   return base64Regex.test(str) && str.length > 0;
 }
 
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
   // Security: Get origin and validate CORS
   const origin = req.headers.origin || req.headers.referer;
   const isAllowedOrigin = ALLOWED_ORIGINS.includes('*') || 
@@ -277,4 +277,4 @@ module.exports = async (req, res) => {
       error: errorMessage
     });
   }
-};
+}

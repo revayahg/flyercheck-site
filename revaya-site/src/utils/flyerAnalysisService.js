@@ -58,8 +58,8 @@ window.analyzeFlyerWithAI = async function(file, targetAudience, eventCategories
         if (!response.ok) {
             const errorData = await response.json().catch(() => ({}));
             const serverMessage = errorData && typeof errorData.error === 'string' ? errorData.error.trim() : '';
-            const errorMessage = serverMessage || (response.status === 500
-                ? 'The analysis service encountered an error. Please try again in a moment.'
+            const errorMessage = serverMessage || (response.status === 500 || response.status === 504
+                ? 'The analysis took too long or the service is temporarily unavailable. Try a smaller image or try again in a moment.'
                 : `Request failed (${response.status}). Please try again.`);
 
             if (response.status === 413) {

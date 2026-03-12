@@ -1,5 +1,6 @@
-import React from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { updateSEO } from "./utils/seoConfig";
 
 import LandingPage from "./pages/LandingPage";
 import AboutPage from "./pages/AboutPage.jsx";
@@ -15,6 +16,11 @@ import AcceptableUsePage from "./pages/AcceptableUsePage";
 import SitemapPage from "./pages/SitemapPage";
 
 export default function App() {
+  const location = useLocation();
+  useEffect(() => {
+    updateSEO();
+  }, [location.pathname]);
+
   return (
     <Routes>
       <Route path="/" element={<LandingPage />} />

@@ -1,6 +1,24 @@
 // SEO Metadata Configuration for all pages
+import { getPostBySlug } from '../content/blogPosts';
+
 const baseUrl = 'https://www.revayahg.com';
 const defaultOGImage = 'https://app.trickle.so/storage/public/images/usr_0ad8d73270000001/514b6f7e-130b-496e-9d51-dc2d16df66fb.png';
+
+// FAQ data for FAQPage schema (AEO) - must match on-page content
+const faqRevayaHost = [
+    { q: 'What types of events can Revaya Host support?', a: 'Revaya Host is designed for a wide range of live experiences including festivals, community events, venue activations, hospitality programming, and corporate events.' },
+    { q: 'Who typically uses Revaya Host?', a: 'The platform is intended for event planners, venue managers, hospitality teams, and operations staff responsible for coordinating live events.' },
+    { q: 'Is Revaya Host only useful for large events?', a: 'While the platform is especially helpful for complex events, smaller teams can also benefit from having a structured way to organize event logistics and coordination.' },
+    { q: 'Can Revaya Host help manage vendors?', a: 'Yes. Revaya Host helps teams organize vendor information and maintain clear communication about logistical details and responsibilities.' },
+    { q: 'Is Revaya Host focused on planning or execution?', a: 'Revaya Host supports both. It helps teams organize event details during the planning phase and maintain operational clarity during event execution.' }
+];
+const faqFlyerCheck = [
+    { q: 'What does FlyerCheck analyze?', a: 'FlyerCheck reviews event flyer content for communication clarity, information completeness, and common design or layout issues that may affect audience understanding.' },
+    { q: 'Who is FlyerCheck designed for?', a: 'FlyerCheck is designed for event organizers, hospitality teams, marketers, venue operators, and anyone responsible for creating or reviewing promotional materials for live experiences.' },
+    { q: 'Does FlyerCheck replace a graphic designer?', a: 'No. FlyerCheck is intended as a review and quality-control tool. It helps identify potential issues before publishing, but it does not replace professional design judgment.' },
+    { q: 'Can FlyerCheck be used for different types of events?', a: 'Yes. FlyerCheck can support a wide range of event types, including community events, hospitality activations, festivals, venue programming, and corporate events.' },
+    { q: 'Why is flyer clarity so important?', a: 'A flyer often serves as the first impression of an event. If key information is missing or hard to understand, potential guests may not take the next step.' }
+];
 
 const seoConfig = {
     '/': {
@@ -92,14 +110,40 @@ const seoConfig = {
         ogDescription: 'Sitemap for Revaya Hospitality Group website. Find all pages and resources.',
         ogImage: defaultOGImage,
         ogType: 'website'
+    },
+    '/acceptable-use': {
+        title: 'Acceptable Use Policy | Revaya Hospitality Group™',
+        description: 'Acceptable Use Policy for Revaya Hospitality Group. Guidelines for using our website and services including Revaya Host and FlyerCheck.',
+        keywords: 'acceptable use, Revaya policy, terms of use',
+        ogTitle: 'Acceptable Use Policy | Revaya Hospitality Group™',
+        ogDescription: 'Acceptable Use Policy for Revaya Hospitality Group. Guidelines for using our website and services including Revaya Host and FlyerCheck.',
+        ogImage: defaultOGImage,
+        ogType: 'website'
     }
 };
 
-// Get SEO config for a path
+// Get SEO config for a path (includes dynamic blog posts)
 function getSEOConfig(path) {
-    // Remove trailing slash except for root
     const cleanPath = path === '/' ? '/' : path.replace(/\/$/, '');
-    return seoConfig[cleanPath] || seoConfig['/'];
+    if (seoConfig[cleanPath]) return seoConfig[cleanPath];
+    const blogMatch = cleanPath.match(/^\/blog\/(.+)$/);
+    if (blogMatch) {
+        const post = getPostBySlug(blogMatch[1]);
+        if (post) {
+            const title = post.title + ' | Revaya Hospitality Group™';
+            return {
+                title,
+                description: post.description,
+                ogTitle: post.title,
+                ogDescription: post.description,
+                ogImage: defaultOGImage,
+                ogType: 'article',
+                datePublished: post.date,
+                author: post.author
+            };
+        }
+    }
+    return seoConfig['/'];
 }
 
 // Update meta tags dynamically
@@ -210,7 +254,7 @@ function updateStructuredData(path, config, url) {
         pageSchema = {
             "@context": "https://schema.org",
             "@type": "SoftwareApplication",
-            "name": "Revaya Flyer Check",
+            "name": "FlyerCheck",
             "applicationCategory": "BusinessApplication",
             "description": config.description,
             "operatingSystem": "Web",
@@ -230,30 +274,35 @@ function updateStructuredData(path, config, url) {
                 "name": "Revaya Hospitality Group"
             }
         };
-    } else if (path === '/blog/flyer-blind-spots') {
-        pageSchema = {
-            "@context": "https://schema.org",
-            "@type": "Article",
-            "headline": config.ogTitle,
-            "description": config.description,
-            "author": {
-                "@type": "Person",
-                "name": "Jolyse Stultz"
-            },
-            "publisher": {
-                "@type": "Organization",
-                "name": "Revaya Hospitality Group",
-                "logo": {
-                    "@type": "ImageObject",
-                    "url": defaultOGImage
+    } else if (path.startsWith('/blog/')) {
+        const slug = path.slice('/blog/'.length);
+        const post = getPostBySlug(slug);
+        if (post) {
+            const datePublished = post.date ? (typeof post.date === 'string' && /^\d{4}-\d{2}-\d{2}/.test(post.date) ? post.date : new Date(post.date).toISOString().slice(0, 10)) : undefined;
+            pageSchema = {
+                "@context": "https://schema.org",
+                "@type": "Article",
+                "headline": post.title,
+                "description": post.description,
+                "author": {
+                    "@type": "Person",
+                    "name": post.author || "Revaya Hospitality Group"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Revaya Hospitality Group",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": defaultOGImage
+                    }
+                },
+                ...(datePublished && { datePublished }),
+                "mainEntityOfPage": {
+                    "@type": "WebPage",
+                    "@id": url
                 }
-            },
-            "datePublished": "2025-01-01",
-            "mainEntityOfPage": {
-                "@type": "WebPage",
-                "@id": url
-            }
-        };
+            };
+        }
     } else if (path === '/contact') {
         pageSchema = {
             "@context": "https://schema.org",
@@ -276,46 +325,59 @@ function updateStructuredData(path, config, url) {
         pageScript.textContent = JSON.stringify(pageSchema);
         document.head.appendChild(pageScript);
     }
+
+    // FAQPage schema for AEO (Revaya Host + FlyerCheck)
+    const faqList = path === '/revaya-host' ? faqRevayaHost : path === '/flyercheck' ? faqFlyerCheck : null;
+    if (faqList && faqList.length) {
+        const faqSchema = {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": faqList.map(({ q, a }) => ({
+                "@type": "Question",
+                "name": q,
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": a
+                }
+            }))
+        };
+        const faqScript = document.createElement('script');
+        faqScript.type = 'application/ld+json';
+        faqScript.textContent = JSON.stringify(faqSchema);
+        document.head.appendChild(faqScript);
+    }
 }
 
-// Initialize SEO on page load and route changes
+// Update canonical tag
+function updateCanonical() {
+    const canonicalBaseUrl = 'https://www.revayahg.com';
+    let path = window.location.pathname;
+    if (path !== '/' && path.endsWith('/')) path = path.slice(0, -1);
+    const canonicalUrl = canonicalBaseUrl + path + (window.location.search || '');
+    let canonicalLink = document.getElementById('canonical-link');
+    if (!canonicalLink) {
+        canonicalLink = document.createElement('link');
+        canonicalLink.id = 'canonical-link';
+        canonicalLink.rel = 'canonical';
+        document.head.appendChild(canonicalLink);
+    }
+    canonicalLink.href = canonicalUrl;
+}
+
+/** Single entry point: run meta, structured data, and canonical from current path. Call on load and on route change (e.g. React Router). */
+export function updateSEO() {
+    const path = window.location.pathname;
+    const cleanPath = path === '/' ? '/' : path.replace(/\/$/, '');
+    const url = baseUrl + (path === '/' ? '' : path);
+    const config = getSEOConfig(cleanPath);
+    updateMetaTags(config, url);
+    updateStructuredData(cleanPath, config, url);
+    updateCanonical();
+}
+
+// Initialize SEO on page load and route changes (fallbacks for non-React entry)
 (function() {
-    // Update canonical tag
-    function updateCanonical() {
-        const canonicalBaseUrl = 'https://www.revayahg.com';
-        let path = window.location.pathname;
-        
-        if (path !== '/' && path.endsWith('/')) {
-            path = path.slice(0, -1);
-        }
-        
-        const canonicalUrl = canonicalBaseUrl + path + (window.location.search || '');
-        
-        let canonicalLink = document.getElementById('canonical-link');
-        if (!canonicalLink) {
-            canonicalLink = document.createElement('link');
-            canonicalLink.id = 'canonical-link';
-            canonicalLink.rel = 'canonical';
-            document.head.appendChild(canonicalLink);
-        }
-        canonicalLink.href = canonicalUrl;
-    }
-    
-    function updateSEO() {
-        const path = window.location.pathname;
-        const cleanPath = path === '/' ? '/' : path.replace(/\/$/, '');
-        const url = baseUrl + path;
-        const config = getSEOConfig(cleanPath);
-        
-        updateMetaTags(config, url);
-        updateStructuredData(cleanPath, config, url);
-        updateCanonical();
-    }
-    
-    // Update on page load
     updateSEO();
-    
-    // Update when route changes
     let lastPath = window.location.pathname + window.location.search;
     function checkPath() {
         const currentPath = window.location.pathname + window.location.search;
@@ -324,26 +386,16 @@ function updateStructuredData(path, config, url) {
             updateSEO();
         }
     }
-    
-    // Listen to popstate for browser back/forward
     window.addEventListener('popstate', updateSEO);
-    
-    // Listen to clicks on anchor tags (for SPA navigation)
     document.addEventListener('click', function(e) {
         const anchor = e.target.closest('a[href]');
         if (anchor && anchor.href) {
             try {
                 const url = new URL(anchor.href);
-                if (url.origin === window.location.origin) {
-                    setTimeout(checkPath, 50);
-                }
-            } catch (err) {
-                // Invalid URL, ignore
-            }
+                if (url.origin === window.location.origin) setTimeout(checkPath, 50);
+            } catch (err) {}
         }
     }, true);
-    
-    // Fallback: check periodically
     setInterval(checkPath, 500);
 })();
 

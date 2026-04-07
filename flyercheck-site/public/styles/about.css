@@ -1,0 +1,332 @@
+.about-section {
+    padding: calc(76px + 8rem) 2rem 8rem 2rem;
+    background-color: white;
+}
+
+.about-title {
+    text-align: center;
+    font-family: 'Didot', serif;
+    font-size: 2.75rem;
+    font-weight: 700;
+    color: var(--brand-primary, #5B4636);
+    margin: 0 0 2.5rem;
+    letter-spacing: 0.02em;
+}
+
+.about-section .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+    width: 100%;
+}
+
+.about-section .founders-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 3.5rem 4rem !important;
+    align-items: start !important;
+    max-width: 1100px !important;
+    margin: 0 auto !important;
+    width: 100% !important;
+}
+
+.about-section .founders-grid > * {
+    width: auto !important;
+    max-width: none !important;
+}
+
+.about-section .founder-card {
+    padding: 2.5rem;
+    background-color: #F6F1EB;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.founder-image.jolyse {
+    object-position: center top !important;
+}
+
+.founder-image.thiago {
+    object-position: center 20% !important;
+}
+
+.founder-name {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--brand-primary, #5B4636);
+    margin-top: 0.75rem;
+}
+
+.founder-name:hover {
+    color: var(--brand-primary) !important;
+    opacity: 0.8;
+    transform: translateY(-1px);
+}
+
+.founder-header {
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.founder-title {
+    font-size: 1.1rem;
+    color: var(--brand-accent, #8C7A5B);
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.founder-bio {
+    color: #2e2e2e;
+    line-height: 1.75;
+    font-size: 1.05rem;
+}
+
+.founder-bio p {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: #2e2e2e;
+    margin: 0 0 0.75rem;
+}
+
+.founder-quote {
+    font-size: 18px;
+    padding: 1rem;
+    background-color: rgba(144, 104, 74, 0.1);
+    border-radius: 8px;
+}
+
+.about-info-wrapper {
+    max-width: 1100px;
+    margin: 4rem auto 0;
+    padding: 0 1.25rem;
+    width: 100%;
+}
+
+.about-info-block {
+    margin-top: 3.5rem;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.about-info-block:first-of-type {
+    margin-top: 0;
+}
+
+.about-info-card {
+    background-color: #F6F1EB;
+    border-radius: 12px;
+    padding: 2rem 2rem 2.25rem;
+    border-left: 4px solid var(--brand-primary, #5B4636);
+    box-shadow: 0 2px 8px rgba(91, 70, 54, 0.06);
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.about-info-card:hover {
+    box-shadow: 0 8px 24px rgba(91, 70, 54, 0.1);
+}
+
+.about-info-block-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.about-info-icon {
+    font-size: 1.5rem;
+    color: var(--brand-primary, #5B4636);
+    flex-shrink: 0;
+}
+
+.about-info-title {
+    font-family: 'Didot', serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--brand-primary, #5B4636);
+    margin: 0;
+    letter-spacing: 0.02em;
+}
+
+.about-info-p {
+    color: #2e2e2e;
+    line-height: 1.75;
+    font-size: 1.05rem;
+    margin: 0 0 1rem;
+}
+
+.about-info-list {
+    margin: 0 0 1rem;
+    padding-left: 1.5rem;
+    color: #2e2e2e;
+    line-height: 1.75;
+    font-size: 1.05rem;
+}
+
+.about-info-list li {
+    margin-bottom: 0.5rem;
+}
+
+.about-info-pills {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+}
+
+.about-info-pill {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.875rem 1rem;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
+    border: 1px solid rgba(91, 70, 54, 0.12);
+    color: #2e2e2e;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.about-info-pill:hover {
+    background: #fff;
+    border-color: rgba(91, 70, 54, 0.2);
+    transform: translateY(-1px);
+}
+
+.about-info-pill-icon {
+    font-size: 1.1rem;
+    color: var(--brand-primary, #5B4636);
+    flex-shrink: 0;
+    width: 1.25rem;
+    text-align: center;
+}
+
+@media (max-width: 900px) {
+    .about-section .founders-grid {
+        grid-template-columns: 1fr !important;
+        gap: 2.75rem !important;
+    }
+
+    .about-section {
+        padding: calc(76px + 4rem) 1.5rem 4rem 1.5rem;
+    }
+
+    .about-info-wrapper {
+        margin-top: 3rem;
+        padding: 0 1rem;
+    }
+
+    .about-title {
+        font-size: 2.1rem;
+        margin-bottom: 1.75rem;
+    }
+
+    .founder-name {
+        font-size: 1.55rem;
+    }
+
+    .founder-title {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .founder-bio {
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+
+    .founder-bio p {
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+
+    .founder-quote {
+        font-size: 18px;
+        margin: 1.5rem 0;
+    }
+
+    .about-info-card {
+        padding: 1.5rem 1.5rem 1.75rem;
+    }
+
+    .about-info-icon {
+        font-size: 1.35rem;
+    }
+
+    .about-info-title {
+        font-size: 1.55rem;
+    }
+
+    .about-info-pills {
+        grid-template-columns: 1fr;
+    }
+
+    .about-info-p,
+    .about-info-list {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-section {
+        padding: calc(60px + 4rem) 1.5rem 4rem 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-section {
+        padding: calc(60px + 3rem) 1rem 3rem 1rem;
+    }
+
+    .about-title {
+        font-size: 1.9rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .founder-name {
+        font-size: 1.45rem;
+    }
+
+    .founder-title {
+        font-size: 0.95rem;
+    }
+
+    .founder-bio {
+        font-size: 0.95rem;
+    }
+
+    .founder-bio p {
+        font-size: 0.95rem;
+    }
+
+    .founder-quote {
+        font-size: 16px;
+        margin: 1.25rem 0;
+    }
+
+    .about-info-card {
+        padding: 1.25rem 1.25rem 1.5rem;
+        border-left-width: 3px;
+    }
+
+    .about-info-icon {
+        font-size: 1.2rem;
+    }
+
+    .about-info-title {
+        font-size: 1.45rem;
+    }
+
+    .about-info-pill {
+        padding: 0.75rem 0.875rem;
+        font-size: 0.9rem;
+    }
+
+    .about-info-p,
+    .about-info-list {
+        font-size: 0.95rem;
+    }
+}

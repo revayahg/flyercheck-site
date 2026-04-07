@@ -34,19 +34,20 @@
 }
 
 .navbar-logo {
-    max-height: 45px;
+    max-height: 40px;
+    max-width: min(220px, calc(100vw - 14rem));
     width: auto;
     object-fit: contain;
-}
-
-.navbar-logo--flyercheck-full {
-    max-width: min(340px, calc(100vw - 11rem));
+    flex-shrink: 0;
 }
 
 .navbar-brand-text {
-    font-family: 'Avenir Light', 'Avenir Next', sans-serif;
-    font-weight: 300;
-    font-size: 15px;
+    font-family: 'Avenir Next', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #2B2B2B;
+    line-height: 1.2;
+    max-width: 10rem;
 }
 
 .nav-menu {
@@ -140,16 +141,13 @@
     }
 
     .navbar-logo {
-        max-height: 35px;
-    }
-
-    .navbar-logo--flyercheck-full {
-        max-height: 32px;
-        max-width: min(260px, calc(100vw - 5rem));
+        max-height: 28px;
+        max-width: min(140px, calc(100vw - 9rem));
     }
 
     .navbar-brand-text {
-        font-size: 13px;
+        font-size: 0.8rem;
+        max-width: 6.5rem;
     }
 
     .mobile-menu-btn {
@@ -204,8 +202,3 @@
     }
 }
 
-@media (max-width: 480px) {
-    .navbar-brand-text {
-        font-size: 12px;
-    }
-}

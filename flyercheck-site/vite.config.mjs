@@ -7,7 +7,7 @@ export default defineConfig({
     proxy: {
       // In local dev, /api is not run by Vite; proxy to production so FlyerCheck analyze works
       "/api": {
-        target: "https://www.revayahg.com",
+        target: "https://www.flyercheck.io",
         changeOrigin: true,
       },
     },

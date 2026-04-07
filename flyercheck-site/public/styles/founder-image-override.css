@@ -1,0 +1,11 @@
+/* Scale and position founder images so they appear balanced */
+.about-section .founder-image.jolyse {
+    object-fit: cover;
+    object-position: center 8% !important;
+    transform: scale(0.82); /* Scale down so she matches Thiago's visual weight */
+}
+
+.about-section .founder-image.thiago {
+    object-fit: cover;
+    object-position: center 15% !important;
+}

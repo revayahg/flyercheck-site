@@ -1,8 +1,12 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 import { reportError } from "../utils/errorHandler";
+import flyercheckLogoFull from "../assets/flyercheck-logo-full.png";
 
 export default function Navbar() {
   try {
+    const location = useLocation();
+    const isFlyerCheckPage = location.pathname === "/flyercheck";
     const [isDropdownOpen, setIsDropdownOpen] = React.useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
 
@@ -15,15 +19,26 @@ export default function Navbar() {
       <nav className="navbar" data-name="navbar">
         <div className="navbar-container">
           <a href="/" className="navbar-brand" data-name="navbar-brand">
-            <img
-              src="https://app.trickle.so/storage/public/images/usr_0ad8d73270000001/514b6f7e-130b-496e-9d51-dc2d16df66fb.png"
-              alt="Revaya Hospitality Group logo"
-              className="navbar-logo"
-              data-name="navbar-logo"
-            />
-            <span className="navbar-brand-text" data-name="navbar-brand-text">
-              Revaya Hospitality Group™
-            </span>
+            {isFlyerCheckPage ? (
+              <img
+                src={flyercheckLogoFull}
+                alt="Revaya FlyerCheck — Less Stress, More Show"
+                className="navbar-logo navbar-logo--flyercheck-full"
+                data-name="navbar-logo"
+              />
+            ) : (
+              <>
+                <img
+                  src="https://app.trickle.so/storage/public/images/usr_0ad8d73270000001/514b6f7e-130b-496e-9d51-dc2d16df66fb.png"
+                  alt="Revaya Hospitality Group logo"
+                  className="navbar-logo"
+                  data-name="navbar-logo"
+                />
+                <span className="navbar-brand-text" data-name="navbar-brand-text">
+                  Revaya Hospitality Group™
+                </span>
+              </>
+            )}
           </a>
 
           <button

@@ -1,0 +1,72 @@
+.sponsored-section {
+    padding: 2rem 0;
+    background-color: #fff;
+    width: 100%;
+    margin-top: -1rem;
+}
+
+.sponsored-section .section-title {
+    text-align: center;
+    font-family: 'Didot', serif;
+    font-size: 2rem;
+    color: #2B2B2B;
+    margin-bottom: 1.5rem;
+}
+
+.ad-space-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+}
+
+.ad-space {
+    width: 300px;
+    height: 250px;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f8f8;
+    transition: box-shadow 0.3s ease;
+}
+
+.ad-space:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.ad-space-text {
+    color: #999;
+    font-size: 1rem;
+    text-align: center;
+    padding: 1rem;
+}
+
+@media (max-width: 768px) {
+    .sponsored-section {
+        padding: 1.5rem 0;
+        margin-top: -0.5rem;
+    }
+
+    .sponsored-section .section-title {
+        font-size: 1.75rem;
+        margin-bottom: 1.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .sponsored-section {
+        padding: 1rem 0;
+    }
+
+    .sponsored-section .section-title {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .ad-space-container {
+        padding: 0.25rem;
+    }
+}

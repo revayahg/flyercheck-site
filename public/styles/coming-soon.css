@@ -1,0 +1,14 @@
+.coming-soon-section {
+    min-height: calc(100vh - 200px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    margin-top: 76px;
+}
+
+.coming-soon-image {
+    max-width: 100%;
+    height: auto;
+    max-height: 400px;
+}

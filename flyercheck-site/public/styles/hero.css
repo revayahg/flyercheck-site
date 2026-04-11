@@ -299,13 +299,52 @@
     width: 100%;
     max-width: none;
     margin: 0;
-    text-align: center;
-    align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    text-align: left;
     padding: 1.25rem 1.5rem;
     background-color: #fff;
     border: 1px solid #e8e4e0;
     border-radius: 10px;
     box-shadow: 0 2px 14px rgba(43, 43, 43, 0.08);
+}
+
+.flyercheck-page .hero-flyercheck-bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.125rem;
+    min-width: 0;
+    text-align: left;
+}
+
+.flyercheck-page .hero-flyercheck-logo {
+    flex-shrink: 0;
+    height: auto;
+    max-height: 72px;
+    width: auto;
+    max-width: min(42%, 200px);
+    object-fit: contain;
+}
+
+.flyercheck-page .hero-flyercheck-copy {
+    flex: 1;
+    min-width: 0;
+    text-align: left;
+}
+
+@media (max-width: 600px) {
+    .flyercheck-page .hero-flyercheck-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.875rem;
+    }
+
+    .flyercheck-page .hero-flyercheck-logo {
+        max-height: 56px;
+        max-width: 200px;
+    }
 }
 
 .flyercheck-page .hero.hero-flyercheck .hero-title {

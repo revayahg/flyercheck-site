@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import AdBanner from "../components/AdBanner";
 import FileUploader from "../components/FileUploader";
 import { reportError } from "../utils/errorHandler";
+import logoFull from "../assets/flyercheck-logo-full.png";
 import "../utils/flyerAnalysisService";
 
 function FlyerCheckPage() {
@@ -31,14 +32,23 @@ function FlyerCheckPage() {
           <div className="flyercheck-landing-inner">
             <section className="hero hero-flyercheck" data-name="hero">
               <div className="hero-content">
-                <h1 className="hero-title">FlyerCheck™</h1>
-                <p className="hero-subtitle">
-                  Your flyer is almost perfect. Let&apos;s make it undeniable.
-                </p>
-                <p className="hero-description">
-                  Upload your flyer and receive instant feedback on clarity,
-                  readability, and missing event details.
-                </p>
+                <div className="hero-flyercheck-bar">
+                  <img
+                    src={logoFull}
+                    alt=""
+                    className="hero-flyercheck-logo"
+                  />
+                  <div className="hero-flyercheck-copy">
+                    <h1 className="hero-title">FlyerCheck™</h1>
+                    <p className="hero-subtitle">
+                      Your flyer is almost perfect. Let&apos;s make it undeniable.
+                    </p>
+                    <p className="hero-description">
+                      Upload your flyer and receive instant feedback on clarity,
+                      readability, and missing event details.
+                    </p>
+                  </div>
+                </div>
               </div>
             </section>
             <div className="flyercheck-landing-tool">

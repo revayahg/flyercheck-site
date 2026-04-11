@@ -7,7 +7,7 @@ export function initGoogleAnalytics() {
   const gaId =
     raw === "false" || raw === ""
       ? null
-      : raw || "G-7QCG3QQEMH";
+      : raw || "G-6Q398F818X";
 
   if (!gaId) return;
 

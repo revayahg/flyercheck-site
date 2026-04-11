@@ -228,8 +228,13 @@ Provide your analysis in this JSON format:
 
 Be specific, constructive, and actionable. Use the tone of a knowledgeable design coach, not a harsh judge.`;
 
+    const visionModel =
+      process.env.OPENAI_VISION_MODEL && process.env.OPENAI_VISION_MODEL.trim() !== ''
+        ? process.env.OPENAI_VISION_MODEL.trim()
+        : 'gpt-4o';
+
     const response = await openai.chat.completions.create({
-      model: "gpt-4o",
+      model: visionModel,
       messages: [
         {
           role: "user",

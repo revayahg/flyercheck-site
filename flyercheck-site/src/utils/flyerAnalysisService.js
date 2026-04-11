@@ -2,6 +2,25 @@
 // This is a client-side implementation using Tesseract.js for OCR
 // For production, move this to a backend API
 
+/** Resolves with '' if `promise` does not settle within `ms` (Tesseract can run long on large images). */
+function withTimeout(promise, ms) {
+    return new Promise((resolve, reject) => {
+        const t = setTimeout(() => {
+            console.warn(`OCR exceeded ${ms}ms; continuing without extracted text.`);
+            resolve('');
+        }, ms);
+        promise
+            .then((val) => {
+                clearTimeout(t);
+                resolve(val);
+            })
+            .catch((err) => {
+                clearTimeout(t);
+                reject(err);
+            });
+    });
+}
+
 // Make function globally available
 window.analyzeFlyerWithAI = async function(file, targetAudience, eventCategories) {
     try {
@@ -12,13 +31,15 @@ window.analyzeFlyerWithAI = async function(file, targetAudience, eventCategories
                       file.type === 'image/x-heic' || file.type === 'image/x-heif' ||
                       file.name?.toLowerCase().endsWith('.heic') || file.name?.toLowerCase().endsWith('.heif');
         
-        if (file.type.startsWith('image/') && !isHeic && file.size > 1 * 1024 * 1024) { // Compress if > 1MB
+        // Resize/compress raster images so the API stays fast (smaller payload + faster vision).
+        if (file.type.startsWith('image/') && !isHeic && file.size > 350 * 1024) {
             try {
-                processedFile = await compressImage(file);
-                console.log(`Image compressed: ${(file.size / 1024 / 1024).toFixed(2)}MB -> ${(processedFile.size / 1024 / 1024).toFixed(2)}MB`);
+                processedFile = await compressImage(file, 1600, 1600, 0.82);
+                console.log(
+                    `Image compressed: ${(file.size / 1024 / 1024).toFixed(2)}MB -> ${(processedFile.size / 1024 / 1024).toFixed(2)}MB`
+                );
             } catch (compressError) {
                 console.warn('Image compression failed, using original:', compressError);
-                // Continue with original file
             }
         }
         
@@ -27,10 +48,12 @@ window.analyzeFlyerWithAI = async function(file, targetAudience, eventCategories
         let extractedText = '';
         if (!processedFile.type.includes('pdf')) {
             try {
-                extractedText = await extractTextWithTesseract(processedFile);
+                extractedText = await withTimeout(
+                    extractTextWithTesseract(processedFile),
+                    15000
+                );
             } catch (ocrError) {
                 console.warn('OCR failed, continuing without extracted text:', ocrError);
-                // Continue without extracted text - not critical for analysis
             }
         } else {
             console.log('Skipping OCR for PDF file - Tesseract.js does not support PDFs');
@@ -56,11 +79,28 @@ window.analyzeFlyerWithAI = async function(file, targetAudience, eventCategories
         });
         
         if (!response.ok) {
-            const errorData = await response.json().catch(() => ({}));
-            const serverMessage = errorData && typeof errorData.error === 'string' ? errorData.error.trim() : '';
-            const errorMessage = serverMessage || (response.status === 500 || response.status === 504
-                ? 'The analysis took too long or the service is temporarily unavailable. Try a smaller image or try again in a moment.'
-                : `Request failed (${response.status}). Please try again.`);
+            const rawText = await response.text().catch(() => '');
+            let serverMessage = '';
+            try {
+                const errorData = rawText ? JSON.parse(rawText) : {};
+                if (errorData && typeof errorData.error === 'string') {
+                    serverMessage = errorData.error.trim();
+                }
+            } catch {
+                /* non-JSON body (e.g. HTML error page) */
+            }
+
+            const isGatewayTimeout =
+                response.status === 504 ||
+                response.status === 524 ||
+                rawText.includes('FUNCTION_INVOCATION_TIMEOUT') ||
+                rawText.includes('504');
+
+            const errorMessage =
+                serverMessage ||
+                (response.status === 500 || response.status === 502 || response.status === 503 || isGatewayTimeout
+                    ? 'The analysis took too long or the service is temporarily unavailable. Try a smaller image or try again in a moment.'
+                    : `Request failed (${response.status}). Please try again.`);
 
             if (response.status === 413) {
                 throw new Error('File too large. Please use an image smaller than 3MB, or try compressing it further.');

@@ -1,10 +1,51 @@
 // Vercel serverless function for flyer analysis
 import { analyzeFlyerWithOpenAI } from './analyzeFlyer.js';
 
-// Security: Allowed origins (restrict in production)
-const ALLOWED_ORIGINS = process.env.ALLOWED_ORIGINS 
-  ? process.env.ALLOWED_ORIGINS.split(',')
-  : ['*']; // Allow all in development, restrict in production
+/**
+ * CORS allowlist. Override with ALLOWED_ORIGINS (comma-separated). Use * only if you must allow any origin (not recommended).
+ * Defaults: production FlyerCheck hosts, local Vite, and the current Vercel preview URL (VERCEL_URL).
+ */
+function buildAllowedOrigins() {
+  const raw = process.env.ALLOWED_ORIGINS;
+  if (raw && raw.trim() !== '') {
+    return raw.split(',').map((s) => s.trim()).filter(Boolean);
+  }
+  const list = [
+    'https://www.flyercheck.io',
+    'https://flyercheck.io',
+    'http://localhost:5173',
+    'http://127.0.0.1:5173',
+    'http://localhost:4173',
+    'http://127.0.0.1:4173',
+  ];
+  if (process.env.VERCEL_URL) {
+    list.push(`https://${process.env.VERCEL_URL}`);
+  }
+  return list;
+}
+
+const ALLOWED_ORIGINS = buildAllowedOrigins();
+
+/** @param {import('http').IncomingMessage} req */
+function resolveRequestOrigin(req) {
+  const direct = req.headers.origin;
+  if (direct && typeof direct === 'string') return direct;
+  const ref = req.headers.referer;
+  if (ref && typeof ref === 'string') {
+    try {
+      return new URL(ref).origin;
+    } catch {
+      return null;
+    }
+  }
+  return null;
+}
+
+function isCorsAllowed(resolvedOrigin, allowedList) {
+  if (allowedList.includes('*')) return true;
+  if (!resolvedOrigin) return true;
+  return allowedList.includes(resolvedOrigin);
+}
 
 // Security: Maximum file size
 // Vercel has a 4.5MB request body limit, so we limit to 3MB raw (becomes ~4MB base64)
@@ -71,26 +112,37 @@ function isValidBase64(str) {
 }
 
 export default async function handler(req, res) {
-  // Security: Get origin and validate CORS
-  const origin = req.headers.origin || req.headers.referer;
-  const isAllowedOrigin = ALLOWED_ORIGINS.includes('*') || 
-    (origin && ALLOWED_ORIGINS.some(allowed => origin.includes(allowed)));
+  const resolvedOrigin = resolveRequestOrigin(req);
+  const corsOk = isCorsAllowed(resolvedOrigin, ALLOWED_ORIGINS);
 
-  // Handle CORS
+  if (resolvedOrigin && !corsOk) {
+    if (req.method === 'OPTIONS') {
+      res.status(403).end();
+      return;
+    }
+    if (req.method === 'POST') {
+      res.setHeader('Content-Type', 'application/json');
+      res.status(403).json({ success: false, error: 'Forbidden' });
+      return;
+    }
+  }
+
   const headers = {
-    'Access-Control-Allow-Origin': isAllowedOrigin ? (origin || '*') : ALLOWED_ORIGINS[0],
     'Access-Control-Allow-Methods': 'POST, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type',
     'Content-Type': 'application/json',
-    // Security headers
     'X-Content-Type-Options': 'nosniff',
     'X-Frame-Options': 'DENY',
-    'X-XSS-Protection': '1; mode=block'
+    'X-XSS-Protection': '1; mode=block',
   };
+  if (corsOk && resolvedOrigin) {
+    headers['Access-Control-Allow-Origin'] = resolvedOrigin;
+  } else if (corsOk && ALLOWED_ORIGINS.includes('*')) {
+    headers['Access-Control-Allow-Origin'] = '*';
+  }
 
-  // Handle preflight
   if (req.method === 'OPTIONS') {
-    Object.keys(headers).forEach(key => {
+    Object.keys(headers).forEach((key) => {
       res.setHeader(key, headers[key]);
     });
     res.status(200).end();

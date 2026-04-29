@@ -30,6 +30,9 @@ function FlyerCheckPage() {
           aria-label="Analyze your flyer"
         >
           <div className="flyercheck-landing-inner">
+            <div className="flyercheck-landing-tool">
+              <FileUploader />
+            </div>
             <section className="hero hero-flyercheck" data-name="hero">
               <div className="hero-content">
                 <div className="hero-flyercheck-bar">
@@ -41,19 +44,15 @@ function FlyerCheckPage() {
                   <div className="hero-flyercheck-copy">
                     <h1 className="hero-title">FlyerCheck™</h1>
                     <p className="hero-subtitle">
-                      Your flyer is almost perfect. Let&apos;s make it undeniable.
+                      Don&apos;t let your audience find the mistake first.
                     </p>
                     <p className="hero-description">
-                      Upload your flyer and receive instant feedback on clarity,
-                      readability, and missing event details.
+                      Upload your flyer. Free to use — no account needed.
                     </p>
                   </div>
                 </div>
               </div>
             </section>
-            <div className="flyercheck-landing-tool">
-              <FileUploader />
-            </div>
           </div>
         </section>
 
@@ -71,26 +70,9 @@ function FlyerCheckPage() {
               Overview
             </h2>
             <p className="host-content-text">
-              FlyerCheck is a flyer analysis tool designed to help event
-              organizers review promotional materials before they are published.
-            </p>
-            <p className="host-content-text">
-              For many events, the flyer is the first piece of communication a
-              guest sees. It often determines whether a potential attendee
-              understands the value of the event, knows what action to take, and
-              feels confident enough to attend.
-            </p>
-            <p className="host-content-text">
-              FlyerCheck helps identify common communication and design issues in
-              event flyers, including missing information, weak hierarchy, and
-              unclear calls to action. By reviewing flyers before they go live,
-              teams can reduce avoidable mistakes and improve the clarity of
-              their event messaging.
-            </p>
-            <p className="host-content-text">
-              The goal is not simply to improve design. It is to improve
-              communication so guests can quickly understand what the event is,
-              where it is happening, and how to participate.
+              FlyerCheck reviews your flyer before your audience does —
+              flagging missing information, weak hierarchy, and anything that
+              could cause confusion before your event goes live.
             </p>
           </div>
         </section>
@@ -107,30 +89,21 @@ function FlyerCheckPage() {
               The Problem
             </h2>
             <p className="host-content-text">
-              Event flyers often carry a heavy communication burden. In a single
-              image or graphic, organizers are expected to communicate the
-              purpose of the event, the date and time, the location, the
-              audience, and the action guests should take next.
-            </p>
-            <p className="host-content-text">
-              When key information is missing or poorly organized, potential
-              attendees can become confused or lose interest. Even strong events
-              can underperform if their promotional materials do not clearly
-              communicate the basics.
-            </p>
-            <p className="host-content-text">
-              Common flyer issues include:
+              You&apos;ve seen it happen. The flyer goes out and someone texts:
+              &quot;Hey — there&apos;s no address on here.&quot; By then it&apos;s too late.
+              One overlooked detail can undercut an otherwise strong event.
             </p>
             <ul className="host-content-list">
-              <li>missing location or time details</li>
-              <li>weak visual hierarchy</li>
-              <li>cluttered layouts</li>
-              <li>unclear calls to action</li>
-              <li>text that is difficult to read on mobile devices</li>
+              <li>No address, time, or ticket link</li>
+              <li>Key details buried under decorative elements</li>
+              <li>Text too small to read on a phone</li>
+              <li>No clear call to action</li>
+              <li>Inconsistent fonts and cluttered layouts</li>
             </ul>
             <p className="host-content-text">
-              These are not only design issues — they are event communication
-              issues. FlyerCheck helps organizers spot them earlier.
+              These aren&apos;t just design problems. They&apos;re communication
+              failures. FlyerCheck helps you catch them before your audience
+              does.
             </p>
           </div>
         </section>
@@ -144,13 +117,8 @@ function FlyerCheckPage() {
               How It Works
             </h2>
             <p className="host-content-text">
-              FlyerCheck reviews uploaded event flyer content and highlights
-              common communication and presentation issues that can affect
-              audience understanding.
-            </p>
-            <p className="host-content-text">
-              The tool is designed to help event teams evaluate whether a flyer
-              clearly answers the questions guests are most likely to ask:
+              Upload your flyer. FlyerCheck analyzes it against the five
+              questions every guest is asking:
             </p>
             <ul className="host-content-list">
               <li>What is this event?</li>
@@ -160,14 +128,7 @@ function FlyerCheckPage() {
               <li>What should I do next?</li>
             </ul>
             <p className="host-content-text">
-              By identifying communication gaps and layout concerns, FlyerCheck
-              helps teams strengthen the clarity of their event materials before
-              those materials are shared publicly.
-            </p>
-            <p className="host-content-text">
-              It can be especially useful for teams working quickly, managing
-              multiple events, or reviewing a large volume of promotional
-              materials.
+              That&apos;s it. No account required. Results in seconds.
             </p>
           </div>
         </section>
@@ -184,25 +145,12 @@ function FlyerCheckPage() {
               Why Flyer Clarity Matters
             </h2>
             <p className="host-content-text">
-              A flyer is often the first touchpoint in the guest journey. Before
-              someone visits an event website, buys a ticket, or asks a
-              question, they may first encounter a flyer on social media, in an
-              email, or through a shared message.
-            </p>
-            <p className="host-content-text">
-              If the flyer is confusing, incomplete, or difficult to scan, the
-              audience may never take the next step.
-            </p>
-            <p className="host-content-text">
-              Clear communication does more than make a flyer look polished. It
-              reduces friction, improves guest confidence, and increases the
-              likelihood that the right audience will understand the event and
-              respond.
-            </p>
-            <p className="host-content-text">
-              For hospitality and event teams, better flyer communication
-              supports stronger attendance, fewer guest questions, and a more
-              consistent brand experience.
+              Your flyer is often the first thing a potential guest sees —
+              before the website, before the ticket link, before they ask
+              anyone about it. If it doesn&apos;t answer the basics immediately,
+              most people won&apos;t dig deeper. Clear flyers reduce confusion,
+              build confidence, and give your event a better chance of filling
+              the room.
             </p>
           </div>
         </section>
@@ -219,22 +167,18 @@ function FlyerCheckPage() {
               Common Mistakes in Event Flyer Design
             </h2>
             <p className="host-content-text">
-              Some of the most common flyer problems are easy to miss
-              internally, especially when teams are close to the content or
-              moving quickly.
+              The most common flyer mistakes are easy to miss when you&apos;re
+              close to the work.
             </p>
-            <p className="host-content-text">Typical issues include:</p>
             <ul className="host-content-list">
-              <li>emphasizing decorative elements over key event details</li>
-              <li>burying date, time, or location information</li>
-              <li>using too many fonts or inconsistent visual styles</li>
-              <li>making mobile readability an afterthought</li>
-              <li>relying on visuals without a strong call to action</li>
+              <li>No address on the flyer</li>
+              <li>Date and time hidden at the bottom</li>
+              <li>Three fonts, four colors, no hierarchy</li>
+              <li>Looks great on desktop — unreadable on a phone</li>
+              <li>Strong visuals, no CTA</li>
             </ul>
             <p className="host-content-text">
-              These mistakes can reduce audience understanding even when the
-              event itself is compelling. FlyerCheck helps teams review flyers
-              with a clearer, more objective lens.
+              FlyerCheck gives you a second set of eyes before it goes public.
             </p>
           </div>
         </section>
@@ -251,36 +195,35 @@ function FlyerCheckPage() {
               Use Cases
             </h2>
             <p className="host-content-text">
-              FlyerCheck can support a wide range of event and hospitality
-              marketing scenarios.
+              FlyerCheck works for anyone promoting a live experience.
             </p>
 
-            <h3 className="host-content-subtitle">Community Events</h3>
+            <h3 className="host-content-subtitle">
+              Event Promoters &amp; Street Teams
+            </h3>
             <p className="host-content-text">
-              Neighborhood events, nonprofit events, and public festivals often
-              rely on flyers and social graphics to spread awareness quickly.
-              FlyerCheck helps ensure the message is complete and easy to
-              understand.
+              Moving fast and pushing flyers across multiple channels? FlyerCheck
+              is your last check before you hit send.
             </p>
 
-            <h3 className="host-content-subtitle">Venue Programming</h3>
+            <h3 className="host-content-subtitle">
+              Venue &amp; Hospitality Teams
+            </h3>
             <p className="host-content-text">
-              Restaurants, hotels, bars, and entertainment venues frequently
-              promote recurring events and activations. FlyerCheck helps teams
-              maintain clarity and consistency across these materials.
+              Bars, restaurants, and hotels promoting recurring events can use
+              FlyerCheck to keep materials clear and consistent every time.
             </p>
 
-            <h3 className="host-content-subtitle">Brand Activations</h3>
+            <h3 className="host-content-subtitle">Independent Organizers</h3>
             <p className="host-content-text">
-              Experiential campaigns and pop-up events often need promotional
-              materials that communicate quickly and clearly. FlyerCheck helps
-              teams evaluate whether those materials are doing their job.
+              No design team? No problem. FlyerCheck helps solo organizers catch
+              what a second opinion would have caught.
             </p>
 
-            <h3 className="host-content-subtitle">Fast-Moving Event Teams</h3>
+            <h3 className="host-content-subtitle">Brand Activations &amp; Pop-Ups</h3>
             <p className="host-content-text">
-              Teams working under deadline pressure can use FlyerCheck as an
-              extra review step before publishing event materials.
+              When your promotional window is short, your flyer has to work
+              immediately. FlyerCheck helps make sure it does.
             </p>
           </div>
         </section>
@@ -299,81 +242,56 @@ function FlyerCheckPage() {
                 What does FlyerCheck analyze?
               </dt>
               <dd className="host-faq-answer">
-                FlyerCheck reviews event flyer content for communication
-                clarity, information completeness, and common design or layout
-                issues that may affect audience understanding.
+                It checks for missing event details, weak visual hierarchy,
+                readability issues, and unclear calls to action.
               </dd>
 
               <dt className="host-faq-question">
                 Who is FlyerCheck designed for?
               </dt>
               <dd className="host-faq-answer">
-                FlyerCheck is designed for event organizers, hospitality teams,
-                marketers, venue operators, and anyone responsible for creating
-                or reviewing promotional materials for live experiences.
+                Event organizers, promoters, venue teams, and anyone who sends a
+                flyer before an event.
               </dd>
 
               <dt className="host-faq-question">
                 Does FlyerCheck replace a graphic designer?
               </dt>
               <dd className="host-faq-answer">
-                No. FlyerCheck is intended as a review and quality-control tool.
-                It helps identify potential issues before publishing, but it
-                does not replace professional design judgment.
+                No. It&apos;s a pre-publish review tool — a second set of eyes,
+                not a redesign.
               </dd>
 
               <dt className="host-faq-question">
                 Can FlyerCheck be used for different types of events?
               </dt>
               <dd className="host-faq-answer">
-                Yes. FlyerCheck can support a wide range of event types,
-                including community events, hospitality activations, festivals,
-                venue programming, and corporate events.
+                Yes. Community events, venue programming, brand activations,
+                festivals, and more.
               </dd>
 
               <dt className="host-faq-question">
                 Why is flyer clarity so important?
               </dt>
               <dd className="host-faq-answer">
-                A flyer often serves as the first impression of an event. If key
-                information is missing or hard to understand, potential guests
-                may not take the next step.
+                Because guests decide in seconds. If the basics aren&apos;t clear,
+                most won&apos;t ask for clarification — they&apos;ll just move on.
               </dd>
             </dl>
           </div>
         </section>
 
-        <section
-          className="host-content-section host-content-section--alt"
-          aria-labelledby="flyercheck-communication-heading"
+        <p
+          style={{
+            fontSize: "0.75rem",
+            opacity: 0.5,
+            textAlign: "center",
+            padding: "0 1rem 2rem",
+          }}
         >
-          <div className="host-content-container">
-            <h2
-              id="flyercheck-communication-heading"
-              className="host-content-title"
-            >
-              Why Clear Event Communication Matters
-            </h2>
-            <p className="host-content-text">
-              Guests make fast decisions. In many cases, they decide within
-              seconds whether an event feels relevant, interesting, and worth
-              pursuing further.
-            </p>
-            <p className="host-content-text">
-              When communication is clear, guests feel more confident. They
-              understand what the event is, how to attend, and what to expect.
-            </p>
-            <p className="host-content-text">
-              When communication is unclear, even strong events can lose
-              momentum.
-            </p>
-            <p className="host-content-text">
-              FlyerCheck supports clearer event communication by helping teams
-              review their materials before they are published, reducing the
-              risk of confusion at the earliest stage of the guest journey.
-            </p>
-          </div>
-        </section>
+          Do not upload sensitive personal data. Upload only content you have
+          rights to use.
+        </p>
 
         <Footer />
       </div>

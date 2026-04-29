@@ -340,9 +340,6 @@ function FileUploader() {
                                 <i className="fas fa-cloud-upload-alt text-4xl mb-4"></i>
                                 <p className="text-lg mb-2">Drop your flyer here or click to upload</p>
                                 <p className="text-sm text-gray-500">Supported formats: PNG, JPEG, WEBP (Max 3MB)</p>
-                                <p className="text-xs text-amber-600 mt-1">
-                                    Do not upload sensitive personal data. Upload only content you have rights to use.
-                                </p>
                             </div>
                         ) : (
                             <div className="file-preview-container">
@@ -372,7 +369,6 @@ function FileUploader() {
                                 </div>
                             </div>
                         )}
-
                         {!filePreview && (
                             <div className="what-we-look-for">
                                 <h3 className="what-we-look-for-title">What we look for</h3>

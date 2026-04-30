@@ -16,12 +16,6 @@ function FlyerCheckPage() {
       });
     }, []);
 
-    useEffect(() => {
-      if (window.adsbygoogle) {
-        window.adsbygoogle.push({});
-      }
-    }, []);
-
     return (
       <div className="flyercheck-page" data-name="flyercheck-page">
         <Navbar />

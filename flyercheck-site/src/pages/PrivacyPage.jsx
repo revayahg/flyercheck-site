@@ -67,6 +67,9 @@ function PrivacyPage() {
                                 <p>
                                     We may display ads served by Google and its partners (for example, Google AdSense). Third-party vendors, including Google, use cookies to serve ads based on a user&apos;s prior visits to this website or other websites.
                                 </p>
+                                <p>
+                                    Where required by law (including in the EEA/UK), we use a consent management platform (CMP) to collect and manage advertising consent choices before personalized ads are shown.
+                                </p>
                                 <ul>
                                     <li>
                                         Google&apos;s use of advertising cookies (including the DoubleClick cookie) enables it and its

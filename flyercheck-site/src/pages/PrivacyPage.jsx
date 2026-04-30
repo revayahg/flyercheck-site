@@ -12,7 +12,7 @@ function PrivacyPage() {
                     <div className="container mx-auto px-4">
                         <div className="privacy-policy" data-name="privacy-policy">
                             <h1 className="page-title" data-name="privacy-title">Privacy Policy</h1>
-                            <p className="effective-date" data-name="effective-date">Last Updated: February 28, 2026</p>
+                            <p className="effective-date" data-name="effective-date">Last Updated: April 30, 2026</p>
                             
                             <div className="policy-intro" data-name="policy-intro">
                                 <p>Revaya Hospitality Group (&quot;Revaya&quot;, &quot;we&quot;, &quot;our&quot;, or &quot;us&quot;) values your privacy. This Privacy Policy describes how we collect, use, and protect your information when you use FlyerCheck at www.flyercheck.io.</p>
@@ -22,7 +22,7 @@ function PrivacyPage() {
                                 <h2>1. Information We Collect</h2>
                                 <p>We may collect the following types of information:</p>
                                 <ul>
-                                    <li>Personal Information: Name, email address, phone number, event details, preferences, and other information you provide when submitting forms or interacting with us.</li>
+                                    <li>Personal Information: Name, email address, subject, message content, event details, preferences, and other information you provide when submitting forms or interacting with us.</li>
                                     <li>Usage Information: IP address, browser type, device information, pages viewed, and other analytical data.</li>
                                     <li>Cookies and Tracking: Data collected via cookies, web beacons, and similar technologies to improve your experience and analyze website traffic.</li>
                                 </ul>
@@ -95,7 +95,7 @@ function PrivacyPage() {
                                 </p>
                                 <p><strong>What we collect:</strong> The uploaded image, text extracted from the image, and basic device/log information necessary for service delivery.</p>
                                 <p><strong>What we do not collect:</strong> We do not collect additional personal data from your uploads beyond what is necessary for the analysis.</p>
-                                <p><strong>Retention:</strong> We do not store flyer images after processing except transiently for service delivery. Minimal logs may be kept for security and debugging purposes. Processed content is not retained for marketing or other purposes.</p>
+                                <p><strong>Retention:</strong> We do not store flyer images after processing except transiently for service delivery. Minimal logs may be kept for security and debugging purposes. Third-party processors may retain limited request logs according to their own policies and legal obligations.</p>
                             </section>
 
                             <section className="policy-section" data-name="service-providers">
@@ -104,7 +104,9 @@ function PrivacyPage() {
                                 <ul>
                                     <li><strong>Vercel</strong> – Hosting and infrastructure</li>
                                     <li><strong>OpenAI</strong> – AI processing for flyer analysis</li>
-                                    <li><strong>Google</strong> – Search Console; AdSense (when enabled) for advertising</li>
+                                    <li><strong>Google</strong> – Analytics, Search Console, and AdSense (when enabled)</li>
+                                    <li><strong>Supabase</strong> – Product analytics event storage (when configured)</li>
+                                    <li><strong>Formspree</strong> – Contact form delivery (when configured)</li>
                                 </ul>
                                 <p>These providers are bound by their own privacy and data protection obligations.</p>
                             </section>

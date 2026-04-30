@@ -81,7 +81,7 @@ function BlogPage() {
       ...operationalPosts.map((p) => ({
         title: p.title,
         author: p.author,
-        platform: "FlyerCheck",
+        platform: p.platform || "FlyerCheck",
         url: `/blog/${p.slug}`,
         date: p.date,
         description: p.description,

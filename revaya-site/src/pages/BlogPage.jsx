@@ -81,7 +81,7 @@ function BlogPage() {
       ...operationalPosts.map((p) => ({
         title: p.title,
         author: p.author,
-        platform: "Revaya Hospitality Group",
+        platform: p.platform || "Revaya Hospitality Group",
         url: `/blog/${p.slug}`,
         date: p.date,
         description: p.description,

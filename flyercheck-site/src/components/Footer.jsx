@@ -51,7 +51,7 @@ export default function Footer() {
                 Blog
               </a>
               <a
-                href={`${REVAYA_SITE}/contact`}
+                href="/contact"
                 className="footer-link"
                 data-name="footer-link-contact"
               >

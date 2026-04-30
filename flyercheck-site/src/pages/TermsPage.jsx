@@ -12,7 +12,7 @@ function TermsPage() {
                     <div className="container mx-auto px-4">
                         <div className="terms-policy" data-name="terms-policy">
                             <h1 className="page-title" data-name="terms-title">Terms of Service</h1>
-                            <p className="effective-date" data-name="effective-date">Last Updated: February 28, 2026</p>
+                            <p className="effective-date" data-name="effective-date">Last Updated: April 30, 2026</p>
                             
                             <div className="terms-intro" data-name="terms-intro">
                                 <p>Welcome to FlyerCheck™ at www.flyercheck.io, a service of Revaya Hospitality Group (&quot;Revaya&quot;, &quot;we&quot;, &quot;our&quot;, or &quot;us&quot;). By accessing or using FlyerCheck, you agree to the following terms and conditions. Our <a href="/privacy">Privacy Policy</a> describes how we collect and use information. If you do not agree to these terms, please do not use the service.</p>
@@ -30,7 +30,7 @@ function TermsPage() {
 
                             <section className="terms-section" data-name="account-registration">
                                 <h2>2. Account Registration</h2>
-                                <p>Some features may require you to register for an account. You are responsible for maintaining the confidentiality of your login credentials and for any activity under your account.</p>
+                                <p>FlyerCheck currently does not require account registration to use core analysis features. If account-based features are introduced in the future, you will be responsible for maintaining the confidentiality of your credentials and for activity under your account.</p>
                             </section>
 
                             <section className="terms-section" data-name="intellectual-property">
@@ -40,7 +40,7 @@ function TermsPage() {
 
                             <section className="terms-section" data-name="third-party">
                                 <h2>4. Third-Party Services</h2>
-                                <p>Our services may include links to or integrations with third-party tools and websites. We are not responsible for the content or practices of these third parties.</p>
+                                <p>Our services may include links to or integrations with third-party tools and websites. We are not responsible for the content or practices of these third parties. Some third-party features (including advertising) may be subject to region-specific consent requirements and user settings.</p>
                             </section>
 
                             <section className="terms-section" data-name="user-content">

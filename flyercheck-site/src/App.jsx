@@ -9,6 +9,7 @@ import BlogPage from "./pages/BlogPage";
 import BlogPostPage from "./pages/BlogPostPage";
 import BlogPostFlyerBlindSpots from "./pages/BlogPostFlyerBlindSpots";
 import ContactPage from "./pages/ContactPage";
+import AcceptableUsePage from "./pages/AcceptableUsePage";
 
 export default function App() {
   const location = useLocation();
@@ -22,6 +23,7 @@ export default function App() {
       <Route path="/" element={<FlyerCheckPage />} />
       <Route path="/privacy" element={<PrivacyPage />} />
       <Route path="/terms" element={<TermsPage />} />
+      <Route path="/acceptable-use" element={<AcceptableUsePage />} />
       <Route path="/contact" element={<ContactPage />} />
       <Route path="/blog" element={<BlogPage />} />
       <Route path="/blog/flyer-blind-spots" element={<BlogPostFlyerBlindSpots />} />

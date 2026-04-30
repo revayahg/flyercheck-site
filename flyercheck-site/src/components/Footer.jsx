@@ -37,16 +37,6 @@ export default function Footer() {
               >
                 About
               </a>
-              <a
-                href={`${REVAYA_SITE}/revaya-host`}
-                className="footer-link"
-                data-name="footer-link-host"
-              >
-                Revaya Host™
-              </a>
-              <a href="/" className="footer-link" data-name="footer-link-flyercheck">
-                Revaya FlyerCheck™
-              </a>
               <a href="/blog" className="footer-link" data-name="footer-link-blog">
                 Blog
               </a>
@@ -67,14 +57,14 @@ export default function Footer() {
                 Terms
               </a>
               <a
-                href={`${REVAYA_SITE}/acceptable-use`}
+                href="/acceptable-use"
                 className="footer-link"
                 data-name="footer-link-acceptable-use"
               >
                 Acceptable Use
               </a>
               <a
-                href={`${REVAYA_SITE}/sitemap`}
+                href="/sitemap"
                 className="footer-link"
                 data-name="footer-link-sitemap"
               >

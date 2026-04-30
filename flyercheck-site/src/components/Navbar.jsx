@@ -51,6 +51,9 @@ export default function Navbar() {
             <a href="/blog" className="nav-link" data-name="nav-blog">
               Blog
             </a>
+            <a href="/contact" className="nav-link" data-name="nav-contact">
+              Contact
+            </a>
           </div>
         </div>
       </nav>

@@ -7,12 +7,11 @@ export default function Hero({
   primaryCta,
   secondaryCta,
   showLogo = false,
-  page
 }) {
   try {
     return (
       <section
-        className={`hero ${page === "flyercheck" ? "hero-flyercheck" : "hero-landing"}`}
+        className="hero hero-landing"
         data-name="hero"
       >
         <div className="hero-content" data-name="hero-content">

@@ -49,7 +49,7 @@ function BlogPostFlyerBlindSpots() {
                                     <p className="blog-top-cta-text">
                                         Get instant AI-powered feedback on your event flyers before you post them.
                                     </p>
-                                    <a href="/flyercheck" className="blog-top-cta-button">
+                                    <a href="https://www.flyercheck.io/" className="blog-top-cta-button" target="_blank" rel="noopener noreferrer">
                                         Analyze Your Flyer
                                         <i className="fas fa-arrow-right"></i>
                                     </a>
@@ -207,7 +207,7 @@ function BlogPostFlyerBlindSpots() {
                                         FlyerCheck is designed to review flyers for clarity, missing information, and conversion blockers — the things that stop people from saying "I'm in."
                                     </p>
                                     <p style={{ textAlign: 'center', marginTop: '2rem' }}>
-                                        <a href="/flyercheck" className="blog-read-more-btn" style={{ display: 'inline-flex', width: 'auto' }}>
+                                        <a href="https://www.flyercheck.io/" className="blog-read-more-btn" style={{ display: 'inline-flex', width: 'auto' }} target="_blank" rel="noopener noreferrer">
                                             Try FlyerCheck
                                             <i className="fas fa-arrow-right"></i>
                                         </a>
@@ -216,7 +216,7 @@ function BlogPostFlyerBlindSpots() {
 
                                 <div className="blog-article-cta">
                                     <p>
-                                        Want a fresh set of eyes on your flyer before you post it? <a href="/flyercheck">Try FlyerCheck</a>.
+                                        Want a fresh set of eyes on your flyer before you post it? <a href="https://www.flyercheck.io/" target="_blank" rel="noopener noreferrer">Try FlyerCheck</a>.
                                     </p>
                                 </div>
                             </div>

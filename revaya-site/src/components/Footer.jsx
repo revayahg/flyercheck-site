@@ -29,7 +29,7 @@ export default function Footer() {
             <div className="footer-links" data-name="footer-links">
               <a href="/about" className="footer-link" data-name="footer-link-about">About</a>
               <a href="/revaya-host" className="footer-link" data-name="footer-link-host">Revaya Host™</a>
-              <a href="/flyercheck" className="footer-link" data-name="footer-link-flyercheck">Revaya FlyerCheck™</a>
+              <a href="https://www.flyercheck.io/" className="footer-link" data-name="footer-link-flyercheck" target="_blank" rel="noopener noreferrer">Revaya FlyerCheck™</a>
               <a href="/blog" className="footer-link" data-name="footer-link-blog">Blog</a>
               <a href="/contact" className="footer-link" data-name="footer-link-contact">Contact</a>
             </div>

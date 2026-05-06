@@ -3,11 +3,13 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "framework": "vite",
-  "functions": {
-    "api/analyze-flyer.js": {
-      "maxDuration": 60
+  "redirects": [
+    {
+      "source": "/flyercheck",
+      "destination": "https://www.flyercheck.io/",
+      "permanent": true
     }
-  },
+  ],
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ]

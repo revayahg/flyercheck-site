@@ -12,21 +12,14 @@ const faqRevayaHost = [
     { q: 'Can Revaya Host help manage vendors?', a: 'Yes. Revaya Host helps teams organize vendor information and maintain clear communication about logistical details and responsibilities.' },
     { q: 'Is Revaya Host focused on planning or execution?', a: 'Revaya Host supports both. It helps teams organize event details during the planning phase and maintain operational clarity during event execution.' }
 ];
-const faqFlyerCheck = [
-    { q: 'What does FlyerCheck analyze?', a: 'FlyerCheck reviews event flyer content for communication clarity, information completeness, and common design or layout issues that may affect audience understanding.' },
-    { q: 'Who is FlyerCheck designed for?', a: 'FlyerCheck is designed for event organizers, hospitality teams, marketers, venue operators, and anyone responsible for creating or reviewing promotional materials for live experiences.' },
-    { q: 'Does FlyerCheck replace a graphic designer?', a: 'No. FlyerCheck is intended as a review and quality-control tool. It helps identify potential issues before publishing, but it does not replace professional design judgment.' },
-    { q: 'Can FlyerCheck be used for different types of events?', a: 'Yes. FlyerCheck can support a wide range of event types, including community events, hospitality activations, festivals, venue programming, and corporate events.' },
-    { q: 'Why is flyer clarity so important?', a: 'A flyer often serves as the first impression of an event. If key information is missing or hard to understand, potential guests may not take the next step.' }
-];
 
 const seoConfig = {
     '/': {
         title: 'Revaya Hospitality Group™ | Event Solutions & AI-Powered Tools',
-        description: 'Powerful event solutions at your fingertips. Try our AI-powered event flyer analysis and comprehensive event management tools.',
-        keywords: 'events, hospitality, Revaya Flyer Check, event solutions, Revaya Host, event management, AI flyer analysis',
+        description: 'Powerful event solutions for hospitality teams — Revaya Host for operations and Revaya FlyerCheck for flyer review. Explore tools designed for live-event workflows.',
+        keywords: 'events, hospitality, Revaya FlyerCheck, Revaya Host, event solutions, event management',
         ogTitle: 'Revaya Hospitality Group™ | Event Solutions & AI-Powered Tools',
-        ogDescription: 'Powerful event solutions at your fingertips. Try our AI-powered event flyer analysis and comprehensive event management tools.',
+        ogDescription: 'Powerful event solutions for hospitality teams — Revaya Host for operations and Revaya FlyerCheck for flyer review. Explore tools designed for live-event workflows.',
         ogImage: defaultOGImage,
         ogType: 'website'
     },
@@ -45,15 +38,6 @@ const seoConfig = {
         keywords: 'Revaya Host, event management platform, event planning software, hospitality management, event workflow',
         ogTitle: 'Revaya Host™ | Comprehensive Event Management Platform',
         ogDescription: 'All-in-one event management platform designed for hospitality professionals. Streamline your workflow, enhance collaboration, and deliver exceptional experiences.',
-        ogImage: defaultOGImage,
-        ogType: 'website'
-    },
-    '/flyercheck': {
-        title: 'Revaya Flyer Check™ | AI-Powered Event Flyer Analysis',
-        description: 'Get instant AI-powered feedback on your event flyers. Analyze clarity, design, missing information, and conversion blockers before you publish.',
-        keywords: 'flyer analysis, AI flyer check, event flyer review, flyer design feedback, event promotion tools',
-        ogTitle: 'Revaya Flyer Check™ | AI-Powered Event Flyer Analysis',
-        ogDescription: 'Get instant AI-powered feedback on your event flyers. Analyze clarity, design, missing information, and conversion blockers before you publish.',
         ogImage: defaultOGImage,
         ogType: 'website'
     },
@@ -250,19 +234,6 @@ function updateStructuredData(path, config, url) {
                 "name": "Revaya Hospitality Group"
             }
         };
-    } else if (path === '/flyercheck') {
-        pageSchema = {
-            "@context": "https://schema.org",
-            "@type": "SoftwareApplication",
-            "name": "FlyerCheck",
-            "applicationCategory": "BusinessApplication",
-            "description": config.description,
-            "operatingSystem": "Web",
-            "provider": {
-                "@type": "Organization",
-                "name": "Revaya Hospitality Group"
-            }
-        };
     } else if (path === '/blog') {
         pageSchema = {
             "@context": "https://schema.org",
@@ -326,8 +297,8 @@ function updateStructuredData(path, config, url) {
         document.head.appendChild(pageScript);
     }
 
-    // FAQPage schema for AEO (Revaya Host + FlyerCheck)
-    const faqList = path === '/revaya-host' ? faqRevayaHost : path === '/flyercheck' ? faqFlyerCheck : null;
+    // FAQPage schema for AEO (Revaya Host)
+    const faqList = path === '/revaya-host' ? faqRevayaHost : null;
     if (faqList && faqList.length) {
         const faqSchema = {
             "@context": "https://schema.org",

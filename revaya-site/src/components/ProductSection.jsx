@@ -16,7 +16,7 @@ export default function ProductSection() {
         title: "Revaya FlyerCheck™",
         description:
           "AI-powered flyer quality check that catches missing details and design issues before you publish.",
-        link: "/flyercheck",
+        link: "https://www.flyercheck.io/",
         ctaText: "Try FlyerCheck"
       }
     ];

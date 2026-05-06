@@ -21,7 +21,7 @@ function SitemapPage() {
                             <a href="/" className="sitemap-link">Home</a>
                             <a href="/about" className="sitemap-link">About Us</a>
                             <a href="/revaya-host" className="sitemap-link">Revaya Host™</a>
-                            <a href="/flyercheck" className="sitemap-link">FlyerCheck</a>
+                            <a href="https://www.flyercheck.io/" className="sitemap-link" target="_blank" rel="noopener noreferrer">FlyerCheck (flyercheck.io)</a>
                             <a href="/blog" className="sitemap-link">Blog</a>
                             <a href="/contact" className="sitemap-link">Contact</a>
                             <a href="/privacy" className="sitemap-link">Privacy Policy</a>

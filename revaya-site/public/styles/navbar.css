@@ -39,10 +39,6 @@
     object-fit: contain;
 }
 
-.navbar-logo--flyercheck-full {
-    max-width: min(340px, calc(100vw - 11rem));
-}
-
 .navbar-brand-text {
     font-family: 'Avenir Light', 'Avenir Next', sans-serif;
     font-weight: 300;
@@ -141,11 +137,6 @@
 
     .navbar-logo {
         max-height: 35px;
-    }
-
-    .navbar-logo--flyercheck-full {
-        max-height: 32px;
-        max-width: min(260px, calc(100vw - 5rem));
     }
 
     .navbar-brand-text {

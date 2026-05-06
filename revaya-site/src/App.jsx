@@ -8,7 +8,6 @@ import ContactPage from "./pages/ContactPage";
 import BlogPage from "./pages/BlogPage";
 import BlogPostFlyerBlindSpots from "./pages/BlogPostFlyerBlindSpots";
 import BlogPostPage from "./pages/BlogPostPage";
-import FlyerCheckPage from "./pages/FlyerCheckPage";
 import RevayaHostPage from "./pages/RevayaHostPage";
 import PrivacyPage from "./pages/PrivacyPage";
 import TermsPage from "./pages/TermsPage";
@@ -29,7 +28,6 @@ export default function App() {
       <Route path="/blog" element={<BlogPage />} />
       <Route path="/blog/flyer-blind-spots" element={<BlogPostFlyerBlindSpots />} />
       <Route path="/blog/:slug" element={<BlogPostPage />} />
-      <Route path="/flyercheck" element={<FlyerCheckPage />} />
       <Route path="/revaya-host" element={<RevayaHostPage />} />
       <Route path="/privacy" element={<PrivacyPage />} />
       <Route path="/terms" element={<TermsPage />} />

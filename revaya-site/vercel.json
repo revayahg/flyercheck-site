@@ -8,6 +8,11 @@
       "source": "/flyercheck",
       "destination": "https://www.flyercheck.io/",
       "permanent": true
+    },
+    {
+      "source": "/flyercheck/",
+      "destination": "https://www.flyercheck.io/",
+      "permanent": true
     }
   ],
   "rewrites": [

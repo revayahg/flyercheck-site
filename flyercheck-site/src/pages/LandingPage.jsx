@@ -4,10 +4,13 @@ import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import Footer from "../components/Footer";
 import ProductSection from "../components/ProductSection";
+import FileUploader from "../components/FileUploader";
 
 import HomepageSectionsContainer from "../components/HomepageSectionsContainer";
 
 import { reportError } from "../utils/errorHandler";
+import logoFull from "../assets/flyercheck-logo-full.png";
+import "../utils/flyerAnalysisService";
 
 export default function LandingPage() {
   try {
@@ -21,27 +24,44 @@ export default function LandingPage() {
           secondaryCta={{ text: "Contact Us", href: "/contact" }}
           showLogo={false}
         />
-        <section
-          className="homepage-section"
-          data-name="flyercheck-tool-cta"
-          aria-labelledby="flyercheck-tool-cta-heading"
-        >
-          <div className="container">
-            <h2 id="flyercheck-tool-cta-heading" className="section-title">
-              Try FlyerCheck™
-            </h2>
-            <p className="section-subtitle">
-              Free AI-powered flyer review before you publish—upload your event flyer, no account
-              needed.
-            </p>
-            <div className="insights-cta" data-name="flyercheck-tool-cta-actions">
-              <a href="/flyercheck" className="btn btn-primary">
-                Open FlyerCheck
-                <i className="fas fa-arrow-right" style={{ marginLeft: "0.5rem" }} aria-hidden="true" />
-              </a>
+        <div className="flyercheck-page" data-name="landing-flyercheck-embed">
+          <section
+            className="flyercheck-landing"
+            data-name="landing-flyercheck-tool"
+            aria-label="Analyze your flyer with FlyerCheck"
+          >
+            <div className="flyercheck-landing-inner">
+              <div className="flyercheck-landing-tool">
+                <FileUploader />
+              </div>
+              <section className="hero hero-flyercheck" data-name="flyercheck-hero-strip">
+                <div className="hero-content">
+                  <div className="hero-flyercheck-bar">
+                    <img
+                      src={logoFull}
+                      alt=""
+                      className="hero-flyercheck-logo"
+                    />
+                    <div className="hero-flyercheck-copy">
+                      <h2 className="hero-title">FlyerCheck™</h2>
+                      <p className="hero-subtitle">
+                        Don&apos;t let your audience find the mistake first.
+                      </p>
+                      <p className="hero-description">
+                        Upload your flyer. Free to use — no account needed.
+                      </p>
+                      <p className="hero-description" style={{ marginTop: "0.75rem" }}>
+                        <a href="/flyercheck" style={{ color: "inherit", fontWeight: 600 }}>
+                          Full FlyerCheck page — overview, tips &amp; FAQs
+                        </a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </section>
             </div>
-          </div>
-        </section>
+          </section>
+        </div>
         <ProductSection />
 
         {/* Why Event Operations Are So Complex - editorial section for SEO / AdSense */}

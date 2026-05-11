@@ -37,26 +37,37 @@ const puppeteerExecutablePath =
     ? defaultDarwinChrome
     : undefined);
 
+/**
+ * Vercel build agents are Linux with no Chrome install; Puppeteer’s Chromium often fails to launch
+ * and can exit the whole build. Skip prerender there—SPA still ships with updated index.html/CSS/JS.
+ * Local / CI with Chrome: set SKIP_PRERENDER=1 to disable; set FORCE_PRERENDER=1 on Vercel only if you wire Chromium (e.g. PUPPETEER_EXECUTABLE_PATH).
+ */
+const enablePrerender =
+  process.env.SKIP_PRERENDER !== "1" &&
+  (process.env.FORCE_PRERENDER === "1" || process.env.VERCEL !== "1");
+
 export default defineConfig({
-  /** Downlevel syntax so prerender’s bundled Chromium (~Chrome 77) can execute the client bundle. */
-  build: {
-    target: "chrome76",
-  },
+  /** Downlevel bundle only when prerender runs (old Chromium in vite-plugin-prerender). */
+  build: enablePrerender ? { target: "chrome76" } : {},
   plugins: [
     react(),
-    vitePrerender({
-      staticDir: path.join(__dirname, "dist"),
-      routes: prerenderRoutes,
-      renderer: new vitePrerender.PuppeteerRenderer({
-        headless: true,
-        renderAfterTime: 4000,
-        skipThirdPartyRequests: true,
-        ...(puppeteerExecutablePath && {
-          executablePath: puppeteerExecutablePath,
-        }),
-        args: ["--no-sandbox", "--disable-setuid-sandbox"],
-      }),
-    }),
+    ...(enablePrerender
+      ? [
+          vitePrerender({
+            staticDir: path.join(__dirname, "dist"),
+            routes: prerenderRoutes,
+            renderer: new vitePrerender.PuppeteerRenderer({
+              headless: true,
+              renderAfterTime: 4000,
+              skipThirdPartyRequests: true,
+              ...(puppeteerExecutablePath && {
+                executablePath: puppeteerExecutablePath,
+              }),
+              args: ["--no-sandbox", "--disable-setuid-sandbox"],
+            }),
+          }),
+        ]
+      : []),
   ],
   server: {
     proxy: {

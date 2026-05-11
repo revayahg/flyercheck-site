@@ -50,8 +50,6 @@ function FlyerCheckPage() {
           </div>
         </section>
 
-        <AdBanner />
-
         <section
           className="host-content-section"
           aria-labelledby="flyercheck-overview-heading"
@@ -274,6 +272,8 @@ function FlyerCheckPage() {
             </dl>
           </div>
         </section>
+
+        <AdBanner />
 
         <p
           style={{

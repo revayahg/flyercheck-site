@@ -10,6 +10,9 @@ import BlogPostPage from "./pages/BlogPostPage";
 import BlogPostFlyerBlindSpots from "./pages/BlogPostFlyerBlindSpots";
 import ContactPage from "./pages/ContactPage";
 import AcceptableUsePage from "./pages/AcceptableUsePage";
+import SitemapPage from "./pages/SitemapPage";
+import AboutPage from "./pages/AboutPage";
+import RevayaHostPage from "./pages/RevayaHostPage";
 
 export default function App() {
   const location = useLocation();
@@ -21,6 +24,10 @@ export default function App() {
   return (
     <Routes>
       <Route path="/" element={<FlyerCheckPage />} />
+      <Route path="/flyercheck" element={<FlyerCheckPage />} />
+      <Route path="/about" element={<AboutPage />} />
+      <Route path="/revaya-host" element={<RevayaHostPage />} />
+      <Route path="/sitemap" element={<SitemapPage />} />
       <Route path="/privacy" element={<PrivacyPage />} />
       <Route path="/terms" element={<TermsPage />} />
       <Route path="/acceptable-use" element={<AcceptableUsePage />} />

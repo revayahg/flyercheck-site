@@ -3,6 +3,7 @@ import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { updateSEO } from "./utils/seoConfig";
 
 import FlyerCheckPage from "./pages/FlyerCheckPage";
+import LandingPage from "./pages/LandingPage";
 import PrivacyPage from "./pages/PrivacyPage";
 import TermsPage from "./pages/TermsPage";
 import BlogPage from "./pages/BlogPage";
@@ -23,7 +24,7 @@ export default function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<FlyerCheckPage />} />
+      <Route path="/" element={<LandingPage />} />
       <Route path="/flyercheck" element={<FlyerCheckPage />} />
       <Route path="/about" element={<AboutPage />} />
       <Route path="/revaya-host" element={<RevayaHostPage />} />

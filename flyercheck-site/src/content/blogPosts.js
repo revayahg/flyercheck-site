@@ -7,7 +7,7 @@ export const blogPosts = [
     id: "hidden-operational-costs",
     slug: "hidden-operational-costs-free-tools",
     title: "The Hidden Operational Costs of \"Free\" Event Tools",
-    date: "February 28, 2026",
+    date: "October 2, 2025",
     description: "Free tools feel efficient—until fragmentation, manual work, and confusion quietly raise costs.",
     author: "Revaya Hospitality Group",
     sections: [
@@ -77,7 +77,7 @@ export const blogPosts = [
     id: "spreadsheets-break-down",
     slug: "why-spreadsheets-break-down-live-events",
     title: "Why Spreadsheets Break Down in Live Event Environments",
-    date: "February 28, 2026",
+    date: "October 16, 2025",
     description: "Spreadsheets are great for budgets—but not for dynamic orchestration.",
     author: "Revaya Hospitality Group",
     sections: [
@@ -135,7 +135,7 @@ export const blogPosts = [
     id: "week-before-major-event",
     slug: "what-happens-week-before-major-event",
     title: "What Actually Happens the Week Before a Major Event",
-    date: "February 28, 2026",
+    date: "October 30, 2025",
     description: "The final week is synchronization—vendor confirmations, permits, staffing shifts, and fast decisions.",
     author: "Revaya Hospitality Group",
     sections: [
@@ -197,7 +197,7 @@ export const blogPosts = [
     id: "guest-journey-before-ticket",
     slug: "guest-journey-starts-before-ticket",
     title: "The Guest Journey Starts Before the Ticket Is Purchased",
-    date: "February 28, 2026",
+    date: "November 13, 2025",
     description: "Discovery and clarity drive conversion long before check-in.",
     author: "Revaya Hospitality Group",
     sections: [
@@ -249,7 +249,7 @@ export const blogPosts = [
     id: "anatomy-well-run-event",
     slug: "anatomy-of-well-run-event",
     title: "The Anatomy of a Well-Run Event: What Guests Never See",
-    date: "February 28, 2026",
+    date: "November 27, 2025",
     description: "The invisible structure behind events that feel effortless.",
     author: "Revaya Hospitality Group",
     sections: [
@@ -300,7 +300,7 @@ export const blogPosts = [
     id: "vendor-management-underrated",
     slug: "vendor-management-underrated-skill",
     title: "Vendor Management Is the Most Underrated Skill in Events",
-    date: "February 28, 2026",
+    date: "December 11, 2025",
     description: "Vendor orchestration is where events succeed—or unravel.",
     author: "Revaya Hospitality Group",
     sections: [
@@ -349,7 +349,7 @@ export const blogPosts = [
     id: "more-staff-not-solution",
     slug: "more-staff-not-solution",
     title: "Why \"More Staff\" Is Not the Solution to Operational Stress",
-    date: "February 28, 2026",
+    date: "January 6, 2026",
     description: "Headcount doesn't fix ambiguity—systems do.",
     author: "Revaya Hospitality Group",
     sections: [
@@ -387,7 +387,7 @@ export const blogPosts = [
     id: "events-go-over-budget",
     slug: "why-events-go-over-budget",
     title: "The Real Reason Events Go Over Budget",
-    date: "February 28, 2026",
+    date: "January 20, 2026",
     description: "Budget overruns come from small leaks—scope creep, change fees, and poor tracking.",
     author: "Revaya Hospitality Group",
     sections: [
@@ -429,7 +429,7 @@ export const blogPosts = [
     id: "event-technology-about-flow",
     slug: "event-technology-about-flow",
     title: "Event Technology Is Not About Features — It's About Flow",
-    date: "February 28, 2026",
+    date: "February 17, 2026",
     description: "The best event tech reduces thinking load and supports real workflows.",
     author: "Revaya Hospitality Group",
     sections: [
@@ -465,7 +465,7 @@ export const blogPosts = [
     id: "fix-operational-gaps-before-scaling",
     slug: "fix-these-operational-gaps-before-scaling",
     title: "Before You Scale Your Event, Fix These 5 Operational Gaps",
-    date: "February 28, 2026",
+    date: "March 5, 2026",
     description: "Growth magnifies weaknesses—stabilize ownership, vendor data, and the source of truth first.",
     author: "Revaya Hospitality Group",
     sections: [

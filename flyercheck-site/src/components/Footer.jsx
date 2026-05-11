@@ -51,10 +51,10 @@ export default function Footer() {
 
             <div className="footer-legal" data-name="footer-legal">
               <a href="/privacy" className="footer-link" data-name="footer-link-privacy">
-                Privacy
+                Privacy Policy
               </a>
               <a href="/terms" className="footer-link" data-name="footer-link-terms">
-                Terms
+                Terms of Service
               </a>
               <a
                 href="/acceptable-use"

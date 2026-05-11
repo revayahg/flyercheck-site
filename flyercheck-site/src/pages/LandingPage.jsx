@@ -21,6 +21,27 @@ export default function LandingPage() {
           secondaryCta={{ text: "Contact Us", href: "/contact" }}
           showLogo={false}
         />
+        <section
+          className="homepage-section"
+          data-name="flyercheck-tool-cta"
+          aria-labelledby="flyercheck-tool-cta-heading"
+        >
+          <div className="container">
+            <h2 id="flyercheck-tool-cta-heading" className="section-title">
+              Try FlyerCheck™
+            </h2>
+            <p className="section-subtitle">
+              Free AI-powered flyer review before you publish—upload your event flyer, no account
+              needed.
+            </p>
+            <div className="insights-cta" data-name="flyercheck-tool-cta-actions">
+              <a href="/flyercheck" className="btn btn-primary">
+                Open FlyerCheck
+                <i className="fas fa-arrow-right" style={{ marginLeft: "0.5rem" }} aria-hidden="true" />
+              </a>
+            </div>
+          </div>
+        </section>
         <ProductSection />
 
         {/* Why Event Operations Are So Complex - editorial section for SEO / AdSense */}

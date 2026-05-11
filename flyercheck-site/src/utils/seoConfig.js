@@ -22,11 +22,11 @@ const faqFlyerCheck = [
 
 const seoConfig = {
     '/': {
-        title: 'FlyerCheck™ | AI-Powered Event Flyer Analysis',
-        description: 'Get instant AI-powered feedback on your event flyers. Analyze clarity, design, missing information, and conversion blockers before you publish.',
-        keywords: 'FlyerCheck, flyer analysis, AI flyer check, event flyer review, event promotion, hospitality marketing',
-        ogTitle: 'FlyerCheck™ | AI-Powered Event Flyer Analysis',
-        ogDescription: 'Get instant AI-powered feedback on your event flyers. Analyze clarity, design, missing information, and conversion blockers before you publish.',
+        title: 'Revaya Hospitality Group™ | Less Stress. More Show',
+        description: 'Revaya Hospitality Group designs solutions for venues, events, and hospitality operators—technology and guidance to simplify operations and strengthen guest experiences.',
+        keywords: 'Revaya Hospitality Group, event operations, hospitality technology, live events, guest experience',
+        ogTitle: 'Less Stress. More Show | Revaya Hospitality Group',
+        ogDescription: 'Solutions for venues, events, and hospitality operators managing complex, high-pressure environments—so teams spend less time on chaos and more on exceptional experiences.',
         ogImage: defaultOGImage,
         ogType: 'website'
     },
@@ -197,6 +197,19 @@ function updateMetaTags(config, url) {
         }
         tag.setAttribute('content', twitterTags[name]);
     });
+
+    // Author meta (dynamic blog posts from getSEOConfig include config.author)
+    let metaAuthor = document.querySelector('meta[name="author"]');
+    if (config.author) {
+        if (!metaAuthor) {
+            metaAuthor = document.createElement('meta');
+            metaAuthor.setAttribute('name', 'author');
+            document.head.appendChild(metaAuthor);
+        }
+        metaAuthor.setAttribute('content', config.author);
+    } else if (metaAuthor) {
+        metaAuthor.remove();
+    }
 }
 
 // Update structured data (JSON-LD)
@@ -231,20 +244,10 @@ function updateStructuredData(path, config, url) {
     if (path === '/') {
         pageSchema = {
             "@context": "https://schema.org",
-            "@type": "SoftwareApplication",
-            "name": "FlyerCheck",
-            "applicationCategory": "BusinessApplication",
+            "@type": "WebPage",
+            "name": config.ogTitle,
             "description": config.description,
-            "operatingSystem": "Web",
-            "offers": {
-                "@type": "Offer",
-                "price": "0",
-                "priceCurrency": "USD"
-            },
-            "provider": {
-                "@type": "Organization",
-                "name": "Revaya Hospitality Group"
-            }
+            "url": url
         };
     } else if (path === '/revaya-host') {
         pageSchema = {
@@ -291,28 +294,20 @@ function updateStructuredData(path, config, url) {
         const slug = path.slice('/blog/'.length);
         const post = getPostBySlug(slug);
         if (post) {
-            const datePublished = post.date ? (typeof post.date === 'string' && /^\d{4}-\d{2}-\d{2}/.test(post.date) ? post.date : new Date(post.date).toISOString().slice(0, 10)) : undefined;
             pageSchema = {
                 "@context": "https://schema.org",
-                "@type": "Article",
+                "@type": "BlogPosting",
                 "headline": post.title,
                 "description": post.description,
                 "author": {
                     "@type": "Person",
                     "name": post.author || "Revaya Hospitality Group"
                 },
+                "datePublished": post.date,
                 "publisher": {
                     "@type": "Organization",
                     "name": "Revaya Hospitality Group",
-                    "logo": {
-                        "@type": "ImageObject",
-                        "url": defaultOGImage
-                    }
-                },
-                ...(datePublished && { datePublished }),
-                "mainEntityOfPage": {
-                    "@type": "WebPage",
-                    "@id": url
+                    "url": baseUrl
                 }
             };
         }
@@ -340,7 +335,7 @@ function updateStructuredData(path, config, url) {
     }
 
     // FAQPage schema for AEO (Revaya Host + FlyerCheck)
-    const faqList = path === '/' ? faqFlyerCheck : path === '/revaya-host' ? faqRevayaHost : path === '/flyercheck' ? faqFlyerCheck : null;
+    const faqList = path === '/flyercheck' ? faqFlyerCheck : path === '/revaya-host' ? faqRevayaHost : null;
     if (faqList && faqList.length) {
         const faqSchema = {
             "@context": "https://schema.org",

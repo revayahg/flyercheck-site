@@ -1,9 +1,7 @@
 // revaya-site/src/pages/BlogPage.jsx
 import React from "react";
-import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { blogPosts as operationalPosts } from "../content/blogPosts";
 import { reportError } from "../utils/errorHandler";
 
 function BlogPage() {
@@ -65,32 +63,7 @@ function BlogPage() {
       },
     ];
 
-    const internalPosts = [
-      {
-        title:
-          "You're Too Close to the Flyer: How Great Events Lose People Before They Even Show Up",
-        author: "Jolyse Stultz",
-        platform: "Revaya Hospitality Group",
-        url: "/blog/flyer-blind-spots",
-        date: "January 4, 2026",
-        description:
-          "Discover how event organizers miss critical details in their flyers that prevent potential attendees from showing up. Learn the common blind spots and how to fix them.",
-        icon: "fas fa-file-alt",
-        color: "#90684A",
-      },
-      ...operationalPosts.map((p) => ({
-        title: p.title,
-        author: p.author,
-        platform: p.platform || "Revaya Hospitality Group",
-        url: `/blog/${p.slug}`,
-        date: p.date,
-        description: p.description,
-        icon: "fas fa-file-alt",
-        color: "#90684A",
-      })),
-    ];
-
-    const allPosts = [...internalPosts, ...externalPosts];
+    const allPosts = [...externalPosts];
 
     // Sort by most recent post date first (parse date string to timestamp for comparison)
     const parsePostDate = (dateStr) => {
@@ -152,22 +125,15 @@ function BlogPage() {
                   </div>
 
                   <div className="blog-post-footer">
-                    {post.url.startsWith("http") ? (
-                      <a
-                        href={post.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="blog-read-more-btn"
-                      >
-                        Read Article
-                        <i className="fas fa-external-link-alt"></i>
-                      </a>
-                    ) : (
-                      <Link to={post.url} className="blog-read-more-btn">
-                        Read More
-                        <i className="fas fa-arrow-right"></i>
-                      </Link>
-                    )}
+                    <a
+                      href={post.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="blog-read-more-btn"
+                    >
+                      Read Article
+                      <i className="fas fa-external-link-alt"></i>
+                    </a>
                   </div>
                 </article>
               ))}

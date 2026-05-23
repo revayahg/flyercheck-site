@@ -5,13 +5,6 @@ const baseUrl = 'https://www.flyercheck.io';
 const defaultOGImage = 'https://www.flyercheck.io/favicon-512.png';
 
 // FAQ data for FAQPage schema (AEO) - must match on-page content
-const faqRevayaHost = [
-    { q: 'What types of events can Revaya Host support?', a: 'Revaya Host is designed for a wide range of live experiences including festivals, community events, venue activations, hospitality programming, and corporate events.' },
-    { q: 'Who typically uses Revaya Host?', a: 'The platform is intended for event planners, venue managers, hospitality teams, and operations staff responsible for coordinating live events.' },
-    { q: 'Is Revaya Host only useful for large events?', a: 'While the platform is especially helpful for complex events, smaller teams can also benefit from having a structured way to organize event logistics and coordination.' },
-    { q: 'Can Revaya Host help manage vendors?', a: 'Yes. Revaya Host helps teams organize vendor information and maintain clear communication about logistical details and responsibilities.' },
-    { q: 'Is Revaya Host focused on planning or execution?', a: 'Revaya Host supports both. It helps teams organize event details during the planning phase and maintain operational clarity during event execution.' }
-];
 const faqFlyerCheck = [
     { q: 'What does FlyerCheck analyze?', a: 'FlyerCheck reviews event flyer content for communication clarity, information completeness, and common design or layout issues that may affect audience understanding.' },
     { q: 'Who is FlyerCheck designed for?', a: 'FlyerCheck is designed for event organizers, hospitality teams, marketers, venue operators, and anyone responsible for creating or reviewing promotional materials for live experiences.' },
@@ -36,15 +29,6 @@ const seoConfig = {
         keywords: 'about Revaya, Revaya founders, Jolyse Stultz, Thiago Ferreira, hospitality professionals, event management team',
         ogTitle: 'About Us | Revaya Hospitality Group™',
         ogDescription: 'Meet the founders of Revaya Hospitality Group. Jolyse Stultz and Thiago Ferreira bring 15+ years of experience in hospitality, events, and AI innovation.',
-        ogImage: defaultOGImage,
-        ogType: 'website'
-    },
-    '/revaya-host': {
-        title: 'Revaya Host™ | Comprehensive Event Management Platform',
-        description: 'All-in-one event management platform designed for hospitality professionals. Streamline your workflow, enhance collaboration, and deliver exceptional experiences.',
-        keywords: 'Revaya Host, event management platform, event planning software, hospitality management, event workflow',
-        ogTitle: 'Revaya Host™ | Comprehensive Event Management Platform',
-        ogDescription: 'All-in-one event management platform designed for hospitality professionals. Streamline your workflow, enhance collaboration, and deliver exceptional experiences.',
         ogImage: defaultOGImage,
         ogType: 'website'
     },
@@ -249,19 +233,6 @@ function updateStructuredData(path, config, url) {
             "description": config.description,
             "url": url
         };
-    } else if (path === '/revaya-host') {
-        pageSchema = {
-            "@context": "https://schema.org",
-            "@type": "SoftwareApplication",
-            "name": "Revaya Host",
-            "applicationCategory": "BusinessApplication",
-            "description": config.description,
-            "operatingSystem": "Web",
-            "provider": {
-                "@type": "Organization",
-                "name": "Revaya Hospitality Group"
-            }
-        };
     } else if (path === '/flyercheck') {
         pageSchema = {
             "@context": "https://schema.org",
@@ -334,8 +305,8 @@ function updateStructuredData(path, config, url) {
         document.head.appendChild(pageScript);
     }
 
-    // FAQPage schema for AEO (Revaya Host + FlyerCheck)
-    const faqList = path === '/flyercheck' ? faqFlyerCheck : path === '/revaya-host' ? faqRevayaHost : null;
+    // FAQPage schema for AEO (FlyerCheck)
+    const faqList = path === '/flyercheck' ? faqFlyerCheck : null;
     if (faqList && faqList.length) {
         const faqSchema = {
             "@context": "https://schema.org",

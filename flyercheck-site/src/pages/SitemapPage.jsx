@@ -20,7 +20,6 @@ function SitemapPage() {
                         <div className="sitemap-links">
                             <a href="/" className="sitemap-link">Home</a>
                             <a href="/about" className="sitemap-link">About Us</a>
-                            <a href="/revaya-host" className="sitemap-link">Revaya Host™</a>
                             <a href="/flyercheck" className="sitemap-link">FlyerCheck</a>
                             <a href="/blog" className="sitemap-link">Blog</a>
                             <a href="/contact" className="sitemap-link">Contact</a>

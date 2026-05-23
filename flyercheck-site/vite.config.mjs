@@ -17,7 +17,6 @@ const staticPrerenderRoutes = [
   "/flyercheck",
   "/about",
   "/blog",
-  "/revaya-host",
   "/privacy",
   "/terms",
   "/contact",

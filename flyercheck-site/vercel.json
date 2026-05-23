@@ -9,6 +9,16 @@
       "has": [{ "type": "host", "value": "flyercheck.io" }],
       "destination": "https://www.flyercheck.io/:path*",
       "permanent": true
+    },
+    {
+      "source": "/revaya-host",
+      "destination": "https://www.revayahg.com/",
+      "permanent": true
+    },
+    {
+      "source": "/revaya-host/",
+      "destination": "https://www.revayahg.com/",
+      "permanent": true
     }
   ],
   "functions": {

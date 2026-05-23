@@ -6,13 +6,6 @@ export default function ProductSection() {
   try {
     const products = [
       {
-        title: "Revaya Host™",
-        description:
-          "End-to-end event operations platform for planning, vendor management, and day-of execution.",
-        link: "/revaya-host",
-        ctaText: "Explore Revaya Host"
-      },
-      {
         title: "Revaya FlyerCheck™",
         description:
           "AI-powered flyer quality check that catches missing details and design issues before you publish.",

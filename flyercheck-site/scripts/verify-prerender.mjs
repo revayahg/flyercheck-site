@@ -23,23 +23,22 @@ const contentChecks = [
 const metaChecks = [
   {
     route: "/",
-    title: "FlyerCheck™ | AI-Powered Event Flyer Analysis",
-    descriptionNeedle: "AI flyer analysis tool",
+    title: "Catch Flyer Mistakes Before Launch | FlyerCheck",
+    descriptionNeedle: "finds the typo",
   },
   {
     route: "/sitemap",
-    title: "Sitemap | FlyerCheck™",
-    descriptionNeedle: "flyercheck.io",
+    title: "flyercheck.io Sitemap—Tool, Blog & Policies",
+    descriptionNeedle: "free flyer analyzer",
   },
   {
     route: `/blog/${blogPosts[0].slug}`,
-    title: `${blogPosts[0].title} | FlyerCheck™`,
-    descriptionNeedle: blogPosts[0].description.slice(0, 30),
+    title: "Free Event Tools Cost More Than You Think | FlyerCheck",
+    descriptionNeedle: "duplicate work",
   },
   {
     route: "/blog/flyer-blind-spots",
-    title:
-      "You're Too Close to the Flyer: How Great Events Lose People Before They Even Show Up | FlyerCheck™",
+    title: "Too Close to Your Flyer to See the Flaw | FlyerCheck",
     descriptionNeedle: "blind spots",
   },
 ];
@@ -49,9 +48,18 @@ function routeToFile(route) {
   return path.join(distDir, route.replace(/^\//, ""), "index.html");
 }
 
+function decodeHtmlEntities(s) {
+  return s
+    .replace(/&amp;/g, "&")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">");
+}
+
 function extractTitle(html) {
   const m = html.match(/<title>([^<]*)<\/title>/i);
-  return m?.[1] ?? "";
+  return decodeHtmlEntities(m?.[1] ?? "");
 }
 
 function extractDescription(html) {

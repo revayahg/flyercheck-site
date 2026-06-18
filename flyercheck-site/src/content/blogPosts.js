@@ -2,6 +2,8 @@
  * Blog posts data - 16 operational/event management articles
  * Used by BlogPage (index) and BlogPostPage (individual post template)
  */
+import { blogSeoMeta } from "./blogSeoMeta.js";
+
 export const blogPosts = [
   {
     id: "hidden-operational-costs",
@@ -954,13 +956,15 @@ export function getLatestInternalPosts(count = 4) {
 }
 
 export function getPostBySlug(slug) {
+  let post;
   if (slug === "flyer-blind-spots") {
-    return {
-      slug: "flyer-blind-spots",
-      ...flyerBlindSpotsPost,
-    };
+    post = { slug: "flyer-blind-spots", ...flyerBlindSpotsPost };
+  } else {
+    post = blogPosts.find((p) => p.slug === slug) ?? null;
   }
-  return blogPosts.find((p) => p.slug === slug) ?? null;
+  if (!post) return null;
+  const seo = blogSeoMeta[slug];
+  return seo ? { ...post, ...seo } : post;
 }
 
 export function getRelatedPosts(currentSlug, count = 3) {

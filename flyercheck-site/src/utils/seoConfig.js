@@ -15,92 +15,83 @@ const faqFlyerCheck = [
 
 const seoConfig = {
     '/': {
-        title: 'Revaya Flyer Check™ | AI-Powered Event Flyer Analysis',
-        description: 'Get instant AI-powered feedback on your event flyers. Analyze clarity, design, missing information, and conversion blockers before you publish.',
-        keywords: 'flyer analysis, AI flyer check, event flyer review, flyer design feedback, event promotion tools',
-        ogTitle: 'Revaya Flyer Check™ | AI-Powered Event Flyer Analysis',
-        ogDescription: 'Get instant AI-powered feedback on your event flyers. Analyze clarity, design, missing information, and conversion blockers before you publish.',
+        title: 'FlyerCheck™ | AI-Powered Event Flyer Analysis',
+        description: 'FlyerCheck is a free AI flyer analysis tool for event planners and promoters. Upload your flyer and catch clarity issues, missing details, and conversion problems before launch.',
+        keywords: 'FlyerCheck, flyer analysis, AI flyer check, event flyer review, event promotion tools',
+        ogTitle: 'FlyerCheck™ | AI-Powered Event Flyer Analysis',
+        ogDescription: 'Upload your event flyer for instant AI feedback on clarity, missing information, and conversion blockers before you publish.',
         ogImage: defaultOGImage,
         ogType: 'website'
     },
     '/about': {
-        title: 'About Us | Revaya Hospitality Group™',
-        description: 'Meet the founders of Revaya Hospitality Group. Jolyse Stultz and Thiago Ferreira bring 15+ years of experience in hospitality, events, and AI innovation.',
-        keywords: 'about Revaya, Revaya founders, Jolyse Stultz, Thiago Ferreira, hospitality professionals, event management team',
-        ogTitle: 'About Us | Revaya Hospitality Group™',
-        ogDescription: 'Meet the founders of Revaya Hospitality Group. Jolyse Stultz and Thiago Ferreira bring 15+ years of experience in hospitality, events, and AI innovation.',
+        title: 'About FlyerCheck™ | Event Operations & Flyer Analysis',
+        description: 'Learn about FlyerCheck—the AI flyer review tool on flyercheck.io—and the Revaya Hospitality Group team building technology for event operations and hospitality.',
+        keywords: 'about FlyerCheck, event operations, hospitality technology, flyer analysis team',
+        ogTitle: 'About FlyerCheck™',
+        ogDescription: 'Meet the team behind FlyerCheck and our mission to help event organizers ship clearer flyers and stronger operations.',
         ogImage: defaultOGImage,
         ogType: 'website'
     },
     '/flyercheck': {
-        title: 'Revaya Flyer Check™ | AI-Powered Event Flyer Analysis',
-        description: 'Get instant AI-powered feedback on your event flyers. Analyze clarity, design, missing information, and conversion blockers before you publish.',
-        keywords: 'flyer analysis, AI flyer check, event flyer review, flyer design feedback, event promotion tools',
-        ogTitle: 'Revaya Flyer Check™ | AI-Powered Event Flyer Analysis',
-        ogDescription: 'Get instant AI-powered feedback on your event flyers. Analyze clarity, design, missing information, and conversion blockers before you publish.',
+        title: 'FlyerCheck™ Tool | Upload & Analyze Your Event Flyer',
+        description: 'Use the FlyerCheck AI tool to upload your event flyer and get instant feedback on clarity, design, missing information, and conversion blockers before you publish.',
+        keywords: 'FlyerCheck tool, flyer upload, AI flyer analysis, event flyer review, flyer QA',
+        ogTitle: 'FlyerCheck™ Tool | Upload & Analyze Your Event Flyer',
+        ogDescription: 'Upload your event flyer for instant AI-powered analysis—clarity, completeness, and conversion issues flagged before launch.',
         ogImage: defaultOGImage,
         ogType: 'website'
     },
     '/blog': {
-        title: 'Blog | FlyerCheck™',
-        description: 'Read our latest articles, citations, and developments on hospitality, AI, and event management. Insights from Revaya Hospitality Group and founders Jolyse Stultz and Thiago Ferreira.',
-        keywords: 'FlyerCheck blog, hospitality blog, event management articles, AI in hospitality, event industry insights',
-        ogTitle: 'Blog | FlyerCheck™',
-        ogDescription: 'Read our latest articles, citations, and developments on hospitality, AI, and event management. Insights from Revaya Hospitality Group and founders Jolyse Stultz and Thiago Ferreira.',
+        title: 'FlyerCheck™ Blog | Event Operations & Hospitality Insights',
+        description: 'Articles on event operations, vendor management, run-of-show planning, flyer marketing, and hospitality technology from the FlyerCheck team.',
+        keywords: 'FlyerCheck blog, event operations, hospitality blog, event management articles',
+        ogTitle: 'FlyerCheck™ Blog',
+        ogDescription: 'Event operations and hospitality insights for organizers, venues, and promoters—from the FlyerCheck team.',
         ogImage: defaultOGImage,
         ogType: 'website'
     },
-    '/blog/flyer-blind-spots': {
-        title: 'You\'re Too Close to the Flyer: How Great Events Lose People | FlyerCheck™',
-        description: 'Discover how event organizers miss critical details in their flyers that prevent potential attendees from showing up. Learn the common blind spots and how to fix them.',
-        keywords: 'event flyer mistakes, flyer design tips, event promotion, flyer blind spots, event attendance',
-        ogTitle: 'You\'re Too Close to the Flyer: How Great Events Lose People',
-        ogDescription: 'Discover how event organizers miss critical details in their flyers that prevent potential attendees from showing up. Learn the common blind spots and how to fix them.',
-        ogImage: defaultOGImage,
-        ogType: 'article'
-    },
     '/contact': {
-        title: 'Contact Us | Revaya Hospitality Group™',
-        description: 'Get in touch with Revaya Hospitality Group. Contact us for questions about our event solutions, partnerships, or support.',
-        keywords: 'contact Revaya, Revaya support, event management contact, hospitality consulting',
-        ogTitle: 'Contact Us | Revaya Hospitality Group™',
-        ogDescription: 'Get in touch with Revaya Hospitality Group. Contact us for questions about our event solutions, partnerships, or support.',
+        title: 'Contact FlyerCheck™ | Support & Inquiries',
+        description: 'Contact the FlyerCheck team for product questions, feedback on flyer analysis, partnerships, or support using flyercheck.io.',
+        keywords: 'contact FlyerCheck, FlyerCheck support, event flyer tool contact',
+        ogTitle: 'Contact FlyerCheck™',
+        ogDescription: 'Get in touch with the FlyerCheck team for support, feedback, or partnership inquiries.',
         ogImage: defaultOGImage,
         ogType: 'website'
     },
     '/privacy': {
         title: 'Privacy Policy | FlyerCheck™',
-        description: 'Privacy Policy for FlyerCheck at www.flyercheck.io. Learn how we collect, use, and protect your information.',
+        description: 'Privacy Policy for FlyerCheck at www.flyercheck.io. Learn how we collect, use, and protect your information when you use the flyer analysis tool.',
         keywords: 'FlyerCheck privacy policy, flyercheck.io, data protection',
         ogTitle: 'Privacy Policy | FlyerCheck™',
-        ogDescription: 'Privacy Policy for FlyerCheck at www.flyercheck.io. Learn how we collect, use, and protect your information.',
+        ogDescription: 'How FlyerCheck collects, uses, and protects your information at flyercheck.io.',
         ogImage: defaultOGImage,
         ogType: 'website'
     },
     '/terms': {
         title: 'Terms of Service | FlyerCheck™',
-        description: 'Terms of Service for FlyerCheck at www.flyercheck.io. Read our terms and conditions for using the service.',
+        description: 'Terms of Service for FlyerCheck at www.flyercheck.io. Read the terms and conditions for using the AI flyer analysis service.',
         keywords: 'FlyerCheck terms of service, flyercheck.io, terms and conditions',
         ogTitle: 'Terms of Service | FlyerCheck™',
-        ogDescription: 'Terms of Service for FlyerCheck at www.flyercheck.io. Read our terms and conditions for using the service.',
+        ogDescription: 'Terms and conditions for using FlyerCheck at flyercheck.io.',
         ogImage: defaultOGImage,
         ogType: 'website'
     },
     '/sitemap': {
-        title: 'Sitemap | Revaya Hospitality Group™',
-        description: 'Sitemap for Revaya Hospitality Group website. Find all pages and resources.',
-        keywords: 'sitemap, Revaya sitemap',
-        ogTitle: 'Sitemap | Revaya Hospitality Group™',
-        ogDescription: 'Sitemap for Revaya Hospitality Group website. Find all pages and resources.',
+        title: 'Sitemap | FlyerCheck™',
+        description: 'HTML sitemap for flyercheck.io—find the FlyerCheck tool, blog articles, policies, and contact pages.',
+        keywords: 'FlyerCheck sitemap, flyercheck.io pages',
+        ogTitle: 'Sitemap | FlyerCheck™',
+        ogDescription: 'Browse all pages on flyercheck.io including the flyer tool, blog, and policies.',
         ogImage: defaultOGImage,
         ogType: 'website'
     },
     '/acceptable-use': {
-        title: 'Acceptable Use Policy | Revaya Hospitality Group™',
-        description: 'Acceptable Use Policy for Revaya Hospitality Group. Guidelines for using our website and services including Revaya Host and FlyerCheck.',
-        keywords: 'acceptable use, Revaya policy, terms of use',
-        ogTitle: 'Acceptable Use Policy | Revaya Hospitality Group™',
-        ogDescription: 'Acceptable Use Policy for Revaya Hospitality Group. Guidelines for using our website and services including Revaya Host and FlyerCheck.',
+        title: 'Acceptable Use Policy | FlyerCheck™',
+        description: 'Acceptable Use Policy for FlyerCheck at flyercheck.io. Guidelines for using the website and AI flyer analysis service responsibly.',
+        keywords: 'FlyerCheck acceptable use, flyercheck.io policy',
+        ogTitle: 'Acceptable Use Policy | FlyerCheck™',
+        ogDescription: 'Guidelines for acceptable use of FlyerCheck and flyercheck.io.',
         ogImage: defaultOGImage,
         ogType: 'website'
     }
@@ -114,10 +105,11 @@ function getSEOConfig(path) {
     if (blogMatch) {
         const post = getPostBySlug(blogMatch[1]);
         if (post) {
-            const title = post.title + ' | FlyerCheck™';
+            const title = `${post.title} | FlyerCheck™`;
             return {
                 title,
                 description: post.description,
+                keywords: `FlyerCheck, ${post.title}, event operations, hospitality`,
                 ogTitle: post.title,
                 ogDescription: post.description,
                 ogImage: defaultOGImage,

@@ -954,6 +954,12 @@ export function getLatestInternalPosts(count = 4) {
 }
 
 export function getPostBySlug(slug) {
+  if (slug === "flyer-blind-spots") {
+    return {
+      slug: "flyer-blind-spots",
+      ...flyerBlindSpotsPost,
+    };
+  }
   return blogPosts.find((p) => p.slug === slug) ?? null;
 }
 

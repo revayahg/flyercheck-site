@@ -15,11 +15,11 @@ const faqFlyerCheck = [
 
 const seoConfig = {
     '/': {
-        title: 'Revaya Hospitality Group™ | Less Stress. More Show',
-        description: 'Revaya Hospitality Group designs solutions for venues, events, and hospitality operators—technology and guidance to simplify operations and strengthen guest experiences.',
-        keywords: 'Revaya Hospitality Group, event operations, hospitality technology, live events, guest experience',
-        ogTitle: 'Less Stress. More Show | Revaya Hospitality Group',
-        ogDescription: 'Solutions for venues, events, and hospitality operators managing complex, high-pressure environments—so teams spend less time on chaos and more on exceptional experiences.',
+        title: 'Revaya Flyer Check™ | AI-Powered Event Flyer Analysis',
+        description: 'Get instant AI-powered feedback on your event flyers. Analyze clarity, design, missing information, and conversion blockers before you publish.',
+        keywords: 'flyer analysis, AI flyer check, event flyer review, flyer design feedback, event promotion tools',
+        ogTitle: 'Revaya Flyer Check™ | AI-Powered Event Flyer Analysis',
+        ogDescription: 'Get instant AI-powered feedback on your event flyers. Analyze clarity, design, missing information, and conversion blockers before you publish.',
         ogImage: defaultOGImage,
         ogType: 'website'
     },

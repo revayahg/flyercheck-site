@@ -920,6 +920,39 @@ export const blogPosts = [
   },
 ];
 
+const flyerBlindSpotsPost = {
+  title:
+    "You're Too Close to the Flyer: How Great Events Lose People Before They Even Show Up",
+  description:
+    "Discover how event organizers miss critical details in their flyers that prevent potential attendees from showing up. Learn the common blind spots and how to fix them.",
+  url: "/blog/flyer-blind-spots",
+  date: "January 4, 2026",
+  author: "Jolyse Stultz",
+};
+
+function parsePostDate(dateStr) {
+  if (!dateStr) return 0;
+  const d = new Date(dateStr);
+  return Number.isNaN(d.getTime()) ? 0 : d.getTime();
+}
+
+/** On-site blog posts for homepage / internal linking (includes flyer-blind-spots). */
+export function getLatestInternalPosts(count = 4) {
+  const allInternalPosts = [
+    flyerBlindSpotsPost,
+    ...blogPosts.map((p) => ({
+      title: p.title,
+      description: p.description,
+      url: `/blog/${p.slug}`,
+      date: p.date,
+      author: p.author,
+    })),
+  ];
+  return allInternalPosts
+    .sort((a, b) => parsePostDate(b.date) - parsePostDate(a.date))
+    .slice(0, count);
+}
+
 export function getPostBySlug(slug) {
   return blogPosts.find((p) => p.slug === slug) ?? null;
 }

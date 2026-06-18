@@ -1,6 +1,6 @@
 import React from "react";
 import { reportError } from "../utils/errorHandler";
-import { blogPosts } from "../content/blogPosts";
+import { getLatestInternalPosts } from "../content/blogPosts";
 
 export function WhatWeDoSection() {
   try {
@@ -141,43 +141,24 @@ export function WhyRevayaExistsSection() {
 
 export function InsightsSection() {
   try {
-    const flyerBlindSpots = {
-      title:
-        "You're Too Close to the Flyer: How Great Events Lose People Before They Even Show Up",
-      description:
-        "Discover how event organizers miss critical details in their flyers that prevent potential attendees from showing up. Learn the common blind spots and how to fix them.",
-      url: "/blog/flyer-blind-spots",
-      date: "January 4, 2026",
-      author: "Jolyse Stultz"
-    };
-    const allInternalPosts = [
-      flyerBlindSpots,
-      ...blogPosts.map((p) => ({
-        title: p.title,
-        description: p.description,
-        url: `/blog/${p.slug}`,
-        date: p.date,
-        author: p.author
-      }))
-    ];
-    const parseDate = (dateStr) => {
-      const d = new Date(dateStr);
-      return isNaN(d.getTime()) ? 0 : d.getTime();
-    };
-    const featuredPosts = allInternalPosts
-      .sort((a, b) => parseDate(b.date) - parseDate(a.date))
-      .slice(0, 3);
+    const featuredPosts = getLatestInternalPosts(4);
 
     return (
-      <section className="homepage-section insights-section" data-name="insights">
+      <section
+        className="homepage-section insights-section"
+        data-name="insights"
+        aria-labelledby="latest-blog-heading"
+      >
         <div className="container">
-          <h2 className="section-title" data-name="insights-title">Insights & Resources</h2>
+          <h2 id="latest-blog-heading" className="section-title" data-name="insights-title">
+            Latest from the Blog
+          </h2>
           <p className="section-subtitle" data-name="insights-subtitle">
-            Original thinking on events, operations, and guest experience.
+            Event operations and hospitality insights from FlyerCheck.
           </p>
           <div className="insights-grid" data-name="insights-grid">
             {featuredPosts.map((post, index) => (
-              <div key={index} className="insight-card" data-name={`insight-${index}`}>
+              <article key={post.url} className="insight-card" data-name={`insight-${index}`}>
                 <h3 className="insight-title" data-name={`insight-title-${index}`}>
                   <a href={post.url}>{post.title}</a>
                 </h3>
@@ -189,11 +170,11 @@ export function InsightsSection() {
                   <span className="insight-date">{post.date}</span>
                   <a href={post.url} className="insight-link">Read More →</a>
                 </div>
-              </div>
+              </article>
             ))}
           </div>
           <div className="insights-cta" data-name="insights-cta">
-            <a href="/blog" className="btn btn-primary">View All Articles</a>
+            <a href="/blog" className="btn btn-primary">View all posts</a>
           </div>
         </div>
       </section>

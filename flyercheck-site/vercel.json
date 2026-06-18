@@ -12,12 +12,12 @@
     },
     {
       "source": "/revaya-host",
-      "destination": "https://www.revayahg.com/",
+      "destination": "/",
       "permanent": true
     },
     {
       "source": "/revaya-host/",
-      "destination": "https://www.revayahg.com/",
+      "destination": "/",
       "permanent": true
     }
   ],

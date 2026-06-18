@@ -37,6 +37,9 @@ function BlogPostFlyerBlindSpots() {
                                         January 4, 2026
                                     </span>
                                 </div>
+                                <p className="blog-article-author-bio" style={{ marginTop: "0.75rem", color: "#4A4A4A", lineHeight: 1.6 }}>
+                                    15+ years in hospitality and event operations; CEO at Revaya Hospitality Group and lead author on FlyerCheck.
+                                </p>
                             </header>
 
                             {/* Top CTA Banner */}

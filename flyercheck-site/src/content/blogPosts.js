@@ -206,43 +206,44 @@ export const blogPosts = [
       {
         heading: null,
         paragraphs: [
-          "Most organizers believe the guest journey begins at check-in. It begins at discovery.",
+          "Most organizers believe the guest journey begins at check-in. It begins at discovery — the first flyer, email, or social post a potential guest sees.",
+          "If that first touch is unclear, the journey ends before registration opens. Operations teams feel the consequence on event day as no-shows and confused arrivals, but the failure often started in marketing copy weeks earlier.",
         ],
       },
       {
         heading: "The First Impression",
         paragraphs: [
-          "A flyer. An Instagram post. A shared link.",
-          "If key information is missing — date, time, address — friction begins immediately.",
+          "A flyer. An Instagram post. A shared link. Each is a conversion surface, not decoration.",
+          "If key information is missing — date, time, address, price, dress code — friction begins immediately. Guests silently decide \"not worth figuring out\" and scroll past.",
+          "Flyer clarity is an operational input, not only a design preference. See <a href=\"/blog/flyer-blind-spots\">You're Too Close to the Flyer</a> for how teams miss what outsiders spot instantly.",
         ],
       },
       {
         heading: "Information Gaps Reduce Attendance",
         paragraphs: [
           "Potential guests hesitate when they cannot quickly answer: Where is this? How much does it cost? What should I expect? Is it worth my time?",
-          "Hesitation lowers conversion.",
+          "Hesitation lowers conversion. Every unanswered question is a micro-exit — and most exits are never tracked in your CRM.",
         ],
       },
       {
         heading: "Registration Friction",
         paragraphs: [
-          "Long forms. Confusing ticket tiers. Poor mobile formatting.",
-          "Small annoyances compound.",
+          "Long forms. Confusing ticket tiers. Poor mobile formatting. Each adds drop-off after marketing already did its job.",
+          "Small annoyances compound. The best pre-event communication cannot recover from a registration flow that feels harder than the event sounds worth attending.",
         ],
       },
       {
         heading: "Pre-Event Communication",
         paragraphs: [
           "Confirmation emails set expectations. Clear parking instructions reduce stress. Dress codes reduce uncertainty. Arrival windows reduce bottlenecks.",
+          "These messages are part of the guest journey, not administrative afterthoughts. Teams that treat them as operations work see fewer day-of surprises at the door.",
         ],
       },
       {
         heading: "Emotional Readiness",
         paragraphs: [
-          "Guests want to feel confident before arrival.",
-          "Confidence increases attendance likelihood.",
-          "Operational clarity creates emotional ease.",
-          "Marketing and operations are not separate. They are one system.",
+          "Guests want to feel confident before arrival. Confidence increases attendance likelihood and on-site patience when lines or weather test the experience.",
+          "Operational clarity creates emotional ease. Marketing and operations are not separate departments — they are one system that starts with what you publish before tickets sell.",
         ],
       },
     ],
@@ -258,20 +259,22 @@ export const blogPosts = [
       {
         heading: null,
         paragraphs: [
-          "Great events feel effortless. They are not.",
+          "Great events feel effortless. They are not. Guests experience the program; operators experience the scaffolding — comms, vendors, cues, and contingency paths that never appear on the public agenda.",
+          "What looks like \"smooth\" from the floor is usually the result of invisible structure built weeks before and stress-tested in the final 72 hours.",
         ],
       },
       {
         heading: "Back-of-House Communication",
         paragraphs: [
           "Clear command structure. Defined decision-makers. Fast escalation paths.",
-          "When teams know who owns what, confusion decreases.",
+          "When teams know who owns what, confusion decreases. When they don't, every delay becomes a committee meeting in the hallway.",
         ],
       },
       {
         heading: "Vendor Alignment",
         paragraphs: [
           "Well-run events align vendors before event day. Roles are clear. Expectations are documented. Payments are understood.",
+          "Misaligned vendors don't fail loudly at contract signing — they fail quietly at load-in when two teams thought the other was bringing power or linens.",
         ],
       },
       {
@@ -953,6 +956,19 @@ export function getLatestInternalPosts(count = 4) {
   return allInternalPosts
     .sort((a, b) => parsePostDate(b.date) - parsePostDate(a.date))
     .slice(0, count);
+}
+
+export const authorBios = {
+  "Jolyse Stultz":
+    "15+ years in hospitality and event operations; CEO at Revaya Hospitality Group and lead author on FlyerCheck.",
+  "Revaya Hospitality Group":
+    "FlyerCheck editorial team — practical guidance on event operations, flyers, and hospitality technology.",
+  "Thiago Ferreira":
+    "Chief AI Officer at Revaya Hospitality Group; builds AI tools for hospitality and live-event teams.",
+};
+
+export function getAuthorBio(author) {
+  return authorBios[author] ?? null;
 }
 
 export function getPostBySlug(slug) {

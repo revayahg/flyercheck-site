@@ -1,9 +1,11 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { reportError } from "../utils/errorHandler";
+import { loadAdSense } from "../utils/loadAdSense";
 
 function AdBanner() {
     try {
         const adRef = useRef(null);
+        const [adsReady, setAdsReady] = useState(false);
         const adSlot =
             import.meta.env.VITE_ADSENSE_BANNER_SLOT &&
             /^\d+$/.test(import.meta.env.VITE_ADSENSE_BANNER_SLOT)
@@ -11,13 +13,29 @@ function AdBanner() {
                 : "8254176920";
 
         useEffect(() => {
-            if (!adRef.current || typeof window === "undefined" || !window.adsbygoogle) return;
+            let cancelled = false;
+            loadAdSense()
+                .then(() => {
+                    if (!cancelled) setAdsReady(true);
+                })
+                .catch((error) => {
+                    console.error("AdSense load error:", error);
+                });
+            return () => {
+                cancelled = true;
+            };
+        }, []);
+
+        useEffect(() => {
+            if (!adsReady || !adRef.current || typeof window === "undefined" || !window.adsbygoogle) return;
             try {
                 window.adsbygoogle.push({});
             } catch (error) {
                 console.error("AdBanner push error:", error);
             }
-        }, []);
+        }, [adsReady]);
+
+        if (!adsReady) return null;
 
         return (
             <div className="ad-banner" data-name="ad-banner">

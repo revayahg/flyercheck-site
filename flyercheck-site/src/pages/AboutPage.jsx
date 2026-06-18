@@ -41,6 +41,9 @@ export default function AboutPage() {
         <div className="about-section" data-name="about-content">
           <div className="container">
             <h1 className="about-title">Our Founders</h1>
+            <p className="why-revaya-text" style={{ maxWidth: "720px", margin: "0 auto 2rem", textAlign: "center" }}>
+              FlyerCheck is built by the team at Revaya Hospitality Group — event operators and technologists who help promoters catch flyer mistakes before launch and run stronger live experiences. Meet the founders behind the product on flyercheck.io.
+            </p>
 
             <div
               className="founders-grid"

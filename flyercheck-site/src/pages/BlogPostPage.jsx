@@ -2,7 +2,7 @@ import React from "react";
 import { useParams, Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { getPostBySlug, getRelatedPosts } from "../content/blogPosts";
+import { getPostBySlug, getRelatedPosts, getAuthorBio } from "../content/blogPosts";
 import { reportError } from "../utils/errorHandler";
 
 function BlogPostPage() {
@@ -32,6 +32,7 @@ function BlogPostPage() {
     }
 
     const relatedPosts = getRelatedPosts(post.slug, 3);
+    const authorBio = getAuthorBio(post.author);
 
     return (
       <div data-name="blog-post-page">
@@ -51,6 +52,11 @@ function BlogPostPage() {
                     {post.author}
                   </span>
                 </div>
+                {authorBio && (
+                  <p className="blog-article-author-bio" style={{ marginTop: "0.75rem", color: "#4A4A4A", lineHeight: 1.6 }}>
+                    {authorBio}
+                  </p>
+                )}
               </header>
 
               <div className="blog-article-body">

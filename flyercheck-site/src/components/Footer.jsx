@@ -2,8 +2,6 @@ import React from "react";
 import { reportError } from "../utils/errorHandler";
 import logo from "../assets/flyercheck-logo-full.png";
 
-const REVAYA_SITE = "https://www.revayahg.com";
-
 export default function Footer() {
   try {
     const year = new Date().getFullYear();
@@ -30,11 +28,7 @@ export default function Footer() {
             </div>
 
             <div className="footer-links" data-name="footer-links">
-              <a
-                href={`${REVAYA_SITE}/about`}
-                className="footer-link"
-                data-name="footer-link-about"
-              >
+              <a href="/about" className="footer-link" data-name="footer-link-about">
                 About
               </a>
               <a href="/blog" className="footer-link" data-name="footer-link-blog">

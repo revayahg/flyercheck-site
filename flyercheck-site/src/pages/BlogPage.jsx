@@ -106,30 +106,20 @@ function BlogPage() {
 
         <div className="blog-section" data-name="blog-content">
           <div className="container">
-            <h1 className="blog-title">Our Blog</h1>
+            <h1 className="blog-title">Latest from the Blog</h1>
             <p className="blog-subtitle">
-              Articles, citations, and insights on hospitality, AI, and event
-              management from Revaya Hospitality Group and founders Jolyse Stultz
-              and Thiago Ferreira — on FlyerCheck and across the web.
+              Event operations and hospitality insights from FlyerCheck — plus
+              selected features from our founders across the web.
             </p>
 
             <div className="blog-posts-grid">
               {allPosts.map((post, index) => (
                 <article key={index} className="blog-post-card">
                   <div className="blog-post-header">
-                    <div
-                      className="blog-platform-icon"
-                      style={{ color: post.color }}
-                    >
-                      <i className={post.icon}></i>
+                    <div className="blog-platform-icon">
+                      <i className={post.icon} aria-hidden="true"></i>
                     </div>
-                    <div
-                      className="blog-platform-badge"
-                      style={{
-                        backgroundColor: post.color + "20",
-                        color: post.color,
-                      }}
-                    >
+                    <div className="blog-platform-badge">
                       {post.platform}
                     </div>
                   </div>

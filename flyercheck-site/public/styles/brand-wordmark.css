@@ -1,0 +1,41 @@
+.brand-wordmark {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: inherit;
+    line-height: 1;
+}
+
+.brand-wordmark-name {
+    font-family: var(--fc-font-serif);
+    font-size: var(--fc-text-wordmark);
+    color: var(--fc-off-white);
+    letter-spacing: 0.02em;
+}
+
+.brand-wordmark-by {
+    font-family: var(--fc-font-sans);
+    font-size: 11px;
+    color: var(--fc-muted);
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+.brand-wordmark--footer .brand-wordmark-name {
+    font-size: 1.25rem;
+}
+
+.brand-wordmark--footer .brand-wordmark-by {
+    font-size: 10px;
+}
+
+@media (max-width: 768px) {
+    .brand-wordmark-name {
+        font-size: 18px;
+    }
+
+    .brand-wordmark-by {
+        font-size: 10px;
+    }
+}

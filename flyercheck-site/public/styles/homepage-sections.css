@@ -164,6 +164,98 @@
     margin: 0 auto;
 }
 
+/* Flyer mistakes — text-first editorial band */
+.flyer-mistakes-section {
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+    background-color: var(--fc-surface, #121210);
+    border-top: 1px solid var(--fc-border, #3A3A36);
+    border-bottom: 1px solid var(--fc-border, #3A3A36);
+}
+
+.flyer-mistakes-inner {
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.flyer-mistakes-section .section-title {
+    margin-bottom: 0.75rem;
+}
+
+.flyer-mistakes-lead {
+    margin: 0 0 1.5rem;
+    font-family: var(--fc-font-serif, 'GFS Didot', serif);
+    font-size: 1.25rem;
+    line-height: 1.4;
+    color: var(--fc-off-white, #FAFAF7);
+}
+
+.flyer-mistakes-copy {
+    text-align: left;
+    border-top: 1px solid var(--fc-border, #3A3A36);
+    padding-top: 1.5rem;
+}
+
+.flyer-mistakes-copy p {
+    margin: 0 0 1rem;
+    font-family: var(--fc-font-sans, 'IBM Plex Sans', sans-serif);
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--fc-off-white, #FAFAF7);
+}
+
+.flyer-mistakes-copy p:last-child {
+    margin-bottom: 0;
+    color: var(--fc-muted, #9C9C96);
+}
+
+/* FlyerCheck FAQ */
+.flyercheck-faq-list {
+    max-width: 720px;
+    margin: 2rem auto 0;
+    padding: 0;
+}
+
+.flyercheck-faq-item {
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 0.75rem;
+    background-color: var(--fc-surface, #121210);
+    border: 0.5px solid var(--fc-border, #3A3A36);
+    border-radius: 8px;
+}
+
+.flyercheck-faq-item:last-child {
+    margin-bottom: 0;
+}
+
+.flyercheck-faq-question {
+    font-family: var(--fc-font-sans, 'IBM Plex Sans', sans-serif);
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--fc-off-white, #FAFAF7);
+    margin: 0 0 0.5rem;
+}
+
+.flyercheck-faq-answer {
+    margin: 0;
+    font-family: var(--fc-font-sans, 'IBM Plex Sans', sans-serif);
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--fc-muted, #9C9C96);
+}
+
+@media (max-width: 768px) {
+    .flyer-mistakes-section {
+        padding-top: 2.5rem;
+        padding-bottom: 2.5rem;
+    }
+
+    .flyer-mistakes-lead {
+        font-size: 1.125rem;
+    }
+}
+
 /* Insights Section */
 .insights-grid {
     display: grid;

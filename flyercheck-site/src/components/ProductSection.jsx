@@ -1,40 +1,62 @@
 import React from "react";
-import ProductCard from "./ProductCard";
 import { reportError } from "../utils/errorHandler";
 
-export default function ProductSection() {
+export default function ProductSection({ showCta = true }) {
   try {
-    const products = [
+    const checks = [
       {
-        title: "Revaya FlyerCheck™",
+        icon: "fas fa-calendar-day",
+        title: "Missing event details",
         description:
-          "AI-powered flyer quality check that catches missing details and design issues before you publish.",
-        link: "/flyercheck",
-        ctaText: "Try FlyerCheck"
-      }
+          "Dates, times, venues, and ticket links — the basics people need before they decide to show up.",
+      },
+      {
+        icon: "fas fa-eye",
+        title: "Readability at a glance",
+        description:
+          "Text size, contrast, and clutter that make your flyer hard to scan on a phone screen.",
+      },
+      {
+        icon: "fas fa-bullhorn",
+        title: "Weak calls to action",
+        description:
+          "Vague or buried CTAs that leave people unsure what to do next.",
+      },
     ];
 
     return (
-      <section className="product-section" data-name="product-section">
+      <section className="product-section flyercheck-value-section" data-name="flyercheck-value-section">
         <div className="container">
           <h2 className="section-title" data-name="section-title">
-            Current Products & Platforms
+            What FlyerCheck flags before you post
           </h2>
-          <p className="son-subtitle" data-name="product-section-subtitle">
-            Practical tools built for hospitality and live-event workflows.
+          <p className="section-subtitle" data-name="product-section-subtitle">
+            A free AI pass on the flyer details that cost you RSVPs — not a redesign tool, a second set of eyes.
           </p>
 
-          <div className="products-preview" data-name="products-preview">
-            {products.map((p, idx) => (
-              <ProductCard
-                key={idx}
-                title={p.title}
-                description={p.description}
-                link={p.link}
-                ctaText={p.ctaText}
-              />
+          <div className="pillars-grid" data-name="flyercheck-checks-grid">
+            {checks.map((item, idx) => (
+              <div key={idx} className="pillar-card" data-name={`flyercheck-check-${idx}`}>
+                <div className="pillar-icon" data-name={`flyercheck-check-icon-${idx}`}>
+                  <i className={item.icon} aria-hidden="true" />
+                </div>
+                <h3 className="pillar-title" data-name={`flyercheck-check-title-${idx}`}>
+                  {item.title}
+                </h3>
+                <p className="pillar-description" data-name={`flyercheck-check-desc-${idx}`}>
+                  {item.description}
+                </p>
+              </div>
             ))}
           </div>
+
+          {showCta && (
+            <div className="insights-cta" data-name="flyercheck-value-cta">
+              <a href="/flyercheck" className="btn btn-primary">
+                Run a free flyer check
+              </a>
+            </div>
+          )}
         </div>
       </section>
     );

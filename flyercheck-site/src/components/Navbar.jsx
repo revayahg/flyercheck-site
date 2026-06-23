@@ -1,6 +1,6 @@
 import React from "react";
 import { reportError } from "../utils/errorHandler";
-import logo from "../assets/flyercheck-logo-full.png";
+import BrandWordmark from "./BrandWordmark";
 
 export default function Navbar() {
   try {
@@ -13,17 +13,9 @@ export default function Navbar() {
     return (
       <nav className="navbar" data-name="navbar">
         <div className="navbar-container">
-          <a href="/" className="navbar-brand" data-name="navbar-brand">
-            <img
-              src={logo}
-              alt="Revaya FlyerCheck — Less Stress, More Show"
-              className="navbar-logo"
-              data-name="navbar-logo"
-            />
-            <span className="navbar-brand-text" data-name="navbar-brand-text">
-              Revaya FlyerCheck
-            </span>
-          </a>
+          <div className="navbar-brand" data-name="navbar-brand">
+            <BrandWordmark href="/" size="nav" />
+          </div>
 
           <button
             className="mobile-menu-btn"
@@ -42,17 +34,17 @@ export default function Navbar() {
             <a href="/" className="nav-link" data-name="nav-home">
               Home
             </a>
-            <a href="/privacy" className="nav-link" data-name="nav-privacy">
-              Privacy
-            </a>
-            <a href="/terms" className="nav-link" data-name="nav-terms">
-              Terms
+            <a href="/flyercheck" className="nav-link" data-name="nav-flyercheck">
+              FlyerCheck
             </a>
             <a href="/blog" className="nav-link" data-name="nav-blog">
               Blog
             </a>
             <a href="/contact" className="nav-link" data-name="nav-contact">
               Contact
+            </a>
+            <a href="/privacy" className="nav-link" data-name="nav-privacy">
+              Privacy
             </a>
           </div>
         </div>

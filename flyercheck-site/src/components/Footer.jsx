@@ -1,6 +1,6 @@
 import React from "react";
 import { reportError } from "../utils/errorHandler";
-import logo from "../assets/flyercheck-logo-full.png";
+import BrandWordmark from "./BrandWordmark";
 
 export default function Footer() {
   try {
@@ -11,18 +11,10 @@ export default function Footer() {
         <div className="container mx-auto px-4">
           <div className="footer-content" data-name="footer-content">
             <div className="footer-brand" data-name="footer-brand">
-              <img
-                src={logo}
-                alt="Revaya FlyerCheck — Less Stress, More Show"
-                className="footer-brand-logo"
-                data-name="footer-brand-logo"
-              />
+              <BrandWordmark href="/" size="footer" />
               <div className="footer-brand-text" data-name="footer-brand-text">
-                <span className="footer-brand-name" data-name="footer-brand-name">
-                  Revaya Hospitality Group™
-                </span>
                 <span className="footer-brand-tagline" data-name="footer-brand-tagline">
-                  Less Stress. More Show.
+                  A Revaya Hospitality Group product
                 </span>
               </div>
             </div>
@@ -30,6 +22,9 @@ export default function Footer() {
             <div className="footer-links" data-name="footer-links">
               <a href="/about" className="footer-link" data-name="footer-link-about">
                 About
+              </a>
+              <a href="/flyercheck" className="footer-link" data-name="footer-link-flyercheck">
+                FlyerCheck
               </a>
               <a href="/blog" className="footer-link" data-name="footer-link-blog">
                 Blog

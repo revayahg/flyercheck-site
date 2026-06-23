@@ -15,9 +15,9 @@ function AnalysisResults({ analysis }) {
         };
 
         const getScoreColor = (score) => {
-            if (score >= 8) return '#10b981'; // green
-            if (score >= 6) return '#f59e0b'; // yellow
-            return '#ef4444'; // red
+            if (score >= 8) return '#3D8B5F';
+            if (score >= 6) return '#F2C200';
+            return '#F2C200';
         };
 
         return (

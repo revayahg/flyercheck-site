@@ -50,7 +50,7 @@ function ContactPage() {
             email: formData.email,
             subject: formData.subject,
             message: formData.message,
-            source: "revayahg.com contact form",
+            source: "flyercheck.io contact form",
           }),
         });
 
@@ -79,9 +79,9 @@ function ContactPage() {
 
         <div className="contact-section" data-name="contact-content">
           <div className="container">
-            <h1 className="contact-title">Contact Us</h1>
+            <h1 className="contact-title">Contact</h1>
             <p className="contact-subtitle">
-              We'd love to hear from you. Get in touch with us!
+              Questions about FlyerCheck or event ops? Reach out — we read every message.
             </p>
 
             <div className="contact-content-wrapper">

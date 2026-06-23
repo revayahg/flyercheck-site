@@ -1,0 +1,291 @@
+/**
+ * FlyerCheck type scale — loads last, overrides legacy px/rem across all pages.
+ * Guide v2: H1 32 Didot | H2 20 Plex Sans 500 | H3 16 Plex Sans 500 | Body 14 | UI 13 | Fine 11
+ */
+
+/* ── H1 — page headlines (Didot 32px) ── */
+.hero-title,
+.blog-title,
+.blog-article-title,
+.contact-title,
+.about-title,
+.about-hero-title,
+.privacy-title,
+.terms-title,
+.sitemap-title,
+.file-uploader-title,
+.results-title,
+.analyzing-title,
+.page-content > h1,
+.page-content-inner > h1 {
+    font-family: var(--fc-font-serif);
+    font-size: var(--fc-text-h1);
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+/* ── H2 — section headings (IBM Plex Sans 20px medium) ── */
+.section-title,
+.product-section .section-title,
+.sponsored-section .section-title,
+.host-content-title,
+.flyercheck-section-title,
+.flyercheck-subtitle,
+.what-we-look-for-title,
+.blog-top-cta-title,
+.results-title + .result-section h4:first-child,
+.page-content h2,
+.page-content-inner > h2,
+.about-section h2,
+.about-info-title,
+.privacy-content h2,
+.terms-content h2,
+.sitemap-subtitle {
+    font-family: var(--fc-font-sans);
+    font-size: var(--fc-text-h2);
+    font-weight: 500;
+    line-height: 1.3;
+}
+
+/* ── H3 — card / subsection titles (IBM Plex Sans 16px medium) ── */
+.pillar-title,
+.insight-title,
+.insight-title a,
+.product-card-title,
+.blog-post-title,
+.blog-post-card .blog-post-title,
+.host-content-subtitle,
+.host-feature-title,
+.flyercheck-benefit-title,
+.host-faq-question,
+.flyercheck-faq-question,
+.flyercheck-benefit-card h3,
+.page-content h3,
+.about-section h3 {
+    font-family: var(--fc-font-sans);
+    font-size: var(--fc-text-h3);
+    font-weight: 500;
+    line-height: 1.35;
+}
+
+/* In-article / in-page subsections */
+.blog-article-body h2,
+.blog-post-body h2,
+.blog-section-content h2 {
+    font-family: var(--fc-font-sans);
+    font-size: var(--fc-text-h2);
+    font-weight: 500;
+    line-height: 1.3;
+}
+
+/* Blog article in-body h3+ */
+.blog-article-body h3,
+.blog-post-body h3,
+.blog-section-content h3,
+.page-content h4 {
+    font-family: var(--fc-font-sans);
+    font-size: var(--fc-text-body);
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+/* ── Body copy (IBM Plex Sans 14px) ── */
+.section-subtitle,
+.son-subtitle,
+.pillar-description,
+.insight-description,
+.why-revaya-text,
+.event-ops-prose p,
+.product-card-description,
+.hero-subtitle,
+.hero-description,
+.host-content-text,
+.host-content-list li,
+.host-faq-answer,
+.flyercheck-intro-text,
+.flyercheck-benefits-intro,
+.flyercheck-benefits-closing,
+.flyercheck-benefit-card p,
+.host-feature-card p,
+.flyercheck-faq-answer,
+.blog-subtitle,
+.blog-post-description,
+.blog-post-excerpt,
+.blog-article-body p,
+.blog-post-body p,
+.blog-section-content p,
+.blog-post-body li,
+.contact-subtitle,
+.about-subtitle,
+.about-intro,
+.about-text,
+.about-info-p,
+.privacy-content p,
+.privacy-content li,
+.terms-content p,
+.terms-content li,
+.page-content p,
+.page-content li,
+.sitemap-link {
+.client-item,
+.feedback-text,
+.positive-text,
+.score-label,
+.upload-zone p,
+.what-we-look-for-item span,
+.event-type-label {
+    font-family: var(--fc-font-sans);
+    font-size: var(--fc-text-body);
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+/* ── UI labels — nav, buttons, meta (IBM Plex Sans 13px) ── */
+.nav-link,
+.dropdown-btn,
+.dropdown-item,
+.footer-link,
+.footer-legal-link,
+.footer-solutions-list a,
+.insight-link,
+.btn,
+.btn-primary,
+.cta-button-primary,
+.cta-button-secondary,
+.analyze-button,
+.blog-read-more-btn,
+.blog-top-cta-button,
+.contact-submit-btn,
+.contact-form .submit-button,
+.contact-form button,
+.blog-post-author,
+.blog-post-meta,
+.blog-post-meta span,
+.event-type-select,
+.audience-option-label,
+.score-number,
+.result-section h4,
+.feedback-dimension,
+.preview-title,
+.blog-back-link {
+    font-family: var(--fc-font-sans);
+    font-size: var(--fc-text-ui);
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.cta-button-primary,
+.analyze-button,
+.blog-read-more-btn,
+.blog-top-cta-button,
+.contact-submit-btn,
+.contact-form .submit-button,
+.contact-form button {
+    font-weight: 500;
+}
+
+/* ── Fine print (IBM Plex Sans 11px) ── */
+.footer-copyright,
+.footer-brand-tagline,
+.insight-author,
+.insight-date,
+.blog-post-date,
+.legal-fine-print,
+.uploader-legal-notice,
+.blog-post-meta i,
+.preview-filename,
+.sitemap-group a + span,
+.privacy-content .last-updated,
+.terms-content .last-updated {
+    font-family: var(--fc-font-sans);
+    font-size: var(--fc-text-fine);
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+/* ── FlyerCheck strip (wordmark + tagline, not a page H1) ── */
+.flyercheck-page .hero.hero-flyercheck .hero-subtitle,
+.flyercheck-landing .hero.hero-flyercheck .hero-subtitle {
+    font-size: var(--fc-text-body);
+}
+
+.flyercheck-page .hero.hero-flyercheck .hero-description,
+.flyercheck-landing .hero.hero-flyercheck .hero-description {
+    font-size: var(--fc-text-body);
+}
+
+/* ── Analysis / upload misc ── */
+.analyzing-subtitle {
+    font-size: var(--fc-text-body);
+}
+
+.score-value {
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.score-value::after {
+    font-size: var(--fc-text-h3);
+}
+
+.message {
+    font-size: var(--fc-text-body);
+}
+
+/* Primary buttons — load last; overrides legacy tan .btn-primary in older CSS files */
+.btn.btn-primary,
+a.btn.btn-primary,
+.btn-primary,
+.cta-button-primary,
+.analyze-button,
+.product-card-cta,
+.contact-submit-btn,
+.contact-form .submit-button,
+.contact-form button[type="submit"],
+.blog-read-more-btn,
+.blog-top-cta-button {
+    background: var(--fc-off-white);
+    background-image: none;
+    color: var(--fc-near-black);
+    border: 1.5px solid var(--fc-hazard);
+    box-shadow: 0 0 14px var(--fc-hazard-glow);
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+.btn.btn-primary:hover,
+a.btn.btn-primary:hover,
+.btn-primary:hover,
+.cta-button-primary:hover,
+.analyze-button:hover:not(:disabled),
+.product-card-cta:hover,
+.contact-submit-btn:hover,
+.contact-form button[type="submit"]:hover,
+.contact-form .submit-button:hover:not(:disabled),
+.blog-read-more-btn:hover,
+.blog-top-cta-button:hover {
+    background: var(--fc-off-white);
+    background-image: none;
+    color: var(--fc-near-black);
+    opacity: 0.92;
+    transform: translateY(-1px);
+    box-shadow: 0 0 18px var(--fc-hazard-glow-strong);
+}
+
+/* ── Mobile: slight H1 reduction only ── */
+@media (max-width: 768px) {
+    .hero-title,
+    .blog-title,
+    .blog-article-title,
+    .contact-title,
+    .about-title,
+    .about-hero-title,
+    .privacy-title,
+    .terms-title,
+    .file-uploader-title,
+    .results-title,
+    .analyzing-title {
+        font-size: var(--fc-text-h1-mobile);
+    }
+}

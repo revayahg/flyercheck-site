@@ -6,31 +6,31 @@ export function WhatWeDoSection() {
   try {
     const pillars = [
       {
-        icon: "fas fa-calendar-check",
-        title: "Event Operations Technology",
+        icon: "fas fa-search",
+        title: "Scans for what audiences notice first",
         description:
-          "We build tools that streamline event planning, vendor management, and day-of operations. Our technology reduces administrative overhead so teams can focus on creating exceptional experiences."
+          "FlyerCheck looks at the details guests actually use to decide — date, time, location, price, and how to get tickets — not abstract design scores.",
       },
       {
-        icon: "fas fa-hand-holding-heart",
-        title: "Guest & Experience Strategy",
+        icon: "fas fa-mobile-alt",
+        title: "Built for phone-screen speed",
         description:
-          "Built on deep hospitality expertise, we help organizations understand and improve the guest journey—from discovery through attendance. We combine data insights with hands-on experience to drive satisfaction and attendance."
+          "Most flyers get seen on a feed, not a monitor. The check focuses on readability, hierarchy, and contrast at mobile scale.",
       },
       {
-        icon: "fas fa-chart-line",
-        title: "Ancillary Revenue Technology",
+        icon: "fas fa-bolt",
+        title: "Fast enough for launch day",
         description:
-          "We develop platforms that increase ancillary revenue and unlock new streams for events and partners. Our technology helps teams optimize vendor relationships and create mutually beneficial opportunities."
-      }
+          "Upload, review, adjust. No account, no long onboarding — meant for the hour before you hit post.",
+      },
     ];
 
     return (
-      <section className="homepage-section what-we-do-section" data-name="what-we-do">
+      <section className="homepage-section what-we-do-section" data-name="how-flyercheck-works">
         <div className="container">
-          <h2 className="section-title" data-name="what-we-do-title">What We Do</h2>
+          <h2 className="section-title" data-name="what-we-do-title">How FlyerCheck works</h2>
           <p className="section-subtitle" data-name="what-we-do-subtitle">
-            We build technology and provide strategic guidance for modern hospitality and live events.
+            One upload. A clear list of what to fix. Then you publish with confidence.
           </p>
           <div className="pillars-grid" data-name="pillars-grid">
             {pillars.map((pillar, index) => (
@@ -60,20 +60,20 @@ export function WhatWeDoSection() {
 export function WhoWeWorkWithSection() {
   try {
     const clients = [
-      { label: "Event Producers", icon: "fas fa-star" },
-      { label: "Festivals And City-Wide Events", icon: "fas fa-music" },
-      { label: "Conferences And Conventions", icon: "fas fa-microphone" },
-      { label: "Cruise Lines", icon: "fas fa-ship" },
-      { label: "Nonprofits And Community Events", icon: "fas fa-hand-holding-heart" },
-      { label: "Hotels & Property Managers", icon: "fas fa-hotel" }
+      { label: "Event promoters & street teams", icon: "fas fa-bullhorn" },
+      { label: "Independent organizers", icon: "fas fa-star" },
+      { label: "Venue & nightlife marketers", icon: "fas fa-building" },
+      { label: "Festivals & city-wide events", icon: "fas fa-music" },
+      { label: "Brand activations & pop-ups", icon: "fas fa-store" },
+      { label: "Community & nonprofit events", icon: "fas fa-hand-holding-heart" },
     ];
 
     return (
-      <section className="homepage-section who-we-work-with-section" data-name="who-we-work-with">
+      <section className="homepage-section who-we-work-with-section" data-name="who-uses-flyercheck">
         <div className="container">
-          <h2 className="section-title" data-name="who-we-work-with-title">Who We Work With</h2>
+          <h2 className="section-title" data-name="who-we-work-with-title">Who uses FlyerCheck</h2>
           <p className="section-subtitle" data-name="who-we-work-with-subtitle">
-            We serve organizations that prioritize exceptional guest experiences and operational excellence.
+            Anyone shipping a flyer under pressure — when there&apos;s no time for a second designer review.
           </p>
           <div className="clients-list" data-name="clients-list">
             {clients.map((client, index) => (
@@ -95,37 +95,29 @@ export function WhoWeWorkWithSection() {
   }
 }
 
-export function WhyRevayaExistsSection() {
+export function WhyFlyerCheckExistsSection() {
   try {
-    const whyRevayaImage =
-      "https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80";
+    const sectionImage =
+      "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80";
 
     return (
-      <section className="homepage-section why-revaya-section" data-name="why-revaya">
+      <section className="homepage-section why-revaya-section" data-name="why-flyercheck">
         <div className="container">
-          <h2 className="section-title" data-name="why-revaya-title">Why Revaya Exists</h2>
-          <div className="why-revaya-grid" data-name="why-revaya-content">
-            <div className="why-revaya-image-wrap" data-name="why-revaya-image">
+          <h2 className="section-title" data-name="why-flyercheck-title">Why FlyerCheck exists</h2>
+          <div className="why-revaya-grid" data-name="why-flyercheck-content">
+            <div className="why-revaya-image-wrap" data-name="why-flyercheck-image">
               <img
-                src={whyRevayaImage}
-                alt="Event and hospitality operations"
+                src={sectionImage}
+                alt="Crowd at a live event viewing promotional materials"
                 className="why-revaya-image"
               />
             </div>
-            <div className="why-revaya-content" data-name="why-revaya-text-wrap">
-              <p className="why-revaya-text" data-name="why-revaya-text-1">
-                Event planning has always relied on fragmented tools—spreadsheets for budgets, documents
-                for timelines, email for communication, and generic project management software that
-                wasn't designed for hospitality workflows. These tools work in isolation, creating
-                information silos and forcing teams to constantly switch contexts.
+            <div className="why-revaya-content" data-name="why-flyercheck-text-wrap">
+              <p className="why-revaya-text" data-name="why-flyercheck-text-1">
+                Flyers go out fast — often the same day the lineup changes or the venue updates. The people posting them aren&apos;t always the same people who designed them, and there&apos;s rarely a formal QA step before something hits the feed.
               </p>
-              <p className="why-revaya-text" data-name="why-revaya-text-2">
-                Spreadsheets and generic PM tools fail hospitality teams because they don't understand
-                the unique requirements of events: vendor relationships, guest experience considerations,
-                venue logistics, and the real-time nature of event operations.e build technology that
-                understands these nuances from the ground up, creating tools that feel natural to
-                hospitality professionals while providing the structure and insights they need to
-                execute flawlessly.
+              <p className="why-revaya-text" data-name="why-flyercheck-text-2">
+                FlyerCheck fills that gap. It&apos;s a pre-publish check built for promoters and event teams who need a straight answer: is anything missing, hard to read, or easy to misinterpret? Not a replacement for a designer — a safety net before your audience becomes the proofreader.
               </p>
             </div>
           </div>
@@ -133,7 +125,65 @@ export function WhyRevayaExistsSection() {
       </section>
     );
   } catch (error) {
-    console.error("WhyRevayaExistsSection error:", error);
+    console.error("WhyFlyerCheckExistsSection error:", error);
+    reportError(error);
+    return null;
+  }
+}
+
+export function FlyerCheckFaqSection() {
+  try {
+    const faqs = [
+      {
+        question: "What does FlyerCheck analyze?",
+        answer:
+          "It checks for missing event details, weak visual hierarchy, readability issues, and unclear calls to action.",
+      },
+      {
+        question: "Who is FlyerCheck designed for?",
+        answer:
+          "Event organizers, promoters, venue teams, and anyone who sends a flyer before an event.",
+      },
+      {
+        question: "Does FlyerCheck replace a graphic designer?",
+        answer:
+          "No. It's a pre-publish review tool — a second set of eyes, not a redesign.",
+      },
+      {
+        question: "Can FlyerCheck be used for different types of events?",
+        answer:
+          "Yes. Community events, venue programming, brand activations, festivals, and more.",
+      },
+      {
+        question: "Why is flyer clarity so important?",
+        answer:
+          "Because guests decide in seconds. If the basics aren't clear, most won't ask for clarification — they'll just move on.",
+      },
+    ];
+
+    return (
+      <section
+        className="homepage-section flyercheck-faq-section"
+        data-name="flyercheck-faq"
+        aria-labelledby="flyercheck-faq-heading"
+      >
+        <div className="container">
+          <h2 id="flyercheck-faq-heading" className="section-title">
+            Frequently Asked Questions
+          </h2>
+          <dl className="flyercheck-faq-list">
+            {faqs.map((faq) => (
+              <div key={faq.question} className="flyercheck-faq-item">
+                <dt className="flyercheck-faq-question">{faq.question}</dt>
+                <dd className="flyercheck-faq-answer">{faq.answer}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+    );
+  } catch (error) {
+    console.error("FlyerCheckFaqSection error:", error);
     reportError(error);
     return null;
   }

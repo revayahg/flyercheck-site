@@ -2,7 +2,7 @@ import React from "react";
 import {
   WhatWeDoSection,
   WhoWeWorkWithSection,
-  WhyRevayaExistsSection,
+  WhyFlyerCheckExistsSection,
   InsightsSection
 } from "./HomepageSections";
 
@@ -11,7 +11,7 @@ export default function HomepageSectionsContainer() {
     <>
       <WhatWeDoSection />
       <WhoWeWorkWithSection />
-      <WhyRevayaExistsSection />
+      <WhyFlyerCheckExistsSection />
       <InsightsSection />
     </>
   );

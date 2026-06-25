@@ -219,26 +219,11 @@ function updateStructuredData(path, config, url) {
     let pageSchema = null;
     
     if (path === '/') {
-        pageSchema = {
-            "@context": "https://schema.org",
-            "@type": "WebPage",
-            "name": config.ogTitle,
-            "description": config.description,
-            "url": url
-        };
+        // WebSite schema is injected by LandingPage.jsx
+        pageSchema = null;
     } else if (path === '/flyercheck') {
-        pageSchema = {
-            "@context": "https://schema.org",
-            "@type": "SoftwareApplication",
-            "name": "FlyerCheck",
-            "applicationCategory": "BusinessApplication",
-            "description": config.description,
-            "operatingSystem": "Web",
-            "provider": {
-                "@type": "Organization",
-                "name": "Revaya Hospitality Group"
-            }
-        };
+        // WebApplication schema is injected by FlyerCheckPage.jsx
+        pageSchema = null;
     } else if (path === '/blog') {
         pageSchema = {
             "@context": "https://schema.org",
@@ -257,7 +242,7 @@ function updateStructuredData(path, config, url) {
     } else if (path.startsWith('/blog/')) {
         const slug = path.slice('/blog/'.length);
         const post = getPostBySlug(slug);
-        if (post) {
+        if (post && slug === 'flyer-blind-spots') {
             pageSchema = {
                 "@context": "https://schema.org",
                 "@type": "BlogPosting",
@@ -275,6 +260,7 @@ function updateStructuredData(path, config, url) {
                 }
             };
         }
+        // Article schema for /blog/:slug is injected by BlogPostPage.jsx
     } else if (path === '/contact') {
         pageSchema = {
             "@context": "https://schema.org",

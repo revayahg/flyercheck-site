@@ -2,13 +2,40 @@ import React from "react";
 import { useParams, Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import AdBanner from "../components/AdBanner";
 import { getPostBySlug, getRelatedPosts, getAuthorBio } from "../content/blogPosts";
 import { reportError } from "../utils/errorHandler";
+import { usePageJsonLd } from "../utils/pageJsonLd";
+
+function buildArticleSchema(post) {
+  if (!post) return null;
+
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    url: `https://www.flyercheck.io/blog/${post.slug}`,
+    publisher: {
+      "@type": "Organization",
+      name: "FlyerCheck",
+      url: "https://www.flyercheck.io",
+    },
+  };
+
+  const datePublished = post.publishedAt ?? post.date;
+  if (datePublished) {
+    schema.datePublished = datePublished;
+  }
+
+  return schema;
+}
 
 function BlogPostPage() {
   try {
     const { slug } = useParams();
     const post = getPostBySlug(slug);
+
+    usePageJsonLd(buildArticleSchema(post));
 
     if (!post) {
       return (
@@ -53,24 +80,32 @@ function BlogPostPage() {
                   </span>
                 </div>
                 {authorBio && (
-                  <p className="blog-article-author-bio" style={{ marginTop: "0.75rem", color: "#4A4A4A", lineHeight: 1.6 }}>
-                    {authorBio}
-                  </p>
+                  <p className="blog-article-author-bio">{authorBio}</p>
                 )}
               </header>
 
               <div className="blog-article-body">
-                {post.sections.map((section, i) => (
-                  <section key={i}>
-                    {section.heading && <h2>{section.heading}</h2>}
-                    {section.paragraphs.map((p, j) => (
-                      <p key={j} dangerouslySetInnerHTML={{ __html: p }} />
-                    ))}
-                  </section>
-                ))}
+                {post.sections.map((section, i) => {
+                  const isLede = section.lede || (i === 0 && !section.heading && section.paragraphs.length === 1);
+
+                  return (
+                    <section key={i} className={isLede ? "blog-article-lede-section" : undefined}>
+                      {section.heading && <h2>{section.heading}</h2>}
+                      {section.paragraphs.map((p, j) => (
+                        <p
+                          key={j}
+                          className={isLede ? "blog-article-lede" : undefined}
+                          dangerouslySetInnerHTML={{ __html: p }}
+                        />
+                      ))}
+                    </section>
+                  );
+                })}
               </div>
 
-              <div className="blog-article-footer" style={{ marginTop: "2.5rem", paddingTop: "1.5rem", borderTop: "1px solid #e5e7eb" }}>
+              <AdBanner inline />
+
+              <div className="blog-article-footer">
                 <Link to="/blog" className="blog-read-more-btn" style={{ display: "inline-flex", width: "auto" }}>
                   Back to Blog
                   <i className="fas fa-arrow-left" style={{ marginLeft: "0.5rem" }}></i>
@@ -78,14 +113,12 @@ function BlogPostPage() {
               </div>
 
               {relatedPosts.length > 0 && (
-                <div className="blog-related-posts" style={{ marginTop: "2.5rem", paddingTop: "1.5rem", borderTop: "1px solid #e5e7eb" }}>
-                  <h3 style={{ fontFamily: "Didot, serif", fontSize: "1.25rem", marginBottom: "1rem", color: "#2B2B2B" }}>Related posts</h3>
-                  <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                <div className="blog-related-posts">
+                  <h3>Related posts</h3>
+                  <ul>
                     {relatedPosts.map((rp) => (
-                      <li key={rp.slug} style={{ marginBottom: "0.75rem" }}>
-                        <Link to={`/blog/${rp.slug}`} style={{ color: "#90684A", fontWeight: 600, textDecoration: "none" }}>
-                          {rp.title}
-                        </Link>
+                      <li key={rp.slug}>
+                        <Link to={`/blog/${rp.slug}`}>{rp.title}</Link>
                       </li>
                     ))}
                   </ul>

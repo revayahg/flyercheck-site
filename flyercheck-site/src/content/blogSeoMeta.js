@@ -108,4 +108,10 @@ export const blogSeoMeta = {
       "Seamless galas hide late courses, missing volunteers, and AV fixes ten feet from the guests. Why elegant events are hardest to run.",
     ogTitle: "The Ballroom Looks Perfect. The Hallway Doesn't.",
   },
+  "what-a-bad-flyer-actually-costs-you": {
+    seoTitle: "What a Bad Flyer Actually Costs You | FlyerCheck",
+    seoDescription:
+      "The research behind why a bad event flyer doesn't just look unprofessional — it costs you attendance, conversions, and revenue.",
+    ogTitle: "What a Bad Flyer Actually Costs You",
+  },
 };

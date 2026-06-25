@@ -14,10 +14,10 @@ const outPath = join(root, "public", "sitemap.xml");
 const base = "https://www.flyercheck.io";
 const lastmod = new Date().toISOString().slice(0, 10);
 
-function urlEntry(loc, priority, changefreq) {
+function urlEntry(loc, priority, changefreq, entryLastmod = lastmod) {
   return `  <url>
     <loc>${loc}</loc>
-    <lastmod>${lastmod}</lastmod>
+    <lastmod>${entryLastmod}</lastmod>
     <changefreq>${changefreq}</changefreq>
     <priority>${priority}</priority>
   </url>`;
@@ -33,20 +33,26 @@ const staticPaths = [
   { path: "/terms", priority: "0.5", changefreq: "monthly" },
   { path: "/acceptable-use", priority: "0.4", changefreq: "monthly" },
   { path: "/sitemap", priority: "0.3", changefreq: "monthly" },
-  { path: "/blog/flyer-blind-spots", priority: "0.7", changefreq: "monthly" },
+  {
+    path: "/blog/flyer-blind-spots",
+    priority: "0.7",
+    changefreq: "monthly",
+    lastmod: "2026-01-04",
+  },
 ];
 
 const blogUrls = blogPosts.map((p) => ({
   path: `/blog/${p.slug}`,
   priority: "0.6",
   changefreq: "monthly",
+  lastmod: p.publishedAt,
 }));
 
 const all = [...staticPaths, ...blogUrls];
 
 const body = all
-  .map(({ path, priority, changefreq }) =>
-    urlEntry(`${base}${path}`, priority, changefreq)
+  .map(({ path, priority, changefreq, lastmod: entryLastmod }) =>
+    urlEntry(`${base}${path}`, priority, changefreq, entryLastmod)
   )
   .join("\n");
 

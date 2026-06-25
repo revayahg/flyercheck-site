@@ -10,6 +10,7 @@ export const blogPosts = [
     slug: "hidden-operational-costs-free-tools",
     title: "The Hidden Operational Costs of \"Free\" Event Tools",
     date: "October 2, 2025",
+    publishedAt: "2025-10-02",
     description: "Free tools feel efficient—until fragmentation, manual work, and confusion quietly raise costs.",
     author: "Revaya Hospitality Group",
     sections: [
@@ -80,6 +81,7 @@ export const blogPosts = [
     slug: "why-spreadsheets-break-down-live-events",
     title: "Why Spreadsheets Break Down in Live Event Environments",
     date: "October 16, 2025",
+    publishedAt: "2025-10-16",
     description: "Spreadsheets are great for budgets—but not for dynamic orchestration.",
     author: "Revaya Hospitality Group",
     sections: [
@@ -138,6 +140,7 @@ export const blogPosts = [
     slug: "what-happens-week-before-major-event",
     title: "What Actually Happens the Week Before a Major Event",
     date: "October 30, 2025",
+    publishedAt: "2025-10-30",
     description: "The final week is synchronization—vendor confirmations, permits, staffing shifts, and fast decisions.",
     author: "Revaya Hospitality Group",
     sections: [
@@ -200,6 +203,7 @@ export const blogPosts = [
     slug: "guest-journey-starts-before-ticket",
     title: "The Guest Journey Starts Before the Ticket Is Purchased",
     date: "November 13, 2025",
+    publishedAt: "2025-11-13",
     description: "Discovery and clarity drive conversion long before check-in.",
     author: "Revaya Hospitality Group",
     sections: [
@@ -253,6 +257,7 @@ export const blogPosts = [
     slug: "anatomy-of-well-run-event",
     title: "The Anatomy of a Well-Run Event: What Guests Never See",
     date: "November 27, 2025",
+    publishedAt: "2025-11-27",
     description: "The invisible structure behind events that feel effortless.",
     author: "Revaya Hospitality Group",
     sections: [
@@ -306,6 +311,7 @@ export const blogPosts = [
     slug: "vendor-management-underrated-skill",
     title: "Vendor Management Is the Most Underrated Skill in Events",
     date: "December 11, 2025",
+    publishedAt: "2025-12-11",
     description: "Vendor orchestration is where events succeed—or unravel.",
     author: "Revaya Hospitality Group",
     sections: [
@@ -351,6 +357,7 @@ export const blogPosts = [
     slug: "more-staff-not-solution",
     title: "Why \"More Staff\" Is Not the Solution to Operational Stress",
     date: "January 6, 2026",
+    publishedAt: "2026-01-06",
     description: "Headcount doesn't fix ambiguity—systems do.",
     author: "Revaya Hospitality Group",
     sections: [
@@ -392,6 +399,7 @@ export const blogPosts = [
     slug: "why-events-go-over-budget",
     title: "The Real Reason Events Go Over Budget",
     date: "January 20, 2026",
+    publishedAt: "2026-01-20",
     description: "Budget overruns come from small leaks—scope creep, change fees, and poor tracking.",
     author: "Revaya Hospitality Group",
     sections: [
@@ -438,6 +446,7 @@ export const blogPosts = [
     slug: "event-technology-about-flow",
     title: "Event Technology Is Not About Features — It's About Flow",
     date: "February 17, 2026",
+    publishedAt: "2026-02-17",
     description: "The best event tech reduces thinking load and supports real workflows.",
     author: "Revaya Hospitality Group",
     sections: [
@@ -476,6 +485,7 @@ export const blogPosts = [
     slug: "fix-these-operational-gaps-before-scaling",
     title: "Before You Scale Your Event, Fix These 5 Operational Gaps",
     date: "March 5, 2026",
+    publishedAt: "2026-03-05",
     description: "Growth magnifies weaknesses—stabilize ownership, vendor data, and the source of truth first.",
     author: "Revaya Hospitality Group",
     sections: [
@@ -528,6 +538,7 @@ export const blogPosts = [
     slug: "hidden-complexity-event-operations",
     title: "The Hidden Complexity of Event Operations",
     date: "January 24, 2026",
+    publishedAt: "2026-01-24",
     description: "Event planning gets the spotlight, but event operations is where execution lives — and where most breakdowns occur.",
     author: "Jolyse Stultz",
     sections: [
@@ -580,6 +591,7 @@ export const blogPosts = [
     slug: "how-event-planners-build-run-of-show",
     title: "How Event Planners Build a Run of Show",
     date: "January 29, 2026",
+    publishedAt: "2026-01-29",
     description: "A run of show is the operational backbone of any live event — here's how experienced planners build one that actually works.",
     author: "Jolyse Stultz",
     sections: [
@@ -634,6 +646,7 @@ export const blogPosts = [
     slug: "most-overlooked-risk-live-events",
     title: "The Most Overlooked Risk in Live Events",
     date: "February 3, 2026",
+    publishedAt: "2026-02-03",
     description: "The biggest threats to live events aren't weather or budgets — they're communication breakdowns that cascade into operational failures.",
     author: "Thiago Ferreira",
     sections: [
@@ -687,6 +700,7 @@ export const blogPosts = [
     slug: "vendor-management-hardest-part",
     title: "Why Vendor Management Is the Hardest Part of Event Planning",
     date: "February 6, 2026",
+    publishedAt: "2026-02-06",
     description: "Managing vendors isn't just logistics — it's relationship orchestration across competing timelines, budgets, and expectations.",
     author: "Jolyse Stultz",
     sections: [
@@ -746,6 +760,7 @@ export const blogPosts = [
     slug: "event-marketing-vs-operations",
     title: "Event Marketing vs Event Operations: Why Both Teams Must Collaborate",
     date: "February 9, 2026",
+    publishedAt: "2026-02-09",
     description: "Marketing fills the room. Operations fills the experience. When these teams work in silos, the event suffers.",
     author: "Thiago Ferreira",
     sections: [
@@ -804,6 +819,7 @@ export const blogPosts = [
     slug: "great-guest-experience-events",
     title: "What Makes a Great Guest Experience at Events",
     date: "February 12, 2026",
+    publishedAt: "2026-02-12",
     description: "Great guest experiences are not accidental — they are the result of intentional design across first impressions, wayfinding, staff coordination, and hospitality mindset.",
     author: "Jolyse Stultz",
     sections: [
@@ -860,6 +876,7 @@ export const blogPosts = [
     title:
       "The Gala Illusion: Why the Most Elegant Events Are the Hardest to Execute",
     date: "April 30, 2026",
+    publishedAt: "2026-04-30",
     description:
       "Behind every seamless gala is a live operational system under pressure. This analysis breaks down where elegant events most often fail and what strong execution looks like.",
     author: "Revaya Hospitality Group",
@@ -923,6 +940,49 @@ export const blogPosts = [
       },
     ],
   },
+  {
+    id: "bad-flyer-costs",
+    slug: "what-a-bad-flyer-actually-costs-you",
+    title: "What a Bad Flyer Actually Costs You",
+    date: "June 24, 2026",
+    publishedAt: "2026-06-24",
+    description:
+      "The research behind why a bad event flyer doesn't just look unprofessional — it costs you attendance, conversions, and revenue.",
+    author: "FlyerCheck Editorial",
+    platform: "Event Marketing",
+    sections: [
+      {
+        heading: null,
+        lede: true,
+        paragraphs: [
+          "Most promoters treat a flyer as the starting point. <strong>The research says it's the deciding point.</strong>",
+        ],
+      },
+      {
+        heading: "The Decision Happens in 50 Milliseconds",
+        paragraphs: [
+          "Research from Carleton University found that people assess visual appeal in as little as 50 milliseconds — and that their judgment at 50ms correlates strongly with judgments made after 500ms. 94% of those first impressions relate directly to design elements — color, contrast, layout, typography — rather than content.",
+          "A flyer that reads as low-quality at a glance doesn't get a second chance. The decision to engage happens before a single detail is consciously read.",
+        ],
+      },
+      {
+        heading: "Missing Information Kills Intent",
+        paragraphs: [
+          "Once someone does stop, what they don't find is just as important as what they do. Research shows that up to 70% of consumers abandon a product page due to incomplete information — and the same mechanism applies to event promotion. When basic questions go unanswered, people don't go looking for answers. They move on.",
+          "For a live event, those questions are consistent: Where is it? When does it start? How do I get in? A flyer that misses one creates friction. Friction, at scale, is attendance.",
+          "39% of consumers try a business for the first time because of a flyer — and flyers have a 29% average ROI, with a 90% open rate compared to 20–30% for marketing emails. The flyer is often the most-engaged-with piece of marketing in an event campaign. Its quality is disproportionately consequential.",
+        ],
+      },
+      {
+        heading: "The Compounding Effect",
+        paragraphs: [
+          "Flyer failures don't announce themselves. A small drop in engagement here, a missed conversion there — by the time the event happens, the promoter rarely traces the attendance shortfall back to the flyer. Companies experience 10x the ROI from event attendees versus non-attendees. Every conversion failure at the flyer level forfeits that downstream value.",
+          "Catching mistakes before launch isn't a design decision. It's a revenue protection decision.",
+          "FlyerCheck analyzes your flyer for missing information, readability issues, and unclear calls to action — before your audience sees it. Free to use at <a href=\"/flyercheck\">flyercheck.io</a>.",
+        ],
+      },
+    ],
+  },
 ];
 
 const flyerBlindSpotsPost = {
@@ -932,6 +992,7 @@ const flyerBlindSpotsPost = {
     "Discover how event organizers miss critical details in their flyers that prevent potential attendees from showing up. Learn the common blind spots and how to fix them.",
   url: "/blog/flyer-blind-spots",
   date: "January 4, 2026",
+  publishedAt: "2026-01-04",
   author: "Jolyse Stultz",
 };
 
@@ -963,6 +1024,8 @@ export const authorBios = {
     "15+ years in hospitality and event operations; CEO at Revaya Hospitality Group and lead author on FlyerCheck.",
   "Revaya Hospitality Group":
     "FlyerCheck editorial team — practical guidance on event operations, flyers, and hospitality technology.",
+  "FlyerCheck Editorial":
+    "Practical guidance on event marketing, flyers, and hospitality technology from the FlyerCheck team.",
   "Thiago Ferreira":
     "Chief AI Officer at Revaya Hospitality Group; builds AI tools for hospitality and live-event teams.",
 };

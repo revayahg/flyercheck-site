@@ -14,10 +14,29 @@ import {
   FlyerCheckFaqSection,
 } from "../components/HomepageSections";
 import { reportError } from "../utils/errorHandler";
+import { usePageJsonLd } from "../utils/pageJsonLd";
 import "../utils/flyerAnalysisService";
+
+const flyercheckPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "FlyerCheck",
+  url: "https://www.flyercheck.io/flyercheck",
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "Web",
+  description:
+    "AI-powered flyer analysis tool that catches mistakes before your event launches.",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "USD",
+  },
+};
 
 function FlyerCheckPage() {
   try {
+    usePageJsonLd(flyercheckPageSchema);
+
     useEffect(() => {
       trackEvent({
         eventName: "flyercheck_page_view",

@@ -10,10 +10,20 @@ import HomepageSectionsContainer from "../components/HomepageSectionsContainer";
 import FlyerMistakesSection from "../components/FlyerMistakesSection";
 
 import { reportError } from "../utils/errorHandler";
+import { usePageJsonLd } from "../utils/pageJsonLd";
 import "../utils/flyerAnalysisService";
+
+const landingPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "FlyerCheck",
+  url: "https://www.flyercheck.io",
+};
 
 export default function LandingPage() {
   try {
+    usePageJsonLd(landingPageSchema);
+
     return (
       <div data-name="landing-page">
         <Navbar />

@@ -14,6 +14,43 @@
     position: relative;
 }
 
+.ad-banner--hidden {
+    position: fixed;
+    top: 0;
+    left: -10000px;
+    width: 728px;
+    height: 90px;
+    min-height: 90px;
+    max-height: 90px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    overflow: hidden;
+    visibility: hidden;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.ad-banner--hidden .ad-container {
+    position: static;
+}
+
+.ad-banner--visible {
+    margin: 76px 0 0 0;
+    background-color: var(--fc-surface, #f8f8f8);
+    border-bottom: 1px solid var(--fc-border, #e5e5e5);
+}
+
+.ad-banner--inline.ad-banner--visible {
+    margin: 2rem 0 0;
+    border-bottom: none;
+}
+
+.blog-article-container .ad-banner--inline.ad-banner--visible {
+    margin: 2rem 0 0;
+}
+
 .ad-container {
     width: 728px;
     height: 90px;
@@ -42,15 +79,15 @@
 }
 
 @media (max-width: 768px) {
-    .ad-banner {
+    .ad-banner--visible {
         margin-top: 60px;
     }
 
-    .flyercheck-page .ad-banner {
+    .flyercheck-page .ad-banner--visible {
         margin-top: 0;
     }
 }
 
-.flyercheck-page .ad-banner {
+.flyercheck-page .ad-banner--visible {
     margin-top: 0;
 }

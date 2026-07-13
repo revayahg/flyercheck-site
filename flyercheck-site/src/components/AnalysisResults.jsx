@@ -15,9 +15,23 @@ function AnalysisResults({ analysis }) {
         };
 
         const getScoreColor = (score) => {
-            if (score >= 8) return '#3D8B5F';
-            if (score >= 6) return '#F2C200';
-            return '#F2C200';
+            if (score >= 8) return "var(--fc-confirm)";
+            if (score >= 5) return "var(--fc-hazard)";
+            return "#E24B4A";
+        };
+
+        const splitFeedback = (feedback) => {
+            if (typeof feedback !== "string") {
+                return { score: null, body: feedback };
+            }
+            const match = feedback.match(/^Score:\s*(\d+(?:\.\d+)?)\s*\/\s*10\.?\s*/i);
+            if (!match) {
+                return { score: null, body: feedback };
+            }
+            return {
+                score: Number(match[1]),
+                body: feedback.slice(match[0].length).trim(),
+            };
         };
 
         return (
@@ -60,12 +74,32 @@ function AnalysisResults({ analysis }) {
                 {analysis.detailedFeedback && Object.keys(analysis.detailedFeedback).length > 0 && (
                     <div className="result-section detailed-feedback-section">
                         <h4>Detailed Feedback</h4>
-                        {Object.entries(analysis.detailedFeedback).map(([key, feedback]) => (
-                            <div key={key} className="feedback-item">
-                                <h5 className="feedback-dimension">{dimensionLabels[key] || key}</h5>
-                                <p className="feedback-text">{feedback}</p>
-                            </div>
-                        ))}
+                        {Object.entries(analysis.detailedFeedback).map(([key, feedback]) => {
+                            const fromText = splitFeedback(feedback);
+                            const score =
+                                analysis.scores?.[key] !== undefined
+                                    ? analysis.scores[key]
+                                    : fromText.score;
+                            const body = fromText.score !== null ? fromText.body : feedback;
+
+                            return (
+                                <div key={key} className="feedback-item">
+                                    <h5 className="feedback-dimension">{dimensionLabels[key] || key}</h5>
+                                    {score !== null && score !== undefined && (
+                                        <p className="feedback-score">
+                                            Score:{" "}
+                                            <span
+                                                className="feedback-score-value"
+                                                style={{ color: getScoreColor(score) }}
+                                            >
+                                                {score}/10
+                                            </span>
+                                        </p>
+                                    )}
+                                    {body ? <p className="feedback-text">{body}</p> : null}
+                                </div>
+                            );
+                        })}
                     </div>
                 )}
 

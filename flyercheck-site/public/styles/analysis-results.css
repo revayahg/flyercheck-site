@@ -85,8 +85,14 @@
 }
 
 .score-item:hover {
-    background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
-    border-color: #CBBBA0;
+    background: var(--fc-near-black);
+    border-color: var(--fc-muted);
+    transform: translateX(4px);
+}
+
+.feedback-item:hover {
+    background-color: var(--fc-near-black);
+    border-left-color: var(--fc-hazard);
     transform: translateX(4px);
 }
 
@@ -114,8 +120,8 @@
 }
 
 .feedback-item:hover {
-    background-color: #f9fafb;
-    border-left-color: #90684A;
+    background-color: var(--fc-near-black);
+    border-left-color: var(--fc-hazard);
     transform: translateX(4px);
 }
 

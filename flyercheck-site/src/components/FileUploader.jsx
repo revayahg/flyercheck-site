@@ -34,6 +34,13 @@ function FileUploader() {
         const resultsRef = React.useRef(null);
         const controlsRef = React.useRef(null);
         const fileInputRef = React.useRef(null);
+        const uploadZoneRef = React.useRef(null);
+        const isAnalyzingRef = React.useRef(false);
+        const processFileRef = React.useRef(null);
+        const pasteLockRef = React.useRef(0);
+        const [isPasteFocused, setIsPasteFocused] = React.useState(false);
+
+        isAnalyzingRef.current = isAnalyzing;
 
         // When a file is uploaded, scroll controls (dropdown + button) into view so user doesn't have to scroll
         React.useEffect(() => {
@@ -60,7 +67,7 @@ function FileUploader() {
         }, [analysisResults, isAnalyzing, message, isSuccess]);
 
         // Process file after selection/paste/drop
-        const processFile = (selectedFile) => {
+        const processFile = (selectedFile, source = "upload") => {
             const result = analyzeFlyer(selectedFile);
             setMessage(result.message);
             setIsSuccess(result.success);
@@ -76,6 +83,7 @@ function FileUploader() {
                     metadata: {
                         fileType: selectedFile.type,
                         fileSize: selectedFile.size,
+                        source,
                     },
                 });
 
@@ -93,6 +101,7 @@ function FileUploader() {
                     metadata: {
                         fileType: selectedFile?.type || null,
                         fileSize: selectedFile?.size || null,
+                        source,
                     },
                 });
 
@@ -100,40 +109,139 @@ function FileUploader() {
             }
         };
 
-        // Handle clipboard paste
-        React.useEffect(() => {
-            const handlePaste = async (e) => {
-                const items = e.clipboardData?.items;
-                if (!items) return;
+        processFileRef.current = processFile;
 
+        const extensionForType = (mime) => {
+            if (mime === "image/jpeg" || mime === "image/jpg") return "jpg";
+            if (mime === "image/webp") return "webp";
+            return "png";
+        };
+
+        const fileFromClipboardData = (clipboardData) => {
+            if (!clipboardData) return null;
+
+            const items = clipboardData.items;
+            if (items) {
                 for (let i = 0; i < items.length; i++) {
                     const item = items[i];
-                    if (item.type.indexOf("image") !== -1) {
-                        e.preventDefault();
+                    if (item.type?.startsWith("image/")) {
                         const blob = item.getAsFile();
                         if (blob) {
-                            const pastedFile = new File([blob], "pasted-image.png", { type: blob.type });
-                            processFile(pastedFile);
+                            const type = blob.type || item.type || "image/png";
+                            return new File([blob], `pasted-flyer.${extensionForType(type)}`, { type });
                         }
-                        break;
                     }
                 }
+            }
+
+            const files = clipboardData.files;
+            if (files?.length) {
+                for (let i = 0; i < files.length; i++) {
+                    const file = files[i];
+                    if (file.type?.startsWith("image/")) {
+                        return file;
+                    }
+                }
+            }
+
+            return null;
+        };
+
+        const readImageFromClipboardApi = async () => {
+            if (!navigator.clipboard?.read) return null;
+            try {
+                const items = await navigator.clipboard.read();
+                for (const item of items) {
+                    const type = item.types.find((t) => t.startsWith("image/"));
+                    if (!type) continue;
+                    const blob = await item.getType(type);
+                    return new File([blob], `pasted-flyer.${extensionForType(type)}`, { type });
+                }
+            } catch {
+                // Permission denied or clipboard empty / unsupported
+            }
+            return null;
+        };
+
+        const ingestPastedFile = (pastedFile, event) => {
+            if (!pastedFile || isAnalyzingRef.current) return false;
+            if (Date.now() - pasteLockRef.current < 400) return false;
+            pasteLockRef.current = Date.now();
+            event?.preventDefault();
+            processFileRef.current?.(pastedFile, "paste");
+            return true;
+        };
+
+        const handlePaste = (e) => {
+            ingestPastedFile(fileFromClipboardData(e.clipboardData), e);
+        };
+
+        // Cmd/Ctrl+V: paste event first, Clipboard API fallback for browsers that
+        // only expose image data when a focusable target is ready.
+        React.useEffect(() => {
+            const onPaste = (e) => {
+                ingestPastedFile(fileFromClipboardData(e.clipboardData), e);
             };
 
-            window.addEventListener("paste", handlePaste);
+            const onKeyDown = (e) => {
+                const isPasteShortcut =
+                    (e.metaKey || e.ctrlKey) && !e.altKey && !e.shiftKey && e.key.toLowerCase() === "v";
+                if (!isPasteShortcut || isAnalyzingRef.current) return;
+
+                const tag = e.target?.tagName;
+                if (tag === "INPUT" || tag === "TEXTAREA" || e.target?.isContentEditable) {
+                    // Let native paste run; our document paste listener still picks up images
+                    return;
+                }
+
+                window.setTimeout(async () => {
+                    if (Date.now() - pasteLockRef.current < 400) return;
+                    const pastedFile = await readImageFromClipboardApi();
+                    ingestPastedFile(pastedFile);
+                }, 50);
+            };
+
+            document.addEventListener("paste", onPaste);
+            document.addEventListener("keydown", onKeyDown);
             return () => {
-                window.removeEventListener("paste", handlePaste);
+                document.removeEventListener("paste", onPaste);
+                document.removeEventListener("keydown", onKeyDown);
             };
         }, []);
 
-        const handleUploadClick = () => {
-            fileInputRef.current.click();
+        const focusUploadZone = () => {
+            uploadZoneRef.current?.focus();
         };
+
+        const handleBrowseClick = (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            fileInputRef.current?.click();
+        };
+
+        const handleUploadZoneClick = (e) => {
+            if (e.target.closest("[data-browse-files]")) return;
+            focusUploadZone();
+        };
+
+        const handleUploadZoneKeyDown = (e) => {
+            if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                fileInputRef.current?.click();
+            }
+        };
+
+        // Prefer paste-ready focus when the empty upload zone appears
+        React.useEffect(() => {
+            if (!filePreview) {
+                uploadZoneRef.current?.focus({ preventScroll: true });
+            }
+        }, [filePreview]);
 
         const handleFileChange = (event) => {
             const selectedFile = event.target.files[0];
             if (selectedFile) {
-                processFile(selectedFile);
+                processFile(selectedFile, "upload");
             }
         };
 
@@ -162,8 +270,7 @@ function FileUploader() {
 
             const files = e.dataTransfer.files;
             if (files && files.length > 0) {
-                const droppedFile = files[0];
-                processFile(droppedFile);
+                processFile(files[0], "drop");
             }
         };
 
@@ -283,8 +390,78 @@ function FileUploader() {
                             </div>
                         )}
 
+                        {!filePreview ? (
+                            <div
+                                ref={uploadZoneRef}
+                                className={`upload-zone ${isDragging ? "dragging" : ""} ${isPasteFocused ? "paste-focused" : ""}`}
+                                role="button"
+                                tabIndex={0}
+                                aria-label="Upload or paste flyer image"
+                                onClick={handleUploadZoneClick}
+                                onKeyDown={handleUploadZoneKeyDown}
+                                onPaste={handlePaste}
+                                onFocus={() => setIsPasteFocused(true)}
+                                onBlur={() => setIsPasteFocused(false)}
+                                onDragEnter={handleDragEnter}
+                                onDragOver={handleDragOver}
+                                onDragLeave={handleDragLeave}
+                                onDrop={handleDrop}
+                                data-name="upload-zone"
+                            >
+                                <input
+                                    type="file"
+                                    ref={fileInputRef}
+                                    onChange={handleFileChange}
+                                    accept="image/png,image/jpeg,image/jpg,image/webp"
+                                    className="file-input"
+                                    data-name="file-input"
+                                />
+                                <i className="fas fa-cloud-upload-alt text-4xl mb-4" aria-hidden="true"></i>
+                                <p className="text-lg mb-2">Drop or paste your flyer here</p>
+                                <p className="text-sm text-gray-500 mb-3">
+                                    Click this box, then press Ctrl/Cmd+V — or{" "}
+                                    <button
+                                        type="button"
+                                        className="browse-files-btn"
+                                        data-browse-files
+                                        onClick={handleBrowseClick}
+                                    >
+                                        browse files
+                                    </button>
+                                </p>
+                                <p className="text-sm text-gray-500">PNG, JPEG, or WEBP · Max 3MB</p>
+                            </div>
+                        ) : (
+                            <div className="file-preview-container">
+                                <div className="file-preview-header">
+                                    <h4 className="preview-title">Uploaded Flyer</h4>
+                                    <button
+                                        className="remove-file-btn"
+                                        onClick={handleRemoveFile}
+                                        title="Remove file"
+                                    >
+                                        <i className="fas fa-times"></i>
+                                    </button>
+                                </div>
+                                <div className="file-preview">
+                                    {file.type.startsWith("image/") ? (
+                                        <img
+                                            src={filePreview}
+                                            alt="Flyer preview"
+                                            className="preview-image"
+                                        />
+                                    ) : (
+                                        <div className="preview-pdf">
+                                            <i className="fas fa-file-pdf text-6xl mb-4"></i>
+                                            <p className="preview-filename">{file.name}</p>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        )}
+
                         {filePreview && !isAnalyzing && (
-                            <div ref={controlsRef}>
+                            <div ref={controlsRef} className="analyze-controls">
                                 <div className="event-type-dropdown-wrapper" data-name="event-type-dropdown">
                                     <label htmlFor="event-type" className="event-type-label">
                                         What type of event? (optional)
@@ -319,56 +496,6 @@ function FileUploader() {
                             </div>
                         )}
 
-                        {!filePreview ? (
-                            <div
-                                className={`upload-zone ${isDragging ? "dragging" : ""}`}
-                                onClick={handleUploadClick}
-                                onDragEnter={handleDragEnter}
-                                onDragOver={handleDragOver}
-                                onDragLeave={handleDragLeave}
-                                onDrop={handleDrop}
-                                data-name="upload-zone"
-                            >
-                                <input
-                                    type="file"
-                                    ref={fileInputRef}
-                                    onChange={handleFileChange}
-                                    accept="image/png,image/jpeg,image/jpg,image/webp"
-                                    className="file-input"
-                                    data-name="file-input"
-                                />
-                                <i className="fas fa-cloud-upload-alt text-4xl mb-4"></i>
-                                <p className="text-lg mb-2">Drop your flyer here or click to upload</p>
-                                <p className="text-sm text-gray-500">Supported formats: PNG, JPEG, WEBP (Max 3MB)</p>
-                            </div>
-                        ) : (
-                            <div className="file-preview-container">
-                                <div className="file-preview-header">
-                                    <h4 className="preview-title">Uploaded Flyer</h4>
-                                    <button
-                                        className="remove-file-btn"
-                                        onClick={handleRemoveFile}
-                                        title="Remove file"
-                                    >
-                                        <i className="fas fa-times"></i>
-                                    </button>
-                                </div>
-                                <div className="file-preview">
-                                    {file.type.startsWith("image/") ? (
-                                        <img
-                                            src={filePreview}
-                                            alt="Flyer preview"
-                                            className="preview-image"
-                                        />
-                                    ) : (
-                                        <div className="preview-pdf">
-                                            <i className="fas fa-file-pdf text-6xl mb-4"></i>
-                                            <p className="preview-filename">{file.name}</p>
-                                        </div>
-                                    )}
-                                </div>
-                            </div>
-                        )}
                         {!filePreview && (
                             <div className="what-we-look-for">
                                 <h3 className="what-we-look-for-title">What we look for</h3>

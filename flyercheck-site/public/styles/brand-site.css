@@ -455,13 +455,26 @@
 
 .analyze-button {
     font-size: var(--fc-text-ui);
-    font-weight: 500;
+    font-weight: 600;
+    background: var(--fc-off-white);
+    background-image: none;
+    color: var(--fc-near-black);
+    border: 1.5px solid var(--fc-hazard);
+    box-shadow: 0 0 14px var(--fc-hazard-glow);
 }
 
 .analyze-button:hover:not(:disabled) {
-    background-color: var(--fc-off-white);
+    background: var(--fc-off-white);
+    background-image: none;
     color: var(--fc-near-black);
     opacity: 0.92;
+    box-shadow: 0 0 18px var(--fc-hazard-glow-strong);
+}
+
+.analyze-controls {
+    border-color: var(--fc-hazard);
+    background-color: var(--fc-near-black);
+    box-shadow: 0 0 18px var(--fc-hazard-glow);
 }
 
 .event-type-label,
@@ -471,9 +484,23 @@
 
 .event-type-select,
 .audience-option {
-    background-color: var(--fc-near-black);
+    background-color: var(--fc-surface);
     border-color: var(--fc-border);
-    color: var(--fc-muted);
+    color: var(--fc-off-white);
+}
+
+.event-type-select:hover,
+.event-type-select:focus {
+    border-color: var(--fc-hazard);
+}
+
+.browse-files-btn {
+    color: var(--fc-hazard);
+}
+
+.browse-files-btn:hover,
+.browse-files-btn:focus-visible {
+    color: var(--fc-off-white);
 }
 
 .file-preview-container {
@@ -619,6 +646,46 @@
 .feedback-item {
     background-color: var(--fc-surface);
     border-left: 3px solid var(--fc-hazard);
+}
+
+.feedback-item:hover {
+    background-color: var(--fc-near-black);
+    border-left-color: var(--fc-hazard);
+    transform: translateX(4px);
+}
+
+.feedback-item:hover .feedback-dimension {
+    color: var(--fc-off-white);
+}
+
+.feedback-item:hover .feedback-text,
+.feedback-item:hover .feedback-score {
+    color: var(--fc-muted);
+}
+
+.feedback-score {
+    margin: 0 0 0.5rem;
+    color: var(--fc-muted);
+    font-size: var(--fc-text-body);
+}
+
+.feedback-score-value {
+    font-weight: 600;
+}
+
+.score-item:hover {
+    background: var(--fc-near-black);
+    border-color: var(--fc-muted);
+    transform: translateX(4px);
+}
+
+.score-item:hover .score-label {
+    color: var(--fc-off-white);
+}
+
+.result-section:hover {
+    transform: none;
+    box-shadow: none;
 }
 
 /* ── Blog ── */

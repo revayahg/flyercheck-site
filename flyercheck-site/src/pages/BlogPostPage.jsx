@@ -5,37 +5,11 @@ import Footer from "../components/Footer";
 import AdBanner from "../components/AdBanner";
 import { getPostBySlug, getRelatedPosts, getAuthorBio } from "../content/blogPosts";
 import { reportError } from "../utils/errorHandler";
-import { usePageJsonLd } from "../utils/pageJsonLd";
-
-function buildArticleSchema(post) {
-  if (!post) return null;
-
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: post.title,
-    url: `https://www.flyercheck.io/blog/${post.slug}`,
-    publisher: {
-      "@type": "Organization",
-      name: "FlyerCheck",
-      url: "https://www.flyercheck.io",
-    },
-  };
-
-  const datePublished = post.publishedAt ?? post.date;
-  if (datePublished) {
-    schema.datePublished = datePublished;
-  }
-
-  return schema;
-}
 
 function BlogPostPage() {
   try {
     const { slug } = useParams();
     const post = getPostBySlug(slug);
-
-    usePageJsonLd(buildArticleSchema(post));
 
     if (!post) {
       return (

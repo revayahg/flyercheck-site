@@ -1,4 +1,5 @@
 import { getPostBySlug } from '../content/blogPosts';
+import { buildArticleSchema } from './articleSchema.js';
 
 const baseUrl = 'https://www.flyercheck.io';
 const defaultOGImage = 'https://www.flyercheck.io/favicon-512.png';
@@ -242,25 +243,9 @@ function updateStructuredData(path, config, url) {
     } else if (path.startsWith('/blog/')) {
         const slug = path.slice('/blog/'.length);
         const post = getPostBySlug(slug);
-        if (post && slug === 'flyer-blind-spots') {
-            pageSchema = {
-                "@context": "https://schema.org",
-                "@type": "BlogPosting",
-                "headline": post.title,
-                "description": post.seoDescription ?? post.description,
-                "author": {
-                    "@type": "Person",
-                    "name": post.author || "Revaya Hospitality Group"
-                },
-                "datePublished": post.date,
-                "publisher": {
-                    "@type": "Organization",
-                    "name": "Revaya Hospitality Group",
-                    "url": baseUrl
-                }
-            };
+        if (post) {
+            pageSchema = buildArticleSchema(post);
         }
-        // Article schema for /blog/:slug is injected by BlogPostPage.jsx
     } else if (path === '/contact') {
         pageSchema = {
             "@context": "https://schema.org",

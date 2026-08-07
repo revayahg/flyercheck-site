@@ -145,7 +145,7 @@
     font-family: 'Didot', serif;
     font-size: 1.75rem;
     font-weight: 700;
-    color: var(--brand-primary, #5B4636);
+    color: #1A1A1A;
     margin: 0;
     letter-spacing: 0.02em;
 }

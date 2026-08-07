@@ -26,15 +26,14 @@ function FileUploader() {
         const [filePreview, setFilePreview] = React.useState(null);
         const [message, setMessage] = React.useState(null);
         const [isSuccess, setIsSuccess] = React.useState(false);
-        const [eventType, setEventType] = React.useState("skip");
         const [isAnalyzing, setIsAnalyzing] = React.useState(false);
         const [analysisResults, setAnalysisResults] = React.useState(null);
         const [isDragging, setIsDragging] = React.useState(false);
         const messageRef = React.useRef(null);
         const resultsRef = React.useRef(null);
-        const controlsRef = React.useRef(null);
         const fileInputRef = React.useRef(null);
         const uploadZoneRef = React.useRef(null);
+        const checkAnotherRef = React.useRef(null);
         const isAnalyzingRef = React.useRef(false);
         const processFileRef = React.useRef(null);
         const pasteLockRef = React.useRef(0);
@@ -42,39 +41,121 @@ function FileUploader() {
 
         isAnalyzingRef.current = isAnalyzing;
 
-        // When a file is uploaded, scroll controls (dropdown + button) into view so user doesn't have to scroll
-        React.useEffect(() => {
-            if (filePreview && controlsRef.current) {
-                setTimeout(() => {
-                    controlsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-                }, 100);
-            }
-        }, [filePreview]);
-
         // Scroll to results when analysis completes successfully, or to message on error
         React.useEffect(() => {
             if (!isAnalyzing) {
                 if (analysisResults) {
                     setTimeout(() => {
-                        resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+                        resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
                     }, 300);
                 } else if (message && !isSuccess) {
                     setTimeout(() => {
-                        messageRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+                        messageRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
                     }, 100);
                 }
             }
         }, [analysisResults, isAnalyzing, message, isSuccess]);
 
-        // Process file after selection/paste/drop
+        const runAnalysis = async (fileToAnalyze, selectedEventType = "skip") => {
+            if (!fileToAnalyze || isAnalyzingRef.current) return;
+
+            const { targetAudience, eventCategories } = getEventTypeMapping(selectedEventType);
+
+            setIsAnalyzing(true);
+            setMessage("Analyzing your flyer... This may take a moment.");
+            setIsSuccess(false);
+
+            try {
+                if (typeof window.analyzeFlyerWithAI === "undefined") {
+                    throw new Error("Analysis service not loaded. Please refresh the page.");
+                }
+
+                const result = await window.analyzeFlyerWithAI(
+                    fileToAnalyze,
+                    targetAudience,
+                    eventCategories,
+                );
+
+                if (result.success) {
+                    setAnalysisResults(result.analysis);
+                    setMessage("Analysis complete!");
+                    setIsSuccess(true);
+
+                    trackEvent({
+                        eventName: "flyer_upload_success",
+                        fileName: fileToAnalyze.name,
+                        status: "analysis_complete",
+                        metadata: {
+                            fileType: fileToAnalyze.type,
+                            fileSize: fileToAnalyze.size,
+                            eventType: selectedEventType,
+                            targetAudience,
+                            eventCategories,
+                        },
+                    });
+                } else {
+                    let errorMsg = result.error || "Analysis failed. Please try again.";
+
+                    if (errorMsg.includes("PDF") && fileToAnalyze.type === "application/pdf") {
+                        errorMsg =
+                            "PDF files are not directly supported. Please convert your PDF to an image (JPG or PNG) first. You can take a screenshot of the PDF or use an online PDF-to-image converter.";
+                    } else if (errorMsg.includes("413") || errorMsg.includes("too large")) {
+                        errorMsg =
+                            "This image is still too large after compression. Please try a smaller export or a lower-resolution photo.";
+                    } else if (errorMsg.includes("temporarily unavailable")) {
+                        errorMsg += " If this continues, please try again later.";
+                    }
+
+                    setMessage(errorMsg);
+                    setIsSuccess(false);
+
+                    trackEvent({
+                        eventName: "flyer_upload_failure",
+                        fileName: fileToAnalyze.name,
+                        status: "analysis_failed",
+                        errorMessage: errorMsg,
+                        metadata: {
+                            fileType: fileToAnalyze.type,
+                            fileSize: fileToAnalyze.size,
+                            eventType: selectedEventType,
+                            targetAudience,
+                            eventCategories,
+                        },
+                    });
+                }
+            } catch (error) {
+                console.error("Analysis error:", error);
+                const errorMsg = error.message || "An error occurred during analysis. Please try again.";
+                setMessage(errorMsg);
+                setIsSuccess(false);
+
+                trackEvent({
+                    eventName: "flyer_upload_failure",
+                    fileName: fileToAnalyze?.name || null,
+                    status: "system_error",
+                    errorMessage: errorMsg,
+                    metadata: {
+                        fileType: fileToAnalyze?.type || null,
+                        fileSize: fileToAnalyze?.size || null,
+                        eventType: selectedEventType,
+                        targetAudience,
+                        eventCategories,
+                    },
+                });
+            } finally {
+                setIsAnalyzing(false);
+            }
+        };
+
+        // Process file after selection/paste/drop — then auto-start analysis
         const processFile = (selectedFile, source = "upload") => {
             const result = analyzeFlyer(selectedFile);
-            setMessage(result.message);
             setIsSuccess(result.success);
 
             if (result.success) {
                 setFile(selectedFile);
                 setAnalysisResults(null);
+                setMessage(null);
 
                 trackEvent({
                     eventName: "flyer_upload_clicked",
@@ -90,9 +171,12 @@ function FileUploader() {
                 const reader = new FileReader();
                 reader.onload = (e) => {
                     setFilePreview(e.target.result);
+                    runAnalysis(selectedFile, "skip");
                 };
                 reader.readAsDataURL(selectedFile);
             } else {
+                setMessage(result.message);
+
                 trackEvent({
                     eventName: "flyer_upload_failure",
                     fileName: selectedFile?.name || null,
@@ -105,7 +189,7 @@ function FileUploader() {
                     },
                 });
 
-                messageRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+                messageRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
             }
         };
 
@@ -235,8 +319,10 @@ function FileUploader() {
         React.useEffect(() => {
             if (!filePreview) {
                 uploadZoneRef.current?.focus({ preventScroll: true });
+            } else if (analysisResults && !isAnalyzing) {
+                checkAnotherRef.current?.focus({ preventScroll: true });
             }
-        }, [filePreview]);
+        }, [filePreview, analysisResults, isAnalyzing]);
 
         const handleFileChange = (event) => {
             const selectedFile = event.target.files[0];
@@ -277,109 +363,104 @@ function FileUploader() {
         const handleRemoveFile = () => {
             setFile(null);
             setFilePreview(null);
-            setEventType("skip");
             setAnalysisResults(null);
+            setMessage(null);
             if (fileInputRef.current) {
                 fileInputRef.current.value = "";
             }
         };
 
-        const handleAnalyze = async () => {
-            if (!file) {
-                setMessage("Please upload a flyer before analyzing.");
-                setIsSuccess(false);
-                messageRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-                return;
-            }
+        const showResults = Boolean(analysisResults && !isAnalyzing);
+        const showUploadZone = !isAnalyzing && (!filePreview || showResults);
+        const showFullPreview = Boolean(filePreview && !showResults);
+        const showWhatWeLookFor = !filePreview && !showResults;
 
-            const { targetAudience, eventCategories } = getEventTypeMapping(eventType);
+        const initialUploadZone = (
+            <div
+                ref={uploadZoneRef}
+                className={`upload-zone ${isDragging ? "dragging" : ""} ${isPasteFocused ? "paste-focused" : ""}`}
+                role="button"
+                tabIndex={0}
+                aria-label="Upload or paste flyer image"
+                onClick={handleUploadZoneClick}
+                onKeyDown={handleUploadZoneKeyDown}
+                onPaste={handlePaste}
+                onFocus={() => setIsPasteFocused(true)}
+                onBlur={() => setIsPasteFocused(false)}
+                onDragEnter={handleDragEnter}
+                onDragOver={handleDragOver}
+                onDragLeave={handleDragLeave}
+                onDrop={handleDrop}
+                data-name="upload-zone"
+            >
+                <i className="fas fa-cloud-upload-alt text-4xl mb-4" aria-hidden="true"></i>
+                <p className="text-lg mb-2">Drop or paste your flyer here</p>
+                <p className="text-sm text-gray-500 mb-3">
+                    Click this box, then press Ctrl/Cmd+V — or{" "}
+                    <button
+                        type="button"
+                        className="browse-files-btn"
+                        data-browse-files
+                        onClick={handleBrowseClick}
+                    >
+                        browse files
+                    </button>
+                </p>
+                <p className="text-sm text-gray-500">PNG, JPEG, or WEBP · Up to 15MB (auto-compressed)</p>
+            </div>
+        );
 
-            setIsAnalyzing(true);
-            setMessage("Analyzing your flyer... This may take a moment.");
-            setIsSuccess(false);
-
-            try {
-                if (typeof window.analyzeFlyerWithAI === "undefined") {
-                    throw new Error("Analysis service not loaded. Please refresh the page.");
-                }
-
-                const result = await window.analyzeFlyerWithAI(file, targetAudience, eventCategories);
-
-                if (result.success) {
-                    setAnalysisResults(result.analysis);
-                    setMessage("Analysis complete!");
-                    setIsSuccess(true);
-
-                    trackEvent({
-                        eventName: "flyer_upload_success",
-                        fileName: file.name,
-                        status: "analysis_complete",
-                        metadata: {
-                            fileType: file.type,
-                            fileSize: file.size,
-                            eventType,
-                            targetAudience,
-                            eventCategories,
-                        },
-                    });
-                } else {
-                    let errorMsg = result.error || "Analysis failed. Please try again.";
-
-                    if (errorMsg.includes("PDF") && file.type === "application/pdf") {
-                        errorMsg =
-                            "PDF files are not directly supported. Please convert your PDF to an image (JPG or PNG) first. You can take a screenshot of the PDF or use an online PDF-to-image converter.";
-                    } else if (errorMsg.includes("413") || errorMsg.includes("too large")) {
-                        errorMsg =
-                            "File too large. Maximum size is 3MB. The image will be automatically compressed, but if it's still too large, please use a smaller file.";
-                    } else if (errorMsg.includes("temporarily unavailable")) {
-                        errorMsg += " If this continues, please try again later.";
-                    }
-
-                    setMessage(errorMsg);
-                    setIsSuccess(false);
-
-                    trackEvent({
-                        eventName: "flyer_upload_failure",
-                        fileName: file.name,
-                        status: "analysis_failed",
-                        errorMessage: errorMsg,
-                        metadata: {
-                            fileType: file.type,
-                            fileSize: file.size,
-                            eventType,
-                            targetAudience,
-                            eventCategories,
-                        },
-                    });
-                }
-            } catch (error) {
-                console.error("Analysis error:", error);
-                const errorMsg = error.message || "An error occurred during analysis. Please try again.";
-                setMessage(errorMsg);
-                setIsSuccess(false);
-
-                trackEvent({
-                    eventName: "flyer_upload_failure",
-                    fileName: file?.name || null,
-                    status: "system_error",
-                    errorMessage: errorMsg,
-                    metadata: {
-                        fileType: file?.type || null,
-                        fileSize: file?.size || null,
-                        eventType,
-                        targetAudience,
-                        eventCategories,
-                    },
-                });
-            } finally {
-                setIsAnalyzing(false);
-            }
-        };
+        const checkAnotherZone = (
+            <div
+                ref={checkAnotherRef}
+                className={`upload-zone ${isDragging ? "dragging" : ""} ${isPasteFocused ? "paste-focused" : ""}`}
+                role="button"
+                tabIndex={0}
+                aria-label="Check another flyer"
+                onClick={handleBrowseClick}
+                onKeyDown={handleUploadZoneKeyDown}
+                onPaste={handlePaste}
+                onFocus={() => setIsPasteFocused(true)}
+                onBlur={() => setIsPasteFocused(false)}
+                onDragEnter={handleDragEnter}
+                onDragOver={handleDragOver}
+                onDragLeave={handleDragLeave}
+                onDrop={handleDrop}
+                data-name="check-another-zone"
+            >
+                <i className="fas fa-cloud-upload-alt text-4xl mb-4" aria-hidden="true"></i>
+                <p className="text-lg mb-2">Check another flyer</p>
+                <p className="text-sm text-gray-500 mb-3">
+                    Drop, paste with Ctrl/Cmd+V, or{" "}
+                    <button
+                        type="button"
+                        className="browse-files-btn"
+                        data-browse-files
+                        onClick={handleBrowseClick}
+                    >
+                        browse files
+                    </button>
+                </p>
+                <p className="text-sm text-gray-500">PNG, JPEG, or WEBP · Up to 15MB (auto-compressed)</p>
+            </div>
+        );
 
         return (
             <div className="file-uploader-section" data-name="file-uploader-section">
                 <div className="container mx-auto px-4">
-                    <div className="file-uploader" data-name="file-uploader">
+                    <div
+                        className="file-uploader"
+                        data-name="file-uploader"
+                    >
+                        <input
+                            type="file"
+                            ref={fileInputRef}
+                            onChange={handleFileChange}
+                            accept="image/png,image/jpeg,image/jpg,image/webp"
+                            className="file-input"
+                            data-name="file-input"
+                        />
+
                         {message && !isAnalyzing && (
                             <div
                                 ref={messageRef}
@@ -390,113 +471,9 @@ function FileUploader() {
                             </div>
                         )}
 
-                        {!filePreview ? (
-                            <div
-                                ref={uploadZoneRef}
-                                className={`upload-zone ${isDragging ? "dragging" : ""} ${isPasteFocused ? "paste-focused" : ""}`}
-                                role="button"
-                                tabIndex={0}
-                                aria-label="Upload or paste flyer image"
-                                onClick={handleUploadZoneClick}
-                                onKeyDown={handleUploadZoneKeyDown}
-                                onPaste={handlePaste}
-                                onFocus={() => setIsPasteFocused(true)}
-                                onBlur={() => setIsPasteFocused(false)}
-                                onDragEnter={handleDragEnter}
-                                onDragOver={handleDragOver}
-                                onDragLeave={handleDragLeave}
-                                onDrop={handleDrop}
-                                data-name="upload-zone"
-                            >
-                                <input
-                                    type="file"
-                                    ref={fileInputRef}
-                                    onChange={handleFileChange}
-                                    accept="image/png,image/jpeg,image/jpg,image/webp"
-                                    className="file-input"
-                                    data-name="file-input"
-                                />
-                                <i className="fas fa-cloud-upload-alt text-4xl mb-4" aria-hidden="true"></i>
-                                <p className="text-lg mb-2">Drop or paste your flyer here</p>
-                                <p className="text-sm text-gray-500 mb-3">
-                                    Click this box, then press Ctrl/Cmd+V — or{" "}
-                                    <button
-                                        type="button"
-                                        className="browse-files-btn"
-                                        data-browse-files
-                                        onClick={handleBrowseClick}
-                                    >
-                                        browse files
-                                    </button>
-                                </p>
-                                <p className="text-sm text-gray-500">PNG, JPEG, or WEBP · Max 3MB</p>
-                            </div>
-                        ) : (
-                            <div className="file-preview-container">
-                                <div className="file-preview-header">
-                                    <h4 className="preview-title">Uploaded Flyer</h4>
-                                    <button
-                                        className="remove-file-btn"
-                                        onClick={handleRemoveFile}
-                                        title="Remove file"
-                                    >
-                                        <i className="fas fa-times"></i>
-                                    </button>
-                                </div>
-                                <div className="file-preview">
-                                    {file.type.startsWith("image/") ? (
-                                        <img
-                                            src={filePreview}
-                                            alt="Flyer preview"
-                                            className="preview-image"
-                                        />
-                                    ) : (
-                                        <div className="preview-pdf">
-                                            <i className="fas fa-file-pdf text-6xl mb-4"></i>
-                                            <p className="preview-filename">{file.name}</p>
-                                        </div>
-                                    )}
-                                </div>
-                            </div>
-                        )}
+                        {showUploadZone && !showResults && initialUploadZone}
 
-                        {filePreview && !isAnalyzing && (
-                            <div ref={controlsRef} className="analyze-controls">
-                                <div className="event-type-dropdown-wrapper" data-name="event-type-dropdown">
-                                    <label htmlFor="event-type" className="event-type-label">
-                                        What type of event? (optional)
-                                    </label>
-                                    <select
-                                        id="event-type"
-                                        className="event-type-select"
-                                        value={eventType}
-                                        onChange={(e) => setEventType(e.target.value)}
-                                        data-name="event-type-select"
-                                    >
-                                        <option value="skip">Skip – use general feedback</option>
-                                        <option value="general">General</option>
-                                        <option value="corporate">Corporate</option>
-                                        <option value="nightlife">Nightlife</option>
-                                        <option value="wedding">Wedding / Celebration</option>
-                                        <option value="nonprofit">Nonprofit / Fundraiser</option>
-                                        <option value="festival">Festival / Concert</option>
-                                        <option value="other">Other</option>
-                                    </select>
-                                </div>
-
-                                <button
-                                    className="analyze-button"
-                                    onClick={handleAnalyze}
-                                    disabled={isAnalyzing}
-                                    data-name="analyze-button"
-                                >
-                                    <i className="fas fa-magic"></i>
-                                    <span>Analyze Flyer</span>
-                                </button>
-                            </div>
-                        )}
-
-                        {!filePreview && (
+                        {showWhatWeLookFor && (
                             <div className="what-we-look-for">
                                 <h3 className="what-we-look-for-title">What we look for</h3>
                                 <div className="what-we-look-for-grid">
@@ -520,6 +497,35 @@ function FileUploader() {
                                         <i className="fas fa-check-circle"></i>
                                         <span>Information hierarchy</span>
                                     </div>
+                                </div>
+                            </div>
+                        )}
+
+                        {showFullPreview && (
+                            <div className="file-preview-container">
+                                <div className="file-preview-header">
+                                    <h4 className="preview-title">Uploaded Flyer</h4>
+                                    <button
+                                        className="remove-file-btn"
+                                        onClick={handleRemoveFile}
+                                        title="Remove file"
+                                    >
+                                        <i className="fas fa-times"></i>
+                                    </button>
+                                </div>
+                                <div className="file-preview">
+                                    {file?.type?.startsWith("image/") ? (
+                                        <img
+                                            src={filePreview}
+                                            alt="Flyer preview"
+                                            className="preview-image"
+                                        />
+                                    ) : (
+                                        <div className="preview-pdf">
+                                            <i className="fas fa-file-pdf text-6xl mb-4"></i>
+                                            <p className="preview-filename">{file?.name}</p>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         )}
@@ -548,9 +554,44 @@ function FileUploader() {
                             </div>
                         )}
 
-                        {analysisResults && !isAnalyzing && (
+                        {showResults && (
                             <div ref={resultsRef} data-name="analysis-results-container">
-                                <AnalysisResults analysis={analysisResults} />
+                                <div className="results-layout results-layout--stacked">
+                                    <aside className="results-flyer-panel" data-name="analyzed-flyer-panel">
+                                        <div className="file-preview-container file-preview-container--inline">
+                                            <div className="file-preview-header">
+                                                <h4 className="preview-title">Analyzed flyer</h4>
+                                                <button
+                                                    type="button"
+                                                    className="check-another-link"
+                                                    data-browse-files
+                                                    onClick={handleBrowseClick}
+                                                    title="Upload a different flyer"
+                                                >
+                                                    Replace
+                                                </button>
+                                            </div>
+                                            <div className="file-preview file-preview--inline">
+                                                {file?.type?.startsWith("image/") ? (
+                                                    <img
+                                                        src={filePreview}
+                                                        alt="Analyzed flyer"
+                                                        className="preview-image"
+                                                    />
+                                                ) : (
+                                                    <div className="preview-pdf">
+                                                        <i className="fas fa-file-pdf text-6xl mb-4"></i>
+                                                        <p className="preview-filename">{file?.name}</p>
+                                                    </div>
+                                                )}
+                                            </div>
+                                        </div>
+                                    </aside>
+                                    <div className="results-main">
+                                        <AnalysisResults analysis={analysisResults} />
+                                    </div>
+                                </div>
+                                {checkAnotherZone}
                             </div>
                         )}
                     </div>

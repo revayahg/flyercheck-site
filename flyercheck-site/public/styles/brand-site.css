@@ -562,12 +562,23 @@
     font-family: var(--fc-font-serif);
     text-shadow: none;
     border-bottom: 1px solid var(--fc-border);
+    padding: 1.75rem 1.5rem 1.5rem;
+}
+
+.analysis-results > .results-title + .result-section {
+    margin-top: 1.25rem;
 }
 
 .result-section {
     background-color: var(--fc-near-black);
     border-left: 3px solid var(--fc-border);
     box-shadow: none;
+    margin: 0 1.25rem 1rem;
+    padding: 1.1rem 1.25rem;
+}
+
+.result-section:last-child {
+    margin-bottom: 1.25rem;
 }
 
 .result-section h4,
@@ -578,19 +589,57 @@
     font-size: var(--fc-text-h2);
 }
 
-.feedback-text,
-.score-label {
-    color: var(--fc-muted);
+.overall-score {
+    background: var(--fc-surface);
+    box-shadow: none;
+    margin: 0 1.25rem 1rem;
+    padding: 1.25rem;
+}
+
+.overall-score .score-value {
+    font-size: 48px;
+}
+
+.overall-score .score-value::after {
+    font-size: 24px;
+}
+
+.scores-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0.65rem;
 }
 
 .score-item {
     background: var(--fc-surface);
     border-color: var(--fc-border);
+    padding: 0.75rem 0.9rem;
 }
 
-.overall-score {
-    background: var(--fc-surface);
-    box-shadow: none;
+.detailed-feedback-section {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+}
+
+.detailed-feedback-section > h4 {
+    grid-column: 1 / -1;
+}
+
+@media (min-width: 700px) {
+    .detailed-feedback-section {
+        grid-template-columns: 1fr 1fr;
+        column-gap: 1rem;
+        row-gap: 0.25rem;
+    }
+
+    .detailed-feedback-section .feedback-item {
+        margin-bottom: 0.75rem;
+    }
+}
+
+.feedback-text,
+.score-label {
+    color: var(--fc-muted);
 }
 
 .positive-summary {
@@ -598,8 +647,42 @@
     border-left-color: var(--fc-confirm);
 }
 
+.positive-summary.summary-tone-mixed {
+    background-color: rgba(242, 194, 0, 0.1);
+    border-left-color: var(--fc-hazard);
+}
+
+.positive-summary.summary-tone-weak {
+    background-color: rgba(226, 75, 74, 0.12);
+    border-left-color: #E24B4A;
+}
+
 .positive-text {
     color: var(--fc-confirm);
+}
+
+.summary-tone-mixed .positive-text {
+    color: var(--fc-hazard);
+}
+
+.summary-tone-weak .positive-text {
+    color: #E24B4A;
+}
+
+.not-flyer-banner {
+    background-color: rgba(226, 75, 74, 0.12);
+    border-left-color: #E24B4A;
+}
+
+.not-flyer-banner h4 {
+    color: #E24B4A;
+    margin: 0 0 0.5rem;
+}
+
+.not-flyer-text {
+    margin: 0;
+    color: var(--fc-off-white, #FAFAF7);
+    line-height: 1.6;
 }
 
 .pitfalls-section {

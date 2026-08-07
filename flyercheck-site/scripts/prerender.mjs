@@ -19,6 +19,8 @@ const staticRoutes = [
   "/",
   "/flyercheck",
   "/about",
+  "/faq",
+  "/how-it-works",
   "/blog",
   "/privacy",
   "/terms",

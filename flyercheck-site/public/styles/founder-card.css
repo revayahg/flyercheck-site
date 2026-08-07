@@ -77,6 +77,10 @@
     border-radius: 8px;
 }
 
+.founder-mantra {
+    color: #1A1A1A;
+}
+
 @media (max-width: 768px) {
     .founder-card {
         padding: 1.5rem;

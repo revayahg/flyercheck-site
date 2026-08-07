@@ -199,6 +199,69 @@ function ContactPage() {
                 </form>
               </div>
             </div>
+
+            <section
+              className="homepage-section flyercheck-faq-section"
+              data-name="contact-faq"
+              aria-labelledby="contact-faq-heading"
+            >
+              <h2 id="contact-faq-heading" className="section-title">
+                Common Questions
+              </h2>
+              <dl className="flyercheck-faq-list">
+                <div className="flyercheck-faq-item">
+                  <dt className="flyercheck-faq-question">
+                    What happens after I send a message?
+                  </dt>
+                  <dd className="flyercheck-faq-answer">
+                    We read every note and respond within 1–2 business days.
+                    If you&apos;re reporting a bug or tool issue, include the type of
+                    flyer you uploaded and what the result said — it helps us
+                    reproduce it faster.
+                  </dd>
+                </div>
+                <div className="flyercheck-faq-item">
+                  <dt className="flyercheck-faq-question">
+                    Do you work with venues and hospitality teams directly?
+                  </dt>
+                  <dd className="flyercheck-faq-answer">
+                    Yes. FlyerCheck is built for anyone producing live
+                    experiences — promoters, venue marketing teams, hospitality
+                    operators, and festival organizers. If your team reviews
+                    flyers regularly, reach out and we can talk about how the
+                    tool fits your workflow.
+                  </dd>
+                </div>
+                <div className="flyercheck-faq-item">
+                  <dt className="flyercheck-faq-question">
+                    Can I suggest a feature or flag something the tool missed?
+                  </dt>
+                  <dd className="flyercheck-faq-answer">
+                    Absolutely — product feedback is the most useful thing
+                    you can send. Tell us what the flyer was for, what FlyerCheck
+                    said, and what it missed. That goes directly into how we
+                    improve the analysis.
+                  </dd>
+                </div>
+                <div className="flyercheck-faq-item">
+                  <dt className="flyercheck-faq-question">
+                    Are you open to partnerships or integrations?
+                  </dt>
+                  <dd className="flyercheck-faq-answer">
+                    We&apos;re selectively open to partnerships with platforms and
+                    tools that serve event producers and hospitality professionals.
+                    Send a note with what you have in mind.
+                  </dd>
+                </div>
+                <div className="flyercheck-faq-item">
+                  <dt className="flyercheck-faq-question">Is FlyerCheck free?</dt>
+                  <dd className="flyercheck-faq-answer">
+                    Yes. The core flyer analysis tool is free to use with no
+                    account required. Upload your flyer and get results immediately.
+                  </dd>
+                </div>
+              </dl>
+            </section>
           </div>
         </div>
 

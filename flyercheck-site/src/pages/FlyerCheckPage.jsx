@@ -12,6 +12,7 @@ import {
   WhoWeWorkWithSection,
   WhyFlyerCheckExistsSection,
   FlyerCheckFaqSection,
+  FlyerCheckResultsMeaningSection,
 } from "../components/HomepageSections";
 import { reportError } from "../utils/errorHandler";
 import { usePageJsonLd } from "../utils/pageJsonLd";
@@ -71,6 +72,7 @@ function FlyerCheckPage() {
         <WhoWeWorkWithSection />
         <WhyFlyerCheckExistsSection />
         <FlyerCheckFaqSection />
+        <FlyerCheckResultsMeaningSection />
 
         <AdBanner />
 

@@ -32,6 +32,24 @@ const seoConfig = {
         ogImage: defaultOGImage,
         ogType: 'website'
     },
+    '/faq': {
+        title: 'FlyerCheck FAQ — Common Questions Answered',
+        description: 'Answers to common questions about FlyerCheck — what it analyzes, who it\'s for, how it works, and what to do with your results.',
+        keywords: 'FlyerCheck FAQ, flyer analysis questions, free flyer check help',
+        ogTitle: 'FlyerCheck FAQ — Common Questions Answered',
+        ogDescription: 'Answers to common questions about FlyerCheck — what it analyzes, who it\'s for, how it works, and what to do with your results.',
+        ogImage: defaultOGImage,
+        ogType: 'website'
+    },
+    '/how-it-works': {
+        title: 'How FlyerCheck Works — AI Flyer Analysis Explained',
+        description: 'A step-by-step explanation of how FlyerCheck analyzes your event flyer and what happens behind the scenes.',
+        keywords: 'how FlyerCheck works, AI flyer analysis, flyer review process',
+        ogTitle: 'How FlyerCheck Works — AI Flyer Analysis Explained',
+        ogDescription: 'A step-by-step explanation of how FlyerCheck analyzes your event flyer and what happens behind the scenes.',
+        ogImage: defaultOGImage,
+        ogType: 'website'
+    },
     '/flyercheck': {
         title: 'Upload Your Flyer—Free AI Review | FlyerCheck',
         description: 'Missing time, buried venue, weak headline? FlyerCheck scans your flyer in seconds and flags what stops people from showing up.',

@@ -142,61 +142,84 @@ async function analyzeFlyerWithOpenAI(imageBuffer, imageMimeType, targetAudience
 
     const allGuidance = categories.map(cat => getCategoryGuidance(cat)).join('\n\n');
 
-    const prompt = `You are an expert event marketing consultant analyzing an event flyer using a comprehensive evaluation framework.
+    const prompt = `You are an expert event marketing consultant for FlyerCheck. Your job is to review EVENT FLYERS — promotional images meant to get people to attend a live experience (party, concert, gala, conference, festival, venue night, fundraiser, etc.).
 
-EXTRACTED TEXT FROM FLYER: "${extractedText}"
-EVENT CATEGORIES: ${categoryDesc}
+EXTRACTED TEXT FROM IMAGE: "${extractedText}"
+EVENT CATEGORIES (user-selected, may be wrong if this is not a flyer): ${categoryDesc}
 TARGET AUDIENCE: ${audienceDesc}
 
-CATEGORY-SPECIFIC GUIDANCE:
-Based on the selected event categories, apply these category-specific best practices. Consider how the flyer should appeal to all selected categories:
+═══════════════════════════════════════
+STEP 0 — FLYER GATE (DO THIS FIRST)
+═══════════════════════════════════════
+Before scoring anything, decide: is this image an event flyer / event promotional graphic?
 
+It IS an event flyer if it appears designed to promote attendance at an event or venue night (even if incomplete or poorly designed). Typical signals: event name/title, date/time, venue/location, ticket/RSVP/CTA, lineup/hosts, promotional layout.
+
+It is NOT an event flyer if it is primarily something else, including but not limited to:
+- Random photos, selfies, memes, screenshots of chats/apps/websites
+- Product packaging, receipts, invoices, documents, resumes
+- Art/illustration with no event logistics
+- Logos alone, mood boards, stock photos
+- Social posts that do not promote a specific event
+- Anything that would not function as "come to this event" marketing
+
+If isEventFlyer is false:
+- Set overallScore to 1.0 or lower (never above 2)
+- Set EVERY dimension score to 0–2
+- positiveSummary MUST clearly say this does not look like an event flyer and that FlyerCheck only reviews flyers
+- pitfallsFound MUST include "Not an event flyer"
+- strengths should be empty or minimal
+- improvements/recommendations should tell the user to upload an event flyer (PNG/JPEG/WEBP of the design they plan to post)
+- Do NOT praise visual quality of a non-flyer as if it were a successful flyer
+- Do NOT invent event details that are not present
+
+If isEventFlyer is true, continue with the full evaluation below.
+
+CATEGORY-SPECIFIC GUIDANCE (only when isEventFlyer is true):
 ${allGuidance}
 
-EVALUATION FRAMEWORK:
+EVALUATION FRAMEWORK (only when isEventFlyer is true):
 
-You must evaluate this flyer across 7 dimensions, each scored 0-10:
+Score each dimension 0-10 for how well this works AS AN EVENT FLYER for attendees deciding whether to show up — not as general graphic design or photography.
 
-1. **Visual Clarity (0-10)**: Assess layout organization, visual hierarchy, whitespace, and balance. Poor (0-3): Chaotic/cluttered, no focal point. Average (4-6): Some hierarchy but minor clutter. Excellent (7-10): Clean, clear hierarchy, plenty of whitespace.
+1. **Visual Clarity (0-10)**: Layout organization, visual hierarchy, whitespace, balance for scanning on a phone.
+2. **Message Clarity (0-10)**: Whether event purpose, date, time, location, and essential details are immediately apparent. Missing logistics = low score.
+3. **Branding Consistency (0-10)**: Logos, brand colors, fonts, trust/professionalism for the event.
+4. **Emotional Appeal (0-10)**: Whether the design evokes the right vibe for this event type.
+5. **CTA Effectiveness (0-10)**: Ticket/RSVP/follow CTA visibility and clarity. No CTA = low score.
+6. **Audience Fit (0-10)**: Alignment with the intended audience.
+7. **Technical Quality (0-10)**: Resolution, readability, contrast, formatting at feed/phone size.
 
-2. **Message Clarity (0-10)**: Check if event purpose, date, time, location, and essential details are immediately apparent. Poor (0-3): Unclear or missing key info. Average (4-6): Info present but not obvious. Excellent (7-10): All key details instantly clear.
+Hard rules when scoring a real flyer:
+- If date OR time OR venue/location is missing or unreadable, messageClarity must be 4 or lower and overallScore must reflect that.
+- If there is no clear next step (ticket link, RSVP, "doors at", QR, URL, etc.), ctaEffectiveness must be 4 or lower.
+- Do not give high scores for a pretty image that fails as event communication.
 
-3. **Branding Consistency (0-10)**: Evaluate use of logos, brand colors, fonts, and overall brand alignment. Poor (0-3): No branding, looks generic. Average (4-6): Some branding but inconsistent. Excellent (7-10): Strong brand presence, builds trust.
-
-4. **Emotional Appeal (0-10)**: Assess if design evokes appropriate emotion for the event type. Poor (0-3): Bland or mismatched. Average (4-6): Moderately appealing. Excellent (7-10): Compelling, on-theme, draws viewers in.
-
-5. **CTA Effectiveness (0-10)**: Evaluate call-to-action visibility, clarity, and actionability. Poor (0-3): No CTA or hidden/unclear. Average (4-6): CTA exists but not prominent. Excellent (7-10): Obvious, accessible, motivating.
-
-6. **Audience Fit (0-10)**: Assess alignment with target audience expectations and preferences. Poor (0-3): Poorly matched, may alienate. Average (4-6): Mostly appropriate. Excellent (7-10): Excellent alignment, feels "made for them."
-
-7. **Technical Quality (0-10)**: Check image resolution, text readability, contrast, formatting. Poor (0-3): Pixelated, illegible, unprofessional. Average (4-6): Adequate with minor issues. Excellent (7-10): High-resolution, crisp, polished.
-
-DESIGN PITFALLS TO CHECK:
+DESIGN PITFALLS TO CHECK (when it is a flyer):
 - Overloading with text
-- Poor font choices (too many fonts, illegible fonts)
-- Bad color combinations (low contrast, clashing colors)
-- Low-quality images (pixelated, stretched)
-- Unclear call-to-action
-- Cluttered layout (lack of spacing)
-- Ignoring branding/consistency
-- Overusing effects or gimmicks
-- Not considering the audience
-- Missing or wrong information (date, location, etc.)
+- Poor font choices / illegible type
+- Bad contrast
+- Low-quality or stretched images
+- Unclear or missing CTA
+- Cluttered layout
+- Missing or wrong event information (date, location, etc.)
 
 RESPONSE FORMAT REQUIREMENTS:
 
-1. Start with a positive summary highlighting something that works well
-2. Provide sectioned feedback for each dimension with:
-   - Score (0-10)
-   - Brief justification
-   - Specific, actionable suggestions
-3. Use friendly, actionable language ("consider doing X", "you might try Y")
-4. Highlight both strengths and weaknesses
-5. Offer concrete, specific suggestions
-6. End with encouragement
+1. Always set isEventFlyer (boolean) and notFlyerReason (string; empty string if it is a flyer).
+2. Opening summary (positiveSummary) must match the situation:
+   - Not a flyer: state clearly it is not an event flyer; tell them what to upload instead.
+   - overallScore 8+: lead with what works; optional brief polish note.
+   - overallScore 5–7: MUST include both a specific strength AND a specific priority fix. No praise-only summary.
+   - overallScore below 5: lead with the biggest problems; one salvageable strength only if real.
+3. Dimension feedback: score, justification, actionable suggestions.
+4. Friendly, actionable language when it is a flyer; direct and clear when it is not.
+5. End with encouragement only when it is a flyer; for non-flyers, invite them to upload a real flyer.
 
 Provide your analysis in this JSON format:
 {
+  "isEventFlyer": true,
+  "notFlyerReason": "",
   "overallScore": 7.5,
   "scores": {
     "visualClarity": 8,
@@ -207,7 +230,7 @@ Provide your analysis in this JSON format:
     "audienceFit": 7,
     "technicalQuality": 8
   },
-  "positiveSummary": "Brief positive opening statement",
+  "positiveSummary": "Balanced opening line matching score tone — or a clear not-a-flyer message.",
   "detailedFeedback": {
     "visualClarity": "Score: X/10. Detailed feedback with specific suggestions.",
     "messageClarity": "Score: X/10. Detailed feedback with specific suggestions.",
@@ -222,11 +245,11 @@ Provide your analysis in this JSON format:
   "improvements": ["improvement1", "improvement2"],
   "recommendations": ["specific recommendation1", "specific recommendation2"],
   "audienceSpecificTips": "Specific advice tailored to ${audienceDesc}",
-  "categorySpecificGuidance": "Category-specific recommendations for ${categoryDesc}. Consider how the design should appeal to all selected categories.",
-  "encouragement": "Motivating closing statement"
+  "categorySpecificGuidance": "Category-specific recommendations for ${categoryDesc}.",
+  "encouragement": "Motivating closing statement — or upload guidance if not a flyer"
 }
 
-Be specific, constructive, and actionable. Use the tone of a knowledgeable design coach, not a harsh judge.`;
+Be specific and honest. Never score a non-flyer as a successful event flyer.`;
 
     const visionModel =
       process.env.OPENAI_VISION_MODEL && process.env.OPENAI_VISION_MODEL.trim() !== ''
@@ -250,7 +273,8 @@ Be specific, constructive, and actionable. Use the tone of a knowledgeable desig
         }
       ],
       max_tokens: 2500,
-      temperature: 0.7
+      temperature: 0.35,
+      response_format: { type: "json_object" },
     });
 
     const analysisText = response.choices[0].message.content;
@@ -267,6 +291,8 @@ Be specific, constructive, and actionable. Use the tone of a knowledgeable desig
     } catch (parseError) {
       console.warn('Failed to parse JSON, creating structured response');
       analysis = {
+        isEventFlyer: true,
+        notFlyerReason: '',
         overallScore: 6,
         scores: {
           visualClarity: 6,
@@ -297,21 +323,141 @@ Be specific, constructive, and actionable. Use the tone of a knowledgeable desig
       };
     }
 
+    const dimensionKeys = [
+      'visualClarity',
+      'messageClarity',
+      'brandingConsistency',
+      'emotionalAppeal',
+      'ctaEffectiveness',
+      'audienceFit',
+      'technicalQuality',
+    ];
+
+    let isEventFlyer = analysis.isEventFlyer !== false;
+    // Extra guard: model sometimes forgets the flag but puts it in the summary
+    if (
+      isEventFlyer &&
+      /\b(not an? event flyer|doesn'?t look like (an? )?event flyer|isn'?t (an? )?event flyer|not a flyer)\b/i.test(
+        analysis.positiveSummary || '',
+      )
+    ) {
+      isEventFlyer = false;
+    }
+
+    // OCR/UI chrome heuristics (screenshots of FlyerCheck or generic websites)
+    const ocrText = String(extractedText || '').toLowerCase().replace(/\s+/g, ' ');
+    const uiChromePhrases = [
+      'what we look for',
+      'drop or paste your flyer',
+      'browse files',
+      'png, jpeg, or webp',
+      'check another flyer',
+      'analyzed flyer',
+      'overall score',
+      'dimension scores',
+      'text readability',
+      'crowd visibility',
+      'catch the mistake before your audience',
+    ];
+    const chromeHits = uiChromePhrases.filter((p) => ocrText.includes(p));
+    if (isEventFlyer && chromeHits.length >= 2) {
+      isEventFlyer = false;
+      analysis.notFlyerReason =
+        'This looks like a website or app screenshot, not an event flyer.';
+    }
+    if (
+      isEventFlyer &&
+      ((ocrText.includes('flyercheck') && ocrText.includes('what we look for')) ||
+        (ocrText.includes('flyercheck') && ocrText.includes('browse files')))
+    ) {
+      isEventFlyer = false;
+      analysis.notFlyerReason =
+        'This looks like a screenshot of FlyerCheck (or another website), not an event flyer.';
+    }
+
+    let overallScore = Number(analysis.overallScore);
+    if (Number.isNaN(overallScore)) overallScore = isEventFlyer ? 6 : 1;
+
+    let scores = { ...(analysis.scores || {}) };
+    let openingSummary = analysis.positiveSummary || 'Your flyer has been analyzed.';
+    let strengths = Array.isArray(analysis.strengths) ? [...analysis.strengths] : [];
+    let improvements = Array.isArray(analysis.improvements) ? [...analysis.improvements] : [];
+    let recommendations = Array.isArray(analysis.recommendations)
+      ? [...analysis.recommendations]
+      : [];
+    let pitfallsFound = Array.isArray(analysis.pitfallsFound) ? [...analysis.pitfallsFound] : [];
+    let detailedFeedback = { ...(analysis.detailedFeedback || {}) };
+    const notFlyerReason =
+      (analysis.notFlyerReason && String(analysis.notFlyerReason).trim()) ||
+      'This image does not appear to be an event flyer.';
+
+    // Enforce non-flyer outcomes so random photos cannot score as strong flyers
+    if (!isEventFlyer) {
+      overallScore = Math.min(overallScore, 1.5);
+      const lowScores = {};
+      const lowFeedback = {};
+      for (const key of dimensionKeys) {
+        const raw = Number(scores[key]);
+        lowScores[key] = Number.isFinite(raw) ? Math.min(raw, 2) : 1;
+        lowFeedback[key] =
+          detailedFeedback[key] ||
+          `Score: ${lowScores[key]}/10. Not evaluated as an event flyer — upload a promotional flyer for an event to get useful dimension feedback.`;
+      }
+      scores = lowScores;
+      detailedFeedback = lowFeedback;
+      openingSummary = `This doesn't look like an event flyer. ${notFlyerReason} FlyerCheck only reviews event promotional graphics — upload the flyer you plan to post (with event details) to get a real analysis.`;
+      if (!pitfallsFound.some((p) => /not an event flyer/i.test(String(p)))) {
+        pitfallsFound = ['Not an event flyer', ...pitfallsFound];
+      }
+      strengths = [];
+      improvements = [
+        'Upload an event flyer: a designed graphic promoting a live event or venue night.',
+        ...improvements.filter((i) => !/not an event flyer/i.test(String(i))),
+      ];
+      recommendations = [
+        'Use a PNG, JPEG, or WEBP of the flyer you intend to share — including date, time, venue, and a clear next step when possible.',
+        ...recommendations,
+      ];
+    } else if (overallScore >= 5 && overallScore < 8) {
+      // Mid-range scores need balanced copy — don't show praise-only under a yellow tone
+      const looksBalanced =
+        /\b(but|however|though|needs?|should|consider|improve|missing|weak|unclear|priority|fix)\b/i.test(
+          openingSummary,
+        );
+      if (!looksBalanced) {
+        const strength = strengths[0];
+        const fix = improvements[0] || recommendations[0];
+        if (strength && fix) {
+          openingSummary = `${String(strength).replace(/\.$/, '')}. Priority fix: ${fix}`;
+        } else if (fix) {
+          openingSummary = `Some elements work, but this needs attention first: ${fix}`;
+        }
+      }
+    }
+
     return {
       success: true,
       analysis: {
         extractedText: extractedText || 'Text extraction not available',
-        overallScore: analysis.overallScore || 6,
-        scores: analysis.scores || {},
-        positiveSummary: analysis.positiveSummary || 'Your flyer has been analyzed.',
-        detailedFeedback: analysis.detailedFeedback || {},
-        pitfallsFound: analysis.pitfallsFound || [],
-        strengths: analysis.strengths || [],
-        improvements: analysis.improvements || [],
-        recommendations: analysis.recommendations || [],
-        audienceSpecificTips: analysis.audienceSpecificTips || `Consider tailoring your message for ${audienceDesc}.`,
-        categorySpecificGuidance: analysis.categorySpecificGuidance || `Apply best practices for ${categoryDesc}.`,
-        encouragement: analysis.encouragement || 'Keep refining your design!'
+        isEventFlyer,
+        notFlyerReason: isEventFlyer ? '' : notFlyerReason,
+        overallScore,
+        scores,
+        positiveSummary: openingSummary,
+        detailedFeedback,
+        pitfallsFound,
+        strengths,
+        improvements,
+        recommendations,
+        audienceSpecificTips: isEventFlyer
+          ? analysis.audienceSpecificTips || `Consider tailoring your message for ${audienceDesc}.`
+          : 'Audience tips apply once you upload a real event flyer.',
+        categorySpecificGuidance: isEventFlyer
+          ? analysis.categorySpecificGuidance || `Apply best practices for ${categoryDesc}.`
+          : 'Category guidance applies once you upload a real event flyer.',
+        encouragement: isEventFlyer
+          ? analysis.encouragement || 'Keep refining your design!'
+          : 'Upload your event flyer whenever you\'re ready — we\'ll review it for clarity, logistics, and conversion.',
       }
     };
   } catch (error) {

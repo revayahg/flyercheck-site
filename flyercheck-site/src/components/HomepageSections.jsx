@@ -179,11 +179,83 @@ export function FlyerCheckFaqSection() {
               </div>
             ))}
           </dl>
+          <div className="insights-cta">
+            <a href="/faq" className="insight-link">
+              More questions? See the full FAQ →
+            </a>
+          </div>
         </div>
       </section>
     );
   } catch (error) {
     console.error("FlyerCheckFaqSection error:", error);
+    reportError(error);
+    return null;
+  }
+}
+
+export function FlyerCheckResultsMeaningSection() {
+  try {
+    const categories = [
+      {
+        title: "Missing event details",
+        description:
+          "FlyerCheck checks for the information attendees need before they decide to show up: date, time, venue name, address, ticket price, and how to get tickets. A flag here means one or more of these is absent or hard to find. These are the details that, when missing, generate the most confusion — and the most \"wait, where is this again?\" messages in your group chat the day of the event.",
+      },
+      {
+        title: "Readability issues",
+        description:
+          "This covers text that is difficult to read at phone-screen size: font that is too small, text that blends into the background due to low contrast, or layouts where too much information competes for attention at once. Most flyers are seen at reduced size in a social media feed. If it doesn't read clearly at that scale, it loses people before they engage.",
+      },
+      {
+        title: "Weak or unclear call to action",
+        description:
+          "A call to action tells people what to do next — buy a ticket, RSVP, follow for updates. A weak CTA is one that's buried, generic (\"click here\"), or absent entirely. FlyerCheck flags CTAs that are likely to reduce conversion even when the rest of the flyer is strong.",
+      },
+      {
+        title: "Visual hierarchy",
+        description:
+          "Information hierarchy is about whether the most important details are visually dominant. If the DJ name is larger than the venue and date, that's a hierarchy issue — not because the DJ doesn't matter, but because attendees need logistics first. A flag here means the layout may not be guiding the reader's eye in the right order.",
+      },
+      {
+        title: "Branding and consistency",
+        description:
+          "This covers cases where the visual treatment of the flyer — colors, logos, fonts — appears inconsistent or conflicts in a way that reads as unprofessional or confusing. A clear brand presentation builds trust; inconsistency undermines it before a word is read.",
+      },
+    ];
+
+    return (
+      <section
+        className="homepage-section flyercheck-faq-section"
+        data-name="what-your-results-mean"
+        aria-labelledby="results-meaning-heading"
+      >
+        <div className="container">
+          <h2 id="results-meaning-heading" className="section-title">
+            What your results mean
+          </h2>
+          <dl className="flyercheck-faq-list">
+            {categories.map((item) => (
+              <div key={item.title} className="flyercheck-faq-item">
+                <dt className="flyercheck-faq-question">{item.title}</dt>
+                <dd className="flyercheck-faq-answer">{item.description}</dd>
+              </div>
+            ))}
+          </dl>
+          <div className="flyercheck-faq-list">
+            <p className="flyercheck-faq-answer" data-name="results-meaning-closing">
+              FlyerCheck doesn&apos;t score flyers or rank them. It flags specific
+              issues so you can decide what to fix before you post. Not every
+              flag requires a change — some are judgment calls. The goal is
+              to give you a second set of eyes before your audience becomes
+              your proofreader.
+            </p>
+          </div>
+        </div>
+      </section>
+    );
+  } catch (error) {
+    console.error("FlyerCheckResultsMeaningSection error:", error);
     reportError(error);
     return null;
   }

@@ -42,7 +42,7 @@ export default function AboutPage() {
           <div className="container">
             <h1 className="about-title">Our Founders</h1>
             <p className="why-revaya-text" style={{ maxWidth: "720px", margin: "0 auto 2rem", textAlign: "center" }}>
-              FlyerCheck is built by the team at Revaya Hospitality Group — event operators and technologists who help promoters catch flyer mistakes before launch and run stronger live experiences. Meet the founders behind the product on flyercheck.io.
+              FlyerCheck is built by the team at Revaya Hospitality Group — event operators and technologists who help hospitality professionals, event organizers, and promoters produce stronger live experiences. Meet the founders behind the product on flyercheck.io.
             </p>
 
             <div
@@ -125,12 +125,12 @@ export default function AboutPage() {
                 <h2 className="about-info-title">Roles We Support</h2>
               </div>
               <p className="about-info-p">
-                Our tools and guidance are designed to support these roles across events and hospitality:
+                Our tools and guidance are designed to support hospitality professionals, venue operators, event producers, organizers, and promoters across live events:
               </p>
               <div className="about-info-pills">
                 <div className="about-info-pill">
                   <i className="fas fa-clipboard-list about-info-pill-icon" aria-hidden="true" />
-                  <span>Event planners</span>
+                  <span>Event planners &amp; producers</span>
                 </div>
                 <div className="about-info-pill">
                   <i className="fas fa-music about-info-pill-icon" aria-hidden="true" />
@@ -142,7 +142,11 @@ export default function AboutPage() {
                 </div>
                 <div className="about-info-pill">
                   <i className="fas fa-hotel about-info-pill-icon" aria-hidden="true" />
-                  <span>Hospitality teams</span>
+                  <span>Hospitality professionals</span>
+                </div>
+                <div className="about-info-pill">
+                  <i className="fas fa-bullhorn about-info-pill-icon" aria-hidden="true" />
+                  <span>Promoters &amp; organizers</span>
                 </div>
                 <div className="about-info-pill">
                   <i className="fas fa-boxes about-info-pill-icon" aria-hidden="true" />

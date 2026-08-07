@@ -20,6 +20,13 @@ function AnalysisResults({ analysis }) {
             return "#E24B4A";
         };
 
+        const getSummaryTone = (score) => {
+            if (score === undefined || score === null) return "mixed";
+            if (score >= 8) return "strong";
+            if (score >= 5) return "mixed";
+            return "weak";
+        };
+
         const splitFeedback = (feedback) => {
             if (typeof feedback !== "string") {
                 return { score: null, body: feedback };
@@ -36,10 +43,24 @@ function AnalysisResults({ analysis }) {
 
         return (
             <div className="analysis-results" data-name="analysis-results">
-                <h3 className="results-title">Analysis Results</h3>
+                <h3 className="results-title">Here&apos;s what we caught</h3>
+
+                {analysis.isEventFlyer === false && (
+                    <div className="result-section not-flyer-banner" data-name="not-flyer-banner">
+                        <h4>Not an event flyer</h4>
+                        <p className="not-flyer-text">
+                            {analysis.notFlyerReason ||
+                                "This image doesn't appear to be an event promotional flyer."}{" "}
+                            FlyerCheck only reviews event flyers — upload the graphic you plan to post
+                            (with event details) to get a useful review.
+                        </p>
+                    </div>
+                )}
                 
-                {analysis.positiveSummary && (
-                    <div className="result-section positive-summary">
+                {analysis.isEventFlyer !== false && analysis.positiveSummary && (
+                    <div
+                        className={`result-section positive-summary summary-tone-${getSummaryTone(analysis.overallScore)}`}
+                    >
                         <p className="positive-text">{analysis.positiveSummary}</p>
                     </div>
                 )}

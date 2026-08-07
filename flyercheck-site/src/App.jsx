@@ -13,6 +13,8 @@ import ContactPage from "./pages/ContactPage";
 import AcceptableUsePage from "./pages/AcceptableUsePage";
 import SitemapPage from "./pages/SitemapPage";
 import AboutPage from "./pages/AboutPage";
+import FAQPage from "./pages/FAQPage";
+import HowItWorksPage from "./pages/HowItWorksPage";
 
 export default function App() {
   const location = useLocation();
@@ -26,6 +28,8 @@ export default function App() {
       <Route path="/" element={<LandingPage />} />
       <Route path="/flyercheck" element={<FlyerCheckPage />} />
       <Route path="/about" element={<AboutPage />} />
+      <Route path="/faq" element={<FAQPage />} />
+      <Route path="/how-it-works" element={<HowItWorksPage />} />
       <Route path="/sitemap" element={<SitemapPage />} />
       <Route path="/privacy" element={<PrivacyPage />} />
       <Route path="/terms" element={<TermsPage />} />

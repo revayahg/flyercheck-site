@@ -26,6 +26,12 @@ export default function Footer() {
               <a href="/flyercheck" className="footer-link" data-name="footer-link-flyercheck">
                 FlyerCheck
               </a>
+              <a href="/how-it-works" className="footer-link" data-name="footer-link-how-it-works">
+                How It Works
+              </a>
+              <a href="/faq" className="footer-link" data-name="footer-link-faq">
+                FAQ
+              </a>
               <a href="/blog" className="footer-link" data-name="footer-link-blog">
                 Blog
               </a>

@@ -1,5 +1,6 @@
-// Security: Maximum file size (3MB to stay under Vercel's 4.5MB request limit)
-const MAX_FILE_SIZE = 3 * 1024 * 1024; // 3MB
+// Accept larger camera/export uploads; client compresses before the API call.
+// Hard payload limit (~3MB) lives in flyerAnalysisService (Vercel 4.5MB body cap).
+export const MAX_UPLOAD_SIZE = 15 * 1024 * 1024; // 15MB
 
 export function analyzeFlyer(file) {
     try {
@@ -7,13 +8,13 @@ export function analyzeFlyer(file) {
             throw new Error('Please upload a flyer before analyzing.');
         }
 
-        // Security: Validate file size
-        if (file.size > MAX_FILE_SIZE) {
+        if (file.size > MAX_UPLOAD_SIZE) {
             const fileSizeMB = (file.size / (1024 * 1024)).toFixed(1);
-            throw new Error(`File too large (${fileSizeMB}MB). Maximum size is 3MB. Please compress your image or use a smaller file.`);
+            throw new Error(
+                `File too large (${fileSizeMB}MB). Maximum upload size is 15MB. Please use a smaller image.`
+            );
         }
 
-        // Security: Validate file type (PNG, JPEG, WEBP only - matches upload constraints)
         const validFormats = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
         const fileType = file.type;
 
@@ -26,7 +27,7 @@ export function analyzeFlyer(file) {
 
         return {
             success: true,
-            message: 'File successfully uploaded! Now you can analyze it.',
+            message: 'File uploaded. Starting analysis…',
             file: file
         };
     } catch (error) {

@@ -21,6 +21,8 @@ function SitemapPage() {
                             <a href="/" className="sitemap-link">Home</a>
                             <a href="/about" className="sitemap-link">About Us</a>
                             <a href="/flyercheck" className="sitemap-link">FlyerCheck</a>
+                            <a href="/how-it-works" className="sitemap-link">How It Works</a>
+                            <a href="/faq" className="sitemap-link">FAQ</a>
                             <a href="/blog" className="sitemap-link">Blog</a>
                             <a href="/contact" className="sitemap-link">Contact</a>
                             <a href="/privacy" className="sitemap-link">Privacy Policy</a>

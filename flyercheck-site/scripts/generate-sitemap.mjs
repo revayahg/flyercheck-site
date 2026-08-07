@@ -27,6 +27,8 @@ const staticPaths = [
   { path: "/", priority: "1.0", changefreq: "weekly" },
   { path: "/flyercheck", priority: "0.9", changefreq: "weekly" },
   { path: "/about", priority: "0.7", changefreq: "monthly" },
+  { path: "/faq", priority: "0.6", changefreq: "monthly" },
+  { path: "/how-it-works", priority: "0.6", changefreq: "monthly" },
   { path: "/blog", priority: "0.8", changefreq: "weekly" },
   { path: "/contact", priority: "0.6", changefreq: "monthly" },
   { path: "/privacy", priority: "0.5", changefreq: "monthly" },

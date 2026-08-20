@@ -204,6 +204,87 @@
     text-align: center;
 }
 
+.about-founder-section {
+    max-width: 1100px;
+    margin: 0 auto 3rem;
+}
+
+.about-founder-section .about-info-title {
+    margin-bottom: 1.5rem;
+}
+
+.about-founder-layout {
+    display: grid;
+    grid-template-columns: minmax(200px, 280px) 1fr;
+    gap: 2rem 2.5rem;
+    align-items: start;
+}
+
+.about-founder-photo {
+    width: 100%;
+    max-width: 280px;
+}
+
+.about-founder-headshot {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 1px solid rgba(91, 70, 54, 0.15);
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.about-founder-byline {
+    font-family: 'Didot', serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--brand-primary, #5B4636);
+    margin: 0 0 1.25rem;
+    letter-spacing: 0.02em;
+}
+
+.about-founder-content .about-info-p:last-of-type {
+    margin-bottom: 1.5rem;
+}
+
+.about-founder-social-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--brand-accent, #8C7A5B);
+    margin: 0 0 0.75rem;
+}
+
+.about-founder-social-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.about-founder-social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1rem;
+    border-radius: 999px;
+    border: 1.5px solid var(--brand-primary, #5B4636);
+    color: var(--brand-primary, #5B4636);
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.about-founder-social-link:hover {
+    background: var(--brand-primary, #5B4636);
+    color: #fff;
+}
+
+.about-founder-social-link i {
+    font-size: 1.1rem;
+}
+
 @media (max-width: 900px) {
     .about-section .founders-grid {
         grid-template-columns: 1fr !important;
@@ -267,6 +348,21 @@
     .about-info-p,
     .about-info-list {
         font-size: 1rem;
+    }
+
+    .about-founder-layout {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .about-founder-photo {
+        max-width: 220px;
+        margin: 0 auto;
+    }
+
+    .about-founder-byline {
+        font-size: 1.2rem;
+        text-align: center;
     }
 }
 

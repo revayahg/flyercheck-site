@@ -789,6 +789,35 @@
     color: var(--fc-muted);
 }
 
+.blog-category-filter {
+    font-family: var(--fc-font-sans);
+    font-size: var(--fc-text-ui);
+    font-weight: 500;
+    color: var(--fc-muted);
+    background: var(--fc-surface);
+    border: 1.5px solid var(--fc-border);
+    border-radius: 999px;
+    box-shadow: none;
+}
+
+.blog-category-filter:hover,
+.blog-category-filter:focus-visible {
+    color: var(--fc-off-white);
+    border-color: var(--fc-hazard);
+    box-shadow: 0 0 12px var(--fc-hazard-glow);
+}
+
+.blog-category-filter.active {
+    color: var(--fc-near-black);
+    background: var(--fc-off-white);
+    border-color: var(--fc-hazard);
+    box-shadow: 0 0 14px var(--fc-hazard-glow);
+}
+
+.blog-filter-empty {
+    color: var(--fc-muted);
+}
+
 .blog-post-card {
     background: var(--fc-surface);
     border: 0.5px solid var(--fc-border);
@@ -1272,6 +1301,46 @@
 .contact-form .submit-button:disabled {
     opacity: 0.6;
     cursor: not-allowed;
+}
+
+.about-info-card,
+.about-founder-section {
+    background: var(--fc-surface);
+    border: 0.5px solid var(--fc-border);
+    border-left: 4px solid var(--fc-hazard);
+    box-shadow: none;
+}
+
+.about-info-title,
+.about-founder-byline {
+    color: var(--fc-off-white);
+}
+
+.about-info-p,
+.why-revaya-text {
+    color: var(--fc-muted);
+}
+
+.about-founder-headshot {
+    background: var(--fc-near-black);
+    border-color: var(--fc-border);
+}
+
+.about-founder-social-label {
+    color: var(--fc-muted);
+}
+
+.about-founder-social-link {
+    border-color: var(--fc-hazard);
+    color: var(--fc-off-white);
+    font-family: var(--fc-font-sans);
+    box-shadow: 0 0 12px var(--fc-hazard-glow);
+}
+
+.about-founder-social-link:hover {
+    background: var(--fc-off-white);
+    color: var(--fc-near-black);
+    border-color: var(--fc-hazard);
 }
 
 /* ── Sitemap page ── */

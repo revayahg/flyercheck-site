@@ -1,11 +1,30 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import AdBanner from "../components/AdBanner";
 import FounderCard from "../components/FounderCard";
 import { reportError } from "../utils/errorHandler";
+import { usePageJsonLd } from "../utils/pageJsonLd";
+
+const jolysePersonSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Jolyse Stultz",
+  jobTitle: "Founder",
+  worksFor: {
+    "@type": "Organization",
+    name: "Revaya Hospitality Group",
+  },
+  url: "https://www.flyercheck.io/about",
+  sameAs: [
+    "https://www.linkedin.com/in/jolysestultz",
+    "https://www.instagram.com/revayahg",
+  ],
+};
 
 export default function AboutPage() {
   try {
+    usePageJsonLd(jolysePersonSchema);
     const foundersList = [
       {
         name: "Jolyse Stultz",
@@ -42,8 +61,69 @@ export default function AboutPage() {
           <div className="container">
             <h1 className="about-title">Our Founders</h1>
             <p className="why-revaya-text" style={{ maxWidth: "720px", margin: "0 auto 2rem", textAlign: "center" }}>
-              FlyerCheck is built by the team at Revaya Hospitality Group — event operators and technologists who help hospitality professionals, event organizers, and promoters produce stronger live experiences. Meet the founders behind the product on flyercheck.io.
+              FlyerCheck is built by the team at Revaya Hospitality Group — event operators and technologists who help hospitality professionals, event organizers, and promoters produce stronger live experiences.
             </p>
+
+            <section
+              className="about-founder-section about-info-card"
+              data-name="about-founder-section"
+              aria-labelledby="about-founder-heading"
+            >
+              <h2 id="about-founder-heading" className="about-info-title">
+                About the founder
+              </h2>
+              <div className="about-founder-layout">
+                <div className="about-founder-photo">
+                  {/* Add headshot photo to public/images/ */}
+                  <img
+                    src="/images/jolyse-stultz.jpg"
+                    alt="Jolyse Stultz, Founder of Revaya Hospitality Group"
+                    className="about-founder-headshot"
+                    width={280}
+                    height={280}
+                  />
+                </div>
+                <div className="about-founder-content">
+                  <p className="about-founder-byline">
+                    Jolyse Stultz, Founder — Revaya Hospitality Group
+                  </p>
+                  <p className="about-info-p">
+                    I&apos;ve spent more than fifteen years in travel and hospitality — running events, watching teams scramble in the week before doors open, and sitting in the room when a small miscommunication turned into a very long night. The work taught me that great guest experiences don&apos;t happen by accident. They happen when the people behind the scenes have clear information, aligned timelines, and tools that match how live events actually run.
+                  </p>
+                  <p className="about-info-p">
+                    FlyerCheck came out of a frustration I kept seeing up close: a flyer goes out with a wrong date, a buried ticket link, or text that doesn&apos;t read on a phone screen — and nobody catches it until the comments start rolling in. We built it as a simple pre-publish check for hospitality professionals, event organizers, and promoters who move fast and don&apos;t always have a second pair of eyes before post. It&apos;s not trying to replace your designer. It&apos;s the quick sanity pass before your audience becomes the proofreader.
+                  </p>
+                  <p className="about-info-p">
+                    Revaya Hospitality Group is where we&apos;re building the rest of that picture — practical tools, operational guidance, and technology that reduces the friction between planning and execution. My goal is straightforward: help the people who make live events happen spend less time chasing details and more time delivering experiences worth showing up for.
+                  </p>
+                  <div className="about-founder-social" data-name="about-founder-social">
+                    <p className="about-founder-social-label">Connect with Jolyse</p>
+                    <div className="about-founder-social-links">
+                      <a
+                        href="https://www.linkedin.com/in/jolysestultz"
+                        className="about-founder-social-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        data-name="about-founder-linkedin"
+                      >
+                        <i className="fab fa-linkedin" aria-hidden="true" />
+                        LinkedIn
+                      </a>
+                      <a
+                        href="https://www.instagram.com/revayahg"
+                        className="about-founder-social-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        data-name="about-founder-instagram"
+                      >
+                        <i className="fab fa-instagram" aria-hidden="true" />
+                        Instagram
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
 
             <div
               className="founders-grid"
@@ -90,7 +170,7 @@ export default function AboutPage() {
                 Fragmented tools and communication breakdowns create hidden cost—extra hours, last-minute scrambles, and burnout. We started Revaya to address that gap. Our goal is to improve how event teams manage information: one source of truth, clearer coordination, and technology that supports the way teams actually work.
               </p>
               <p className="about-info-p">
-                We build and advise with a focus on reducing complexity so that planners, producers, and hospitality teams can focus on what matters most: delivering great experiences.
+                We build and advise with a focus on reducing complexity so that hospitality professionals, event organizers, promoters, and their teams can focus on what matters most: delivering great experiences.
               </p>
             </section>
 
@@ -125,7 +205,7 @@ export default function AboutPage() {
                 <h2 className="about-info-title">Roles We Support</h2>
               </div>
               <p className="about-info-p">
-                Our tools and guidance are designed to support hospitality professionals, venue operators, event producers, organizers, and promoters across live events:
+                Our tools and guidance are designed to support hospitality professionals, event organizers, and promoters — along with venue operators, event producers, and production teams across live events:
               </p>
               <div className="about-info-pills">
                 <div className="about-info-pill">
@@ -146,7 +226,7 @@ export default function AboutPage() {
                 </div>
                 <div className="about-info-pill">
                   <i className="fas fa-bullhorn about-info-pill-icon" aria-hidden="true" />
-                  <span>Promoters &amp; organizers</span>
+                  <span>Event organizers &amp; promoters</span>
                 </div>
                 <div className="about-info-pill">
                   <i className="fas fa-boxes about-info-pill-icon" aria-hidden="true" />
@@ -157,6 +237,7 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
+        <AdBanner inline />
         <Footer />
       </div>
     );

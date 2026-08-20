@@ -93,6 +93,7 @@
 }
 
 .dropdown-content {
+    display: none;
     position: absolute;
     top: 100%;
     left: 0;
@@ -102,6 +103,23 @@
     border-radius: 8px;
     padding: 0.5rem 0;
     z-index: 51;
+}
+
+/* Invisible bridge so hover stays open when moving to menu items */
+.dropdown::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: 10px;
+}
+
+@media (min-width: 769px) {
+    .dropdown.open .dropdown-content,
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
 }
 
 .dropdown-item {
@@ -178,8 +196,13 @@
 
     .dropdown-content {
         position: static;
+        display: none;
         box-shadow: none;
         padding: 0.5rem 0 0 1rem;
+    }
+
+    .dropdown.open .dropdown-content {
+        display: block;
     }
 
     .nav-link,

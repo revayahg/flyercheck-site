@@ -114,4 +114,10 @@ export const blogSeoMeta = {
       "The research behind why a bad event flyer doesn't just look unprofessional — it costs you attendance, conversions, and revenue.",
     ogTitle: "What a Bad Flyer Actually Costs You",
   },
+  "flyercheck-plus-ai-chatbot-final-check": {
+    seoTitle: "FlyerCheck + AI Chatbot: Final Check Before Post | FlyerCheck",
+    seoDescription:
+      "Structural flags from FlyerCheck, first-impression read from your chatbot — a five-minute workflow before your flyer goes live.",
+    ogTitle: "FlyerCheck + AI Chatbot: Final Check Before Post",
+  },
 };

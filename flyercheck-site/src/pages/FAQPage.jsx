@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import AdBanner from "../components/AdBanner";
 import { reportError } from "../utils/errorHandler";
 
 const faqs = [
@@ -81,6 +82,7 @@ function FAQPage() {
             </section>
           </div>
         </div>
+        <AdBanner inline />
         <Footer />
       </div>
     );

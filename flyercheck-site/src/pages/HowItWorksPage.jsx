@@ -5,28 +5,24 @@ import { reportError } from "../utils/errorHandler";
 
 const steps = [
   {
-    icon: "fas fa-upload",
-    title: "Step 1: Upload your flyer",
-    description:
-      "Drag or drop your flyer image — PNG, JPEG, or WEBP up to 15MB. Large files are compressed automatically. No account needed. No email required. The upload is the only thing standing between you and your results.",
+    num: "1",
+    title: "Upload your flyer",
+    body: "Drag or drop your flyer image — PNG, JPEG, or WEBP. No account needed. No email required. The upload is the only thing standing between you and your results.",
   },
   {
-    icon: "fas fa-robot",
-    title: "Step 2: The AI reviews your flyer",
-    description:
-      "FlyerCheck sends your flyer to an AI model trained to evaluate event promotional materials. It reads the content, assesses the visual structure, and checks for the specific information attendees need before they decide to show up.",
+    num: "2",
+    title: "The AI reviews your flyer",
+    body: "FlyerCheck sends your flyer to an AI model trained to evaluate event promotional materials. It reads the content, assesses the visual structure, and checks for the specific information attendees need before they decide to show up.",
   },
   {
-    icon: "fas fa-list-alt",
-    title: "Step 3: You get a structured report",
-    description:
-      "Results come back as a list of specific findings — not a score, not a grade. Each finding identifies what was flagged, where on the flyer it appears, and why it might affect your audience's response. Most analyses complete in under 30 seconds.",
+    num: "3",
+    title: "You get a structured report",
+    body: "Results come back as a list of specific findings — not a score, not a grade. Each finding identifies what was flagged, where on the flyer it appears, and why it might affect your audience's response. Most analyses complete in under 30 seconds.",
   },
   {
-    icon: "fas fa-check-double",
-    title: "Step 4: You decide what to fix",
-    description:
-      "Not every flag is a required change. Some findings are judgment calls — you know your audience and your event better than the tool does. FlyerCheck gives you the information; you make the call. Fix what matters. Skip what doesn't. Post with confidence.",
+    num: "4",
+    title: "You decide what to fix",
+    body: "Not every flag is a required change. Some findings are judgment calls — you know your audience and your event better than the tool does. FlyerCheck gives you the information; you make the call. Fix what matters. Skip what doesn't. Post with confidence.",
   },
 ];
 
@@ -43,21 +39,21 @@ function HowItWorksPage() {
             </p>
 
             <section
-              className="homepage-section what-we-do-section"
+              className="homepage-section flyercheck-how-it-works"
               data-name="how-it-works-steps"
             >
-              <div className="pillars-grid" data-name="how-it-works-grid">
-                {steps.map((step, index) => (
-                  <div key={step.title} className="pillar-card" data-name={`how-it-works-step-${index}`}>
-                    <div className="pillar-icon" data-name={`how-it-works-icon-${index}`}>
-                      <i className={step.icon} aria-hidden="true"></i>
+              <div className="flyercheck-steps">
+                {steps.map((step) => (
+                  <div
+                    key={step.num}
+                    className="flyercheck-step"
+                    data-name={`how-it-works-step-${step.num}`}
+                  >
+                    <div className="step-number" aria-hidden="true">{step.num}</div>
+                    <div className="step-content">
+                      <h2 className="pillar-title">{step.title}</h2>
+                      <p>{step.body}</p>
                     </div>
-                    <h2 className="pillar-title" data-name={`how-it-works-title-${index}`}>
-                      {step.title}
-                    </h2>
-                    <p className="pillar-description" data-name={`how-it-works-desc-${index}`}>
-                      {step.description}
-                    </p>
                   </div>
                 ))}
               </div>
@@ -75,7 +71,7 @@ function HowItWorksPage() {
                 <p className="flyercheck-faq-answer">
                   FlyerCheck does not redesign your flyer, generate new creative,
                   or tell you what your event should look like. It reviews what
-                  you&apos;ve already made and flags potential issues. It does not
+                  you have already made and flags potential issues. It does not
                   replace a graphic designer, a marketing strategist, or your
                   own judgment about your audience. It is a quality control
                   step — one that takes 30 seconds and happens before your

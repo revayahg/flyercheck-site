@@ -1376,6 +1376,24 @@
     color: var(--fc-muted);
 }
 
+.flyercheck-how-it-works {
+    background-color: var(--fc-surface);
+    border: 0.5px solid var(--fc-border);
+    border-radius: 8px;
+    box-shadow: none;
+}
+
+.step-number {
+    background-color: var(--fc-hazard);
+    color: var(--fc-near-black);
+    font-family: var(--fc-font-serif);
+}
+
+.step-content p {
+    color: var(--fc-muted);
+    font-family: var(--fc-font-sans);
+}
+
 /* Blog in-post CTA — dark surface, primary button per guide */
 .blog-article-top-cta {
     background: var(--fc-surface);

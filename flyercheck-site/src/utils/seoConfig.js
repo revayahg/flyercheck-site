@@ -210,9 +210,12 @@ function updateMetaTags(config, url) {
 
 // Update structured data (JSON-LD)
 function updateStructuredData(path, config, url) {
-    // Remove existing structured data scripts
+    // Remove existing structured data scripts (keep page-level JSON-LD from usePageJsonLd)
     const existingScripts = document.querySelectorAll('script[type="application/ld+json"]');
-    existingScripts.forEach(script => script.remove());
+    existingScripts.forEach((script) => {
+        if (script.getAttribute("data-page-jsonld") === "true") return;
+        script.remove();
+    });
     
     // Base organization schema for all pages
     const organizationSchema = {
@@ -271,20 +274,33 @@ function updateStructuredData(path, config, url) {
             "name": "Contact Us",
             "description": config.description
         };
+    } else if (path === '/about') {
+        // Person schema is injected by AboutPage.jsx via usePageJsonLd
+        pageSchema = null;
     }
     
-    // Add organization schema
+    // Add organization schema (keep page-level JSON-LD after it)
     const orgScript = document.createElement('script');
     orgScript.type = 'application/ld+json';
     orgScript.textContent = JSON.stringify(organizationSchema);
-    document.head.appendChild(orgScript);
+    const pageJsonLd = document.querySelector('script[data-page-jsonld="true"]');
+    if (pageJsonLd) {
+        document.head.insertBefore(orgScript, pageJsonLd);
+    } else {
+        document.head.appendChild(orgScript);
+    }
     
-    // Add page-specific schema if exists
+    // Add page-specific schema if exists (before page-level JSON-LD when present)
     if (pageSchema) {
         const pageScript = document.createElement('script');
         pageScript.type = 'application/ld+json';
         pageScript.textContent = JSON.stringify(pageSchema);
-        document.head.appendChild(pageScript);
+        const pageJsonLdAfterOrg = document.querySelector('script[data-page-jsonld="true"]');
+        if (pageJsonLdAfterOrg) {
+            document.head.insertBefore(pageScript, pageJsonLdAfterOrg);
+        } else {
+            document.head.appendChild(pageScript);
+        }
     }
 
     // FAQPage schema for AEO (FlyerCheck)

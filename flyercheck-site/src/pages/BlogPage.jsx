@@ -25,28 +25,6 @@ function BlogPage() {
 
     const externalPosts = [
       {
-        title: "The AI Training Bootcamp Helping Companies Finally See ROI",
-        author: "Thiago Ferreira",
-        platform: "USA News",
-        url: "https://usanews.com/newsroom/the-ai-training-bootcamp-helping-companies-finally-see-roi",
-        date: "2025",
-        description:
-          "Featured article on how Elevate AI Consulting's AI Training Bootcamp is transforming organizational adoption and building real ROI for companies nationwide.",
-        icon: "fas fa-newspaper",
-        color: "#1a1a1a",
-      },
-      {
-        title: "Turning AI Hype Into Impact with Elevate AI Consulting",
-        author: "Thiago Ferreira",
-        platform: "CEO Times",
-        url: "https://ceotimes.com/turning-ai-hype-into-impact-with-elevate-ai-consulting-2/",
-        date: "2025",
-        description:
-          "Featured coverage on how Elevate AI Consulting helps executives transform AI potential into measurable business results.",
-        icon: "fas fa-briefcase",
-        color: "#0066cc",
-      },
-      {
         title: "The Power of the Unremarkable",
         author: "Jolyse Stultz",
         platform: "LinkedIn",
@@ -56,27 +34,6 @@ function BlogPage() {
           "Drawing from 15+ years in travel and hospitality, Jolyse explores how the most powerful customer experiences are often unremarkable—they just work seamlessly. From smartphone updates to Global Entry and cruise boarding, discover why seamless experiences that don't draw attention to themselves are often the most unforgettable.",
         icon: "fab fa-linkedin",
         color: "#0077b5",
-      },
-      {
-        title: "Becoming an AI Consultant",
-        author: "Thiago Ferreira",
-        platform: "Elevate AI Consulting",
-        url: "https://www.elevateaiconsulting.com/post/becoming-an-ai-consultant",
-        date: "2025",
-        description:
-          "Insights and experiences from the journey of becoming an AI consultant.",
-        icon: "fas fa-robot",
-        color: "#90684A",
-      },
-      {
-        title: "Chat GPT-5: Our First Impressions",
-        author: "Thiago Ferreira",
-        platform: "Elevate AI Consulting",
-        url: "https://www.elevateaiconsulting.com/post/chat-gpt-5-our-first-impressions",
-        date: "2025",
-        description: "Initial thoughts and analysis on OpenAI's latest language model.",
-        icon: "fas fa-comments",
-        color: "#90684A",
       },
     ];
 

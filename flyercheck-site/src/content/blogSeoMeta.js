@@ -120,4 +120,16 @@ export const blogSeoMeta = {
       "Structural flags from FlyerCheck, first-impression read from your chatbot — a five-minute workflow before your flyer goes live.",
     ogTitle: "FlyerCheck + AI Chatbot: Final Check Before Post",
   },
+  "venue-handoff-where-events-fall-apart": {
+    seoTitle: "Where Events Quietly Fall Apart: Venue Handoff | FlyerCheck",
+    seoDescription:
+      "Wrong doors, power surprises, and unowned access rules—most day-of failures start when producers and venues never share one operational truth.",
+    ogTitle: "Where Events Quietly Fall Apart: The Venue Handoff",
+  },
+  "first-fifteen-minutes-check-in": {
+    seoTitle: "Check-In Makes or Breaks Your Event Night | FlyerCheck",
+    seoDescription:
+      "Guests decide how the night feels before they reach the room—at the line, the credential check, and the first staff interaction.",
+    ogTitle: "Check-In Makes or Breaks Your Event Night",
+  },
 };

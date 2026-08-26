@@ -209,6 +209,13 @@ function ContactPage() {
               <h2 id="contact-faq-heading" className="section-title">
                 Common Questions
               </h2>
+              <p className="contact-subtitle" style={{ textAlign: "left", marginBottom: "1.5rem" }}>
+                Whether you&apos;re asking about FlyerCheck, reporting a bug, or
+                exploring a partnership, these answers cover the questions we hear
+                most often. If yours isn&apos;t listed, send a note through the form
+                above — we read every message and aim to reply within one to two
+                business days with a clear next step.
+              </p>
               <dl className="flyercheck-faq-list">
                 <div className="flyercheck-faq-item">
                   <dt className="flyercheck-faq-question">
@@ -259,6 +266,31 @@ function ContactPage() {
                   <dd className="flyercheck-faq-answer">
                     Yes. The core flyer analysis tool is free to use with no
                     account required. Upload your flyer and get results immediately.
+                  </dd>
+                </div>
+                <div className="flyercheck-faq-item">
+                  <dt className="flyercheck-faq-question">
+                    What kinds of events is FlyerCheck best for?
+                  </dt>
+                  <dd className="flyercheck-faq-answer">
+                    FlyerCheck works for any event that uses a flyer to drive
+                    attendance — nightlife and music events, galas and charity
+                    events, festivals, brand activations, community gatherings,
+                    and hospitality experiences. If you&apos;re distributing a
+                    promotional image before the event, FlyerCheck is designed
+                    for you.
+                  </dd>
+                </div>
+                <div className="flyercheck-faq-item">
+                  <dt className="flyercheck-faq-question">
+                    Is FlyerCheck affiliated with a larger platform?
+                  </dt>
+                  <dd className="flyercheck-faq-answer">
+                    FlyerCheck is a product of Revaya Hospitality Group, which
+                    also builds Revaya Host — an event operations platform for
+                    producers managing live experiences. FlyerCheck is a
+                    standalone free tool and does not require a Revaya Host
+                    account.
                   </dd>
                 </div>
               </dl>

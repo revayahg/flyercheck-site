@@ -53,6 +53,14 @@ const faqs = [
     q: "How do I contact the team?",
     a: "Email info@revayahg.com or use the contact form at flyercheck.io/contact. We read everything and respond within 1–2 business days.",
   },
+  {
+    q: "Do I need an account to use FlyerCheck?",
+    a: "No account is required. Upload your flyer and get results immediately — no sign-up, no email, no credit card. The tool is completely free and open to use without registration.",
+  },
+  {
+    q: "What should I do if I disagree with a flag?",
+    a: "Trust your judgment. FlyerCheck flags potential issues based on common patterns across event flyers — it does not know your specific audience, your design intent, or your event context. If a flag does not apply to your situation, skip it. The goal is to surface things worth considering, not to prescribe what your flyer must look like.",
+  },
 ];
 
 function FAQPage() {
@@ -64,7 +72,11 @@ function FAQPage() {
           <div className="container">
             <h1 className="contact-title">Frequently Asked Questions</h1>
             <p className="contact-subtitle">
-              Everything you need to know about FlyerCheck.
+              Everything you need to know about FlyerCheck — from what it
+              analyzes and who it&apos;s for, to privacy, results, and how to
+              reach the team. If you still have a question after reading, use
+              the contact form and we&apos;ll follow up within 1–2 business days
+              with a practical answer you can act on.
             </p>
 
             <section

@@ -36,7 +36,9 @@ function HowItWorksPage() {
           <div className="container">
             <h1 className="contact-title">How FlyerCheck works</h1>
             <p className="contact-subtitle">
-              One upload. A structured review. Then you decide what to fix.
+              One upload. A structured review. Then you decide what to fix —
+              a simple workflow built for event teams who need clarity before
+              they hit post.
             </p>
 
             <section
@@ -77,6 +79,57 @@ function HowItWorksPage() {
                   own judgment about your audience. It is a quality control
                   step — one that takes 30 seconds and happens before your
                   audience sees the work.
+                </p>
+              </div>
+            </section>
+
+            <section
+              className="homepage-section flyercheck-faq-section"
+              data-name="who-uses-flyercheck"
+              aria-labelledby="who-uses-heading"
+            >
+              <h2 id="who-uses-heading" className="section-title">
+                Who uses FlyerCheck
+              </h2>
+              <div className="flyercheck-faq-list">
+                <p className="flyercheck-faq-answer">
+                  FlyerCheck is used by event producers, promoters, venue
+                  marketing teams, hospitality operators, and anyone who creates
+                  promotional materials for live experiences. The tool is built
+                  for people who care about getting it right before it goes out —
+                  not after the event is over and the flyer has already
+                  circulated.
+                </p>
+                <p className="flyercheck-faq-answer">
+                  Most users run FlyerCheck as a final step before posting —
+                  after the design is done but before it goes live. Some use it
+                  earlier in the process to gut-check a rough draft before
+                  spending time on polish. Either way, the analysis takes under
+                  30 seconds and the results are specific enough to act on
+                  immediately.
+                </p>
+              </div>
+            </section>
+
+            <section
+              className="homepage-section flyercheck-faq-section"
+              data-name="note-on-accuracy"
+              aria-labelledby="accuracy-heading"
+            >
+              <h2 id="accuracy-heading" className="section-title">
+                A note on accuracy
+              </h2>
+              <div className="flyercheck-faq-list">
+                <p className="flyercheck-faq-answer">
+                  FlyerCheck is an AI-powered tool, which means its analysis is
+                  probabilistic rather than absolute. It will occasionally flag
+                  something that does not need fixing, and it may miss something
+                  specific to your event or audience. It is designed to catch the
+                  most common and costly mistakes — not to be exhaustive. Use it
+                  as a second set of eyes, not as a final authority. Your
+                  knowledge of your event and your audience still matters. When in
+                  doubt, fix the clear logistics issues first — date, time, venue,
+                  and ticket path — and treat the rest as optional judgment calls.
                 </p>
               </div>
             </section>

@@ -14,11 +14,18 @@ const jolysePersonSchema = {
   worksFor: {
     "@type": "Organization",
     name: "Revaya Hospitality Group",
+    url: "https://www.revayahg.com",
   },
   url: "https://www.flyercheck.io/about",
   sameAs: [
     "https://www.linkedin.com/in/jolysestultz",
     "https://www.instagram.com/revayahg",
+  ],
+  knowsAbout: [
+    "Event Operations",
+    "Hospitality",
+    "Live Events",
+    "Event Technology",
   ],
 };
 

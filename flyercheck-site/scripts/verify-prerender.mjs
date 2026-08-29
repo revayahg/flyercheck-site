@@ -24,7 +24,7 @@ const metaChecks = [
   {
     route: "/",
     title: "Catch Flyer Mistakes Before Launch | FlyerCheck",
-    descriptionNeedle: "finds the typo",
+    descriptionNeedle: "event ops and hospitality",
   },
   {
     route: "/sitemap",

@@ -4,8 +4,10 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import AdBanner from "../components/AdBanner";
 import { reportError } from "../utils/errorHandler";
+import { contactFaqItems } from "../content/faqContent";
 
-const FORMSPREE_ENDPOINT = import.meta.env.VITE_FORMSPREE_ENDPOINT;
+const CLIENT_FORMSPREE = (import.meta.env.VITE_FORMSPREE_ENDPOINT || "").trim();
+const CONTACT_SUBMIT_URL = CLIENT_FORMSPREE || "/api/contact";
 
 function ContactPage() {
   try {
@@ -28,19 +30,11 @@ function ContactPage() {
 
     const handleSubmit = async (e) => {
       e.preventDefault();
-      if (!FORMSPREE_ENDPOINT || FORMSPREE_ENDPOINT.trim() === "") {
-        setSubmitMessage(
-          "Contact form is not configured yet. Email us at info@revayahg.com."
-        );
-        setIsSuccess(false);
-        return;
-      }
-
       setIsSubmitting(true);
       setSubmitMessage(null);
 
       try {
-        const response = await fetch(FORMSPREE_ENDPOINT, {
+        const response = await fetch(CONTACT_SUBMIT_URL, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -61,7 +55,15 @@ function ContactPage() {
           setFormData({ name: "", email: "", subject: "", message: "" });
         } else {
           const data = await response.json().catch(() => ({}));
-          throw new Error(data.error || "Failed to send message");
+          const errMsg = data.error || "Failed to send message";
+          if (response.status === 503) {
+            setSubmitMessage(
+              `${errMsg} You can also email us at info@revayahg.com.`
+            );
+            setIsSuccess(false);
+            return;
+          }
+          throw new Error(errMsg);
         }
       } catch (error) {
         reportError(error);
@@ -83,6 +85,15 @@ function ContactPage() {
             <h1 className="contact-title">Contact</h1>
             <p className="contact-subtitle">
               Questions about FlyerCheck or event ops? Reach out — we read every message.
+              For tool questions (formats, privacy, pricing), check the{" "}
+              <a href="/faq">FAQ</a> first; use this form for support, feedback, and
+              partnership ideas.
+            </p>
+
+            <p className="why-revaya-text" style={{ maxWidth: "720px", margin: "0 auto 2rem", textAlign: "center" }}>
+              When reporting an analyzer issue, include the event type, what FlyerCheck flagged,
+              and anything it missed — that helps us reproduce and improve results. We respond
+              within one to two business days with a clear next step.
             </p>
 
             <div className="contact-content-wrapper">
@@ -207,93 +218,27 @@ function ContactPage() {
               aria-labelledby="contact-faq-heading"
             >
               <h2 id="contact-faq-heading" className="section-title">
-                Common Questions
+                Before you reach out
               </h2>
               <p className="contact-subtitle" style={{ textAlign: "left", marginBottom: "1.5rem" }}>
-                Whether you&apos;re asking about FlyerCheck, reporting a bug, or
-                exploring a partnership, these answers cover the questions we hear
-                most often. If yours isn&apos;t listed, send a note through the form
-                above — we read every message and aim to reply within one to two
-                business days with a clear next step.
+                Questions about how the analyzer works, pricing, file formats, or
+                privacy are all on our FAQ page. Below are contact-specific
+                answers — if yours isn&apos;t listed, send a note through the form
+                above.
               </p>
               <dl className="flyercheck-faq-list">
-                <div className="flyercheck-faq-item">
-                  <dt className="flyercheck-faq-question">
-                    What happens after I send a message?
-                  </dt>
-                  <dd className="flyercheck-faq-answer">
-                    We read every note and respond within 1–2 business days.
-                    If you&apos;re reporting a bug or tool issue, include the type of
-                    flyer you uploaded and what the result said — it helps us
-                    reproduce it faster.
-                  </dd>
-                </div>
-                <div className="flyercheck-faq-item">
-                  <dt className="flyercheck-faq-question">
-                    Do you work with venues and hospitality teams directly?
-                  </dt>
-                  <dd className="flyercheck-faq-answer">
-                    Yes. FlyerCheck is built for anyone producing live
-                    experiences — promoters, venue marketing teams, hospitality
-                    operators, and festival organizers. If your team reviews
-                    flyers regularly, reach out and we can talk about how the
-                    tool fits your workflow.
-                  </dd>
-                </div>
-                <div className="flyercheck-faq-item">
-                  <dt className="flyercheck-faq-question">
-                    Can I suggest a feature or flag something the tool missed?
-                  </dt>
-                  <dd className="flyercheck-faq-answer">
-                    Absolutely — product feedback is the most useful thing
-                    you can send. Tell us what the flyer was for, what FlyerCheck
-                    said, and what it missed. That goes directly into how we
-                    improve the analysis.
-                  </dd>
-                </div>
-                <div className="flyercheck-faq-item">
-                  <dt className="flyercheck-faq-question">
-                    Are you open to partnerships or integrations?
-                  </dt>
-                  <dd className="flyercheck-faq-answer">
-                    We&apos;re selectively open to partnerships with platforms and
-                    tools that serve event producers and hospitality professionals.
-                    Send a note with what you have in mind.
-                  </dd>
-                </div>
-                <div className="flyercheck-faq-item">
-                  <dt className="flyercheck-faq-question">Is FlyerCheck free?</dt>
-                  <dd className="flyercheck-faq-answer">
-                    Yes. The core flyer analysis tool is free to use with no
-                    account required. Upload your flyer and get results immediately.
-                  </dd>
-                </div>
-                <div className="flyercheck-faq-item">
-                  <dt className="flyercheck-faq-question">
-                    What kinds of events is FlyerCheck best for?
-                  </dt>
-                  <dd className="flyercheck-faq-answer">
-                    FlyerCheck works for any event that uses a flyer to drive
-                    attendance — nightlife and music events, galas and charity
-                    events, festivals, brand activations, community gatherings,
-                    and hospitality experiences. If you&apos;re distributing a
-                    promotional image before the event, FlyerCheck is designed
-                    for you.
-                  </dd>
-                </div>
-                <div className="flyercheck-faq-item">
-                  <dt className="flyercheck-faq-question">
-                    Is FlyerCheck affiliated with a larger platform?
-                  </dt>
-                  <dd className="flyercheck-faq-answer">
-                    FlyerCheck is a product of Revaya Hospitality Group, which
-                    also builds Revaya Host — an event operations platform for
-                    producers managing live experiences. FlyerCheck is a
-                    standalone free tool and does not require a Revaya Host
-                    account.
-                  </dd>
-                </div>
+                {contactFaqItems.map((item) => (
+                  <div key={item.q} className="flyercheck-faq-item">
+                    <dt className="flyercheck-faq-question">{item.q}</dt>
+                    <dd className="flyercheck-faq-answer">{item.a}</dd>
+                  </div>
+                ))}
               </dl>
+              <div className="insights-cta" style={{ marginTop: "1.5rem" }}>
+                <a href="/faq" className="insight-link">
+                  Tool questions? See the full FlyerCheck FAQ →
+                </a>
+              </div>
             </section>
           </div>
         </div>

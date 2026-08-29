@@ -1,22 +1,14 @@
 import { getPostBySlug } from '../content/blogPosts';
 import { buildArticleSchema } from './articleSchema.js';
+import { faqItems, faqSchemaEntities } from '../content/faqContent.js';
 
 const baseUrl = 'https://www.flyercheck.io';
 const defaultOGImage = 'https://www.flyercheck.io/favicon-512.png';
 
-// FAQ data for FAQPage schema (AEO) - must match on-page content
-const faqFlyerCheck = [
-    { q: 'What does FlyerCheck analyze?', a: 'FlyerCheck reviews event flyer content for communication clarity, information completeness, and common design or layout issues that may affect audience understanding.' },
-    { q: 'Who is FlyerCheck designed for?', a: 'FlyerCheck is designed for event organizers, hospitality teams, marketers, venue operators, and anyone responsible for creating or reviewing promotional materials for live experiences.' },
-    { q: 'Does FlyerCheck replace a graphic designer?', a: 'No. FlyerCheck is intended as a review and quality-control tool. It helps identify potential issues before publishing, but it does not replace professional design judgment.' },
-    { q: 'Can FlyerCheck be used for different types of events?', a: 'Yes. FlyerCheck can support a wide range of event types, including community events, hospitality activations, festivals, venue programming, and corporate events.' },
-    { q: 'Why is flyer clarity so important?', a: 'A flyer often serves as the first impression of an event. If key information is missing or hard to understand, potential guests may not take the next step.' }
-];
-
 const seoConfig = {
     '/': {
         title: 'Catch Flyer Mistakes Before Launch | FlyerCheck',
-        description: 'Your audience finds the typo before you do. Free AI flyer review flags missing dates, weak CTAs, and clutter—before you publish.',
+        description: 'Free AI flyer review for event promoters, plus guides on event ops and hospitality execution. Flag missing dates and weak CTAs before you publish.',
         keywords: 'FlyerCheck, flyer analysis, AI flyer check, event flyer review',
         ogTitle: 'Catch Flyer Mistakes Before Launch',
         ogDescription: 'Free AI flyer review for event promoters—spot what costs you RSVPs before your flyer goes live.',
@@ -97,10 +89,10 @@ const seoConfig = {
     },
     '/sitemap': {
         title: 'flyercheck.io Sitemap—Tool, Blog & Policies',
-        description: 'Every FlyerCheck page in one place: the free flyer analyzer, 18 ops articles, policies, and contact.',
+        description: 'Every FlyerCheck page in one place: the free flyer analyzer, 22+ event ops articles, policies, and contact.',
         keywords: 'FlyerCheck sitemap, flyercheck.io',
         ogTitle: 'flyercheck.io Sitemap',
-        ogDescription: 'Index of the FlyerCheck tool, blog, and policy pages.',
+        ogDescription: 'Index of the FlyerCheck analyzer, blog articles, and policy pages.',
         ogImage: defaultOGImage,
         ogType: 'website'
     },
@@ -303,20 +295,12 @@ function updateStructuredData(path, config, url) {
         }
     }
 
-    // FAQPage schema for AEO (FlyerCheck)
-    const faqList = path === '/flyercheck' ? faqFlyerCheck : null;
-    if (faqList && faqList.length) {
+    // FAQPage schema for AEO — canonical FAQ lives on /faq
+    if (path === '/faq' && faqItems.length) {
         const faqSchema = {
             "@context": "https://schema.org",
             "@type": "FAQPage",
-            "mainEntity": faqList.map(({ q, a }) => ({
-                "@type": "Question",
-                "name": q,
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": a
-                }
-            }))
+            "mainEntity": faqSchemaEntities(faqItems)
         };
         const faqScript = document.createElement('script');
         faqScript.type = 'application/ld+json';

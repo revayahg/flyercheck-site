@@ -54,8 +54,8 @@ export default function AboutPage() {
           "https://app.trickle.so/storage/public/images/usr_0ad8d73270000001/fefdf014-b643-44d6-a0e0-f8622be9e7ce.png",
         email: "info@revayahg.com",
         bio: [
-          "As the Founder of Elevate AI Consulting and Chief AI Officer at Revaya HG, I specialize in helping businesses through custom AI automation and executive training solutions.",
-          "Thiago is an MBA graduate of IE Business School in Madrid, where he served as President of the school's LGBTQ+ club and currently teaches executive MBA candidates as an Assistant AI Professor. He has led international business development efforts across the U.S., Canada, Spain, and Portugal, bringing a global, people-first approach to technology. He also volunteers with Junior Achievement of Greater Miami, teaching entrepreneurship, investing and other real-world skills to the next generation of leaders."
+          "Thiago leads AI strategy and engineering for FlyerCheck — shaping how the analyzer reviews event flyers for clarity, completeness, and readability at mobile scale.",
+          "He is an MBA graduate of IE Business School in Madrid, where he served as President of the school's LGBTQ+ club and currently teaches executive MBA candidates as an Assistant AI Professor. He has led international business development efforts across the U.S., Canada, Spain, and Portugal, bringing a global, people-first approach to product development. He also volunteers with Junior Achievement of Greater Miami, teaching entrepreneurship and investing to the next generation of leaders."
         ],
         mantra: "AI for humans, by humans."
       }
@@ -68,7 +68,7 @@ export default function AboutPage() {
           <div className="container">
             <h1 className="about-title">Our Founders</h1>
             <p className="why-revaya-text" style={{ maxWidth: "720px", margin: "0 auto 2rem", textAlign: "center" }}>
-              FlyerCheck is built by the team at Revaya Hospitality Group — event operators and technologists who help hospitality professionals, event organizers, and promoters produce stronger live experiences.
+              FlyerCheck is a free pre-publish flyer review tool for hospitality professionals, event organizers, and promoters — built by operators who have run galas, festivals, and venue nights and know what breaks when details slip.
             </p>
 
             <section
@@ -101,7 +101,7 @@ export default function AboutPage() {
                     FlyerCheck came out of a frustration I kept seeing up close: a flyer goes out with a wrong date, a buried ticket link, or text that doesn&apos;t read on a phone screen — and nobody catches it until the comments start rolling in. We built it as a simple pre-publish check for hospitality professionals, event organizers, and promoters who move fast and don&apos;t always have a second pair of eyes before post. It&apos;s not trying to replace your designer. It&apos;s the quick sanity pass before your audience becomes the proofreader.
                   </p>
                   <p className="about-info-p">
-                    Revaya Hospitality Group is where we&apos;re building the rest of that picture — practical tools, operational guidance, and technology that reduces the friction between planning and execution. My goal is straightforward: help the people who make live events happen spend less time chasing details and more time delivering experiences worth showing up for.
+                    Revaya Hospitality Group is the team behind FlyerCheck. We build practical tools and guidance for people who run live events — reducing the friction between planning and execution so teams can focus on guests, not guesswork.
                   </p>
                   <div className="about-founder-social" data-name="about-founder-social">
                     <p className="about-founder-social-label">Connect with Jolyse</p>
@@ -168,16 +168,16 @@ export default function AboutPage() {
             <section className="about-info-block about-info-card">
               <div className="about-info-block-header">
                 <i className="fas fa-star about-info-icon" aria-hidden="true" />
-                <h2 className="about-info-title">Why Revaya Exists</h2>
+                <h2 className="about-info-title">Why We Built FlyerCheck</h2>
               </div>
               <p className="about-info-p">
-                Event teams routinely face the same operational problems: tools that don’t talk to each other, critical details buried in email threads, and no single place to see who is doing what and when. These issues are not failures of effort; they are limitations of how information is shared and coordinated.
+                Event teams routinely ship flyers under time pressure — often without a formal QA step before post. A wrong date, buried ticket link, or unreadable text at phone-screen size can cost RSVPs long before anyone notices in the comments.
               </p>
               <p className="about-info-p">
-                Fragmented tools and communication breakdowns create hidden cost—extra hours, last-minute scrambles, and burnout. We started Revaya to address that gap. Our goal is to improve how event teams manage information: one source of truth, clearer coordination, and technology that supports the way teams actually work.
+                FlyerCheck addresses that gap with a focused pre-publish check: upload the version you plan to post, review flags on logistics and readability, fix what matters, and publish with confidence. It is not a design tool — it is a second set of eyes built for how promoters actually work.
               </p>
               <p className="about-info-p">
-                We build and advise with a focus on reducing complexity so that hospitality professionals, event organizers, promoters, and their teams can focus on what matters most: delivering great experiences.
+                We build with hospitality professionals, event organizers, promoters, and venue teams in mind — people who need clear information fast, not another dashboard to learn.
               </p>
             </section>
 

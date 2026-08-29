@@ -1,6 +1,7 @@
 import React from "react";
 import { reportError } from "../utils/errorHandler";
 import { getLatestInternalPosts } from "../content/blogPosts";
+import { faqPreviewItems } from "../content/faqContent";
 
 export function WhatWeDoSection() {
   try {
@@ -133,34 +134,6 @@ export function WhyFlyerCheckExistsSection() {
 
 export function FlyerCheckFaqSection() {
   try {
-    const faqs = [
-      {
-        question: "What does FlyerCheck analyze?",
-        answer:
-          "It checks for missing event details, weak visual hierarchy, readability issues, and unclear calls to action.",
-      },
-      {
-        question: "Who is FlyerCheck designed for?",
-        answer:
-          "Event organizers, promoters, venue teams, and anyone who sends a flyer before an event.",
-      },
-      {
-        question: "Does FlyerCheck replace a graphic designer?",
-        answer:
-          "No. It's a pre-publish review tool — a second set of eyes, not a redesign.",
-      },
-      {
-        question: "Can FlyerCheck be used for different types of events?",
-        answer:
-          "Yes. Community events, venue programming, brand activations, festivals, and more.",
-      },
-      {
-        question: "Why is flyer clarity so important?",
-        answer:
-          "Because guests decide in seconds. If the basics aren't clear, most won't ask for clarification — they'll just move on.",
-      },
-    ];
-
     return (
       <section
         className="homepage-section flyercheck-faq-section"
@@ -169,19 +142,23 @@ export function FlyerCheckFaqSection() {
       >
         <div className="container">
           <h2 id="flyercheck-faq-heading" className="section-title">
-            Frequently Asked Questions
+            Quick answers
           </h2>
+          <p className="section-subtitle" data-name="flyercheck-faq-intro">
+            A few common questions about the analyzer. The full FAQ covers file
+            formats, privacy, results, and how to reach the team.
+          </p>
           <dl className="flyercheck-faq-list">
-            {faqs.map((faq) => (
-              <div key={faq.question} className="flyercheck-faq-item">
-                <dt className="flyercheck-faq-question">{faq.question}</dt>
-                <dd className="flyercheck-faq-answer">{faq.answer}</dd>
+            {faqPreviewItems.map((faq) => (
+              <div key={faq.q} className="flyercheck-faq-item">
+                <dt className="flyercheck-faq-question">{faq.q}</dt>
+                <dd className="flyercheck-faq-answer">{faq.a}</dd>
               </div>
             ))}
           </dl>
           <div className="insights-cta">
-            <a href="/faq" className="insight-link">
-              More questions? See the full FAQ →
+            <a href="/faq" className="btn btn-primary">
+              Read the full FAQ
             </a>
           </div>
         </div>

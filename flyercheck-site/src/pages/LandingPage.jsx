@@ -1,17 +1,15 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import Footer from "../components/Footer";
 import ProductSection from "../components/ProductSection";
-import FileUploader from "../components/FileUploader";
-
-import HomepageSectionsContainer from "../components/HomepageSectionsContainer";
 import FlyerMistakesSection from "../components/FlyerMistakesSection";
+import HomepageSectionsContainer from "../components/HomepageSectionsContainer";
 
 import { reportError } from "../utils/errorHandler";
 import { usePageJsonLd } from "../utils/pageJsonLd";
-import "../utils/flyerAnalysisService";
 
 const landingPageSchema = {
   "@context": "https://schema.org",
@@ -30,27 +28,41 @@ export default function LandingPage() {
         <Hero
           title="Catch the mistake before your audience does."
           accentWord="mistake"
-          subtitle="Upload your flyer. FlyerCheck flags missing dates, weak CTAs, and clutter before you go live — free, no account needed."
-          primaryCta={{ text: "Try FlyerCheck", href: "/flyercheck", icon: "fas fa-arrow-right" }}
+          subtitle="FlyerCheck flags missing dates, weak CTAs, and clutter before you go live — free, no account needed. Run your pre-publish check on the analyzer page."
+          primaryCta={{ text: "Open FlyerCheck analyzer", href: "/flyercheck", icon: "fas fa-arrow-right" }}
           showLogo={false}
           image={{
             src: "/images/flyercheck-reality.png",
             alt: "Group chat messages asking where the event is, what the address is, and which door to use — because the flyer didn't say.",
           }}
         />
-        <div className="flyercheck-page" data-name="landing-flyercheck-embed">
-          <section
-            className="flyercheck-landing"
-            data-name="landing-flyercheck-tool"
-            aria-label="Analyze your flyer with FlyerCheck"
-          >
-            <div className="flyercheck-landing-inner">
-              <div className="flyercheck-landing-tool">
-                <FileUploader />
-              </div>
+
+        <section
+          className="homepage-section"
+          data-name="landing-editorial-intro"
+          aria-labelledby="landing-editorial-heading"
+        >
+          <div className="container">
+            <h2 id="landing-editorial-heading" className="section-title">
+              Flyer QA built for promoters under pressure
+            </h2>
+            <p className="section-subtitle" style={{ maxWidth: "720px", margin: "0 auto 1rem" }}>
+              Most event flyers are reviewed on a phone, posted minutes after the lineup changes, and rarely get a second designer pass. FlyerCheck is the quick sanity check before your audience becomes the proofreader — focused on logistics guests actually use to decide whether to show up.
+            </p>
+            <p className="why-revaya-text" style={{ maxWidth: "720px", margin: "0 auto 1.5rem", textAlign: "center" }}>
+              This site is your hub for the free analyzer, how-it-works guides, and practical event-operations articles. When you&apos;re ready to upload, head to the dedicated tool page for instant feedback on clarity, completeness, and conversion killers.
+            </p>
+            <div className="insights-cta" style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
+              <Link to="/flyercheck" className="btn btn-primary">
+                Upload your flyer
+              </Link>
+              <Link to="/how-it-works" className="insight-link">
+                How FlyerCheck works →
+              </Link>
             </div>
-          </section>
-        </div>
+          </div>
+        </section>
+
         <ProductSection />
 
         <FlyerMistakesSection />

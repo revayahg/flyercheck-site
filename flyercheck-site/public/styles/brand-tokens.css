@@ -95,6 +95,10 @@ a:hover {
     color: var(--fc-hazard);
 }
 
+.hero-accent {
+    display: inline;
+}
+
 .btn {
     min-width: 120px;
     min-height: 40px;

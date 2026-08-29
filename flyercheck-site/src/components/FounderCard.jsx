@@ -1,7 +1,16 @@
 import React from "react";
 import { reportError } from "../utils/errorHandler";
 
-export default function FounderCard({ name, title, image, email, bio = [], mantra, imageClass }) {
+export default function FounderCard({
+  name,
+  title,
+  image,
+  email,
+  bio = [],
+  mantra,
+  imageClass,
+  linkedin,
+}) {
   try {
     return (
       <div className="founder-card" data-name="founder-card">
@@ -11,7 +20,7 @@ export default function FounderCard({ name, title, image, email, bio = [], mantr
               <img
                 src={image}
                 alt={`${name} headshot`}
-                className={`founder-image${imageClass ? ` ${imageClass}` : ''}`}
+                className={`founder-image${imageClass ? ` ${imageClass}` : ""}`}
                 data-name="founder-image"
               />
             </div>
@@ -28,6 +37,18 @@ export default function FounderCard({ name, title, image, email, bio = [], mantr
                   data-name="founder-email"
                 >
                   {email}
+                </a>
+              ) : null}
+              {linkedin ? (
+                <a
+                  href={linkedin}
+                  className="founder-social-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-name="founder-linkedin"
+                >
+                  <i className="fab fa-linkedin" aria-hidden="true" />
+                  LinkedIn
                 </a>
               ) : null}
             </div>

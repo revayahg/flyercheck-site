@@ -10,7 +10,7 @@ const jolysePersonSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Jolyse Stultz",
-  jobTitle: "Founder",
+  jobTitle: "Co-founder & CEO",
   worksFor: {
     "@type": "Organization",
     name: "Revaya Hospitality Group",
@@ -36,29 +36,31 @@ export default function AboutPage() {
       {
         name: "Jolyse Stultz",
         imageClass: "jolyse",
-        title: "CEO",
+        title: "Co-founder & CEO",
         image:
           "https://app.trickle.so/storage/public/images/usr_0ad8d73270000001/e60eaeed-06d4-4811-9d58-57fee988b301.png",
         email: "info@revayahg.com",
+        linkedin: "https://www.linkedin.com/in/jolysestultz",
         bio: [
-          "Jolyse is an energetic and highly motivated experience strategy, digital, and analytics professional with over 15 years of progressive experience in the travel & hospitality sector. She is deeply passionate about travel, hospitality, and delivering impactful guest experiences. Jolyse thrives at the intersection of strategy, technology, and human connection.",
-          "Jolyse specializes in leveraging digital innovation to enhance guest interactions, making every touchpoint seamless, engaging, and memorable. Whether it's optimizing digital platforms, designing frictionless customer journeys, or using data to drive smarter decisions, Jolyse's professional mantra is simple:"
+          "Jolyse is an experience strategy, digital, and analytics professional with over 15 years in travel and hospitality. She has run events, watched teams scramble in the week before doors open, and built FlyerCheck as a pre-publish check for promoters who move fast — catching wrong dates, buried ticket links, and unreadable text before the audience does.",
+          "She specializes in leveraging digital innovation to enhance guest interactions, making every touchpoint seamless, engaging, and memorable. Whether it's optimizing digital platforms, designing frictionless customer journeys, or using data to drive smarter decisions, Jolyse's professional mantra is simple:",
         ],
-        mantra: "I sincerely believe that everyone deserves to have a good time."
+        mantra: "I sincerely believe that everyone deserves to have a good time.",
       },
       {
         name: "Thiago Ferreira",
         imageClass: "thiago",
-        title: "Chief AI Officer",
+        title: "Co-founder & Chief AI Officer",
         image:
           "https://app.trickle.so/storage/public/images/usr_0ad8d73270000001/fefdf014-b643-44d6-a0e0-f8622be9e7ce.png",
         email: "info@revayahg.com",
+        linkedin: "https://www.linkedin.com/in/thiagoef/",
         bio: [
-          "Thiago leads AI strategy and engineering for FlyerCheck — shaping how the analyzer reviews event flyers for clarity, completeness, and readability at mobile scale.",
-          "He is an MBA graduate of IE Business School in Madrid, where he served as President of the school's LGBTQ+ club and currently teaches executive MBA candidates as an Assistant AI Professor. He has led international business development efforts across the U.S., Canada, Spain, and Portugal, bringing a global, people-first approach to product development. He also volunteers with Junior Achievement of Greater Miami, teaching entrepreneurship and investing to the next generation of leaders."
+          "Thiago co-founded FlyerCheck and leads AI strategy and engineering — shaping how the analyzer reviews event flyers for clarity, completeness, and readability at mobile scale.",
+          "He is an MBA graduate of IE Business School in Madrid, where he served as President of the school's LGBTQ+ club and currently teaches executive MBA candidates as an Assistant AI Professor. He has led international business development across the U.S., Canada, Spain, and Portugal, bringing a global, people-first approach to product development. He also volunteers with Junior Achievement of Greater Miami, teaching entrepreneurship and investing to the next generation of leaders.",
         ],
-        mantra: "AI for humans, by humans."
-      }
+        mantra: "AI for humans, by humans.",
+      },
     ];
 
     return (
@@ -66,71 +68,10 @@ export default function AboutPage() {
         <Navbar />
         <div className="about-section" data-name="about-content">
           <div className="container">
-            <h1 className="about-title">Our Founders</h1>
+            <h1 className="about-title">Our Co-founders</h1>
             <p className="why-revaya-text" style={{ maxWidth: "720px", margin: "0 auto 2rem", textAlign: "center" }}>
-              FlyerCheck is a free pre-publish flyer review tool for hospitality professionals, event organizers, and promoters — built by operators who have run galas, festivals, and venue nights and know what breaks when details slip.
+              FlyerCheck is a free pre-publish flyer review tool for hospitality professionals, event organizers, and promoters — built by Jolyse and Thiago, operators who have run galas, festivals, and venue nights and know what breaks when details slip.
             </p>
-
-            <section
-              className="about-founder-section about-info-card"
-              data-name="about-founder-section"
-              aria-labelledby="about-founder-heading"
-            >
-              <h2 id="about-founder-heading" className="about-info-title">
-                About the founder
-              </h2>
-              <div className="about-founder-layout">
-                <div className="about-founder-photo">
-                  {/* Add headshot photo to public/images/ */}
-                  <img
-                    src="/images/jolyse-stultz.jpg"
-                    alt="Jolyse Stultz, Founder of Revaya Hospitality Group"
-                    className="about-founder-headshot"
-                    width={280}
-                    height={280}
-                  />
-                </div>
-                <div className="about-founder-content">
-                  <p className="about-founder-byline">
-                    Jolyse Stultz, Founder — Revaya Hospitality Group
-                  </p>
-                  <p className="about-info-p">
-                    I&apos;ve spent more than fifteen years in travel and hospitality — running events, watching teams scramble in the week before doors open, and sitting in the room when a small miscommunication turned into a very long night. The work taught me that great guest experiences don&apos;t happen by accident. They happen when the people behind the scenes have clear information, aligned timelines, and tools that match how live events actually run.
-                  </p>
-                  <p className="about-info-p">
-                    FlyerCheck came out of a frustration I kept seeing up close: a flyer goes out with a wrong date, a buried ticket link, or text that doesn&apos;t read on a phone screen — and nobody catches it until the comments start rolling in. We built it as a simple pre-publish check for hospitality professionals, event organizers, and promoters who move fast and don&apos;t always have a second pair of eyes before post. It&apos;s not trying to replace your designer. It&apos;s the quick sanity pass before your audience becomes the proofreader.
-                  </p>
-                  <p className="about-info-p">
-                    Revaya Hospitality Group is the team behind FlyerCheck. We build practical tools and guidance for people who run live events — reducing the friction between planning and execution so teams can focus on guests, not guesswork.
-                  </p>
-                  <div className="about-founder-social" data-name="about-founder-social">
-                    <p className="about-founder-social-label">Connect with Jolyse</p>
-                    <div className="about-founder-social-links">
-                      <a
-                        href="https://www.linkedin.com/in/jolysestultz"
-                        className="about-founder-social-link"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        data-name="about-founder-linkedin"
-                      >
-                        <i className="fab fa-linkedin" aria-hidden="true" />
-                        LinkedIn
-                      </a>
-                      <a
-                        href="https://www.instagram.com/revayahg"
-                        className="about-founder-social-link"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        data-name="about-founder-instagram"
-                      >
-                        <i className="fab fa-instagram" aria-hidden="true" />
-                        Instagram
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
 
             <div
               className="founders-grid"
@@ -140,7 +81,7 @@ export default function AboutPage() {
                 gap: "2.5rem",
                 alignItems: "start",
                 maxWidth: "1200px",
-                margin: "0 auto"
+                margin: "0 auto 2.5rem",
               }}
             >
               {foundersList.map((founder, index) => (

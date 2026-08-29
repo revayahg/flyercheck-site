@@ -23,7 +23,7 @@ export default function LandingPage() {
     usePageJsonLd(landingPageSchema);
 
     return (
-      <div data-name="landing-page">
+      <div className="landing-page" data-name="landing-page">
         <Navbar />
         <Hero
           title="Catch the mistake before your audience does."
@@ -38,7 +38,7 @@ export default function LandingPage() {
         />
 
         <section
-          className="homepage-section"
+          className="landing-band landing-band--surface landing-intro"
           data-name="landing-editorial-intro"
           aria-labelledby="landing-editorial-heading"
         >
@@ -46,13 +46,13 @@ export default function LandingPage() {
             <h2 id="landing-editorial-heading" className="section-title">
               Flyer QA built for promoters under pressure
             </h2>
-            <p className="section-subtitle" style={{ maxWidth: "720px", margin: "0 auto 1rem" }}>
+            <p className="section-subtitle landing-intro-lead">
               Most event flyers are reviewed on a phone, posted minutes after the lineup changes, and rarely get a second designer pass. FlyerCheck is the quick sanity check before your audience becomes the proofreader — focused on logistics guests actually use to decide whether to show up.
             </p>
-            <p className="why-revaya-text" style={{ maxWidth: "720px", margin: "0 auto 1.5rem", textAlign: "center" }}>
+            <p className="landing-intro-body">
               This site is your hub for the free analyzer, how-it-works guides, and practical event-operations articles. When you&apos;re ready to upload, head to the dedicated tool page for instant feedback on clarity, completeness, and conversion killers.
             </p>
-            <div className="insights-cta" style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
+            <div className="landing-intro-actions">
               <Link to="/flyercheck" className="btn btn-primary">
                 Upload your flyer
               </Link>
@@ -63,11 +63,15 @@ export default function LandingPage() {
           </div>
         </section>
 
-        <ProductSection />
+        <div className="landing-band landing-band--base">
+          <ProductSection />
+        </div>
 
         <FlyerMistakesSection />
 
-        <HomepageSectionsContainer />
+        <div className="landing-band landing-band--surface landing-home-sections">
+          <HomepageSectionsContainer />
+        </div>
         <Footer />
       </div>
     );

@@ -84,29 +84,34 @@
 [data-name="landing-page"] .hero-layout {
     display: grid;
     grid-template-columns: 1fr minmax(260px, 380px);
-    grid-template-rows: auto auto;
-    gap: 1.5rem 2rem;
+    grid-template-areas:
+        "copy visual"
+        "ctas visual";
+    gap: 1.25rem 2rem;
     width: 100%;
-    align-items: center;
+    align-items: start;
 }
 
 [data-name="landing-page"] .hero-copy {
-    grid-column: 1;
-    grid-row: 1;
+    grid-area: copy;
+    grid-column: auto;
+    grid-row: auto;
     text-align: left;
 }
 
 [data-name="landing-page"] .hero-ctas {
-    grid-column: 1;
-    grid-row: 2;
+    grid-area: ctas;
+    grid-column: auto;
+    grid-row: auto;
     justify-content: flex-start;
     margin-top: 0;
 }
 
 [data-name="landing-page"] .hero-visual {
-    grid-column: 2;
-    grid-row: 1 / -1;
-    align-self: center;
+    grid-area: visual;
+    grid-column: auto;
+    grid-row: auto;
+    align-self: start;
     max-width: 380px;
     width: 100%;
     margin: 0 auto;
@@ -131,26 +136,24 @@
 @media (max-width: 768px) {
     [data-name="landing-page"] .hero-layout {
         grid-template-columns: 1fr;
-        grid-template-rows: auto auto auto;
+        grid-template-areas:
+            "copy"
+            "visual"
+            "ctas";
         gap: 1.25rem;
         text-align: center;
     }
 
     [data-name="landing-page"] .hero-copy {
-        grid-column: 1;
-        grid-row: 1;
         text-align: center;
     }
 
     [data-name="landing-page"] .hero-visual {
-        grid-column: 1;
-        grid-row: 2;
         max-width: 360px;
+        margin: 0 auto;
     }
 
     [data-name="landing-page"] .hero-ctas {
-        grid-column: 1;
-        grid-row: 3;
         justify-content: center;
     }
 }
@@ -225,6 +228,154 @@
     min-height: auto;
 }
 
+/* ── FlyerCheck workspace (tool page — distinct from editorial homepage) ── */
+.flyercheck-workspace-header {
+    margin-top: 76px;
+    padding: 2rem 1.5rem 1.5rem;
+    background-color: var(--fc-surface);
+    border-bottom: 1px solid var(--fc-border);
+}
+
+.flyercheck-workspace-eyebrow {
+    margin: 0 0 0.5rem;
+    font-family: var(--fc-font-sans);
+    font-size: var(--fc-text-fine);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--fc-hazard);
+}
+
+.flyercheck-workspace-title {
+    margin: 0 0 0.75rem;
+    font-family: var(--fc-font-serif);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 400;
+    line-height: 1.25;
+    color: var(--fc-off-white);
+    max-width: 720px;
+}
+
+.flyercheck-workspace-lead {
+    margin: 0 0 0.75rem;
+    max-width: 640px;
+    font-family: var(--fc-font-sans);
+    font-size: var(--fc-text-body);
+    line-height: 1.65;
+    color: var(--fc-muted);
+}
+
+.flyercheck-workspace-home-link {
+    margin: 0;
+    font-family: var(--fc-font-sans);
+    font-size: var(--fc-text-ui);
+    color: var(--fc-muted);
+}
+
+.flyercheck-workspace-tool {
+    padding-top: 0;
+    padding-bottom: 2rem;
+    background-color: var(--fc-near-black);
+    border-bottom: 1px solid var(--fc-border);
+}
+
+.flyercheck-workspace-tool .flyercheck-landing-inner {
+    padding-top: 1.5rem;
+}
+
+.flyercheck-workspace-tool .file-uploader-section {
+    border: 1.5px solid var(--fc-hazard);
+    box-shadow: 0 0 24px var(--fc-hazard-glow);
+}
+
+.flyercheck-workspace-guide {
+    background-color: var(--fc-surface);
+    border-bottom: 1px solid var(--fc-border);
+}
+
+.flyercheck-workspace-guide .homepage-section {
+    background-color: transparent;
+    border-top: none;
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+}
+
+.flyercheck-tool-support {
+    padding: 0 2rem 3.5rem;
+}
+
+.flyercheck-tool-support-intro {
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+    white-space: normal;
+}
+
+.flyercheck-tool-support-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.flyercheck-tool-support-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding: 1.25rem 1.35rem;
+    background-color: var(--fc-near-black);
+    border: 0.5px solid var(--fc-border);
+    border-radius: 8px;
+    text-decoration: none;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.flyercheck-tool-support-card:hover {
+    border-color: var(--fc-hazard);
+    transform: translateY(-2px);
+}
+
+.flyercheck-tool-support-icon {
+    color: var(--fc-hazard);
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.flyercheck-tool-support-title {
+    font-family: var(--fc-font-sans);
+    font-size: var(--fc-text-h3);
+    font-weight: 500;
+    color: var(--fc-off-white);
+}
+
+.flyercheck-tool-support-desc {
+    font-family: var(--fc-font-sans);
+    font-size: var(--fc-text-body);
+    line-height: 1.55;
+    color: var(--fc-muted);
+    flex-grow: 1;
+}
+
+.flyercheck-tool-support-arrow {
+    font-family: var(--fc-font-sans);
+    font-size: var(--fc-text-ui);
+    font-weight: 500;
+    color: var(--fc-off-white);
+    margin-top: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .flyercheck-workspace-header {
+        margin-top: 60px;
+        padding: 1.5rem 1.25rem 1.25rem;
+    }
+
+    .flyercheck-tool-support {
+        padding: 0 1.25rem 2.5rem;
+    }
+}
+
 .flyercheck-page .flyercheck-landing {
     padding-top: 0;
 }
@@ -257,8 +408,8 @@
 
 .footer-brand-tagline {
     font-family: var(--fc-font-sans);
-    font-size: var(--fc-text-fine);
-    color: var(--fc-border);
+    font-size: var(--fc-text-ui);
+    color: var(--fc-muted);
     font-style: normal;
 }
 
@@ -1170,6 +1321,36 @@
     box-shadow: none;
 }
 
+.founder-name {
+    color: var(--fc-off-white);
+}
+
+.founder-title {
+    color: var(--fc-muted);
+}
+
+.founder-bio,
+.founder-bio-paragraph {
+    color: var(--fc-muted);
+}
+
+.founder-email,
+.founder-social-link {
+    color: var(--fc-off-white);
+    font-family: var(--fc-font-sans);
+    font-size: var(--fc-text-ui);
+}
+
+.founder-email:hover,
+.founder-social-link:hover {
+    color: var(--fc-off-white);
+    opacity: 0.85;
+}
+
+.founder-mantra {
+    color: var(--fc-off-white);
+}
+
 .contact-form input,
 .contact-form textarea,
 .contact-form select {
@@ -1497,6 +1678,133 @@
 .ad-banner-container {
     background-color: var(--fc-surface);
     border-color: var(--fc-border);
+}
+
+/* ── Landing page — section bands & hero readability ── */
+.landing-page .hero-landing {
+    border-bottom: 1px solid var(--fc-border);
+    padding: 2.5rem 0 3rem;
+}
+
+.landing-page .landing-band {
+    border-top: 1px solid var(--fc-border);
+}
+
+.landing-page .landing-band--surface {
+    background-color: var(--fc-surface);
+}
+
+.landing-page .landing-band--base {
+    background-color: var(--fc-near-black);
+}
+
+.landing-page .landing-intro {
+    padding: 3.5rem 2rem;
+}
+
+.landing-page .landing-intro-lead {
+    max-width: 720px;
+    margin: 0 auto 1rem;
+    white-space: normal;
+}
+
+.landing-page .landing-intro-body {
+    max-width: 720px;
+    margin: 0 auto 1.5rem;
+    text-align: center;
+    font-family: var(--fc-font-sans);
+    font-size: var(--fc-text-body);
+    line-height: 1.7;
+    color: var(--fc-muted);
+}
+
+.landing-page .landing-intro-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.landing-page .landing-band--base .product-section {
+    background-color: transparent;
+    margin-top: 0;
+    padding: 3.5rem 0;
+}
+
+.landing-page .flyer-mistakes-section {
+    background-color: var(--fc-surface);
+    border-top: 1px solid var(--fc-border);
+    border-bottom: none;
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+}
+
+.landing-page .flyer-mistakes-copy {
+    border-top-color: var(--fc-border);
+}
+
+.landing-page .landing-home-sections {
+    padding: 0;
+}
+
+.landing-page .landing-home-sections .homepage-section {
+    background-color: transparent;
+    border-top: 1px solid var(--fc-border);
+    margin: 0;
+}
+
+.landing-page .landing-home-sections .homepage-section:first-child {
+    border-top: none;
+}
+
+.landing-page .landing-home-sections [data-name="who-uses-flyercheck"],
+.landing-page .landing-home-sections [data-name="insights"] {
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+.landing-page .landing-home-sections .ad-banner {
+    border-top: 1px solid var(--fc-border);
+    border-bottom: 1px solid var(--fc-border);
+    background-color: var(--fc-near-black);
+}
+
+[data-name="landing-page"] .hero--with-visual .hero-content {
+    padding: 0 1rem;
+}
+
+[data-name="landing-page"] .hero-title {
+    font-size: clamp(1.65rem, 3.5vw, 2.25rem);
+    line-height: 1.3;
+    overflow: visible;
+    word-wrap: break-word;
+}
+
+[data-name="landing-page"] .hero-copy {
+    min-width: 0;
+    overflow: visible;
+}
+
+[data-name="landing-page"] .hero-subtitle {
+    font-size: 15px;
+    line-height: 1.65;
+    max-width: 100%;
+}
+
+@media (max-width: 768px) {
+    .landing-page .landing-intro,
+    .landing-page .landing-band--base .product-section,
+    .landing-page .flyer-mistakes-section {
+        padding: 2.5rem 1.25rem;
+    }
+
+    [data-name="landing-page"] .hero-layout {
+        gap: 1.5rem;
+    }
+
+    [data-name="landing-page"] .hero-title {
+        font-size: 1.5rem;
+    }
 }
 
 /* ── Legal fine print ── */

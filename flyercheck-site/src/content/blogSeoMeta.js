@@ -132,4 +132,22 @@ export const blogSeoMeta = {
       "Guests decide how the night feels before they reach the room—at the line, the credential check, and the first staff interaction.",
     ogTitle: "Check-In Makes or Breaks Your Event Night",
   },
+  "event-flyer-design-mistakes": {
+    seoTitle: "Common Event Flyer Design Mistakes to Fix | FlyerCheck",
+    seoDescription:
+      "Font size, contrast, hierarchy, missing logistics, weak CTAs—the flyer mistakes that cost attendance, and how to fix them before you post.",
+    ogTitle: "Common Event Flyer Design Mistakes to Fix",
+  },
+  "how-to-read-your-event-flyer-like-an-attendee": {
+    seoTitle: "Read Your Flyer Like an Attendee | FlyerCheck",
+    seoDescription:
+      "Producers know too much to proofread flyers well. Use the 5-second phone test and catch blind spots before your audience does.",
+    ogTitle: "Read Your Flyer Like an Attendee",
+  },
+  "what-makes-a-good-event-flyer": {
+    seoTitle: "What Actually Makes a Good Event Flyer | FlyerCheck",
+    seoDescription:
+      "A good flyer converts a scroll into a decision. Hierarchy, the phone test, information density, and when to break the rules.",
+    ogTitle: "What Actually Makes a Good Event Flyer",
+  },
 };

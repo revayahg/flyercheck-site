@@ -14,6 +14,7 @@ const contentChecks = [
   { route: "/flyercheck", needle: "FlyerCheck" },
   { route: "/blog", needle: "Blog" },
   { route: "/about", needle: "About" },
+  { route: "/404", needle: "Page not found" },
   {
     route: `/blog/${blogPosts[0].slug}`,
     needle: blogPosts[0].title.slice(0, 40),
@@ -48,6 +49,23 @@ function routeToFile(route) {
   return path.join(distDir, route.replace(/^\//, ""), "index.html");
 }
 
+function readHtml(file) {
+  let lastErr;
+  for (let attempt = 1; attempt <= 8; attempt++) {
+    try {
+      return fs.readFileSync(file, "utf8");
+    } catch (err) {
+      lastErr = err;
+      if (err?.code !== "ETIMEDOUT" && err?.code !== "EAGAIN") throw err;
+      const waitUntil = Date.now() + 300 * attempt;
+      while (Date.now() < waitUntil) {
+        /* wait for OneDrive / flaky FS */
+      }
+    }
+  }
+  throw lastErr;
+}
+
 function decodeHtmlEntities(s) {
   return s
     .replace(/&amp;/g, "&")
@@ -76,7 +94,7 @@ for (const { route, needle } of contentChecks) {
     failed++;
     continue;
   }
-  const html = fs.readFileSync(file, "utf8");
+  const html = readHtml(file);
   const rootMatch = html.match(/<div id="root"[^>]*>([\s\S]*?)<\/div>/i);
   const rootInner = rootMatch?.[1]?.replace(/\s+/g, " ").trim() ?? "";
   if (!html.includes(needle) || rootInner.length < 80) {
@@ -96,7 +114,7 @@ for (const { route, title, descriptionNeedle } of metaChecks) {
     failed++;
     continue;
   }
-  const html = fs.readFileSync(file, "utf8");
+  const html = readHtml(file);
   const gotTitle = extractTitle(html);
   const gotDesc = extractDescription(html);
   if (gotTitle !== title) {

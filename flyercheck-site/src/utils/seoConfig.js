@@ -49,7 +49,8 @@ const seoConfig = {
         ogTitle: 'Free AI Flyer Upload & Review',
         ogDescription: 'Upload your event flyer—get instant feedback on clarity, completeness, and conversion killers.',
         ogImage: defaultOGImage,
-        ogType: 'website'
+        ogType: 'website',
+        noindex: true
     },
     '/blog': {
         title: 'Event Ops Blog: Flyers, Vendors & ROS | FlyerCheck',
@@ -104,6 +105,16 @@ const seoConfig = {
         ogDescription: 'Guidelines for responsible use of FlyerCheck and flyercheck.io.',
         ogImage: defaultOGImage,
         ogType: 'website'
+    },
+    '/404': {
+        title: 'Page Not Found (404) | FlyerCheck',
+        description: 'This URL does not exist on flyercheck.io. Use the links on this page to reach the analyzer, blog, FAQ, or sitemap.',
+        keywords: 'FlyerCheck 404, page not found',
+        ogTitle: 'Page Not Found (404) | FlyerCheck',
+        ogDescription: 'This URL does not exist on flyercheck.io.',
+        ogImage: defaultOGImage,
+        ogType: 'website',
+        noindex: true
     }
 };
 
@@ -130,8 +141,9 @@ function getSEOConfig(path) {
                 author: post.author
             };
         }
+        return seoConfig['/404'];
     }
-    return seoConfig['/'];
+    return seoConfig['/404'];
 }
 
 // Update meta tags dynamically
@@ -197,6 +209,19 @@ function updateMetaTags(config, url) {
         metaAuthor.setAttribute('content', config.author);
     } else if (metaAuthor) {
         metaAuthor.remove();
+    }
+
+    // Robots — noindex on 404 and other noindex pages
+    let metaRobots = document.querySelector('meta[name="robots"]');
+    if (config.noindex) {
+        if (!metaRobots) {
+            metaRobots = document.createElement('meta');
+            metaRobots.setAttribute('name', 'robots');
+            document.head.appendChild(metaRobots);
+        }
+        metaRobots.setAttribute('content', 'noindex, follow');
+    } else if (metaRobots) {
+        metaRobots.remove();
     }
 }
 
@@ -295,12 +320,26 @@ function updateStructuredData(path, config, url) {
         }
     }
 
-    // FAQPage schema for AEO — canonical FAQ lives on /faq
-    if (path === '/faq' && faqItems.length) {
+    // FAQPage schema for AEO — full set on /faq; homepage subset for rich results
+    const homepageFaqItems = faqItems.filter((item) =>
+        [
+            'What does FlyerCheck analyze?',
+            'Is FlyerCheck free?',
+            'Who is FlyerCheck designed for?',
+            'How long does an analysis take?',
+        ].includes(item.q)
+    );
+    const faqList =
+        path === '/faq' && faqItems.length
+            ? faqItems
+            : path === '/' && homepageFaqItems.length
+              ? homepageFaqItems
+              : null;
+    if (faqList) {
         const faqSchema = {
             "@context": "https://schema.org",
             "@type": "FAQPage",
-            "mainEntity": faqSchemaEntities(faqItems)
+            "mainEntity": faqSchemaEntities(faqList)
         };
         const faqScript = document.createElement('script');
         faqScript.type = 'application/ld+json';

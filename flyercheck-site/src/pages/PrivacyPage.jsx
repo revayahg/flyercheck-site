@@ -106,7 +106,7 @@ function PrivacyPage() {
                                     <li><strong>OpenAI</strong> – AI processing for flyer analysis</li>
                                     <li><strong>Google</strong> – Analytics, Search Console, and AdSense (when enabled)</li>
                                     <li><strong>Supabase</strong> – Product analytics event storage (when configured)</li>
-                                    <li><strong>Formspree</strong> – Contact form delivery (when configured)</li>
+                                    <li><strong>Resend</strong> – Contact form email delivery (when configured)</li>
                                 </ul>
                                 <p>These providers are bound by their own privacy and data protection obligations.</p>
                             </section>

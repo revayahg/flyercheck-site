@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import AdBanner from "../components/AdBanner";
+import NotFoundPage from "./NotFoundPage";
 import { getPostBySlug, getRelatedPosts, getAuthorBio } from "../content/blogPosts";
 import { reportError } from "../utils/errorHandler";
 
@@ -12,24 +13,7 @@ function BlogPostPage() {
     const post = getPostBySlug(slug);
 
     if (!post) {
-      return (
-        <div data-name="blog-post-page">
-          <Navbar />
-          <article className="blog-article-section" data-name="blog-article-content">
-            <div className="container">
-              <div className="blog-article-container">
-                <h1 className="blog-article-title">Post not found</h1>
-                <p>The blog post you're looking for doesn't exist.</p>
-                <Link to="/blog" className="blog-read-more-btn" style={{ display: "inline-flex", width: "auto", marginTop: "1rem" }}>
-                  Back to Blog
-                  <i className="fas fa-arrow-left" style={{ marginLeft: "0.5rem" }}></i>
-                </Link>
-              </div>
-            </div>
-          </article>
-          <Footer />
-        </div>
-      );
+      return <NotFoundPage />;
     }
 
     const relatedPosts = getRelatedPosts(post.slug, 3);
@@ -75,6 +59,15 @@ function BlogPostPage() {
                     </section>
                   );
                 })}
+              </div>
+
+              <div className="blog-cta-section">
+                <p>
+                  Before your next event flyer goes live, run it through FlyerCheck — a free AI-powered review that catches missing details, readability issues, and weak calls to action in under 30 seconds.
+                </p>
+                <a href="/flyercheck" className="blog-cta-button">
+                  Check your flyer free →
+                </a>
               </div>
 
               <AdBanner inline />

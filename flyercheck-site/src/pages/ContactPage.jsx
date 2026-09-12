@@ -6,8 +6,7 @@ import AdBanner from "../components/AdBanner";
 import { reportError } from "../utils/errorHandler";
 import { contactFaqItems } from "../content/faqContent";
 
-const CLIENT_FORMSPREE = (import.meta.env.VITE_FORMSPREE_ENDPOINT || "").trim();
-const CONTACT_SUBMIT_URL = CLIENT_FORMSPREE || "/api/contact";
+const CONTACT_SUBMIT_URL = "/api/contact";
 
 function ContactPage() {
   try {

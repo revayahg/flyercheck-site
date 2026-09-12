@@ -1742,6 +1742,239 @@ export const blogPosts = [
       },
     ],
   },
+  {
+    id: "event-flyer-design-mistakes",
+    slug: "event-flyer-design-mistakes",
+    title: "The Most Common Event Flyer Design Mistakes (And How to Fix Them)",
+    date: "September 10, 2026",
+    publishedAt: "2026-09-10",
+    description:
+      "Font size, contrast, hierarchy, missing logistics, and weak CTAs — the flyer mistakes that quietly cost attendance, and how to fix them before you post.",
+    author: "FlyerCheck Editorial",
+    category: "Event Marketing",
+    sections: [
+      {
+        heading: null,
+        paragraphs: [
+          "Most event flyers fail for reasons that have nothing to do with taste. The creative looks fine on a designer's monitor. The brand colors are correct. The photo is sharp. Then the post goes live, and the room stays softer than the hype suggested — not because people disliked the event, but because they never fully understood the invitation.",
+          "This piece is about the mistakes that show up again and again when promoters, venue marketers, and hospitality teams rush a flyer out the door. None of them require a design degree to spot. All of them cost attendance when they slip through.",
+        ],
+      },
+      {
+        heading: "Font Size Matters More Than Most Designers Think",
+        paragraphs: [
+          "Event flyers are rarely experienced at full resolution. They are cropped into Instagram squares, compressed in Stories, forwarded in group chats, and opened on phones held at arm's length in a noisy bar. What looked legible on a laptop becomes a soft blur of brand energy with no usable facts.",
+          "The mistake is designing for the artboard instead of the feed. Body text that feels generous at 100% zoom disappears when the flyer is a few inches wide. Venue names set in delicate thin weights vanish against textured photography. Date lines that sit comfortably under a headline on desktop become the first casualties of phone-scale compression.",
+          "Fixing this starts with an uncomfortable rule: if the date, time, and venue cannot be read in two seconds on a phone held at normal scrolling distance, the flyer is not finished. Enlarge the logistics until they survive compression. Reduce decorative type that only works at poster size. Treat phone readability as a production requirement, not an optional polish pass.",
+          "Teams that skip this step often compensate in captions — stuffing the date into the first line of text under the image. Captions help, but they are not a substitute. Many people screenshot the flyer and lose the caption. Many more never expand the post. The image has to carry the decision on its own.",
+        ],
+      },
+      {
+        heading: "The Contrast Problem",
+        paragraphs: [
+          "Light text on busy backgrounds is one of the most common ways beautiful flyers lose attendance. A sunset photograph behind cream lettering. A neon club interior behind pale gold. A patterned wallpaper behind thin white type. On a calibrated monitor the words are there. On a mid-range phone outdoors, they are guesswork.",
+          "Contrast failures do not announce themselves in design reviews among people who already know what the flyer says. They announce themselves when a stranger tries to read the door time and gives up. That stranger does not leave a comment. They scroll. The cost shows up as softer ticket velocity and more DMs asking for facts that were technically on the creative.",
+          "The fix is not always a flat solid background. It is ensuring every critical line has enough separation from whatever sits behind it — through overlays, panels, stronger weights, or relocating logistics onto a quieter zone of the layout. If the mood image fights the information, the information has to win. Mood without logistics is decoration. Logistics without mood can still sell a ticket.",
+          "Test contrast the way your audience will see it: export a phone-sized preview, dim the room, and try to read the flyer without squinting. If you need to lean in, so will they — and many will not bother.",
+        ],
+      },
+      {
+        heading: "Hierarchy Mistakes: When the DJ Name Beats the Date",
+        paragraphs: [
+          "Hierarchy tells the eye what to read first, second, and third. On event flyers, hierarchy often gets inverted by ego, sponsorship pressure, or habit. The headliner name is enormous. The venue logo is prominent. The date is a footnote. The ticket link is a whisper at the bottom edge.",
+          "Attendees do not scan the way producers do. Producers already know the night. Attendees are asking whether this is worth their Friday. They need the event identity, then when and where, then how to get in. When the DJ name dominates and the date is secondary, the flyer rewards fans who already planned to come and confuses everyone else.",
+          "Good hierarchy is not anti-creative. It is sequencing. Lead with the thing that makes the event recognizable. Make the logistics impossible to miss. Give the call to action a clear landing zone. Artist names, sponsor locks, and secondary talent can be strong without drowning the facts that convert a scroll into a decision.",
+          "A practical check: cover the flyer with your hand so only the top third shows. What do you understand? Cover everything except the middle third. Cover everything except the bottom. If any of those views leave you unsure about the date or place, hierarchy is serving design preference over attendance.",
+        ],
+      },
+      {
+        heading: "The Missing Details Problem",
+        paragraphs: [
+          "Date, time, venue, and a path to tickets are non-negotiable. When any one is absent or ambiguous, the flyer creates work for the audience — and audiences under social-media time pressure rarely do unpaid work for your event.",
+          "Missing details show up in familiar forms. \"Saturday\" without a date. A neighborhood nickname instead of an address. Doors time with no show time, or the reverse. \"Tickets at the link in bio\" with no link visible on the image for people who screenshot and share. Age restrictions left for the caption. Indoor versus outdoor left for day-of weather panic.",
+          "What happens when one detail is missing is predictable. People hesitate. Hesitation becomes a scroll-past. Or they ask in the comments and DMs, turning your team into a human FAQ. Or they show up wrong — wrong entrance, wrong time, wrong expectations — and blame the night for confusion that started in the creative.",
+          "Completeness is not the same as clutter. You can communicate the essentials without listing every sponsor tier and every set break. The test is whether a cold reader can answer what, when, where, and how to attend without leaving the image. If they cannot, the flyer is incomplete no matter how polished it looks.",
+        ],
+      },
+      {
+        heading: "The CTA Problem",
+        paragraphs: [
+          "A call to action tells people what to do next. Event flyers often skip it entirely, or settle for a vague \"click here,\" \"more info,\" or \"link in bio\" that assumes the viewer is still on the platform and still motivated enough to hunt.",
+          "Generic CTAs fail because they do not connect desire to action. \"Get tickets,\" \"RSVP,\" \"Claim your spot,\" or a clear URL pattern tied to the event gives the brain a finish line. Silence where a CTA should be leaves people admiring the vibe without a next step — which is how interest dies in the feed.",
+          "The CTA also has to be findable. Buried in a corner at six-point type, it is not a CTA. Competing with five other equally loud elements, it is not a CTA. It needs visual priority that matches its job: convert attention into a click, a save, or a share with a friend who needs the same facts.",
+          "If your distribution depends on Stories and group chats, design the CTA for screenshot culture. Someone forwarding the flyer should still see how to buy in. Relying only on a platform caption is relying on a layer that often gets stripped away.",
+        ],
+      },
+      {
+        heading: "How to Self-Review Before You Post",
+        paragraphs: [
+          "Reading your own flyer is necessary and insufficient. You know the venue. You know the neighborhood. You know that \"doors at nine\" implies the set times everyone on your team already discussed. A self-review that only asks \"does this look good?\" will miss the gaps that cost RSVPs.",
+          "Better self-review asks operational questions out loud. What is the event? When is it, exactly? Where do I go, exactly? How do I get in? Who is it for? What should I do in the next ten seconds if I am interested? If any answer requires insider knowledge, fix the flyer before you fix the caption.",
+          "Still, self-review has a ceiling. Familiarity blinds you. The fastest upgrade is a cold read from someone who was not in the planning thread — ten seconds on a phone, then a verbal summary of what they understood. Gaps in that summary are gaps in conversion.",
+          "When you want a structured second pass without waiting on a colleague, <a href=\"/flyercheck\">FlyerCheck</a> can help. It is a free AI review built for event flyers: missing details, readability issues, weak calls to action, and hierarchy problems that block attendance. Use it as a pre-publish checklist, then apply judgment. The goal is not a perfect score. The goal is fewer preventable questions after you hit post.",
+        ],
+      },
+    ],
+  },
+  {
+    id: "how-to-read-your-event-flyer-like-an-attendee",
+    slug: "how-to-read-your-event-flyer-like-an-attendee",
+    title: "How to Read Your Event Flyer Like an Attendee (Not a Designer)",
+    date: "September 11, 2026",
+    publishedAt: "2026-09-11",
+    description:
+      "Producers know too much about their own events to proofread flyers effectively. Learn the attendee scan, the 5-second phone test, and how to catch blind spots before you post.",
+    author: "FlyerCheck Editorial",
+    category: "Event Marketing",
+    sections: [
+      {
+        heading: null,
+        paragraphs: [
+          "If you produced the event, you are the worst person in the room to judge whether the flyer is clear. That is not a criticism of your taste. It is a description of how attention works when you already know the answers.",
+          "You know the venue is the one on the corner with the red door. You know \"early bird\" means the ticket tier that closes Friday. You know the afterparty is implied for anyone who has been to your last three nights. None of that knowledge is available to the stranger who pauses for two seconds in a crowded feed.",
+          "Learning to read your flyer like an attendee is an operational skill. It is how you stop using your audience as unpaid proofreaders.",
+        ],
+      },
+      {
+        heading: "The Fundamental Problem: You Know Too Much",
+        paragraphs: [
+          "Familiarity is useful for running a show and dangerous for reviewing creative. Every planning meeting adds context that never appears on the artboard. By the time the flyer is ready, your brain fills every gap automatically. You do not see missing information. You see confirmation of a plan you already hold.",
+          "Designers and marketers inside the project share the same trap. They debate kerning while an outsider still cannot find the start time. They protect a photographic mood while the address is ambiguous. They approve a layout that \"feels on brand\" without asking whether it answers the questions that drive attendance.",
+          "This is why teams can love a flyer and still get flooded with \"where is this?\" messages. The flyer did not fail aesthetically. It failed as a decision tool for people who were not in the room when decisions were made.",
+          "The cure is not to care less about design. It is to separate the brand review from the stranger review. Both matter. Only one of them predicts whether cold traffic converts.",
+        ],
+      },
+      {
+        heading: "What Attendees Actually Look For",
+        paragraphs: [
+          "Attendees look for logistics first and vibe second — not because they are unromantic, but because logistics are the gate. If the when and where are unclear, the mood board never gets a chance to work.",
+          "In practice, the scan order is ruthless. What is this? When is it? Where is it? Is it for me? What does it cost, and how do I get in? Only after those questions feel answerable does atmosphere become persuasive. A stunning image with muddy facts loses to a simpler layout that makes the decision easy.",
+          "Producers often invert that order because vibe is what they are proud of. The lineup photo, the color story, the custom illustration — those are the hours. The date line feels like admin. On the receiving end, admin is the product. People cannot experience the vibe if they cannot commit to a time and place.",
+          "Respecting the attendee scan means giving logistics visual priority without stripping the creative of personality. Clarity and atmosphere are not enemies. Unclear atmosphere, however, is just noise.",
+        ],
+      },
+      {
+        heading: "The 5-Second Phone Test",
+        paragraphs: [
+          "Put the flyer on a phone. Hand it to someone who was not in the planning thread. Give them five seconds. Take it back. Ask them to tell you what the event is, when it happens, where it is, and what they would do next if they wanted to go.",
+          "Five seconds sounds harsh until you watch real feed behavior. People do not study promotional images. They skim while walking, waiting, or half-listening to a conversation. If the flyer cannot survive a short, distracted glance, it will not survive distribution.",
+          "Score the test by specificity. \"Some party downtown this weekend\" is a fail even if the flyer is gorgeous. \"Friday the twelfth, doors at nine, Warehouse on Third, tickets at the link\" is a pass. Partial credit for vibe-only answers is how weak flyers keep shipping.",
+          "Run the test on the exact crop you will post. Stories, feed tiles, and group-chat previews hide different edges. A date that sits safely in a full-bleed poster can disappear in a square crop. Design for the frame people will actually see.",
+        ],
+      },
+      {
+        heading: "Assumptions Producers Make That Attendees Do Not Share",
+        paragraphs: [
+          "Local knowledge is the most common hidden assumption. \"Everyone knows The Pavilion\" until tourists, new residents, and out-of-town guests arrive at the wrong Pavilion. Neighborhood shorthand, unmarked side entrances, and \"same as last year\" references punish newcomers and soft connections — often the exact people you hoped to grow.",
+          "Price range is another. Free versus ticketed, cash bar versus open bar, guest list versus hard ticket — these change who shows up and how they prepare. Leaving cost and entry method off the flyer forces people to guess, and guessers often choose a different night.",
+          "Format assumptions fail quietly too. Seated dinner versus standing reception. Outdoor rooftop versus indoor backup. Twenty-one-plus versus all ages. Producers treat these as obvious because the run-of-show depends on them. Attendees treat silence as risk.",
+          "Write the flyer as if the reader has never heard of you, never visited the venue, and will not open the caption. That standard feels extreme to insiders and normal to strangers — which is the point.",
+        ],
+      },
+      {
+        heading: "The Group Chat Problem",
+        paragraphs: [
+          "The most common day-of question is often already answered on the flyer — just not clearly enough for someone forwarding a screenshot at speed. \"What time?\" \"Which door?\" \"Is there a link?\" Each message is a conversion that already failed once and is now consuming staff attention.",
+          "Group chats amplify weak flyers. One confused person asks. Three others admit they wondered the same thing. The organizer answers in a thread that never updates the public creative. The next share still carries the same ambiguity.",
+          "This pattern is expensive in ways that do not show on a media report. It burns trust. It trains your audience to expect incomplete information. It turns your DMs into a help desk for facts that should have been visible at a glance.",
+          "When repetitive questions match gaps on the image, do not only answer the question. Fix the asset. A clarifying caption is a patch. A clearer flyer is the system fix.",
+        ],
+      },
+      {
+        heading: "Practical Steps for Shifting Perspective Before You Post",
+        paragraphs: [
+          "Build a cold-read habit into every publish cycle. One person outside the planning core. One phone. Five seconds. Four questions: what, when, where, how to attend. No defending the design during the debrief — only capturing what was and was not understood.",
+          "Separate brand approval from clarity approval. Let creative leads protect the look. Let operations or a designated outsider protect the logistics. If those roles are the same person, schedule two passes with different mindsets instead of one blended glance.",
+          "Export at distribution size and review in the apps you actually use. Feed, Stories, iMessage, WhatsApp — each compresses and crops differently. Approve the worst case, not the artboard.",
+          "When you want a structured outsider pass without waiting for a colleague, run the flyer through <a href=\"/flyercheck\">FlyerCheck</a>. It is free, built for event creatives, and focused on the attendance blockers a distracted stranger hits first: missing details, weak CTAs, readability, and hierarchy. Pair it with a human cold read when you can. Together they take minutes and save you from discovering the gaps in a group chat after you have already gone live.",
+        ],
+      },
+    ],
+  },
+  {
+    id: "what-makes-a-good-event-flyer",
+    slug: "what-makes-a-good-event-flyer",
+    title: "What Actually Makes a Good Event Flyer",
+    date: "September 12, 2026",
+    publishedAt: "2026-09-12",
+    description:
+      "A good event flyer is not just beautiful — it converts a scroll into a decision to attend. Hierarchy, the phone test, information density, and when to break the rules.",
+    author: "FlyerCheck Editorial",
+    category: "Event Marketing",
+    sections: [
+      {
+        heading: null,
+        paragraphs: [
+          "A good event flyer is not primarily a piece of art. It is a conversion surface. Its job is to turn a distracted scroll into a decision: I understand this night, it is for me, and I know how to get in.",
+          "Beauty helps when it earns attention. Beauty without clarity wastes that attention. The flyers that fill rooms are the ones that respect both — atmosphere that stops the thumb, and information architecture that finishes the thought.",
+        ],
+      },
+      {
+        heading: "The Purpose Is Conversion, Not Applause",
+        paragraphs: [
+          "Design awards and internal Slack praise are not attendance. Guests do not clap for your layout in the feed. They either understand the invitation quickly enough to act, or they move on.",
+          "Treating the flyer as a conversion tool changes the review criteria. Instead of asking only whether it looks premium, ask whether a cold viewer can commit. Instead of protecting every decorative element, protect the path from first glance to next step.",
+          "This mindset also reduces conflict between marketing and operations. Marketing wants desire. Operations wants fewer day-of questions. A conversion-first flyer serves both: desire that is specific enough to act on, and logistics clear enough that ops is not answering the same DM fifty times.",
+          "If your creative process ends at \"it looks sick,\" you are stopping before the job is done. Looking right is the opening move. Working is the win condition.",
+        ],
+      },
+      {
+        heading: "The Six Things Every Event Flyer Must Communicate",
+        paragraphs: [
+          "Every effective event flyer answers six questions, even if the answers are brief. What is the event? When is it? Where is it? Who is it for — or who is performing, hosting, or headlining in a way that signals the audience? How much does it cost, or is it free? How do I get in — tickets, RSVP, guest list, door?",
+          "Miss one and you create friction. Miss two and you create drop-off. The absences are often subtle: a cool title with no category of experience, a venue nickname with no city, a stacked lineup with no date hierarchy, a beautiful scene with no price signal for people budgeting a night out.",
+          "You do not need a paragraph for each answer. You need unambiguous signals. A clear event name. A full date, not only a day of week. A venue people can navigate to. A talent or audience cue. A cost or ticket cue. A call to action that points to the door.",
+          "Completeness here is not the same as packing the canvas. It is making sure none of the six are left to insider inference. Inference is where attendance leaks.",
+        ],
+      },
+      {
+        heading: "Looking Good Versus Working",
+        paragraphs: [
+          "A flyer that looks good wins the mood. A flyer that works wins the decision. The best ones do both, but when you must choose under deadline, working beats looking good for soft ticket sales and first-time audiences.",
+          "Looking good without working is common in brand-led campaigns: exquisite photography, fashionable type, and a logistics block that loses the contrast war. Working without looking good is common in rushed ops exports: every fact present, zero desire. Neither extreme fills a room the way a balanced piece does.",
+          "Judge \"working\" with behavior, not opinions. Fewer clarifying comments. Faster ticket clicks after posting. Higher screenshot-and-share rates. Lower volume of \"what time is this?\" messages. Those metrics tell you whether the flyer is doing its job.",
+          "Internal taste will always argue for polish. Let external comprehension argue for clarity. A good process gives both a vote — and breaks ties in favor of the guest who has never heard of you.",
+        ],
+      },
+      {
+        heading: "How Strong Flyers Handle Hierarchy",
+        paragraphs: [
+          "Hierarchy is the order of attention. On a strong event flyer, first comes identity — what this night is. Second comes logistics — when and where. Third comes the path in — tickets, RSVP, or door instructions. Talent, sponsors, and supporting details follow in supporting roles.",
+          "When hierarchy flips, conversion suffers. A sponsor lockup that outranks the date teaches the wrong priority. A photo collage that buries the venue teaches the wrong priority. A tiny CTA under a loud aesthetic teaches the wrong priority.",
+          "Build hierarchy with size, contrast, placement, and spacing — not with hope. The eye should land where the decision starts. Everything else should support that landing, not compete with it.",
+          "A useful rehearsal: say the flyer out loud in the order your eye moves. If you hear artist, artist, sponsor, vibe, and only then the date, rewrite the visual order before you rewrite the copy.",
+        ],
+      },
+      {
+        heading: "The Phone Test",
+        paragraphs: [
+          "Most people will see your flyer on a phone. Designing primarily for poster print or desktop mockups is designing for a minority experience. The phone test is simple and non-negotiable: export the real post size, view it at arm's length, and confirm the six essentials still read.",
+          "Phone-scale design favors fewer type styles, stronger contrast, and less ornamental detail in the logistics zone. It favors cropping that keeps critical text away from edges that Stories and chat previews will trim. It favors CTAs that survive compression.",
+          "Teams that skip the phone test discover problems after boost spend starts. By then the weak creative is already teaching your audience that your posts require work. Fixing the file is cheap. Rebuilding trust is not.",
+          "Make the phone test part of approval, not a nice-to-have after approval. Nothing ships until it works in the format where it will live.",
+        ],
+      },
+      {
+        heading: "Why Less Is Almost Always More",
+        paragraphs: [
+          "Information density feels responsible to organizers who fear leaving something out. To attendees, density often reads as noise. When everything shouts, nothing guides. The flyer becomes a wall of claims instead of a path to a decision.",
+          "Edit ruthlessly. Keep the six essentials. Keep the one or two proof points that create desire — headliner, host, unique format, scarce ticket tier. Move secondary sponsor lists, long copy, and edge-case policies to the landing page or confirmation email when they crowd the image.",
+          "Whitespace is not empty vanity. It is how hierarchy breathes. Crowding every inch is how dates get lost beside decorative lines and badge clusters.",
+          "If you are unsure whether an element earns its place, remove it and re-run the five-second comprehension test. If understanding stays the same, the element was decoration competing with conversion.",
+        ],
+      },
+      {
+        heading: "When to Break the Rules",
+        paragraphs: [
+          "Rules exist to protect strangers. You can break them when your audience already shares context — a loyal series with a recognizable template, a members-only night where the channel itself carries logistics, a teaser designed to drive curiosity into a follow-up post that completes the facts within minutes.",
+          "Even then, break rules deliberately. A cryptic teaser without a timed follow-up is not strategy; it is an unfinished flyer. A brand-led piece that hides the date for \"mystery\" still needs a clear path to the reveal for anyone ready to commit now.",
+          "Festival lineups, multi-day programs, and stacked artist bills sometimes require denser layouts. Density can work when hierarchy remains strict and phone legibility is proven. Density fails when every name is the same size and the date is an afterthought.",
+          "The test for any exception is the same as the rule: does a cold viewer still know how to decide? If yes, the break is earned. If no, the break is ego.",
+          "Before your next flyer goes live, give it one conversion pass. Read it like a stranger. Check the six essentials. Run the phone test. When you want a fast, structured second opinion, <a href=\"/flyercheck\">FlyerCheck</a> is a free AI review for event creatives — built to flag missing details, readability issues, weak calls to action, and hierarchy problems before your audience does. Looking good gets you noticed. Working gets people in the room.",
+        ],
+      },
+    ],
+  },
 ];
 
 const flyerBlindSpotsPost = {

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { updateSEO } from "./utils/seoConfig";
 
 import FlyerCheckPage from "./pages/FlyerCheckPage";
@@ -15,6 +15,7 @@ import SitemapPage from "./pages/SitemapPage";
 import AboutPage from "./pages/AboutPage";
 import FAQPage from "./pages/FAQPage";
 import HowItWorksPage from "./pages/HowItWorksPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 export default function App() {
   const location = useLocation();
@@ -38,7 +39,8 @@ export default function App() {
       <Route path="/blog" element={<BlogPage />} />
       <Route path="/blog/flyer-blind-spots" element={<BlogPostFlyerBlindSpots />} />
       <Route path="/blog/:slug" element={<BlogPostPage />} />
-      <Route path="*" element={<Navigate to="/" replace />} />
+      <Route path="/404" element={<NotFoundPage />} />
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
 }

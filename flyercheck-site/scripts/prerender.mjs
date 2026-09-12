@@ -28,6 +28,7 @@ const staticRoutes = [
   "/acceptable-use",
   "/sitemap",
   "/blog/flyer-blind-spots",
+  "/404",
 ];
 const routes = [
   ...new Set([
@@ -140,6 +141,14 @@ async function main() {
 
     for (const route of routes) {
       await prerenderRoute(page, baseURL, route);
+    }
+
+    // Vercel serves dist/404.html with HTTP 404 for missing paths
+    const notFoundSnapshot = path.join(distDir, "404", "index.html");
+    const notFoundRoot = path.join(distDir, "404.html");
+    if (fs.existsSync(notFoundSnapshot)) {
+      fs.copyFileSync(notFoundSnapshot, notFoundRoot);
+      console.log("[prerender] Copied 404 snapshot to dist/404.html");
     }
 
     console.log(`[prerender] Wrote ${routes.length} HTML snapshots to dist/`);

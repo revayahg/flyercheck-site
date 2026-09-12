@@ -89,6 +89,15 @@ function BlogPostFlyerBlindSpots() {
                 })}
               </div>
 
+              <div className="blog-cta-section">
+                <p>
+                  Before your next event flyer goes live, run it through FlyerCheck — a free AI-powered review that catches missing details, readability issues, and weak calls to action in under 30 seconds.
+                </p>
+                <a href="/flyercheck" className="blog-cta-button">
+                  Check your flyer free →
+                </a>
+              </div>
+
               <AdBanner inline />
 
               <div className="blog-article-footer">

@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { blogPosts as operationalPosts } from "../content/blogPosts";
+import { publicBlogPosts as operationalPosts } from "../content/blogPosts";
 import {
   BLOG_CATEGORIES,
   categoryFromQueryParam,

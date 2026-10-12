@@ -5,7 +5,7 @@
 import { writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
-import { blogPosts } from "../src/content/blogPosts.js";
+import { publicBlogPosts } from "../src/content/blogPosts.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, "..");
@@ -43,7 +43,7 @@ const staticPaths = [
   },
 ];
 
-const blogUrls = blogPosts.map((p) => ({
+const blogUrls = publicBlogPosts.map((p) => ({
   path: `/blog/${p.slug}`,
   priority: "0.6",
   changefreq: "monthly",

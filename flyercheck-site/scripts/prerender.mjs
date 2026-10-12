@@ -9,7 +9,7 @@ import { fileURLToPath } from "node:url";
 import handler from "serve-handler";
 import puppeteer from "puppeteer-core";
 import chromium from "@sparticuz/chromium";
-import { blogPosts } from "../src/content/blogPosts.js";
+import { publicBlogPosts } from "../src/content/blogPosts.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const distDir = path.join(__dirname, "..", "dist");
@@ -33,7 +33,7 @@ const staticRoutes = [
 const routes = [
   ...new Set([
     ...staticRoutes,
-    ...blogPosts.map((p) => `/blog/${p.slug}`),
+    ...publicBlogPosts.map((p) => `/blog/${p.slug}`),
   ]),
 ];
 

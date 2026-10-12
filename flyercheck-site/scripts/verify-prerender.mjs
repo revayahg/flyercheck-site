@@ -4,7 +4,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { blogPosts } from "../src/content/blogPosts.js";
+import { publicBlogPosts } from "../src/content/blogPosts.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const distDir = path.join(__dirname, "..", "dist");
@@ -16,8 +16,8 @@ const contentChecks = [
   { route: "/about", needle: "About" },
   { route: "/404", needle: "Page not found" },
   {
-    route: `/blog/${blogPosts[0].slug}`,
-    needle: blogPosts[0].title.slice(0, 40),
+    route: `/blog/${publicBlogPosts[0].slug}`,
+    needle: publicBlogPosts[0].title.slice(0, 40),
   },
 ];
 
@@ -33,9 +33,9 @@ const metaChecks = [
     descriptionNeedle: "free flyer analyzer",
   },
   {
-    route: `/blog/${blogPosts[0].slug}`,
-    title: "Free Event Tools Cost More Than You Think | FlyerCheck",
-    descriptionNeedle: "duplicate work",
+    route: `/blog/${publicBlogPosts[0].slug}`,
+    title: "Guests Decide Before They Buy the Ticket | FlyerCheck",
+    descriptionNeedle: "Buried date",
   },
   {
     route: "/blog/flyer-blind-spots",

@@ -1,5 +1,4 @@
 import React from "react";
-import AdBanner from "./AdBanner";
 import {
   WhatWeDoSection,
   WhoWeWorkWithSection,
@@ -11,7 +10,6 @@ export default function HomepageSectionsContainer() {
   return (
     <>
       <WhatWeDoSection />
-      <AdBanner />
       <WhoWeWorkWithSection />
       <WhyFlyerCheckExistsSection />
       <InsightsSection />

@@ -4,6 +4,19 @@
  */
 import { blogSeoMeta } from "./blogSeoMeta.js";
 
+/** Posts that stay public on flyercheck.io. Everything else 301s to /blog. */
+export const keptBlogSlugs = [
+  "flyer-blind-spots",
+  "what-a-bad-flyer-actually-costs-you",
+  "flyercheck-plus-ai-chatbot-final-check",
+  "guest-journey-starts-before-ticket",
+  "event-flyer-design-mistakes",
+  "how-to-read-your-event-flyer-like-an-attendee",
+  "what-makes-a-good-event-flyer",
+];
+
+const keptBlogSlugSet = new Set(keptBlogSlugs);
+
 export const blogPosts = [
   {
     id: "hidden-operational-costs",
@@ -1977,6 +1990,25 @@ export const blogPosts = [
   },
 ];
 
+const founderAuthors = {
+  "what-a-bad-flyer-actually-costs-you": "Thiago Ferreira",
+  "flyercheck-plus-ai-chatbot-final-check": "Thiago Ferreira",
+  "what-makes-a-good-event-flyer": "Jolyse Stultz",
+};
+
+for (const post of blogPosts) {
+  if (!keptBlogSlugSet.has(post.slug)) continue;
+  post.author = founderAuthors[post.slug] || "FlyerCheck Staff";
+}
+
+/** Flyer posts shown in the index, sitemap, and homepage. */
+export const publicBlogPosts = blogPosts.filter((post) => keptBlogSlugSet.has(post.slug));
+
+/** Ops posts removed from the public catalog. */
+export const retiredBlogSlugs = blogPosts
+  .filter((post) => !keptBlogSlugSet.has(post.slug))
+  .map((post) => post.slug);
+
 const flyerBlindSpotsPost = {
   title:
     "You're Too Close to the Flyer: How Great Events Lose People Before They Even Show Up",
@@ -2095,7 +2127,7 @@ function parsePostDate(dateStr) {
 export function getLatestInternalPosts(count = 4) {
   const allInternalPosts = [
     flyerBlindSpotsPost,
-    ...blogPosts.map((p) => ({
+    ...publicBlogPosts.map((p) => ({
       title: p.title,
       description: p.description,
       url: `/blog/${p.slug}`,
@@ -2115,6 +2147,8 @@ export const authorBios = {
     "FlyerCheck editorial team — practical guidance on event operations, flyers, and hospitality technology.",
   "FlyerCheck Editorial":
     "Practical guidance on event marketing, flyers, and hospitality technology from the FlyerCheck team.",
+  "FlyerCheck Staff":
+    "The FlyerCheck team — practical notes on event flyers, promotion, and the check before you post.",
   "Thiago Ferreira":
     "Chief AI Officer at Revaya Hospitality Group; builds AI tools for hospitality and live-event teams.",
 };
@@ -2136,12 +2170,12 @@ export function getPostBySlug(slug) {
 }
 
 export function getRelatedPosts(currentSlug, count = 3) {
-  const idx = blogPosts.findIndex((p) => p.slug === currentSlug);
-  if (idx === -1) return blogPosts.slice(0, count);
+  const idx = publicBlogPosts.findIndex((p) => p.slug === currentSlug);
+  if (idx === -1) return publicBlogPosts.slice(0, count);
   const result = [];
-  for (let i = 1; i <= blogPosts.length - 1 && result.length < count; i++) {
-    const j = (idx + i) % blogPosts.length;
-    result.push(blogPosts[j]);
+  for (let i = 1; i <= publicBlogPosts.length - 1 && result.length < count; i++) {
+    const j = (idx + i) % publicBlogPosts.length;
+    result.push(publicBlogPosts[j]);
   }
   return result;
 }

@@ -3,7 +3,6 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import AdBanner from "../components/AdBanner";
 import FileUploader from "../components/FileUploader";
 import FlyerCheckToolSupport from "../components/FlyerCheckToolSupport";
 import { FlyerCheckResultsMeaningSection } from "../components/HomepageSections";
@@ -78,8 +77,6 @@ function FlyerCheckPage() {
           <FlyerCheckResultsMeaningSection />
           <FlyerCheckToolSupport />
         </div>
-
-        <AdBanner inline />
 
         <p className="uploader-legal-notice">
           Do not upload sensitive personal data. Upload only content you have

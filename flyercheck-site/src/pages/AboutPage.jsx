@@ -1,7 +1,6 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import AdBanner from "../components/AdBanner";
 import FounderCard from "../components/FounderCard";
 import { reportError } from "../utils/errorHandler";
 import { usePageJsonLd } from "../utils/pageJsonLd";
@@ -185,7 +184,6 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
-        <AdBanner inline />
         <Footer />
       </div>
     );

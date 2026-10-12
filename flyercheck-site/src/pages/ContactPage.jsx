@@ -2,7 +2,6 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import AdBanner from "../components/AdBanner";
 import { reportError } from "../utils/errorHandler";
 import { contactFaqItems } from "../content/faqContent";
 
@@ -241,8 +240,6 @@ function ContactPage() {
             </section>
           </div>
         </div>
-
-        <AdBanner inline />
 
         <Footer />
       </div>

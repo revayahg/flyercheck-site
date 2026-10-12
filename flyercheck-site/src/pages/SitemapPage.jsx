@@ -2,12 +2,12 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { reportError } from "../utils/errorHandler";
-import { blogPosts } from "../content/blogPosts";
+import { publicBlogPosts } from "../content/blogPosts";
 
 function SitemapPage() {
     try {
         const blogLinks = [
-            ...blogPosts.map((p) => ({ title: p.title, url: `/blog/${p.slug}` })),
+            ...publicBlogPosts.map((p) => ({ title: p.title, url: `/blog/${p.slug}` })),
             { title: "Flyer Blind Spots: What Your Event Marketing May Be Missing", url: "/blog/flyer-blind-spots" },
         ];
 

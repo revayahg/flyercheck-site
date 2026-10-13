@@ -105,6 +105,9 @@
     color: #2B2B2B;
     text-decoration: none;
     transition: color 0.3s ease;
+    font-family: 'Avenir Next', 'Avenir Next LT Pro', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
 }
 
 .mobile-menu-btn {

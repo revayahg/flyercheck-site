@@ -1,7 +1,9 @@
 import React from "react";
 import { reportError } from "../../utils/errorHandler";
 
-const FORMSPREE_ENDPOINT = import.meta.env.VITE_FORMSPREE_HOST_ENDPOINT;
+const FORMSPREE_ENDPOINT =
+  import.meta.env.VITE_FORMSPREE_HOST_ENDPOINT?.trim() ||
+  "https://formspree.io/f/xrpeykpy";
 
 function HostEarlyAccess({ idPrefix }) {
   const [open, setOpen] = React.useState(false);

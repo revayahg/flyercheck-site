@@ -92,7 +92,7 @@
     top: 100%;
     left: 0;
     background-color: #F6F1EB;
-    min-width: 200px;
+    min-width: max-content;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     padding: 0.5rem 0;
@@ -106,8 +106,9 @@
     text-decoration: none;
     transition: color 0.3s ease;
     font-family: 'Avenir Next', 'Avenir Next LT Pro', sans-serif;
-    font-weight: 600;
+    font-weight: 400;
     font-size: 18px;
+    white-space: nowrap;
 }
 
 .mobile-menu-btn {

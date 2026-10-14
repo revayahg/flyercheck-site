@@ -128,7 +128,10 @@ async function main() {
     await page.setRequestInterception(true);
     page.on("request", (req) => {
       const reqUrl = req.url();
+      // Block ads and GA so build-time snapshots don't send fake pageviews
       if (
+        reqUrl.includes("googletagmanager.com") ||
+        reqUrl.includes("google-analytics.com") ||
         reqUrl.includes("googlesyndication.com") ||
         reqUrl.includes("googleadservices.com") ||
         reqUrl.includes("doubleclick.net")

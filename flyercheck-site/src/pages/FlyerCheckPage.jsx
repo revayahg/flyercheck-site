@@ -48,7 +48,7 @@ function FlyerCheckPage() {
             </h1>
             <p className="flyercheck-workspace-lead">
               PNG, JPEG, or WEBP — upload the version you plan to post. FlyerCheck
-              flags missing event details, readability issues, and weak CTAs in under
+              flags missing event details, readability issues, visual clutter, and weak CTAs in under
               a minute. No account required.
             </p>
             <p className="flyercheck-workspace-home-link">

@@ -182,7 +182,12 @@ export function FlyerCheckResultsMeaningSection() {
       {
         title: "Readability issues",
         description:
-          "This covers text that is difficult to read at phone-screen size: font that is too small, text that blends into the background due to low contrast, or layouts where too much information competes for attention at once. Most flyers are seen at reduced size in a social media feed. If it doesn't read clearly at that scale, it loses people before they engage.",
+          "This covers text that is difficult to read at phone-screen size: font that is too small, or text that blends into the background due to low contrast. Most flyers are seen at reduced size in a social media feed. If it doesn't read clearly at that scale, it loses people before they engage.",
+      },
+      {
+        title: "Visual clutter",
+        description:
+          "Clutter is extra noise that buries the essentials: sponsor locks, sticker badges, decorative frames, and text blocks all fighting at the same size, or a busy photo behind the type with no quiet zone. A dense lineup is fine when the date and venue still win. A flag here means something should be cut, grouped, or moved so a stranger can find what, when, and where without hunting.",
       },
       {
         title: "Weak or unclear call to action",

@@ -3,7 +3,7 @@
 export const faqItems = [
   {
     q: "What does FlyerCheck analyze?",
-    a: "FlyerCheck reviews your flyer for missing event details, readability issues, weak calls to action, visual hierarchy problems, and branding inconsistencies. It focuses on the things that affect whether someone decides to attend — not abstract design scores.",
+    a: "FlyerCheck reviews your flyer for missing event details, readability issues, visual clutter, weak calls to action, visual hierarchy problems, and branding inconsistencies. It focuses on the things that affect whether someone decides to attend — not abstract design scores.",
   },
   {
     q: "Is FlyerCheck free?",

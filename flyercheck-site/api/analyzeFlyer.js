@@ -182,17 +182,31 @@ EVALUATION FRAMEWORK (only when isEventFlyer is true):
 
 Score each dimension 0-10 for how well this works AS AN EVENT FLYER for attendees deciding whether to show up — not as general graphic design or photography.
 
-1. **Visual Clarity (0-10)**: Layout organization, visual hierarchy, whitespace, balance for scanning on a phone.
-2. **Message Clarity (0-10)**: Whether event purpose, date, time, location, and essential details are immediately apparent. Missing logistics = low score.
-3. **Branding Consistency (0-10)**: Logos, brand colors, fonts, trust/professionalism for the event.
-4. **Emotional Appeal (0-10)**: Whether the design evokes the right vibe for this event type.
-5. **CTA Effectiveness (0-10)**: Ticket/RSVP/follow CTA visibility and clarity. No CTA = low score.
-6. **Audience Fit (0-10)**: Alignment with the intended audience.
-7. **Technical Quality (0-10)**: Resolution, readability, contrast, formatting at feed/phone size.
+1. **Visual Clarity (0-10)**: Layout organization, visual hierarchy, and whether the eye knows what to read first on a phone.
+2. **Clutter control (0-10)**: How well the flyer avoids visual overload. Score the absence of clutter — 10 means a clear focal point, breathing room, and a short scan path; 1–4 means competing elements fight for attention. Always judge this, even when the layout is clean.
+3. **Message Clarity (0-10)**: Whether event purpose, date, time, location, and essential details are immediately apparent. Missing logistics = low score.
+4. **Branding Consistency (0-10)**: Logos, brand colors, fonts, trust/professionalism for the event.
+5. **Emotional Appeal (0-10)**: Whether the design evokes the right vibe for this event type.
+6. **CTA Effectiveness (0-10)**: Ticket/RSVP/follow CTA visibility and clarity. No CTA = low score.
+7. **Audience Fit (0-10)**: Alignment with the intended audience.
+8. **Technical Quality (0-10)**: Resolution, readability, contrast, formatting at feed/phone size.
+
+CLUTTER — what to flag (only when isEventFlyer is true):
+Count clutter as extra visual noise that makes the flyer harder to scan, not as "it has a lot of event facts."
+Flag it when you see:
+- Many elements at similar visual weight: sponsor locks, sticker badges, decorative frames, equal-size text blocks
+- A wall of text, or the same detail repeated in several places
+- Busy texture, pattern, or photography sitting behind type so nothing has a quiet zone
+- Edge-to-edge fill with little whitespace and no single focal point
+Do NOT call these clutter:
+- The essentials themselves (what, when, where, how to attend), even across several short lines
+- A dense lineup or multi-day bill when names are sized by importance and the date and venue still win
+- One strong photo or illustration that supports a single focal point
 
 Hard rules when scoring a real flyer:
 - If date OR time OR venue/location is missing or unreadable, messageClarity must be 4 or lower and overallScore must reflect that.
 - If there is no clear next step (ticket link, RSVP, "doors at", QR, URL, etc.), ctaEffectiveness must be 4 or lower.
+- If clutter is a real problem (no focal point, or the essentials are buried by extra graphics or text), clutterControl must be 4 or lower, visualClarity must be 6 or lower, pitfallsFound must include "Cluttered layout", and improvements must name specific elements to cut, group, or move onto a quieter panel.
 - Do not give high scores for a pretty image that fails as event communication.
 
 DESIGN PITFALLS TO CHECK (when it is a flyer):
@@ -223,6 +237,7 @@ Provide your analysis in this JSON format:
   "overallScore": 7.5,
   "scores": {
     "visualClarity": 8,
+    "clutterControl": 7,
     "messageClarity": 6,
     "brandingConsistency": 7,
     "emotionalAppeal": 8,
@@ -233,6 +248,7 @@ Provide your analysis in this JSON format:
   "positiveSummary": "Balanced opening line matching score tone — or a clear not-a-flyer message.",
   "detailedFeedback": {
     "visualClarity": "Score: X/10. Detailed feedback with specific suggestions.",
+    "clutterControl": "Score: X/10. Say whether clutter is hurting the flyer. If it is, name the elements to cut, group, or move. If it is clean, say what keeps the scan path short.",
     "messageClarity": "Score: X/10. Detailed feedback with specific suggestions.",
     "brandingConsistency": "Score: X/10. Detailed feedback with specific suggestions.",
     "emotionalAppeal": "Score: X/10. Detailed feedback with specific suggestions.",
@@ -272,7 +288,7 @@ Be specific and honest. Never score a non-flyer as a successful event flyer.`;
           ]
         }
       ],
-      max_tokens: 2500,
+      max_tokens: 2800,
       temperature: 0.35,
       response_format: { type: "json_object" },
     });
@@ -296,6 +312,7 @@ Be specific and honest. Never score a non-flyer as a successful event flyer.`;
         overallScore: 6,
         scores: {
           visualClarity: 6,
+          clutterControl: 6,
           messageClarity: 6,
           brandingConsistency: 6,
           emotionalAppeal: 6,
@@ -306,6 +323,7 @@ Be specific and honest. Never score a non-flyer as a successful event flyer.`;
         positiveSummary: 'Analysis completed successfully.',
         detailedFeedback: {
           visualClarity: 'Score: 6/10. ' + analysisText.substring(0, 200),
+          clutterControl: 'Score: 6/10. Check whether extra logos, badges, or text blocks are competing with the essentials.',
           messageClarity: 'Score: 6/10. Review the flyer for clarity.',
           brandingConsistency: 'Score: 6/10. Check branding elements.',
           emotionalAppeal: 'Score: 6/10. Assess emotional impact.',
@@ -325,6 +343,7 @@ Be specific and honest. Never score a non-flyer as a successful event flyer.`;
 
     const dimensionKeys = [
       'visualClarity',
+      'clutterControl',
       'messageClarity',
       'brandingConsistency',
       'emotionalAppeal',
@@ -356,6 +375,7 @@ Be specific and honest. Never score a non-flyer as a successful event flyer.`;
       'overall score',
       'dimension scores',
       'text readability',
+      'visual clutter',
       'crowd visibility',
       'catch the mistake before your audience',
     ];
@@ -433,6 +453,33 @@ Be specific and honest. Never score a non-flyer as a successful event flyer.`;
           openingSummary = `Some elements work, but this needs attention first: ${fix}`;
         }
       }
+    }
+
+    if (isEventFlyer) {
+      const listedAsClutter = pitfallsFound.some((p) => /clutter/i.test(String(p)));
+      let clutterScore = Number(scores.clutterControl);
+      if (listedAsClutter && Number.isFinite(clutterScore) && clutterScore > 4) {
+        clutterScore = 4;
+        scores.clutterControl = 4;
+      }
+      if (Number.isFinite(clutterScore) && clutterScore <= 4) {
+        if (!listedAsClutter) {
+          pitfallsFound = ['Cluttered layout', ...pitfallsFound];
+        }
+        const visual = Number(scores.visualClarity);
+        if (Number.isFinite(visual) && visual > 6) {
+          scores.visualClarity = 6;
+        }
+      }
+
+      const orderedScores = {};
+      const orderedFeedback = {};
+      for (const key of dimensionKeys) {
+        if (scores[key] !== undefined) orderedScores[key] = scores[key];
+        if (detailedFeedback[key]) orderedFeedback[key] = detailedFeedback[key];
+      }
+      scores = orderedScores;
+      detailedFeedback = orderedFeedback;
     }
 
     return {

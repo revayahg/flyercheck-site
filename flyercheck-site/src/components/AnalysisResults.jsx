@@ -6,6 +6,7 @@ function AnalysisResults({ analysis }) {
 
         const dimensionLabels = {
             visualClarity: 'Visual Clarity',
+            clutterControl: 'Clutter control',
             messageClarity: 'Message Clarity',
             brandingConsistency: 'Branding Consistency',
             emotionalAppeal: 'Emotional Appeal',

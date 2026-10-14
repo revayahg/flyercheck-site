@@ -136,6 +136,7 @@ window.analyzeFlyerWithAI = async function(file, targetAudience, eventCategories
 
 const DIMENSION_KEYS = [
     'visualClarity',
+    'clutterControl',
     'messageClarity',
     'brandingConsistency',
     'emotionalAppeal',
@@ -157,6 +158,7 @@ const NON_FLYER_UI_PHRASES = [
     'overall score',
     'dimension scores',
     'text readability',
+    'visual clutter',
     'crowd visibility',
     'branding consistency',
     'information hierarchy',

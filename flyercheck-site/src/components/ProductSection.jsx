@@ -14,7 +14,13 @@ export default function ProductSection({ showCta = true }) {
         icon: "fas fa-eye",
         title: "Readability at a glance",
         description:
-          "Text size, contrast, and clutter that make your flyer hard to scan on a phone screen.",
+          "Text size and contrast that make your flyer hard to scan on a phone screen.",
+      },
+      {
+        icon: "fas fa-layer-group",
+        title: "Visual clutter",
+        description:
+          "Sponsor locks, badges, and extra text competing with the date, venue, and how to get in.",
       },
       {
         icon: "fas fa-bullhorn",

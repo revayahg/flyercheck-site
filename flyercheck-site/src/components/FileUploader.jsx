@@ -483,6 +483,10 @@ function FileUploader() {
                                     </div>
                                     <div className="what-we-look-for-item">
                                         <i className="fas fa-check-circle"></i>
+                                        <span>Visual clutter</span>
+                                    </div>
+                                    <div className="what-we-look-for-item">
+                                        <i className="fas fa-check-circle"></i>
                                         <span>Crowd visibility</span>
                                     </div>
                                     <div className="what-we-look-for-item">

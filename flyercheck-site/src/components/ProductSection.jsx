@@ -1,5 +1,6 @@
 import React from "react";
 import { reportError } from "../utils/errorHandler";
+import { trackGaEvent } from "../lib/ga";
 
 export default function ProductSection({ showCta = true }) {
   try {
@@ -52,7 +53,13 @@ export default function ProductSection({ showCta = true }) {
 
           {showCta && (
             <div className="insights-cta" data-name="flyercheck-value-cta">
-              <a href="/flyercheck" className="btn btn-primary">
+              <a
+                href="/flyercheck"
+                className="btn btn-primary"
+                onClick={() =>
+                  trackGaEvent("cta_click", { cta_text: "Run a free flyer check", cta_location: "home_value_section" })
+                }
+              >
                 Run a free flyer check
               </a>
             </div>

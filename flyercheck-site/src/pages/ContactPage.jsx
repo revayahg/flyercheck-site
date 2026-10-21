@@ -3,6 +3,7 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { reportError } from "../utils/errorHandler";
+import { trackGaEvent } from "../lib/ga";
 import { contactFaqItems } from "../content/faqContent";
 
 const CONTACT_SUBMIT_URL = "/api/contact";
@@ -51,6 +52,7 @@ function ContactPage() {
           setSubmitMessage("Thanks — we'll get back to you shortly.");
           setIsSuccess(true);
           setFormData({ name: "", email: "", subject: "", message: "" });
+          trackGaEvent("contact_form_submit");
         } else {
           const data = await response.json().catch(() => ({}));
           const errMsg = data.error || "Failed to send message";

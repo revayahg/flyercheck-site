@@ -1,4 +1,5 @@
 import { trackEvent } from "../lib/analytics";
+import { trackGaEvent } from "../lib/ga";
 import React from "react";
 import { analyzeFlyer } from "../utils/fileAnalyzer";
 import AnalysisResults from "./AnalysisResults";
@@ -80,6 +81,8 @@ function FileUploader() {
                     setAnalysisResults(result.analysis);
                     setMessage("Analysis complete!");
                     setIsSuccess(true);
+
+                    trackGaEvent("flyer_upload");
 
                     trackEvent({
                         eventName: "flyer_upload_success",

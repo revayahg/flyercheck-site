@@ -2,11 +2,11 @@ import React from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { publicBlogPosts as operationalPosts } from "../content/blogPosts";
 import {
-  BLOG_CATEGORIES,
-  categoryFromQueryParam,
-} from "../content/blogCategories";
+  publicBlogPosts as operationalPosts,
+  publicBlogCategories,
+} from "../content/blogPosts";
+import { categoryFromQueryParam } from "../content/blogCategories";
 import { reportError } from "../utils/errorHandler";
 
 function BlogPage() {
@@ -78,7 +78,7 @@ function BlogPage() {
         ? allPosts
         : allPosts.filter((post) => post.category === activeCategory);
 
-    const filterOptions = ["All", ...BLOG_CATEGORIES];
+    const filterOptions = ["All", ...publicBlogCategories];
 
     return (
       <div data-name="blog-page">
@@ -88,7 +88,8 @@ function BlogPage() {
           <div className="container">
             <h1 className="blog-title">Latest from the Blog</h1>
             <p className="blog-subtitle">
-              Event operations and hospitality insights from FlyerCheck — plus
+              Practical guides on event flyers: what to include, how to read
+              them like an attendee, and the mistakes that cost RSVPs — plus
               selected features from our founders across the web.
             </p>
 

@@ -253,7 +253,8 @@ export function InsightsSection() {
             Latest from the Blog
           </h2>
           <p className="section-subtitle" data-name="insights-subtitle">
-            Event operations and hospitality insights from FlyerCheck.
+            Guides on event flyers that convert: hierarchy, readability, and
+            the details promoters miss.
           </p>
           <div className="insights-grid" data-name="insights-grid">
             {featuredPosts.map((post, index) => (

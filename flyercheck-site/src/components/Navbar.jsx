@@ -2,7 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { reportError } from "../utils/errorHandler";
 import BrandWordmark from "./BrandWordmark";
-import { BLOG_CATEGORIES, blogUrlForCategory } from "../content/blogCategories";
+import { blogUrlForCategory } from "../content/blogCategories";
+import { publicBlogCategories } from "../content/blogPosts";
 
 export default function Navbar() {
   try {
@@ -93,7 +94,7 @@ export default function Navbar() {
                   >
                     All posts
                   </Link>
-                  {BLOG_CATEGORIES.map((category) => (
+                  {publicBlogCategories.map((category) => (
                     <Link
                       key={category}
                       to={blogUrlForCategory(category)}

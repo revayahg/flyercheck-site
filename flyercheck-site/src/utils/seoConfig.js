@@ -8,7 +8,7 @@ const defaultOGImage = 'https://www.flyercheck.io/favicon-512.png';
 const seoConfig = {
     '/': {
         title: 'Catch Flyer Mistakes Before Launch | FlyerCheck',
-        description: 'Free AI flyer review for event promoters, plus guides on event ops and hospitality execution. Flag missing dates and weak CTAs before you publish.',
+        description: 'Free AI flyer review for event promoters, plus practical guides on event flyer design and readability. Flag missing dates and weak CTAs before you publish.',
         keywords: 'FlyerCheck, flyer analysis, AI flyer check, event flyer review',
         ogTitle: 'Catch Flyer Mistakes Before Launch',
         ogDescription: 'Free AI flyer review for event promoters—spot what costs you RSVPs before your flyer goes live.',
@@ -53,11 +53,11 @@ const seoConfig = {
         noindex: true
     },
     '/blog': {
-        title: 'Event Ops Blog: Flyers, Vendors & ROS | FlyerCheck',
-        description: 'Where budgets leak, spreadsheets fail, vendors collide, and flyers lose RSVPs—practical reads for promoters and planners.',
-        keywords: 'FlyerCheck blog, event operations, hospitality blog',
-        ogTitle: 'FlyerCheck Event Ops Blog',
-        ogDescription: 'Articles on flyers, vendor chaos, run-of-show discipline, and hospitality execution.',
+        title: 'Event Flyer Blog: Design, Readability & RSVPs | FlyerCheck',
+        description: 'Practical guides on event flyers: what every flyer must include, the design mistakes that cost attendance, and how to review yours before you post.',
+        keywords: 'FlyerCheck blog, event flyer design, flyer mistakes, event marketing',
+        ogTitle: 'FlyerCheck Event Flyer Blog',
+        ogDescription: 'Guides on flyer hierarchy, readability, calls to action, and the details that cost RSVPs.',
         ogImage: defaultOGImage,
         ogType: 'website'
     },
@@ -90,7 +90,7 @@ const seoConfig = {
     },
     '/sitemap': {
         title: 'flyercheck.io Sitemap—Tool, Blog & Policies',
-        description: 'Every FlyerCheck page in one place: the free flyer analyzer, 22+ event ops articles, policies, and contact.',
+        description: 'Every FlyerCheck page in one place: the free flyer analyzer, event flyer guides, policies, and contact.',
         keywords: 'FlyerCheck sitemap, flyercheck.io',
         ogTitle: 'flyercheck.io Sitemap',
         ogDescription: 'Index of the FlyerCheck analyzer, blog articles, and policy pages.',

@@ -25,7 +25,12 @@ const metaChecks = [
   {
     route: "/",
     title: "Catch Flyer Mistakes Before Launch | FlyerCheck",
-    descriptionNeedle: "event ops and hospitality",
+    descriptionNeedle: "event flyer design",
+  },
+  {
+    route: "/blog",
+    title: "Event Flyer Blog: Design, Readability & RSVPs | FlyerCheck",
+    descriptionNeedle: "design mistakes that cost attendance",
   },
   {
     route: "/sitemap",
@@ -86,6 +91,26 @@ function extractDescription(html) {
 }
 
 let failed = 0;
+
+// AdSense site review looks for the loader script in <head> on every page, homepage included.
+const ADSENSE_LOADER = "pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1821148589855201";
+for (const route of ["/", "/about", "/blog", "/contact", `/blog/${publicBlogPosts[0].slug}`]) {
+  const file = routeToFile(route);
+  if (!fs.existsSync(file)) {
+    console.error(`FAIL ${route}: missing ${file}`);
+    failed++;
+    continue;
+  }
+  const html = readHtml(file);
+  const headEnd = html.indexOf("</head>");
+  const head = headEnd === -1 ? "" : html.slice(0, headEnd);
+  if (!head.includes(ADSENSE_LOADER)) {
+    console.error(`FAIL ${route}: AdSense loader script missing from <head>`);
+    failed++;
+  } else {
+    console.log(`OK   ${route} (adsense loader in head)`);
+  }
+}
 
 for (const { route, needle } of contentChecks) {
   const file = routeToFile(route);

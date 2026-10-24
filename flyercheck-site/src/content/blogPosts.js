@@ -3,6 +3,7 @@
  * Used by BlogPage (index) and BlogPostPage (individual post template)
  */
 import { blogSeoMeta } from "./blogSeoMeta.js";
+import { BLOG_CATEGORIES } from "./blogCategories.js";
 
 /** Posts that stay public on flyercheck.io. Everything else 301s to /blog. */
 export const keptBlogSlugs = [
@@ -2003,6 +2004,11 @@ for (const post of blogPosts) {
 
 /** Flyer posts shown in the index, sitemap, and homepage. */
 export const publicBlogPosts = blogPosts.filter((post) => keptBlogSlugSet.has(post.slug));
+
+/** Categories that have at least one public post, in canonical order (no empty nav/filter entries). */
+export const publicBlogCategories = BLOG_CATEGORIES.filter((category) =>
+  publicBlogPosts.some((post) => post.category === category),
+);
 
 /** Ops posts removed from the public catalog. */
 export const retiredBlogSlugs = blogPosts

@@ -1315,6 +1315,7 @@
 .contact-info-item,
 .contact-form-wrapper,
 .founder-card,
+.about-section .founder-card,
 .sitemap-group {
     background: var(--fc-surface);
     border: 0.5px solid var(--fc-border);
@@ -1330,7 +1331,9 @@
 }
 
 .founder-bio,
-.founder-bio-paragraph {
+.founder-bio p,
+.founder-bio-paragraph,
+.about-section .founder-bio p {
     color: var(--fc-muted);
 }
 

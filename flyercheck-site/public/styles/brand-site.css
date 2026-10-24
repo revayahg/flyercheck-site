@@ -431,7 +431,7 @@
 }
 
 .footer-copyright {
-    color: var(--fc-border);
+    color: var(--fc-muted);
     font-size: var(--fc-text-fine);
 }
 
@@ -514,7 +514,7 @@
 
 .insight-author,
 .insight-date {
-    color: var(--fc-border);
+    color: var(--fc-muted);
     font-size: var(--fc-text-fine);
 }
 
@@ -1689,6 +1689,7 @@
     margin: 0 0 1rem;
     font-size: 1rem;
     line-height: 1.6;
+    color: #2b2b2b; /* dark ink on the cream CTA panel */
 }
 
 .blog-cta-button {

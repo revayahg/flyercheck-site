@@ -34,6 +34,15 @@
     }
 }
 
+.what-we-do-section .section-subtitle {
+    max-width: 40rem;
+    white-space: normal;
+}
+
+.what-we-do-section .pillars-grid {
+    max-width: 52rem;
+}
+
 /* What We Do Section */
 .pillars-grid {
     display: grid;
@@ -44,6 +53,8 @@
 }
 
 .pillar-card {
+    display: flex;
+    flex-direction: column;
     background-color: white;
     padding: 2rem;
     border-radius: 12px;
@@ -71,8 +82,17 @@
     font-family: 'Didot', serif;
     font-size: 1.5rem;
     color: #2B2B2B;
-    margin-bottom: 1rem;
+    margin: 0 0 1rem;
     font-weight: 600;
+}
+
+.pillar-label {
+    margin: 0 0 0.35rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #90684A;
 }
 
 .pillar-description {
@@ -81,6 +101,38 @@
     color: #4A4A4A;
     line-height: 1.7;
     margin: 0;
+}
+
+.pillar-extras {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    list-style: none;
+    margin: 1rem 0 0;
+    padding: 0;
+}
+
+.pillar-extras li {
+    padding: 0.35rem 0.7rem;
+    border-radius: 999px;
+    background: #F6F1EB;
+    color: #5B4636;
+    font-size: 0.82rem;
+    font-weight: 600;
+}
+
+.pillar-cta {
+    display: inline-flex;
+    align-items: center;
+    margin-top: auto;
+    padding-top: 1.15rem;
+    color: #90684A;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.pillar-cta:hover {
+    color: #5B4636;
 }
 
 /* Who We Work With Section */
@@ -120,6 +172,375 @@
 }
 
 /* Why Revaya Exists Section */
+.why-revaya-section .section-subtitle {
+    max-width: 40rem;
+    white-space: normal;
+}
+
+.why-revaya-banner {
+    position: relative;
+    max-width: 1100px;
+    margin: 0 auto 2rem;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 28px rgba(43, 43, 43, 0.14);
+}
+
+.why-revaya-image {
+    width: 100%;
+    height: 280px;
+    display: block;
+    object-fit: cover;
+}
+
+.why-revaya-banner-caption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+    padding: 1.25rem 1.5rem;
+    background: linear-gradient(transparent, rgba(17, 14, 11, 0.78));
+    color: #F6F1EB;
+    font-family: 'Didot', serif;
+    font-size: 1.35rem;
+    line-height: 1.35;
+}
+
+.why-revaya-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    max-width: 1100px;
+    margin: 0 auto 2rem;
+}
+
+.why-revaya-panel {
+    border-radius: 16px;
+    padding: 1.75rem 1.5rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.why-revaya-panel-problem {
+    background: #F6F1EB;
+    border: 1px dashed rgba(91, 70, 54, 0.28);
+}
+
+.why-revaya-panel-need {
+    background: #2B2B2B;
+    color: #F6F1EB;
+    border: 1px solid rgba(203, 187, 160, 0.28);
+}
+
+.why-revaya-panel-kicker {
+    margin: 0 0 0.4rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #90684A;
+}
+
+.why-revaya-panel-need .why-revaya-panel-kicker {
+    color: #CBBBA0;
+}
+
+.why-revaya-panel-title {
+    font-family: 'Didot', serif;
+    font-size: 1.55rem;
+    margin: 0 0 1.25rem;
+    font-weight: 500;
+    text-wrap: balance;
+}
+
+.why-revaya-points {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.75rem;
+}
+
+.why-revaya-points li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+.why-revaya-point-icon {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background: #F6F1EB;
+    color: #90684A;
+}
+
+.why-revaya-panel-need .why-revaya-point-icon {
+    background: #3A3A3A;
+    color: #CBBBA0;
+}
+
+.why-revaya-fragments {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.35rem 1rem;
+    margin: 0.25rem 0 1rem;
+}
+
+.why-revaya-fragments::before,
+.why-revaya-fragments::after {
+    content: "";
+    position: absolute;
+    background-image: repeating-linear-gradient(
+        to right,
+        rgba(144, 104, 74, 0.35) 0 6px,
+        transparent 6px 12px
+    );
+    pointer-events: none;
+}
+
+.why-revaya-fragments::before {
+    left: 12%;
+    right: 12%;
+    top: 50%;
+    height: 1px;
+    transform: translateY(-50%) rotate(-8deg);
+}
+
+.why-revaya-fragments::after {
+    top: 12%;
+    bottom: 12%;
+    left: 50%;
+    width: 1px;
+    background-image: repeating-linear-gradient(
+        to bottom,
+        rgba(144, 104, 74, 0.35) 0 6px,
+        transparent 6px 12px
+    );
+    transform: translateX(-50%) rotate(7deg);
+}
+
+.why-revaya-fragment {
+    position: relative;
+    z-index: 1;
+    background: #fff;
+    border: 1px solid rgba(43, 43, 43, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 8px 18px rgba(43, 43, 43, 0.08);
+    overflow: hidden;
+}
+
+.why-revaya-fragment-0 { transform: rotate(-3.5deg) translate(-2px, 8px); }
+.why-revaya-fragment-1 { transform: rotate(2.6deg) translate(6px, -6px); }
+.why-revaya-fragment-2 { transform: rotate(3.4deg) translate(-8px, 4px); }
+.why-revaya-fragment-3 { transform: rotate(-2.2deg) translate(4px, 10px); }
+
+.why-revaya-fragment-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    height: 1.35rem;
+    padding: 0 0.45rem;
+    background: #EDE6DC;
+}
+
+.why-revaya-fragment-dots {
+    display: flex;
+    gap: 3px;
+}
+
+.why-revaya-fragment-dots i {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #C4B7A6;
+}
+
+.why-revaya-fragment-file {
+    font-size: 0.62rem;
+    color: #6B6258;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.why-revaya-fragment-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.85rem 0.5rem 0.9rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-align: center;
+    color: #2B2B2B;
+}
+
+.why-revaya-fragment-icon {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #F6F1EB;
+    color: #90684A;
+}
+
+.why-revaya-fragment-note {
+    margin: 0;
+    text-align: center;
+    font-size: 0.82rem;
+    color: #6B6258;
+}
+
+.why-revaya-system {
+    margin: 0.25rem 0 1rem;
+    border: 1px solid rgba(203, 187, 160, 0.35);
+    border-radius: 12px;
+    overflow: hidden;
+    background: #1C1C1C;
+}
+
+.why-revaya-system-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 1.5rem;
+    background: #3A332C;
+    color: #E8DFD2;
+    font-size: 0.68rem;
+}
+
+.why-revaya-system-dots {
+    position: absolute;
+    left: 0.55rem;
+    display: flex;
+    gap: 4px;
+}
+
+.why-revaya-system-dots i {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #CBBBA0;
+}
+
+.why-revaya-system-body {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    padding: 0.85rem 0.7rem 1rem;
+}
+
+.why-revaya-system-body::before,
+.why-revaya-system-body::after {
+    content: "";
+    position: absolute;
+    left: 12%;
+    right: 12%;
+    height: 2px;
+    background: #CBBBA0;
+    pointer-events: none;
+}
+
+.why-revaya-system-body::before {
+    top: 38%;
+}
+
+.why-revaya-system-body::after {
+    top: 62%;
+}
+
+.why-revaya-system-nodes {
+    position: relative;
+    z-index: 1;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.4rem;
+}
+
+.why-revaya-system-nodes li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.55rem 0.15rem 0.5rem;
+    background: #2B2B2B;
+    border: 1px solid rgba(203, 187, 160, 0.35);
+    border-radius: 8px;
+    font-size: 0.68rem;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.2;
+}
+
+.why-revaya-system-icon {
+    width: 1.7rem;
+    height: 1.7rem;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #3A3A3A;
+    color: #CBBBA0;
+    font-size: 0.75rem;
+}
+
+.why-revaya-system-hub {
+    position: relative;
+    z-index: 2;
+    align-self: center;
+    padding: 0.55rem 1rem;
+    border-radius: 999px;
+    background: #CBBBA0;
+    color: #2B2B2B;
+    font-family: "Didot", serif;
+    font-size: 0.95rem;
+    text-align: center;
+    box-shadow: 0 0 0 6px #1C1C1C;
+}
+
+.why-revaya-system-hub::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: -0.9rem;
+    bottom: -0.9rem;
+    width: 2px;
+    background: #CBBBA0;
+    transform: translateX(-50%);
+    z-index: -1;
+}
+
+.why-revaya-system-note {
+    margin: 0;
+    text-align: center;
+    font-size: 0.82rem;
+    color: #C4B7A6;
+}
+
+.why-revaya-close {
+    max-width: 40rem;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #4A4A4A;
+}
+
 .why-revaya-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -133,13 +554,6 @@
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
-
-.why-revaya-image {
-    width: 100%;
-    height: auto;
-    display: block;
-    object-fit: cover;
 }
 
 .why-revaya-content {
@@ -156,12 +570,6 @@
 
 .why-revaya-text:last-child {
     margin-bottom: 0;
-}
-
-/* Why Event Operations Are So Complex (homepage editorial section) */
-.event-ops-prose {
-    max-width: 720px;
-    margin: 0 auto;
 }
 
 /* Insights Section */
@@ -306,6 +714,37 @@
     .why-revaya-image-wrap {
         order: -1;
     }
+
+    .why-revaya-image {
+        height: 210px;
+    }
+
+    .why-revaya-banner-caption {
+        font-size: 1.15rem;
+        padding: 1rem 1.15rem;
+    }
+
+    .why-revaya-compare {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .why-revaya-panel {
+        padding: 1.4rem 1.2rem;
+    }
+
+    .why-revaya-panel-problem {
+        overflow: hidden;
+    }
+
+    .why-revaya-fragments {
+        gap: 1.15rem 0.75rem;
+        padding: 0.35rem 0.2rem 0.6rem;
+    }
+
+    .why-revaya-panel-title {
+        font-size: 1.35rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -320,5 +759,9 @@
     .pillar-title,
     .insight-title {
         font-size: 1.25rem;
+    }
+
+    .why-revaya-image {
+        height: 180px;
     }
 }

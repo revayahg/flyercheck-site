@@ -1,10 +1,21 @@
 import React from "react";
 import { reportError } from "../utils/errorHandler";
 
-export default function ProductCard({ title, description, link, ctaText }) {
+export default function ProductCard({ title, description, link, ctaText, image, imageAlt, preview }) {
   try {
     return (
       <div className="product-card" data-name="product-card">
+        {image || preview ? (
+          <div className="product-card-media" data-name="product-card-media">
+            {preview || (
+              <img
+                src={image}
+                alt={imageAlt || title}
+                className="product-card-image"
+              />
+            )}
+          </div>
+        ) : null}
         <div className="product-card-body" data-name="product-card-body">
           <h3 className="product-card-title" data-name="product-card-title">{title}</h3>
           <p className="product-card-description" data-name="product-card-description">

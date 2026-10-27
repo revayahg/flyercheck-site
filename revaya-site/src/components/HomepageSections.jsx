@@ -7,21 +7,20 @@ export function WhatWeDoSection() {
     const pillars = [
       {
         icon: "fas fa-calendar-check",
-        title: "Event Operations Technology",
+        label: "Product",
+        title: "Revaya Host™",
         description:
-          "We build tools that streamline event planning, vendor management, and day-of operations. Our technology reduces administrative overhead so teams can focus on creating exceptional experiences."
-      },
-      {
-        icon: "fas fa-hand-holding-heart",
-        title: "Guest & Experience Strategy",
-        description:
-          "Built on deep hospitality expertise, we help organizations understand and improve the guest journey—from discovery through attendance. We combine data insights with hands-on experience to drive satisfaction and attendance."
+          "The event operations platform. Plan the show, manage vendors, and run day-of from one place — instead of spreadsheets, inboxes, and a generic project board.",
+        href: "/revaya-host",
+        cta: "See the Overview"
       },
       {
         icon: "fas fa-chart-line",
-        title: "Ancillary Revenue Technology",
+        label: "In development",
+        title: "Ancillary Revenue",
         description:
-          "We develop platforms that increase ancillary revenue and unlock new streams for events and partners. Our technology helps teams optimize vendor relationships and create mutually beneficial opportunities."
+          "Tools to sell more around the event — not just the ticket. Think hotel blocks, tours, experiences, and other add-ons that guests actually book.",
+        extras: ["Hotels", "Tours", "Experiences"]
       }
     ];
 
@@ -30,7 +29,7 @@ export function WhatWeDoSection() {
         <div className="container">
           <h2 className="section-title" data-name="what-we-do-title">What We Do</h2>
           <p className="section-subtitle" data-name="what-we-do-subtitle">
-            We build technology and provide strategic guidance for modern hospitality and live events.
+            A product for running the show, and tools we’re building for hotels, tours, and other add-ons around the ticket.
           </p>
           <div className="pillars-grid" data-name="pillars-grid">
             {pillars.map((pillar, index) => (
@@ -38,12 +37,25 @@ export function WhatWeDoSection() {
                 <div className="pillar-icon" data-name={`pillar-icon-${index}`}>
                   <i className={pillar.icon} aria-hidden="true"></i>
                 </div>
+                <p className="pillar-label">{pillar.label}</p>
                 <h3 className="pillar-title" data-name={`pillar-title-${index}`}>
                   {pillar.title}
                 </h3>
                 <p className="pillar-description" data-name={`pillar-description-${index}`}>
                   {pillar.description}
                 </p>
+                {pillar.extras ? (
+                  <ul className="pillar-extras">
+                    {pillar.extras.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                ) : null}
+                {pillar.href ? (
+                  <a className="pillar-cta" href={pillar.href}>
+                    {pillar.cta}
+                  </a>
+                ) : null}
               </div>
             ))}
           </div>
@@ -63,7 +75,6 @@ export function WhoWeWorkWithSection() {
       { label: "Event Producers", icon: "fas fa-star" },
       { label: "Festivals And City-Wide Events", icon: "fas fa-music" },
       { label: "Conferences And Conventions", icon: "fas fa-microphone" },
-      { label: "Cruise Lines", icon: "fas fa-ship" },
       { label: "Nonprofits And Community Events", icon: "fas fa-hand-holding-heart" },
       { label: "Hotels & Property Managers", icon: "fas fa-hotel" }
     ];
@@ -98,37 +109,121 @@ export function WhoWeWorkWithSection() {
 export function WhyRevayaExistsSection() {
   try {
     const whyRevayaImage =
-      "https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80";
+      "https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=80";
+    const inherited = [
+      { icon: "fas fa-table", name: "Budget.xlsx", label: "Spreadsheets" },
+      { icon: "fas fa-file-lines", name: "Timeline.docx", label: "Documents" },
+      { icon: "fas fa-envelope", name: "Inbox", label: "Email" },
+      { icon: "fas fa-list-check", name: "Project board", label: "Generic PM" }
+    ];
+    const integrated = [
+      { icon: "fas fa-table", label: "Budget" },
+      { icon: "fas fa-file-lines", label: "Timeline" },
+      { icon: "fas fa-envelope", label: "Comms" },
+      { icon: "fas fa-list-check", label: "Tasks" },
+      { icon: "fas fa-handshake", label: "Vendors" },
+      { icon: "fas fa-star", label: "Guests" },
+      { icon: "fas fa-map-location-dot", label: "Venue" },
+      { icon: "fas fa-bolt", label: "Live ops" }
+    ];
 
     return (
       <section className="homepage-section why-revaya-section" data-name="why-revaya">
         <div className="container">
           <h2 className="section-title" data-name="why-revaya-title">Why Revaya Exists</h2>
-          <div className="why-revaya-grid" data-name="why-revaya-content">
-            <div className="why-revaya-image-wrap" data-name="why-revaya-image">
-              <img
-                src={whyRevayaImage}
-                alt="Event and hospitality operations"
-                className="why-revaya-image"
-              />
-            </div>
-            <div className="why-revaya-content" data-name="why-revaya-text-wrap">
-              <p className="why-revaya-text" data-name="why-revaya-text-1">
-                Event planning has always relied on fragmented tools—spreadsheets for budgets, documents
-                for timelines, email for communication, and generic project management software that
-                wasn't designed for hospitality workflows. These tools work in isolation, creating
-                information silos and forcing teams to constantly switch contexts.
-              </p>
-              <p className="why-revaya-text" data-name="why-revaya-text-2">
-                Spreadsheets and generic PM tools fail hospitality teams because they don't understand
-                the unique requirements of events: vendor relationships, guest experience considerations,
-                venue logistics, and the real-time nature of event operations.e build technology that
-                understands these nuances from the ground up, creating tools that feel natural to
-                hospitality professionals while providing the structure and insights they need to
-                execute flawlessly.
-              </p>
-            </div>
+          <p className="section-subtitle" data-name="why-revaya-subtitle">
+            Event work was never meant to live in spreadsheets, inboxes, and generic project tools.
+          </p>
+
+          <div className="why-revaya-banner" data-name="why-revaya-image">
+            <img
+              src={whyRevayaImage}
+              alt="Teams coordinating a live event"
+              className="why-revaya-image"
+            />
+            <p className="why-revaya-banner-caption">
+              Live events need one operational picture — not four disconnected tools.
+            </p>
           </div>
+
+          <div className="why-revaya-compare" data-name="why-revaya-content">
+            <article className="why-revaya-panel why-revaya-panel-problem">
+              <p className="why-revaya-panel-kicker">The inherited stack</p>
+              <h3 className="why-revaya-panel-title">Tools that work in isolation</h3>
+              <div className="why-revaya-fragments" aria-label="Fragmented event tools">
+                {inherited.map((item, index) => (
+                  <div
+                    key={item.label}
+                    className={`why-revaya-fragment why-revaya-fragment-${index}`}
+                  >
+                    <div className="why-revaya-fragment-bar">
+                      <span className="why-revaya-fragment-dots" aria-hidden="true">
+                        <i />
+                        <i />
+                        <i />
+                      </span>
+                      <span className="why-revaya-fragment-file">{item.name}</span>
+                    </div>
+                    <div className="why-revaya-fragment-body">
+                      <span className="why-revaya-fragment-icon" aria-hidden="true">
+                        <i className={item.icon}></i>
+                      </span>
+                      <span>{item.label}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <p className="why-revaya-fragment-note">Four silos. No shared picture.</p>
+            </article>
+
+            <article className="why-revaya-panel why-revaya-panel-need">
+              <p className="why-revaya-panel-kicker">What hospitality needs</p>
+              <h3 className="why-revaya-panel-title">Tools that understand the show</h3>
+              <div className="why-revaya-system" aria-label="Integrated event operations">
+                <div className="why-revaya-system-bar">
+                  <span className="why-revaya-system-dots" aria-hidden="true">
+                    <i />
+                    <i />
+                    <i />
+                  </span>
+                  <span>Revaya · Eclipse Gala 2026</span>
+                </div>
+                <div className="why-revaya-system-body">
+                  <ul className="why-revaya-system-nodes">
+                    {integrated.slice(0, 4).map((item) => (
+                      <li key={item.label}>
+                        <span className="why-revaya-system-icon" aria-hidden="true">
+                          <i className={item.icon}></i>
+                        </span>
+                        {item.label}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="why-revaya-system-hub">
+                    <span>One operational picture</span>
+                  </div>
+                  <ul className="why-revaya-system-nodes">
+                    {integrated.slice(4).map((item) => (
+                      <li key={item.label}>
+                        <span className="why-revaya-system-icon" aria-hidden="true">
+                          <i className={item.icon}></i>
+                        </span>
+                        {item.label}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+              <p className="why-revaya-system-note">
+                The inherited tools, plus vendors, guests, venue, and live ops — connected.
+              </p>
+            </article>
+          </div>
+
+          <p className="why-revaya-close" data-name="why-revaya-text-2">
+            We build technology that understands these nuances from the ground up — tools that feel
+            natural to hospitality professionals and give teams the structure to execute flawlessly.
+          </p>
         </div>
       </section>
     );

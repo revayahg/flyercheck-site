@@ -15,8 +15,8 @@ export default function AboutPage() {
           "https://app.trickle.so/storage/public/images/usr_0ad8d73270000001/e60eaeed-06d4-4811-9d58-57fee988b301.png",
         email: "info@revayahg.com",
         bio: [
-          "Jolyse is an energetic and highly motivated experience strategy, digital, and analytics professional with over 15 years of progressive experience in the travel & hospitality sector. She is deeply passionate about travel, hospitality, and delivering impactful guest experiences. Jolyse thrives at the intersection of strategy, technology, and human connection.",
-          "Jolyse specializes in leveraging digital innovation to enhance guest interactions, making every touchpoint seamless, engaging, and memorable. Whether it's optimizing digital platforms, designing frictionless customer journeys, or using data to drive smarter decisions, Jolyse's professional mantra is simple:"
+          "Jolyse has spent 15 years in travel and hospitality, mostly on how a trip or a show actually runs — guests, crew, and the systems in between. At Royal Caribbean she led digital strategy for the company’s first mobile app. Since then she’s mapped guest journeys for cruise brands, stood up contact centers and booking tools, and sat with operators when the reservation system didn’t match the floor.",
+          "She started Revaya after watching event teams run live shows out of spreadsheets, inboxes, and generic project tools. The job is still the same: make the operation make sense so people can have a good time. Her professional mantra is simple:"
         ],
         mantra: "I sincerely believe that everyone deserves to have a good time."
       },
@@ -42,17 +42,7 @@ export default function AboutPage() {
           <div className="container">
             <h1 className="about-title">Our Founders</h1>
 
-            <div
-              className="founders-grid"
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-                gap: "2.5rem",
-                alignItems: "start",
-                maxWidth: "1200px",
-                margin: "0 auto"
-              }}
-            >
+            <div className="founders-grid">
               {foundersList.map((founder, index) => (
                 <FounderCard key={index} {...founder} />
               ))}
@@ -73,79 +63,6 @@ export default function AboutPage() {
               <p className="about-info-p">
                 Hospitality principles—anticipating needs, reducing friction, and creating a sense of care—apply as much to back-of-house operations as they do to the guest experience. Event execution is not only about logistics; it is about enabling teams to deliver consistently so that every attendee leaves with a positive impression.
               </p>
-            </section>
-
-            <section className="about-info-block about-info-card">
-              <div className="about-info-block-header">
-                <i className="fas fa-star about-info-icon" aria-hidden="true" />
-                <h2 className="about-info-title">Why Revaya Exists</h2>
-              </div>
-              <p className="about-info-p">
-                Event teams routinely face the same operational problems: tools that don’t talk to each other, critical details buried in email threads, and no single place to see who is doing what and when. These issues are not failures of effort; they are limitations of how information is shared and coordinated.
-              </p>
-              <p className="about-info-p">
-                Fragmented tools and communication breakdowns create hidden cost—extra hours, last-minute scrambles, and burnout. We started Revaya to address that gap. Our goal is to improve how event teams manage information: one source of truth, clearer coordination, and technology that supports the way teams actually work.
-              </p>
-              <p className="about-info-p">
-                We build and advise with a focus on reducing complexity so that planners, producers, and hospitality teams can focus on what matters most: delivering great experiences.
-              </p>
-            </section>
-
-            <section className="about-info-block about-info-card">
-              <div className="about-info-block-header">
-                <i className="fas fa-bullseye about-info-icon" aria-hidden="true" />
-                <h2 className="about-info-title">Our Focus</h2>
-              </div>
-              <div className="about-info-pills">
-                <div className="about-info-pill">
-                  <i className="fas fa-calendar-check about-info-pill-icon" aria-hidden="true" />
-                  <span>Event operations and coordination</span>
-                </div>
-                <div className="about-info-pill">
-                  <i className="fas fa-concierge-bell about-info-pill-icon" aria-hidden="true" />
-                  <span>Hospitality-driven guest experiences</span>
-                </div>
-                <div className="about-info-pill">
-                  <i className="fas fa-truck about-info-pill-icon" aria-hidden="true" />
-                  <span>Vendor communication and logistics</span>
-                </div>
-                <div className="about-info-pill">
-                  <i className="fas fa-microchip about-info-pill-icon" aria-hidden="true" />
-                  <span>Technology that simplifies event execution</span>
-                </div>
-              </div>
-            </section>
-
-            <section className="about-info-block about-info-card">
-              <div className="about-info-block-header">
-                <i className="fas fa-handshake about-info-icon" aria-hidden="true" />
-                <h2 className="about-info-title">Roles We Support</h2>
-              </div>
-              <p className="about-info-p">
-                Our tools and guidance are designed to support these roles across events and hospitality:
-              </p>
-              <div className="about-info-pills">
-                <div className="about-info-pill">
-                  <i className="fas fa-clipboard-list about-info-pill-icon" aria-hidden="true" />
-                  <span>Event planners</span>
-                </div>
-                <div className="about-info-pill">
-                  <i className="fas fa-music about-info-pill-icon" aria-hidden="true" />
-                  <span>Festival organizers</span>
-                </div>
-                <div className="about-info-pill">
-                  <i className="fas fa-building about-info-pill-icon" aria-hidden="true" />
-                  <span>Venue operators</span>
-                </div>
-                <div className="about-info-pill">
-                  <i className="fas fa-hotel about-info-pill-icon" aria-hidden="true" />
-                  <span>Hospitality teams</span>
-                </div>
-                <div className="about-info-pill">
-                  <i className="fas fa-boxes about-info-pill-icon" aria-hidden="true" />
-                  <span>Production and logistics teams</span>
-                </div>
-              </div>
             </section>
             </div>
           </div>

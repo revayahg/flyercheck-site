@@ -8,6 +8,39 @@ function BlogPage() {
   try {
     const externalPosts = [
       {
+        title: "Why AI Adoption Stalls",
+        author: "Thiago Ferreira",
+        platform: "BizWeekly",
+        url: "https://bizweekly.com/elevate-ai-ceo-and-university-of-miami-professor-thiago-e-ferreira-reveals-why-ai-adoption-stalls/",
+        date: "October 18, 2026",
+        description:
+          "Featured coverage on why AI adoption stalls: students trust AI too quickly, corporate teams trust themselves too little — and how hands-on training and employee trust get both sides unstuck.",
+        icon: "fas fa-newspaper",
+        color: "#1B4F72",
+      },
+      {
+        title: "AI Slop Is the New Customer Friction",
+        author: "Jolyse Stultz",
+        platform: "LinkedIn",
+        url: "https://www.linkedin.com/pulse/ai-slop-new-customer-friction-jolyse-stultz-ntgze/",
+        date: "June 22, 2026",
+        description:
+          "Generic AI replies are the new customer friction in travel and hospitality. Jolyse argues AI should reduce effort for the customer — not shift it onto them.",
+        icon: "fab fa-linkedin",
+        color: "#0077b5",
+      },
+      {
+        title: "The Hidden Complexity of Live Events",
+        author: "Jolyse Stultz",
+        platform: "LinkedIn",
+        url: "https://www.linkedin.com/pulse/hidden-complexity-live-events-jolyse-stultz-bcike/",
+        date: "January 6, 2026",
+        description:
+          "Live events look effortless from the audience. Behind the scenes, producers are still running the show in spreadsheets, inboxes, and 37 tabs.",
+        icon: "fab fa-linkedin",
+        color: "#0077b5",
+      },
+      {
         title: "The AI Training Bootcamp Helping Companies Finally See ROI",
         author: "Thiago Ferreira",
         platform: "USA News",

@@ -4,22 +4,47 @@
     margin-top: 1rem;
 }
 
+.product-section .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.product-section-header {
+    width: 100%;
+    max-width: 22rem;
+    margin: 0 auto 2.5rem;
+    padding: 0 1rem;
+    text-align: center;
+}
+
+.product-section .section-title {
+    text-align: center;
+    font-family: 'Didot', serif;
+    font-size: 2rem;
+    color: #2B2B2B;
+    width: 100%;
+    margin: 0 0 0.75rem;
+}
+
+.product-section .section-subtitle {
+    text-align: center;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    white-space: normal;
+}
+
 .products-preview {
     display: flex;
     justify-content: center;
     align-items: stretch;
     gap: 2rem;
+    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
-}
-
-.section-title {
-    text-align: center;
-    font-family: 'Didot', serif;
-    font-size: 2rem;
-    color: #2B2B2B;
-    margin-bottom: 2rem;
 }
 
 @media (max-width: 1024px) {
@@ -42,9 +67,15 @@
         padding: 0 1rem;
     }
 
-    .section-title {
+    .product-section-header {
+        max-width: 20rem;
+        margin-bottom: 1.75rem;
+        padding: 0 0.75rem;
+    }
+
+    .product-section .section-title {
         font-size: 1.75rem;
-        margin-bottom: 1.5rem;
+        margin-bottom: 0.6rem;
     }
 }
 
@@ -57,8 +88,13 @@
         gap: 1.25rem;
     }
 
-    .section-title {
+    .product-section-header {
+        max-width: 18.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .product-section .section-title {
         font-size: 1.5rem;
-        margin-bottom: 1.25rem;
+        margin-bottom: 0.5rem;
     }
 }

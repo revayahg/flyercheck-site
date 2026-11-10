@@ -1,4 +1,4 @@
-import { getPostBySlug } from '../content/blogPosts';
+import { getPostBySlug } from '../content/blogPosts.js';
 import { buildArticleSchema } from './articleSchema.js';
 import { faqItems, faqSchemaEntities } from '../content/faqContent.js';
 
@@ -119,7 +119,7 @@ const seoConfig = {
 };
 
 // Get SEO config for a path (includes dynamic blog posts)
-function getSEOConfig(path) {
+export function getSEOConfig(path) {
     const cleanPath = path === '/' ? '/' : path.replace(/\/$/, '');
     if (seoConfig[cleanPath]) return seoConfig[cleanPath];
     const blogMatch = cleanPath.match(/^\/blog\/(.+)$/);
@@ -365,17 +365,28 @@ function updateCanonical() {
 }
 
 /** Single entry point: run meta, structured data, and canonical from current path. Call on load and on route change (e.g. React Router). */
+function configForCurrentUrl(cleanPath) {
+    const config = getSEOConfig(cleanPath);
+    // Category filters are views of /blog, not separate pages. Keep /blog indexable.
+    if (cleanPath !== '/blog') return config;
+    const params = new URLSearchParams(window.location.search);
+    if (!params.has('category')) return config;
+    return { ...config, noindex: true };
+}
+
 export function updateSEO() {
     const path = window.location.pathname;
     const cleanPath = path === '/' ? '/' : path.replace(/\/$/, '');
     const url = baseUrl + (path === '/' ? '' : path);
-    const config = getSEOConfig(cleanPath);
+    const config = configForCurrentUrl(cleanPath);
     updateMetaTags(config, url);
     updateStructuredData(cleanPath, config, url);
     updateCanonical();
 }
 
-// Initialize SEO on page load and route changes (fallbacks for non-React entry)
+// Initialize SEO on page load and route changes (fallbacks for non-React entry).
+// Skipped when this module is imported from the Node sitemap script.
+if (typeof window !== "undefined" && typeof document !== "undefined") {
 (function() {
     updateSEO();
     let lastPath = window.location.pathname + window.location.search;
@@ -398,4 +409,5 @@ export function updateSEO() {
     }, true);
     setInterval(checkPath, 500);
 })();
+}
 

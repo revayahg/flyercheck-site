@@ -6,6 +6,13 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { publicBlogPosts } from "../src/content/blogPosts.js";
 
+const guestJourney = publicBlogPosts.find(
+  (post) => post.slug === "guest-journey-starts-before-ticket",
+);
+if (!guestJourney) {
+  throw new Error("guest-journey-starts-before-ticket missing from publicBlogPosts");
+}
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const distDir = path.join(__dirname, "..", "dist");
 
@@ -33,7 +40,7 @@ const metaChecks = [
     descriptionNeedle: "free flyer analyzer",
   },
   {
-    route: `/blog/${publicBlogPosts[0].slug}`,
+    route: `/blog/${guestJourney.slug}`,
     title: "Guests Decide Before They Buy the Ticket | FlyerCheck",
     descriptionNeedle: "Buried date",
   },

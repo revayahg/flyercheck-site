@@ -4,7 +4,7 @@
  */
 import { blogSeoMeta } from "./blogSeoMeta.js";
 
-/** Posts that stay public on flyercheck.io. Everything else 301s to /blog. */
+/** Byline overrides for flyer-focused posts. This list does not decide which posts are public. */
 export const keptBlogSlugs = [
   "flyer-blind-spots",
   "what-a-bad-flyer-actually-costs-you",
@@ -2001,13 +2001,11 @@ for (const post of blogPosts) {
   post.author = founderAuthors[post.slug] || "FlyerCheck Staff";
 }
 
-/** Flyer posts shown in the index, sitemap, and homepage. */
-export const publicBlogPosts = blogPosts.filter((post) => keptBlogSlugSet.has(post.slug));
+/** Every catalog post: blog index, sitemap, homepage, prerender, and the edge allowlist. */
+export const publicBlogPosts = blogPosts;
 
-/** Ops posts removed from the public catalog. */
-export const retiredBlogSlugs = blogPosts
-  .filter((post) => !keptBlogSlugSet.has(post.slug))
-  .map((post) => post.slug);
+/** No catalog posts are retired. Placeholder redirects were removed once the articles were rewritten. */
+export const retiredBlogSlugs = [];
 
 const flyerBlindSpotsPost = {
   title:

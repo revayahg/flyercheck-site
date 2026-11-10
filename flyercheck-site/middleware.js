@@ -1,8 +1,17 @@
 /**
  * Unknown HTML paths return the prerendered 404 page with status 404.
- * Retired blog slugs are handled by vercel.json redirects before this runs.
+ *
+ * Blog URLs come from publicBlogPosts (src/content/blogPosts.js).
+ * Adding a post there is enough — do not add the slug to this file.
+ * blogPosts.js is plain ESM (no Node builtins), so this import is safe on the Edge runtime.
  */
-const KNOWN_PATHS = new Set([
+import { publicBlogPosts } from "./src/content/blogPosts.js";
+import {
+  blogCategoryNoindexFile,
+  categoryFromQueryParam,
+} from "./src/content/blogCategories.js";
+
+const STATIC_PATHS = [
   "/",
   "/flyercheck",
   "/about",
@@ -16,12 +25,11 @@ const KNOWN_PATHS = new Set([
   "/sitemap",
   "/404",
   "/blog/flyer-blind-spots",
-  "/blog/what-a-bad-flyer-actually-costs-you",
-  "/blog/flyercheck-plus-ai-chatbot-final-check",
-  "/blog/guest-journey-starts-before-ticket",
-  "/blog/event-flyer-design-mistakes",
-  "/blog/how-to-read-your-event-flyer-like-an-attendee",
-  "/blog/what-makes-a-good-event-flyer",
+];
+
+const KNOWN_PATHS = new Set([
+  ...STATIC_PATHS,
+  ...publicBlogPosts.map((post) => `/blog/${post.slug}`),
 ]);
 
 function normalizePath(pathname) {
@@ -41,6 +49,25 @@ export default async function middleware(request) {
     path.includes(".")
   ) {
     return;
+  }
+
+  if (path === "/blog") {
+    const category = categoryFromQueryParam(url.searchParams.get("category") ?? "");
+    const snapshot = category && blogCategoryNoindexFile(category);
+    if (snapshot) {
+      const fileUrl = new URL(snapshot, request.url);
+      const file = await fetch(fileUrl);
+      if (file.ok) {
+        return new Response(await file.text(), {
+          status: 200,
+          headers: {
+            "content-type": "text/html; charset=utf-8",
+            "x-robots-tag": "noindex, follow",
+            "cache-control": "public, max-age=0, must-revalidate",
+          },
+        });
+      }
+    }
   }
 
   if (KNOWN_PATHS.has(path)) return;

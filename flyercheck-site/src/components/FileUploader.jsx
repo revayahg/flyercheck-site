@@ -20,6 +20,34 @@ function getEventTypeMapping(eventType) {
     return EVENT_TYPE_MAP[key];
 }
 
+function sanitizeCallouts(raw) {
+    if (!Array.isArray(raw)) return [];
+    const callouts = [];
+    for (const item of raw) {
+        if (!item || typeof item !== "object") continue;
+        const text = String(item.text || item.label || "").replace(/\s+/g, " ").trim();
+        if (!text) continue;
+        let x = Number(item.x);
+        let y = Number(item.y);
+        let w = Number(item.w);
+        let h = Number(item.h);
+        if (![x, y, w, h].every(Number.isFinite)) continue;
+        if (Math.max(x, y, w, h) <= 1) {
+            x *= 100;
+            y *= 100;
+            w *= 100;
+            h *= 100;
+        }
+        x = Math.min(96, Math.max(0, x));
+        y = Math.min(96, Math.max(0, y));
+        w = Math.min(100 - x, Math.max(6, w));
+        h = Math.min(100 - y, Math.max(4, h));
+        callouts.push({ text: text.slice(0, 140), x, y, w, h });
+        if (callouts.length >= 5) break;
+    }
+    return callouts;
+}
+
 function FileUploader() {
     try {
         const [file, setFile] = React.useState(null);
@@ -38,6 +66,7 @@ function FileUploader() {
         const processFileRef = React.useRef(null);
         const pasteLockRef = React.useRef(0);
         const [isPasteFocused, setIsPasteFocused] = React.useState(false);
+        const [activeCallout, setActiveCallout] = React.useState(null);
 
         isAnalyzingRef.current = isAnalyzing;
 
@@ -370,7 +399,12 @@ function FileUploader() {
             }
         };
 
+        React.useEffect(() => {
+            setActiveCallout(null);
+        }, [analysisResults]);
+
         const showResults = Boolean(analysisResults && !isAnalyzing);
+        const callouts = showResults ? sanitizeCallouts(analysisResults?.callouts) : [];
         const showUploadZone = !isAnalyzing && (!filePreview || showResults);
         const showFullPreview = Boolean(filePreview && !showResults);
         const showWhatWeLookFor = !filePreview && !showResults;
@@ -577,16 +611,55 @@ function FileUploader() {
                                             </div>
                                             <div className="file-preview file-preview--inline">
                                                 {file?.type?.startsWith("image/") ? (
-                                                    <img
-                                                        src={filePreview}
-                                                        alt="Analyzed flyer"
-                                                        className="preview-image"
-                                                    />
+                                                    <div className="flyer-stage">
+                                                        <img
+                                                            src={filePreview}
+                                                            alt="Analyzed flyer"
+                                                            className="preview-image"
+                                                        />
+                                                        {callouts.map((callout, index) => (
+                                                            <button
+                                                                key={`${callout.text}-${index}`}
+                                                                type="button"
+                                                                className={`flyer-callout${activeCallout === index ? " is-active" : ""}`}
+                                                                style={{
+                                                                    left: `${callout.x}%`,
+                                                                    top: `${callout.y}%`,
+                                                                    width: `${callout.w}%`,
+                                                                    height: `${callout.h}%`,
+                                                                }}
+                                                                aria-pressed={activeCallout === index}
+                                                                aria-label={`${index + 1}. ${callout.text}`}
+                                                                onClick={() => setActiveCallout(index)}
+                                                                onMouseEnter={() => setActiveCallout(index)}
+                                                            >
+                                                                <span className="flyer-callout-index">{index + 1}</span>
+                                                            </button>
+                                                        ))}
+                                                    </div>
                                                 ) : (
                                                     <div className="preview-pdf">
                                                         <i className="fas fa-file-pdf text-6xl mb-4"></i>
                                                         <p className="preview-filename">{file?.name}</p>
                                                     </div>
+                                                )}
+                                                {callouts.length > 0 && (
+                                                    <ol className="flyer-callout-list">
+                                                        {callouts.map((callout, index) => (
+                                                            <li key={`${callout.text}-note-${index}`}>
+                                                                <button
+                                                                    type="button"
+                                                                    className={`flyer-callout-note${activeCallout === index ? " is-active" : ""}`}
+                                                                    aria-pressed={activeCallout === index}
+                                                                    onClick={() => setActiveCallout(index)}
+                                                                    onMouseEnter={() => setActiveCallout(index)}
+                                                                >
+                                                                    <span className="flyer-callout-index">{index + 1}</span>
+                                                                    <span>{callout.text}</span>
+                                                                </button>
+                                                            </li>
+                                                        ))}
+                                                    </ol>
                                                 )}
                                             </div>
                                         </div>

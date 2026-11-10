@@ -6,6 +6,34 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
+function sanitizeCallouts(raw) {
+  if (!Array.isArray(raw)) return [];
+  const callouts = [];
+  for (const item of raw) {
+    if (!item || typeof item !== 'object') continue;
+    const text = String(item.text || item.label || '').replace(/\s+/g, ' ').trim();
+    if (!text) continue;
+    let x = Number(item.x);
+    let y = Number(item.y);
+    let w = Number(item.w);
+    let h = Number(item.h);
+    if (![x, y, w, h].every(Number.isFinite)) continue;
+    if (Math.max(x, y, w, h) <= 1) {
+      x *= 100;
+      y *= 100;
+      w *= 100;
+      h *= 100;
+    }
+    x = Math.min(96, Math.max(0, x));
+    y = Math.min(96, Math.max(0, y));
+    w = Math.min(100 - x, Math.max(6, w));
+    h = Math.min(100 - y, Math.max(4, h));
+    callouts.push({ text: text.slice(0, 140), x, y, w, h });
+    if (callouts.length >= 5) break;
+  }
+  return callouts;
+}
+
 async function analyzeFlyerWithOpenAI(imageBuffer, imageMimeType, targetAudience, eventCategories, extractedText) {
   if (!process.env.OPENAI_API_KEY || process.env.OPENAI_API_KEY.trim() === '') {
     throw new Error('OpenAI API key is not configured. Please set OPENAI_API_KEY in your deployment environment.');
@@ -209,6 +237,14 @@ Hard rules when scoring a real flyer:
 - If clutter is a real problem (no focal point, or the essentials are buried by extra graphics or text), clutterControl must be 4 or lower, visualClarity must be 6 or lower, pitfallsFound must include "Cluttered layout", and improvements must name specific elements to cut, group, or move onto a quieter panel.
 - Do not give high scores for a pretty image that fails as event communication.
 
+CALLOUTS — mark visible problems on the image (only when isEventFlyer is true):
+Add a "callouts" array with 0–5 items. Each item is a box the user will see drawn on their flyer.
+- text: one short sentence, 90 characters or fewer, naming the problem.
+- x, y, w, h: percentages of the image from 0 to 100. Origin is the top-left corner. The box should cover that problem, not the whole flyer.
+- Only mark something you can see. If a detail is missing entirely, do not invent a box for the empty space.
+- Use fewer callouts when the flyer is strong. Use [] when there is nothing specific to point at.
+- If isEventFlyer is false, callouts must be [].
+
 DESIGN PITFALLS TO CHECK (when it is a flyer):
 - Overloading with text
 - Poor font choices / illegible type
@@ -262,7 +298,10 @@ Provide your analysis in this JSON format:
   "recommendations": ["specific recommendation1", "specific recommendation2"],
   "audienceSpecificTips": "Specific advice tailored to ${audienceDesc}",
   "categorySpecificGuidance": "Category-specific recommendations for ${categoryDesc}.",
-  "encouragement": "Motivating closing statement — or upload guidance if not a flyer"
+  "encouragement": "Motivating closing statement — or upload guidance if not a flyer",
+  "callouts": [
+    { "text": "Date is small and sitting on a busy background", "x": 8, "y": 42, "w": 36, "h": 8 }
+  ]
 }
 
 Be specific and honest. Never score a non-flyer as a successful event flyer.`;
@@ -505,6 +544,7 @@ Be specific and honest. Never score a non-flyer as a successful event flyer.`;
         encouragement: isEventFlyer
           ? analysis.encouragement || 'Keep refining your design!'
           : 'Upload your event flyer whenever you\'re ready — we\'ll review it for clarity, logistics, and conversion.',
+        callouts: isEventFlyer ? sanitizeCallouts(analysis.callouts) : [],
       }
     };
   } catch (error) {

@@ -6,6 +6,7 @@ import { writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { publicBlogPosts } from "../src/content/blogPosts.js";
+import { getSEOConfig } from "../src/utils/seoConfig.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, "..");
@@ -50,7 +51,9 @@ const blogUrls = publicBlogPosts.map((p) => ({
   lastmod: p.publishedAt,
 }));
 
-const all = [...staticPaths, ...blogUrls];
+const all = [...staticPaths, ...blogUrls].filter(
+  (entry) => !getSEOConfig(entry.path)?.noindex
+);
 
 const body = all
   .map(({ path, priority, changefreq, lastmod: entryLastmod }) =>

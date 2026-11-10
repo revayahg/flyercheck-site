@@ -35,3 +35,14 @@ export function blogUrlForCategory(category) {
   if (!category || category === "All") return "/blog";
   return `/blog?category=${categoryToQueryParam(category)}`;
 }
+
+/** Static file for a category-filtered /blog URL. The query string itself is not a file path. */
+export function blogCategoryNoindexFile(category) {
+  if (!isBlogCategory(category)) return null;
+  const slug = category
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+  return `/blog/__category-noindex/${slug}/index.html`;
+}

@@ -240,6 +240,7 @@ function forceNonFlyerAnalysis(analysis, reason) {
         categorySpecificGuidance: 'Category guidance applies once you upload a real event flyer.',
         encouragement:
             "Upload your event flyer whenever you're ready — we'll review it for clarity, logistics, and conversion.",
+        callouts: [],
     };
 }
 

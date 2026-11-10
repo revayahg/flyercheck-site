@@ -10,6 +10,11 @@ import handler from "serve-handler";
 import puppeteer from "puppeteer-core";
 import chromium from "@sparticuz/chromium";
 import { publicBlogPosts } from "../src/content/blogPosts.js";
+import {
+  BLOG_CATEGORIES,
+  blogCategoryNoindexFile,
+  blogUrlForCategory,
+} from "../src/content/blogCategories.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const distDir = path.join(__dirname, "..", "dist");
@@ -93,6 +98,39 @@ function startServer() {
   });
 }
 
+const NOINDEX_META = '<meta name="robots" content="noindex, follow">';
+
+function distinctBlogCategories() {
+  const used = new Set(publicBlogPosts.map((post) => post.category).filter(Boolean));
+  return BLOG_CATEGORIES.filter((category) => used.has(category));
+}
+
+function withNoindexMeta(html) {
+  if (/<meta\s+name=["']robots["']/i.test(html)) {
+    return html.replace(/<meta\s+name=["']robots["'][^>]*>/i, NOINDEX_META);
+  }
+  return html.replace(/<head([^>]*)>/i, `<head$1>\n    ${NOINDEX_META}`);
+}
+
+function writeCategoryNoindexSnapshots() {
+  const blogHtmlPath = routeToFilePath("/blog");
+  const html = fs.readFileSync(blogHtmlPath, "utf8");
+  if (/<meta\s+name=["']robots["']/i.test(html)) {
+    throw new Error("[prerender] plain /blog snapshot already has a robots meta tag");
+  }
+
+  const categories = distinctBlogCategories();
+  for (const category of categories) {
+    const rel = blogCategoryNoindexFile(category);
+    const outPath = path.join(distDir, ...rel.split("/").filter(Boolean));
+    fs.mkdirSync(path.dirname(outPath), { recursive: true });
+    fs.writeFileSync(outPath, withNoindexMeta(html), "utf8");
+    console.log(`[prerender] ${blogUrlForCategory(category)}`);
+  }
+  console.log(`[prerender] Wrote ${categories.length} category noindex snapshots`);
+  return categories.length;
+}
+
 async function prerenderRoute(page, baseURL, route) {
   const url = `${baseURL}${route}`;
   console.log(`[prerender] ${route}`);
@@ -145,6 +183,8 @@ async function main() {
     for (const route of routes) {
       await prerenderRoute(page, baseURL, route);
     }
+
+    writeCategoryNoindexSnapshots();
 
     // Vercel serves dist/404.html with HTTP 404 for missing paths
     const notFoundSnapshot = path.join(distDir, "404", "index.html");

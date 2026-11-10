@@ -22,7 +22,7 @@ export default function App() {
 
   useEffect(() => {
     updateSEO();
-  }, [location.pathname]);
+  }, [location.pathname, location.search]);
 
   return (
     <Routes>

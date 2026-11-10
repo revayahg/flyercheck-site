@@ -1,7 +1,7 @@
 import { trackEvent } from "../lib/analytics";
 import { trackGaEvent } from "../lib/ga";
 import React from "react";
-import { analyzeFlyer } from "../utils/fileAnalyzer";
+import { analyzeFlyer, fileWithResolvedMime } from "../utils/fileAnalyzer";
 import AnalysisResults from "./AnalysisResults";
 import { reportError } from "../utils/errorHandler";
 
@@ -180,27 +180,36 @@ function FileUploader() {
         };
 
         // Process file after selection/paste/drop — then auto-start analysis
-        const processFile = (selectedFile, source = "upload") => {
+        const processFile = (incomingFile, source = "upload") => {
+            const selectedFile = fileWithResolvedMime(incomingFile);
             const result = analyzeFlyer(selectedFile);
             setIsSuccess(result.success);
 
             if (result.success) {
                 setFile(selectedFile);
                 setAnalysisResults(null);
-                setMessage(null);
+                setMessage("Reading your flyer…");
 
-                trackEvent({
-                    eventName: "flyer_upload_clicked",
-                    fileName: selectedFile.name,
-                    status: "file_selected",
-                    metadata: {
-                        fileType: selectedFile.type,
-                        fileSize: selectedFile.size,
-                        source,
-                    },
-                });
+                try {
+                    trackEvent({
+                        eventName: "flyer_upload_clicked",
+                        fileName: selectedFile.name,
+                        status: "file_selected",
+                        metadata: {
+                            fileType: selectedFile.type,
+                            fileSize: selectedFile.size,
+                            source,
+                        },
+                    });
+                } catch (error) {
+                    console.error("Analytics tracking error:", error);
+                }
 
                 const reader = new FileReader();
+                reader.onerror = () => {
+                    setMessage("Couldn't read that file. Export it as a JPEG or PNG and try again.");
+                    setIsSuccess(false);
+                };
                 reader.onload = (e) => {
                     setFilePreview(e.target.result);
                     runAnalysis(selectedFile, "skip");
@@ -325,25 +334,38 @@ function FileUploader() {
             };
         }, []);
 
-        const focusUploadZone = () => {
-            uploadZoneRef.current?.focus();
+        const openFilePicker = (event) => {
+            event?.stopPropagation();
+            const input = fileInputRef.current;
+            if (!input) return;
+            // Clearing lets the same file be chosen again. Do this before the dialog opens.
+            input.value = "";
+            // showPicker fires change reliably. input.click() on a display:none input
+            // opens the dialog in Safari and then drops the selection.
+            if (typeof input.showPicker === "function") {
+                try {
+                    input.showPicker();
+                    return;
+                } catch (error) {
+                    console.warn("File picker fallback:", error);
+                }
+            }
+            input.click();
         };
 
         const handleBrowseClick = (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            fileInputRef.current?.click();
+            openFilePicker(e);
         };
 
         const handleUploadZoneClick = (e) => {
             if (e.target.closest("[data-browse-files]")) return;
-            focusUploadZone();
+            openFilePicker(e);
         };
 
         const handleUploadZoneKeyDown = (e) => {
             if (e.key === "Enter" || e.key === " ") {
                 e.preventDefault();
-                fileInputRef.current?.click();
+                openFilePicker(e);
             }
         };
 
@@ -357,10 +379,13 @@ function FileUploader() {
         }, [filePreview, analysisResults, isAnalyzing]);
 
         const handleFileChange = (event) => {
-            const selectedFile = event.target.files[0];
+            const selectedFile = event.target.files?.[0];
             if (selectedFile) {
                 processFile(selectedFile, "upload");
+                return;
             }
+            setIsSuccess(false);
+            setMessage("No file came through. Choose a PNG, JPEG, or WEBP image.");
         };
 
         // Drag and drop handlers
@@ -433,7 +458,7 @@ function FileUploader() {
                 <i className="fas fa-cloud-upload-alt text-4xl mb-4" aria-hidden="true"></i>
                 <p className="text-lg mb-2">Drop or paste your flyer here</p>
                 <p className="text-sm text-gray-500 mb-3">
-                    Click this box, then press Ctrl/Cmd+V — or{" "}
+                    Drop a flyer here, paste with Ctrl/Cmd+V, or{" "}
                     <button
                         type="button"
                         className="browse-files-btn"
@@ -493,8 +518,9 @@ function FileUploader() {
                             type="file"
                             ref={fileInputRef}
                             onChange={handleFileChange}
-                            accept="image/png,image/jpeg,image/jpg,image/webp"
+                            accept="image/png,image/jpeg,image/webp,image/heic,image/heif,.png,.jpg,.jpeg,.webp,.heic,.heif"
                             className="file-input"
+                            tabIndex={-1}
                             data-name="file-input"
                         />
 

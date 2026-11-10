@@ -1,5 +1,15 @@
-/** Load AdSense scripts only when /flyercheck renders an ad unit (not site-wide in index.html). */
+/**
+ * The AdSense loader script ships site-wide in index.html <head>. This helper only
+ * makes sure the Funding Choices (consent) script is present before an ad unit pushes,
+ * and falls back to injecting the loader if index.html was served without it.
+ */
+const ADSENSE_SRC =
+  "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1821148589855201";
 let loadPromise = null;
+
+function hasScript(srcPrefix) {
+  return Array.from(document.scripts).some((s) => s.src && s.src.startsWith(srcPrefix));
+}
 
 function appendScript(src, crossOrigin) {
   return new Promise((resolve, reject) => {
@@ -26,10 +36,10 @@ export function loadAdSense() {
   if (typeof document === "undefined") return Promise.resolve();
   if (window.adsbygoogle) return Promise.resolve();
   if (!loadPromise) {
-    loadPromise = appendScript(
-      "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1821148589855201",
-      "anonymous",
-    )
+    const loader = hasScript(ADSENSE_SRC)
+      ? Promise.resolve()
+      : appendScript(ADSENSE_SRC, "anonymous");
+    loadPromise = loader
       .then(() =>
         appendScript(
           "https://fundingchoicesmessages.google.com/i/pub-1821148589855201?ers=1",

@@ -3,6 +3,7 @@
  * Used by BlogPage (index) and BlogPostPage (individual post template)
  */
 import { blogSeoMeta } from "./blogSeoMeta.js";
+import { BLOG_CATEGORIES } from "./blogCategories.js";
 
 /** Byline overrides for flyer-focused posts. This list does not decide which posts are public. */
 export const keptBlogSlugs = [
@@ -2003,6 +2004,11 @@ for (const post of blogPosts) {
 
 /** Every catalog post: blog index, sitemap, homepage, prerender, and the edge allowlist. */
 export const publicBlogPosts = blogPosts;
+
+/** Categories that have at least one public post, in canonical order (no empty nav/filter entries). */
+export const publicBlogCategories = BLOG_CATEGORIES.filter((category) =>
+  publicBlogPosts.some((post) => post.category === category),
+);
 
 /** No catalog posts are retired. Placeholder redirects were removed once the articles were rewritten. */
 export const retiredBlogSlugs = [];

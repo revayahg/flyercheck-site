@@ -19,7 +19,7 @@ function SitemapPage() {
                         <h1 className="sitemap-title">Sitemap</h1>
                         <p className="contact-subtitle" style={{ textAlign: "left", marginBottom: "1.5rem", maxWidth: "720px" }}>
                             This page lists every major section of flyercheck.io — the free flyer
-                            analyzer, how-it-works guides, FAQ, blog articles on event operations,
+                            analyzer, how-it-works guides, FAQ, blog articles on event flyers,
                             and legal pages. Use it to find a specific article or policy quickly.
                             For search engines, we also publish an XML sitemap at{" "}
                             <a href="/sitemap.xml">/sitemap.xml</a>.

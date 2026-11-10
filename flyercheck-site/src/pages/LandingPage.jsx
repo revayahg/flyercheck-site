@@ -10,6 +10,7 @@ import HomepageSectionsContainer from "../components/HomepageSectionsContainer";
 
 import { reportError } from "../utils/errorHandler";
 import { usePageJsonLd } from "../utils/pageJsonLd";
+import { trackGaEvent } from "../lib/ga";
 
 const landingPageSchema = {
   "@context": "https://schema.org",
@@ -29,7 +30,13 @@ export default function LandingPage() {
           title="Catch the mistake before your audience does."
           accentWord="mistake"
           subtitle="FlyerCheck flags missing dates, weak CTAs, and clutter before you go live — free, no account needed. Run your pre-publish check on the analyzer page."
-          primaryCta={{ text: "Open FlyerCheck analyzer", href: "/flyercheck", icon: "fas fa-arrow-right" }}
+          primaryCta={{
+            text: "Open FlyerCheck analyzer",
+            href: "/flyercheck",
+            icon: "fas fa-arrow-right",
+            onClick: () =>
+              trackGaEvent("cta_click", { cta_text: "Open FlyerCheck analyzer", cta_location: "home_hero" }),
+          }}
           showLogo={false}
           image={{
             src: "/images/flyercheck-reality.png",
@@ -53,7 +60,13 @@ export default function LandingPage() {
               This site is your hub for the free analyzer, how-it-works guides, and practical event-operations articles. When you&apos;re ready to upload, head to the dedicated tool page for instant feedback on clarity, completeness, and conversion killers.
             </p>
             <div className="landing-intro-actions">
-              <Link to="/flyercheck" className="btn btn-primary">
+              <Link
+                to="/flyercheck"
+                className="btn btn-primary"
+                onClick={() =>
+                  trackGaEvent("cta_click", { cta_text: "Upload your flyer", cta_location: "home_intro" })
+                }
+              >
                 Upload your flyer
               </Link>
               <Link to="/how-it-works" className="insight-link">

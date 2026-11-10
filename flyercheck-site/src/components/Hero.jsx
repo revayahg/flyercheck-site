@@ -77,6 +77,7 @@ export default function Hero({
             href={primaryCta.href}
             className="cta-button-primary"
             data-name="hero-primary-cta"
+            onClick={primaryCta.onClick}
           >
             {primaryCta.icon && <i className={primaryCta.icon} />}
             <span>{primaryCta.text}</span>
